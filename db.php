@@ -45,11 +45,13 @@ QRY;
 
 function add_staff($password, $type, $first_name, $last_name)
 {
-    global $servername, $username, $dbname, $password;
+    // Verify inputs with regexes
+    $typeok = preg_match('/^w*$/', $type);  // One word
+    $fnameok = preg_match('/^(w|-)*$/', $first_name);  // One word with dashes
     // Processing names
     $first_name = strtolower($first_name);
     $last_name = strtolower($last_name);
-    $last_name_patt = "#(\s)*(\w{2,3}\b(\s)+){0,2}(\w*\b)#";
+    $last_name_patt = '/(\s)*(\w{2,3}\b(\s)+){0,2}(\w*\b)/';
     $lname_filtered = preg_replace($last_name_patt, "$4", $last_name);
     if (strlen($lname_filtered) < 6)
     {
@@ -63,5 +65,26 @@ function add_staff($password, $type, $first_name, $last_name)
     // Password hashes must be stored in at least 255 chars (with PW_DEFAULT)
     // algorithm
     $pwhash = password_hash($password, $PASSWORD_DEFAULT);
+
+    // Database input
+    global $servername, $username, $dbname, $password;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username,
+            $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // Is login existing?
+        $query = <<<QRY
+SELECT login FROM Staff WHERE login LIKE $login;
+QRY;
+        $stmt = $conn->query($query);
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $rslt = $stmt->fetchAll();
+        if (count($rslt) > 0)
+        {
+            $login .= (count($rslt) + 1);
+        }
+    } catch (PDOException $e) {
+        echo "Something went wront: " . $e->getMessage();
+    }
 }
 ?>
