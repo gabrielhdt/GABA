@@ -49,9 +49,17 @@ function add_staff($password, $type, $first_name, $last_name)
     // Processing names
     $first_name = strtolower($first_name);
     $last_name = strtolower($last_name);
-    $last_name_patt = "#(\S{2,3}\s){0,2}(\S*)#";
-    $login = preg_replace($last_name_patt, "$2", $last_name);
-    $login .= $first_name;
+    $last_name_patt = "#(\s)*(\w{2,3}\b(\s)+){0,2}(\w*\b)#";
+    $lname_filtered = preg_replace($last_name_patt, "$4", $last_name);
+    if (strlen($lname_filtered) < 6)
+    {
+        $login = $lname_filtered;
+    }
+    else
+    {
+        $login = substr($lname_filtered, 0, 6);
+    }
+    $login .= substr($firstname, 0, 2);
     // Password hashes must be stored in at least 255 chars (with PW_DEFAULT)
     // algorithm
     $pwhash = password_hash($password, $PASSWORD_DEFAULT);
