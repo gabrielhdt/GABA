@@ -42,4 +42,18 @@ QRY;
         echo "Insertion failed: " . $e->getMessage();
     }
 }
+
+function add_staff($password, $type, $first_name, $last_name)
+{
+    global $servername, $username, $dbname, $password;
+    // Processing names
+    $first_name = strtolower($first_name);
+    $last_name = strtolower($last_name);
+    $last_name_patt = "#(\S{2,3}\s){0,2}(\S*)#";
+    $login = preg_replace($last_name_patt, "$2", $last_name);
+    $login .= $first_name;
+    // Password hashes must be stored in at least 255 chars (with PW_DEFAULT)
+    // algorithm
+    $pwhash = password_hash($password, $PASSWORD_DEFAULT);
+}
 ?>
