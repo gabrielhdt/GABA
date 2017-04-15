@@ -17,8 +17,8 @@ function add_species($name, $kingdom, $phylum, $class, $order, $family,
         $query = <<<QRY
 INSERT INTO Species (name, kingdom, phylum, class, order_s, family,
 conservation_status, footprint)
-VALUES ($name, $kingdom, $phylum, $class, $order, $family, $conservation_status,
-NULL);
+VALUES ('$name', '$kingdom', '$phylum', '$class', '$order', '$family',
+'$conservation_status', NULL);
 QRY;
         $conn->exec($query);
     } catch (PDOException $e) {
@@ -38,7 +38,7 @@ function add_followed($idSpecies, $gender, $health, $idFacility = NULL,
 
         $query = <<<QRY
 INSERT INTO Followed (gender, birth, death, health, idSpecies, idFacility)
-VALUES ($gender, $birth, $death, $health, $idSpecies, $idFacility);
+VALUES ('$gender', '$birth', '$death', '$health', '$idSpecies', '$idFacility');
 QRY;
         $conn->exec($query);
     } catch (PDOException $e) {
