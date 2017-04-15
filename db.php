@@ -1,15 +1,17 @@
 <?php
 
-$servername = "localhost";
-$username = "gaba";
-$dbname = "IENAC_GABA";
-$password = "abag";
+$servername = 'localhost';
+$username = 'gaba';
+$dbname = 'IENAC_GABA';
+$password = 'abag';
+$charset = 'utf8mb4';
 
 function add_species($name, $kingdom, $phylum, $class, $order, $family,
     $conservation_status) {
-    global $servername, $username, $dbname, $password;
+    global $servername, $username, $dbname, $password, $charset;
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $query = <<<QRY
@@ -28,9 +30,10 @@ QRY;
 function add_followed($idSpecies, $gender, $health, $idFacility = NULL,
     $birth = NULL, $death = NULL)
 {
-    global $servername, $username, $dbname, $password;
+    global $servername, $username, $dbname, $password, $charset;
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $query = <<<QRY
@@ -60,22 +63,22 @@ function add_staff($password, $type, $first_name, $last_name)
     }
     else
     {
-        $login = substr($lname_filtered, 0, 6);
+        $login = mb_substr($lname_filtered, 0, 6);
     }
-    $login .= substr($firstname, 0, 2);
+    $login .= mb_substr($firstname, 0, 2);
     // Password hashes must be stored in at least 255 chars (with PW_DEFAULT)
     // algorithm
-    $pwhash = password_hash($password, $PASSWORD_DEFAULT);
+    $pwhash = password_hash($password, PASSWORD_DEFAULT);
 
     // Database input
-    global $servername, $username, $dbname, $password;
+    global $servername, $username, $dbname, $password, $charset;
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username,
-            $password);
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         // Is login existing?
         $query = <<<QRY
-SELECT login FROM Staff WHERE login LIKE $login;
+SELECT login FROM Staff WHERE login LIKE '$login' COLLATE utf8mb4_unicode_ci;
 QRY;
         $stmt = $conn->query($query);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -86,8 +89,8 @@ QRY;
         }
         // Login set: input data
         $query = <<<QRY
-INSERT INTO Staff (login, password, type, first_name, last_name)
-VALUES ($login, $pwhash, $type, $first_name, $last_name);
+INSERT INTO Staff (login, pwhash, type, first_name, last_name)
+VALUES ('$login', '$pwhash', '$type', '$first_name', '$last_name');
 QRY;
         $conn->exec($query);
     } catch (PDOException $e) {
