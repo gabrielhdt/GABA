@@ -41,6 +41,7 @@ QRY;
     } catch (PDOException $e) {
         echo "Insertion failed: " . $e->getMessage();
     }
+    $conn = null;
 }
 
 function add_staff($password, $type, $first_name, $last_name)
@@ -83,8 +84,15 @@ QRY;
         {
             $login .= (count($rslt) + 1);
         }
+        // Login set: input data
+        $query = <<<QRY
+INSERT INTO Staff (login, password, type, first_name, last_name)
+VALUES ($login, $pwhash, $type, $first_name, $last_name);
+QRY;
+        $conn->exec($query);
     } catch (PDOException $e) {
-        echo "Something went wront: " . $e->getMessage();
+        echo "Something went wrong: " . $e->getMessage();
     }
+    $conn = null;
 }
 ?>
