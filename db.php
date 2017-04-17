@@ -50,8 +50,8 @@ QRY;
 function add_staff($password, $type, $first_name, $last_name)
 {
     // Verify inputs with regexes
-    $typeok = preg_match('/^w*$/', $type);  // One word
-    $fnameok = preg_match('/^(w|-)*$/', $first_name);  // One word with dashes
+    $typeok = preg_match('/^\w*$/', $type);  // One word
+    $fnameok = preg_match('/^(\w|-)*$/', $first_name);  // One word with dashes
     // Processing names
     $first_name = strtolower($first_name);
     $last_name = strtolower($last_name);
