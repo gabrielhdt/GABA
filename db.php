@@ -53,8 +53,8 @@ function add_staff($password, $type, $first_name, $last_name)
     $typeok = preg_match('/^\w*$/', $type);  // One word
     $fnameok = preg_match('/^(\w|-)*$/', $first_name);  // One word with dashes
     // Processing names
-    $first_name = strtolower($first_name);
-    $last_name = strtolower($last_name);
+    $first_name = mb_strtolower($first_name);
+    $last_name = mb_strtolower($last_name);
     $last_name_patt = '/(\s)*(\w{2,3}\b(\s)+){0,2}(\w*\b)/';
     $lname_filtered = preg_replace($last_name_patt, "$4", $last_name);
     if (strlen($lname_filtered) < 6)
@@ -93,6 +93,23 @@ INSERT INTO Staff (login, pwhash, type, first_name, last_name)
 VALUES ('$login', '$pwhash', '$type', '$first_name', '$last_name');
 QRY;
         $conn->exec($query);
+    } catch (PDOException $e) {
+        echo "Something went wrong: " . $e->getMessage();
+    }
+    $conn = null;
+}
+
+function link_followed($id_foll1, $id_foll2, $rel_type, $begin=null, $end=null)
+{
+    global $servername, $username, $dbname, $password, $charset;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = <<<QRY
+INSERT INTO Relation (idFollowed1, idFollowed2, type_relation, begin, end)
+VALUES ('$id_foll1', '$id_foll2', '$rel_type', '$begin', '$end');
+QRY;
     } catch (PDOException $e) {
         echo "Something went wrong: " . $e->getMessage();
     }
