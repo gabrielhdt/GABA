@@ -8,6 +8,7 @@ $charset = 'utf8mb4';
 
 function add_line($table, $valarr)
 {
+    // Values are set to lowercase!
     // $valarr["column name"] = column_value
     global $servername, $username, $dbname, $password, $charset;
     try {
@@ -20,7 +21,7 @@ function add_line($table, $valarr)
         foreach ($valarr as $col => $val)
         {
             $columns .= $col . ', ';
-            $values .= $val . ', ';
+            $values .= mb_strtolower($val) . ', ';
         }
         $columns = rtrim($columns, ' ,'); //Removes last ', '
         $values = rtrim($values, ' ,');
