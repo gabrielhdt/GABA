@@ -85,4 +85,28 @@ QRY;
     }
     $conn = null;
 }
+
+function get_values($table, $columns)
+{
+    global $servername, $username, $dbname, $password, $charset;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = 'SELECT (';
+        foreach ($columns as $col)
+        {
+            $query .= "$col, ";
+        }
+        $query = rtrim($query, ' ,');
+        $query .= ") FROM $table;";
+        $stmt = $conn->query($query);
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $rslt = $stmt->fetchAll();
+    } catch (PDOException $e) {
+        echo 'Something went wrong: ' . $e->getMessage();
+    }
+    $conn = null;
+    return $rslt;
+}
 ?>
