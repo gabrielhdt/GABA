@@ -6,43 +6,30 @@ $dbname = 'IENAC_GABA';
 $password = 'abag';
 $charset = 'utf8mb4';
 
-function add_species($name, $kingdom, $phylum, $class, $order, $family,
-    $conservation_status) {
-    global $servername, $username, $dbname, $password, $charset;
-    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
-            $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        $query = <<<QRY
-INSERT INTO Species (name, kingdom, phylum, class, order_s, family,
-conservation_status, footprint)
-VALUES ('$name', '$kingdom', '$phylum', '$class', '$order', '$family',
-'$conservation_status', NULL);
-QRY;
-        $conn->exec($query);
-    } catch (PDOException $e) {
-        echo "Insertion failed: " . $e->getMessage();
-    }
-    $conn = null;
-}
-
-function add_followed($idSpecies, $gender, $health, $idFacility = NULL,
-    $birth = NULL, $death = NULL)
+function add_line($table, $valarr)
 {
+    // $valarr["column name"] = column_value
     global $servername, $username, $dbname, $password, $charset;
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
             $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        $query = <<<QRY
-INSERT INTO Followed (gender, birth, death, health, idSpecies, idFacility)
-VALUES ('$gender', '$birth', '$death', '$health', '$idSpecies', '$idFacility');
-QRY;
+        $query = "INSERT INTO $table";
+        $columns = '(';
+        $values = '(';
+        foreach ($valarr as $col => $val)
+        {
+            $columns .= $col . ', ';
+            $values .= $val . ', ';
+        }
+        $columns = rtrim($columns, ' ,'); //Removes last ', '
+        $values = rtrim($values, ' ,');
+        $columns .= ')';
+        $values .= ')';
+        $query .= ' ' . $columns . ' ' . 'VALUES' . ' ' . $values . ';';
         $conn->exec($query);
     } catch (PDOException $e) {
-        echo "Insertion failed: " . $e->getMessage();
+        echo 'Insertion failed: ' . $e->getMessage();
     }
     $conn = null;
 }
@@ -93,23 +80,6 @@ INSERT INTO Staff (login, pwhash, type, first_name, last_name)
 VALUES ('$login', '$pwhash', '$type', '$first_name', '$last_name');
 QRY;
         $conn->exec($query);
-    } catch (PDOException $e) {
-        echo "Something went wrong: " . $e->getMessage();
-    }
-    $conn = null;
-}
-
-function link_followed($id_foll1, $id_foll2, $rel_type, $begin=null, $end=null)
-{
-    global $servername, $username, $dbname, $password, $charset;
-    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
-            $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $query = <<<QRY
-INSERT INTO Relation (idFollowed1, idFollowed2, type_relation, begin, end)
-VALUES ('$id_foll1', '$id_foll2', '$rel_type', '$begin', '$end');
-QRY;
     } catch (PDOException $e) {
         echo "Something went wrong: " . $e->getMessage();
     }
