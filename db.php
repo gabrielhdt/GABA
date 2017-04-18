@@ -27,7 +27,7 @@ function add_line($table, $valarr)
         $values = rtrim($values, ' ,');
         $columns .= ')';
         $values .= ')';
-        $query .= ' ' . $columns . ' ' . 'VALUES' . ' ' . $values . ';';
+        $query .= " $columns VALUES $values;";
         $conn->exec($query);
     } catch (PDOException $e) {
         echo 'Insertion failed: ' . $e->getMessage();
