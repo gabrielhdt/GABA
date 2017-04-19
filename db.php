@@ -131,4 +131,41 @@ function update_line($table, $change, $col_condition, $val_condition)
     }
     $conn = null;
 }
+
+function arithmetic_mean($real_arr) {
+    return array_sum($real_arr)/count($real_arr);
+}
+
+function classify_process($table, $valc, $critc, $mod, $fct = arithmetic_mean)
+{
+    /* Let $valc and $critc two columns containing respectively values
+     * (v_i) and criteria (c_i): each value has one criterium.
+     * Let $mod be the set of classes, denoted (k_i),
+     * Let E_i be the set of values whose criterium is in k_i.
+     * This function outputs an array: k_i => $fct(E_i),
+     * therefore $fct must be, considering the table Measures, from R^n to
+     * anything.
+     * In facts, $mod will contain classes boundaries.
+     */
+    $rslt = array();
+    global $servername, $username, $dbname, $password, $charset;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query_comm = "SELECT $valc FROM $table WHERE $critc BETWEEN ";
+        for ($i = 0 ; $i < count($mod) - 1 ; $i++)
+        {
+            $query_end = $mod[$i] . ' AND ' . $mod[$i + 1] .';';
+            $stmt = $conn->query($query_comm . $query_end);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $rslt[$mod[$i]] = $fct($stmt->fetchAll());
+        }
+        
+    } catch (PDOException $e) {
+        echo 'Something went wrong: ' . $e->getMessage();
+    }
+    $conn = null;
+    return $rslt;
+}
 ?>
