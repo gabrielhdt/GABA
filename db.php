@@ -110,4 +110,25 @@ function get_values($table, $columns)
     $conn = null;
     return $rslt;
 }
+
+function update_line($table, $change, $col_condition, $val_condition)
+{
+    // change : array('col' => 'val')
+    global $servername, $username, $dbname, $password, $charset;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = "UPDATE $table SET ";
+        foreach ($change as $col => $val) {
+            $query .= "$col='$val', ";
+        }
+        $query = rtrim($query, ' ,');
+        $query .= " WHERE $col_condition='$val_condition';";
+        $conn->exec($query);
+    } catch (PDOException $e) {
+        echo 'Something went wrong: ' . $e->getMessage();
+    }
+    $conn = null;
+}
 ?>
