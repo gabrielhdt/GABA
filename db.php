@@ -165,6 +165,7 @@ function classify_process($table, $valc, $critc, $mod, $fct = arithmetic_mean)
     } catch (PDOException $e) {
         echo 'Something went wrong: ' . $e->getMessage();
     }
+    $conn = null;
     return $rslt;
 }
 ?>
