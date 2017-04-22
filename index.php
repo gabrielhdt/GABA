@@ -78,7 +78,7 @@ foreach ($facspecs as $facility) {
     $type = $facility['type'];
     $name = $facility['name'];
     echo "var marker = L.marker([$latlong[0], $latlong[1]]).addTo(labmap);";
-    echo "marker.bindPopup(\"<b>$name</b><br>$type\").openPopup();";
+    echo "marker.bindPopup(\"<b>$name</b><br>$type\");";
 }
 ?>
                 </script>
