@@ -161,11 +161,43 @@ function classify_process($table, $valc, $critc, $mod, $fct = arithmetic_mean)
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $rslt[$mod[$i]] = $fct($stmt->fetchAll());
         }
-        
+
     } catch (PDOException $e) {
         echo 'Something went wrong: ' . $e->getMessage();
     }
     $conn = null;
     return $rslt;
+}
+
+function verify_login($login, $pwd){
+    // fonction de test login/pwd pour la connexion
+    global $servername, $username, $dbname, $password, $charset;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = "SELECT login FROM Staff WHERE login=?";
+        $stmt = $conn->prepare($query);
+        stmt -> binParam(1, $login, PDO::PARAM_STR, 30);
+        $stmt -> execute();
+        $result = $stmt -> fetch(PDO::FETCH_ASSOC);
+        if ($result != null) { // test login in database
+            $query = "SELECT pwhash FROM Staff WHERE login=?";
+            $stmt = $conn->prepare($query);
+            stmt -> binParam(1, $login, PDO::PARAM_STR, 30);
+            $stmt -> execute();
+            $result = $stmt -> fetch(PDO::FETCH_ASSOC);
+            if (password_hash($pwd, PASSWORD_DEFAULT) == $result) { // test hash(pwd) ok
+                echo "ok"
+            }
+        }
+        else {
+            echo  "login ou mot de passe incorrect"
+        }
+    } catch (PDOException $e) {
+        echo 'Something went wrong: ' . $e->getMessage();
+    }
+    $conn = null;
+
 }
 ?>
