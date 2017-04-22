@@ -66,7 +66,7 @@
                 occaecat cupidatat non proident, sunt in culpa qui officia
                 deserunt mollit anim id est laborum.</p>
                 <div id="labmap" style = "height: 180px"></div>
-<?php $facoord = get_values('Facility', 'gnss_coord'); ?>
+<?php $facoord = get_values('Facility', array('gnss_coord')); ?>
                 <script type="text/javascript" charset="utf-8">
                     var labmap = L.map('labmap').setView([43.13093, -0.45336], 13);
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
