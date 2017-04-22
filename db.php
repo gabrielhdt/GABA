@@ -178,25 +178,21 @@ function verify_login($login, $pwd){
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $query = "SELECT login FROM Staff WHERE login=?";
         $stmt = $conn->prepare($query);
-        $stmt -> binParam(1, $login, PDO::PARAM_STR, 30);
+        $stmt -> bindParam(1, $login, PDO::PARAM_STR, 30);
         $stmt -> execute();
         $log = $stmt -> fetch(PDO::FETCH_ASSOC);
 
         $query = "SELECT pwhash FROM Staff WHERE login=?";
         $stmt = $conn->prepare($query);
-        $stmt -> binParam(1, $login, PDO::PARAM_STR, 30);
+        $stmt -> bindParam(1, $login, PDO::PARAM_STR, 30);
         $stmt -> execute();
         $hpwd = $stmt -> fetch(PDO::FETCH_ASSOC);
 
-        if (($result != null) and (password_hash($pwd, PASSWORD_DEFAULT) == hpwd)) {
-            echo "ok";
-        }
-        else {
-            echo  "login ou mot de passe incorrect";
-        }
+        $authok = $log and password_verify($pwd, $hpwd['pwhash']);
     } catch (PDOException $e) {
         echo 'Something went wrong: ' . $e->getMessage();
     }
     $conn = null;
+    return($authok);
 }
 ?>
