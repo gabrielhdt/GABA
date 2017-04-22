@@ -178,13 +178,13 @@ function verify_login($login, $pwd){
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $query = "SELECT login FROM Staff WHERE login=?";
         $stmt = $conn->prepare($query);
-        stmt -> binParam(1, $login, PDO::PARAM_STR, 30);
+        $stmt -> binParam(1, $login, PDO::PARAM_STR, 30);
         $stmt -> execute();
         $log = $stmt -> fetch(PDO::FETCH_ASSOC);
 
         $query = "SELECT pwhash FROM Staff WHERE login=?";
         $stmt = $conn->prepare($query);
-        stmt -> binParam(1, $login, PDO::PARAM_STR, 30);
+        $stmt -> binParam(1, $login, PDO::PARAM_STR, 30);
         $stmt -> execute();
         $hpwd = $stmt -> fetch(PDO::FETCH_ASSOC);
 
