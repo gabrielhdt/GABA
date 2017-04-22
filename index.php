@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php include 'db.php' ?>
 <html lang="fr">
 
 <head>
@@ -65,12 +66,20 @@
                 occaecat cupidatat non proident, sunt in culpa qui officia
                 deserunt mollit anim id est laborum.</p>
                 <div id="labmap" style = "height: 180px"></div>
+<?php $facspecs = get_values('Facility', array('gnss_coord', 'type')); ?>
                 <script type="text/javascript" charset="utf-8">
                     var labmap = L.map('labmap').setView([43.13093, -0.45336], 13);
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                             attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
                             subdomain: ['a', 'b', 'c']}).addTo(labmap);
-                    var marker = L.marker([43.13102, -0.45352]).addTo(labmap);
+<?php
+foreach ($facspecs as $facility) {
+    $latlong = explode(',', $facility['gnss_coord']);
+    $type = $facility['type'];
+    echo "var marker = L.marker([$latlong[0], $latlong[1]]).addTo(labmap);";
+    echo "marker.bindPopup(\"$type\").openPopup();";
+}
+?>
                 </script>
             </div>
         </div>
