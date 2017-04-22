@@ -1,8 +1,13 @@
-/*logo*/
+/*-------------------
+logo
+---------------------------*/
+
 #logo {
-    width:75px;
+    width: 166px;
     height: 75px;
 }
+
+
 /*__________________________________________
 NAVBAR
 __________________________________________*/
@@ -10,6 +15,8 @@ __________________________________________*/
 .navbar {
     border-radius: 0;
     margin: 50px 0;
+    font-family: 'Courier New';
+    font-size: 20px;
 }
 
 .navbar-brand {
@@ -20,7 +27,7 @@ __________________________________________*/
     color: black;
     padding-left: 0;
     padding-right: 0;
-    margin: 0 15px;
+    margin: 0 20px;
     text-transform: uppercase;
 }
 
@@ -94,27 +101,31 @@ __________________________________________*/
     padding: 5px;
     border-radius: 3px;
 }
- /*description*/
+
+
+/*description*/
 
 .description {
-    margin : 100px 0;
+    margin: 100px 0;
     height: 400px;
     text-align: right;
-    background-color: rgba(255, 255, 255, 0.37);
+    background-color: rgba(255, 255, 255, 0.63)
 }
+
 .description h1 {
     font-family: 'Courier New';
-    color:grey;
+    color: rgb(94, 94, 94);
 }
 
 .container .description p {
     font-size: 20px;
     font-family: 'Palatino Linotype';
-    margin: 20px 10px;
+    margin: 20px 20px;
 }
 
 
 /*a propos de nous*/
+
 .container {
     background-image: url('../image/labo.jpg');
     width: 100%;
@@ -124,12 +135,14 @@ __________________________________________*/
     background-size: cover;
 }
 
+
 /*.container p {
     text-align: right;
     font-size: 3em;
     color: white;
     font-family: 'Palatino Linotype', cursive;
 }*/
+
 
 /* Carousel Styling */
 
@@ -166,20 +179,26 @@ __________________________________________*/
 
 .carousel-caption p {
     font-size: 2em;
-    font-family: 'Palatino Linotype', cursive;
+    font-family: cursive, 'Palatino Linotype';
     padding-right: 10px;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.37), rgba(255, 255, 255, 0)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.37), rgba(255, 255, 255, 0)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.37), rgba(255, 255, 255, 0)); /* For Fx 3.6 to 15 */
-    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0)); /* Standard syntax (must be last) */
+    text-shadow: -1px 0 rgb(27, 27, 26), 0 1px rgb(27, 27, 26), 1px 0 rgb(27, 27, 26), 0 -1px rgb(27, 27, 26);
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.37), rgba(255, 255, 255, 0));
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.37), rgba(255, 255, 255, 0));
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.37), rgba(255, 255, 255, 0));
+    /* For Fx 3.6 to 15 */
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
+    /* Standard syntax (must be last) */
 }
 
 .carousel-caption p.legende {
     font-size: 1.5em;
-    font-family: 'Palatino Linotype', cursive;
+    font-family: cursive, 'Palatino Linotype';
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
+
+
 /*Aide*/
 
 .container2 {
@@ -192,45 +211,67 @@ __________________________________________*/
 }
 
 .container2 .description {
-    /*border : 1px solid red;*/
-    margin : 100px 0;
+    margin: 100px 0;
     height: 400px;
     text-align: right;
+    background-color: rgba(255, 255, 255, 0.63)
 }
+
 .container2 .description p {
     font-size: 20px;
     font-family: 'Palatino Linotype';
-    margin: 10px 20px;
-    background-color: rgba(255, 255, 255, 0.37);
+    margin: 20px 20px;
+}
+
+#more {
+    background-color: none;
+    text-align: center;
+    position : static;
+    padding-bottom: 20px;
 }
 
 
 /*contact*/
-#contact{
+
+#contact {
     text-align: center;
 }
 
-#contact h1{
+#contact h1 {
     font-family: 'Courier New';
 }
 
-#contact p{
+#contact p {
     font-family: 'Palatino Linotype';
     font-size: 1.2em;
-    width : 75%;
-    margin:auto;
+    width: 75%;
+    margin: auto;
 }
+
 #contact input, #contact textarea {
     margin: 25px 0;
     display: block;
     width: 100%;
-    border:0;
+    border: 0;
     border-bottom: 1px solid rgb(51, 51, 51);
     outline-style: none;
 }
+
 footer {
     background-color: rgb(149, 150, 149);
     text-align: center;
     margin-top: 20px;
     padding: 50px 0;
+}
+
+footer ul li{
+    list-style-type: none;
+    text-align: center;
+    display: inline;
+    width: 100%;
+    padding:0;
+}
+footer ul li ul li {
+    display: list-item;
+    padding: 0;
 }
