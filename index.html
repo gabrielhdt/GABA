@@ -66,10 +66,11 @@
                 deserunt mollit anim id est laborum.</p>
                 <div id="labmap" style = "height: 180px"></div>
                 <script type="text/javascript" charset="utf-8">
-                    var mymap = L.map('labmap').setView([43.13093, -0.45336], 13);
+                    var labmap = L.map('labmap').setView([43.13093, -0.45336], 13);
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                             attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-                            subdomain: ['a', 'b', 'c']}).addTo(mymap);
+                            subdomain: ['a', 'b', 'c']}).addTo(labmap);
+                    var marker = L.marker([43.13102, -0.45352]).addTo(labmap);
                 </script>
             </div>
         </div>
