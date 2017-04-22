@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php include db.php ?>
+<?php include 'db.php' ?>
 <html lang="fr">
 
 <head>
