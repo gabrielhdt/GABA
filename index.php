@@ -75,7 +75,9 @@
 <?php
 foreach ($facspecs as $facility) {
     $latlong = explode(',', $facility['gnss_coord']);
+    $type = $facility['type'];
     echo "var marker = L.marker([$latlong[0], $latlong[1]]).addTo(labmap);";
+    echo "marker.bindPopup(\"$type\").openPopup();";
 }
 ?>
                 </script>
