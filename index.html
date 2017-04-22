@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
         integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
         crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
+         integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
+         crossorigin=""></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -53,8 +56,21 @@
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-7 col-md-offset-7 col-sm-offset-5">
             <div class="description">
                 <h1>A propos de nous...</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna
+                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                occaecat cupidatat non proident, sunt in culpa qui officia
+                deserunt mollit anim id est laborum.</p>
+                <div id="labmap" style = "height: 180px"></div>
+                <script type="text/javascript" charset="utf-8">
+                    var mymap = L.map('labmap').setView([43.13093, -0.45336], 13);
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                            subdomain: ['a', 'b', 'c']}).addTo(mymap);
+                </script>
             </div>
         </div>
     </div>
@@ -149,9 +165,6 @@
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
-         integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
-         crossorigin=""></script>
 </body>
 
 </html>
