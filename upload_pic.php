@@ -1,4 +1,5 @@
 <?php
+include 'db.php';
 /* POST must contain 'table', which specifies what is the image about
  * (e.g. followed or species) and 'id' of the thing; fields which won't be
  * entered by the user, and therefore parameters must be passed via hidden
@@ -15,6 +16,9 @@ $uploadfile = $uploaddir . basename($fname);
 
 if (move_uploaded_file($_FILES['userpic']['tmp_name'], $uploadfile)) {
     echo "Picture is valid, and successfully uploaded.\n";
+    $id = 'id' . ucfirst($table);
+    update_line($_POST['table'], array('pic_path' => $uploadfile),
+        $id, $_POST['id']);
 }
 else {
     echo "Possible file upload attack.\n";
