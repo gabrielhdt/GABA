@@ -41,6 +41,7 @@ foreach ($columns as $col_specs)
 </form>
 
 <?php //Creates array
+// Create first row containing fields
 if (array_key_exists('search_field', $_POST))
 {
     $search_field = $_POST['search_field'];
@@ -53,12 +54,23 @@ THEAD;
     foreach ($columns as $col_specs)
     {
         $field = $col_specs['Field'];
-        if ($field != $_POST['search_field'])
+        $line_beg = "<th data-filed=\"$field\" data-sortable=\"true\">";
+        $line_end = '</th>';
+        $keys_tables = tables_from_keys();
+        if ($col_specs['Key'] == 'MUL')
         {
-            echo "<th data-filed=\"$field\" data-sortable=\"true\">$field</th>";
+            $displayed_field = $keys_tables[$field];
         }
+        else if ($field != $_POST['search_field'])
+        {
+            $displayed_field = $field;
+        }
+        echo $line_beg . ucfirst($displayed_field) . $line_end;
+
     }
     echo '</tr></thead>';
+
+    // Create body containing results
     echo '<tbody>';
     echo '</tbody>';
     echo '</table>';
