@@ -52,7 +52,7 @@ foreach ($columns as $col_specs)
 // Create first row containing fields
 if (array_key_exists('search_field', $_POST))
 {
-    $search_field = $_POST['search_field'];
+    $search_field = mb_strtolower($_POST['search_field']);
     echo '<table class="table" data-toggle="table" data-search="true">';
     echo <<<THEAD
 <thead>
@@ -64,7 +64,7 @@ THEAD;
         $field = $col_specs['Field'];
         $line_beg = "<th data-filed=\"$field\" data-sortable=\"true\">";
         $line_end = '</th>';
-        if ($field != $search_field)
+        if (ucfirst($field) != $search_field)  //$search_field has been ucfirst
         {
             echo $line_beg . ucfirst($displayed_fields[$field]) . $line_end;
         }
