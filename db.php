@@ -129,7 +129,7 @@ function get_columns($table)
     return $rslt;
 }
 
-function tables_from_keys()
+function main_tables_from_keys()
 {
     global $servername, $username, $dbname, $password, $charset;
     try {
@@ -153,8 +153,10 @@ function tables_from_keys()
             $query = "SHOW INDEX FROM $table;";
             $stmt = $conn -> query($query);
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
-            $pkey = $stmt -> fetch()['Column_name'];
-            $key_table[$pkey] = $table;
+            $pkeys = $stmt -> fetchAll();
+            if (count($pkeys) == 1) {
+                $key_table[$pkeys[0]['Column_name']] = $table;
+            }
         }
     } catch (PDOException $e) {
         echo 'Something went wrong: ' . $e->getMessage();
