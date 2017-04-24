@@ -63,7 +63,7 @@ THEAD;
         $field = $col_specs['Field'];
         $line_beg = "<th data-filed=\"$field\" data-sortable=\"true\">";
         $line_end = '</th>';
-        echo $line_beg . ucfirst($displayed_field) . $line_end;
+        echo $line_beg . ucfirst($displayed_fields) . $line_end;
     }
     echo '</tr></thead>';
 
