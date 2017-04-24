@@ -29,10 +29,17 @@
         <select name="search_field" id="sel_followed" class="form-control">
 <?php //Creates list of choices
 $columns = get_columns('Followed');
+$displayed_fields = array();  //field => displayed
+$keys_tables = tables_from_keys();
 foreach ($columns as $col_specs)
 {
     $field = $col_specs['Field'];
-    echo "<option values=\"$field\">$field</option>";
+    if ($col_specs['Key'] == 'MUL')
+    {
+        $displayed_fields[$field] = ucfirst($keys_tables[$field]);
+    }
+    else $displayed_fields[$field] = ucfirst($field);
+    echo "<option values=\"$field\">" . $displayed_fields[$field] . "</option>";
 }
 ?>
         </select>
@@ -56,17 +63,7 @@ THEAD;
         $field = $col_specs['Field'];
         $line_beg = "<th data-filed=\"$field\" data-sortable=\"true\">";
         $line_end = '</th>';
-        $keys_tables = tables_from_keys();
-        if ($col_specs['Key'] == 'MUL')
-        {
-            $displayed_field = $keys_tables[$field];
-        }
-        else if ($field != $_POST['search_field'])
-        {
-            $displayed_field = $field;
-        }
         echo $line_beg . ucfirst($displayed_field) . $line_end;
-
     }
     echo '</tr></thead>';
 
