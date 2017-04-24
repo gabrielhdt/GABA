@@ -129,6 +129,39 @@ function get_columns($table)
     return $rslt;
 }
 
+function get_table_keys()
+{
+    global $servername, $username, $dbname, $password, $charset;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = "SHOW tables;";
+        $stmt = $conn->query($query);
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $tables_zipped = $stmt->fetchAll();
+        $tables = array();
+        // unzipping
+        foreach ($tables_zipped as $tab)
+        {
+            array_push($tables, $tab['Tables_in_IENAC_GABA']);
+        }
+
+        $table_key = array();
+        foreach ($tables as $table)
+        {
+            $query = "SHOW INDEX FROM $table;";
+            $stmt = $conn->query($query);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $table_key["$table"] = $stmt->fetch()['Column_name'];
+        }
+    } catch (PDOException $e) {
+        echo 'Something went wrong: ' . $e->getMessage();
+    }
+    $conn = null;
+    return $table_key;
+}
+
 
 function update_line($table, $change, $col_condition, $val_condition)
 {
