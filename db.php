@@ -129,7 +129,7 @@ function get_columns($table)
     return $rslt;
 }
 
-function get_table_keys()
+function tables_from_keys()
 {
     global $servername, $username, $dbname, $password, $charset;
     try {
@@ -147,19 +147,20 @@ function get_table_keys()
             array_push($tables, $tab['Tables_in_IENAC_GABA']);
         }
 
-        $table_key = array();
+        $key_table = array();
         foreach ($tables as $table)
         {
             $query = "SHOW INDEX FROM $table;";
-            $stmt = $conn->query($query);
+            $stmt = $conn -> query($query);
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
-            $table_key["$table"] = $stmt->fetch()['Column_name'];
+            $pkey = $stmt -> fetch()['Column_name'];
+            $key_table["pkey"] = $table;
         }
     } catch (PDOException $e) {
         echo 'Something went wrong: ' . $e->getMessage();
     }
     $conn = null;
-    return $table_key;
+    return $key_table;
 }
 
 
