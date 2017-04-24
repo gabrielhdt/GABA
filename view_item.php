@@ -39,7 +39,7 @@ foreach ($columns as $col_specs)
         $displayed_fields[$field] = $keys_tables[$field];
     }
     else $displayed_fields[$field] = $field;
-    echo "<option values=\"$field\">" . ucfirst($displayed_fields[$field]) .
+    echo "<option value=\"$field\">" . ucfirst($displayed_fields[$field]) .
         "</option>";
 }
 ?>
@@ -62,8 +62,10 @@ if (array_key_exists('search_field', $_POST))
         $field = $col_specs['Field'];
         $line_beg = "<th data-filed=\"$field\" data-sortable=\"true\">";
         $line_end = '</th>';
-        // Ceinture & bretelles
-        if (mb_strtolower($field) != mb_strtolower($search_field))
+        // Ceinture & bretelles, fishy management of search_field
+        // (becomes Species instead of idSpecies
+        if (mb_strtolower($field) != mb_strtolower($search_field) &&
+        mb_strtolower($displayed_fields[$field] != mb_strtolower($search_field)))
         {
             echo $line_beg . ucfirst($displayed_fields[$field]) . $line_end;
         }
