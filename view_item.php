@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html>
+<?php include "db.php"; ?>
 
 <head>
     <meta charset="UTF-8">
@@ -18,11 +19,37 @@
          crossorigin=""></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
+
 <body>
-    <table class="table" data-toggle="table" data-search="true">
-        <tr><th data-filed="col1" data-sortable="true">Header</th></tr>
-        <tr><td>Data</td></tr>
-    </table>
+<form action="view_item.php" method="post" accept-charset="utf-8"
+    enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="sel_followed">Select animal:</label>
+        <select name="followed_sel" id="sel_followed" class="form-control">
+<?php //Creates list of choices
+$columns = get_columns('Followed');
+foreach ($columns as $col_specs)
+{
+    $field = $col_specs['Field'];
+    echo "<option values=\"$field\">$field</option>";
+}
+?>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-default">Rechercher animal</button>
+</form>
+<?php
+if (array_key_exists('search_field', $_POST))
+{
+    $search_field = $_POST['search_field'];
+    $columns = get_columns('Followed');
+    echo '<table class="table" data-toggle="table" data-search="true">';
+    echo "<tr><th data-filed=\"col1\" data-sortable=\"true\">$search_field</th></tr>";
+    echo '<tr><td>Data</td></tr>';
+    echo '</table>';
+}
+?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table-locale-all.min.js"
