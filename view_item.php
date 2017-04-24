@@ -30,7 +30,7 @@
 <?php //Creates list of choices
 $columns = get_columns('Followed');
 $displayed_fields = array();  //field => displayed
-$keys_tables = tables_from_keys();
+$keys_tables = main_tables_from_keys();
 foreach ($columns as $col_specs)
 {
     $field = $col_specs['Field'];
