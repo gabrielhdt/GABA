@@ -111,6 +111,25 @@ function get_values($table, $columns)
     return $rslt;
 }
 
+function get_columns($table)
+{
+    global $servername, $username, $dbname, $password, $charset;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = "SHOW columns FROM $table;";
+        $stmt = $conn->query($query);
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $rslt = $stmt->fetchAll();
+    } catch (PDOException $e) {
+        echo 'Something went wrong: ' . $e->getMessage();
+    }
+    $conn = null;
+    return $rslt;
+}
+
+
 function update_line($table, $change, $col_condition, $val_condition)
 {
     // change : array('col' => 'val')
