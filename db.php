@@ -154,7 +154,7 @@ function tables_from_keys()
             $stmt = $conn -> query($query);
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $pkey = $stmt -> fetch()['Column_name'];
-            $key_table["pkey"] = $table;
+            $key_table[$pkey] = $table;
         }
     } catch (PDOException $e) {
         echo 'Something went wrong: ' . $e->getMessage();
