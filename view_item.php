@@ -25,8 +25,8 @@
 <form action="view_item.php" method="post" accept-charset="utf-8"
     enctype="multipart/form-data">
     <div class="form-group">
-        <label for="sel_followed">Select animal:</label>
-        <select name="followed_sel" id="sel_followed" class="form-control">
+        <label for="sel_followed">Rechercher animal selon:</label>
+        <select name="search_field" id="sel_followed" class="form-control">
 <?php //Creates list of choices
 $columns = get_columns('Followed');
 foreach ($columns as $col_specs)
@@ -39,14 +39,29 @@ foreach ($columns as $col_specs)
     </div>
     <button type="submit" class="btn btn-default">Rechercher animal</button>
 </form>
-<?php
+
+<?php //Creates array
 if (array_key_exists('search_field', $_POST))
 {
     $search_field = $_POST['search_field'];
-    $columns = get_columns('Followed');
     echo '<table class="table" data-toggle="table" data-search="true">';
-    echo "<tr><th data-filed=\"col1\" data-sortable=\"true\">$search_field</th></tr>";
-    echo '<tr><td>Data</td></tr>';
+    echo <<<THEAD
+<thead>
+<tr>
+<th data-filed="s_field" data-sortable="true">$search_field</th>
+</thead>
+THEAD;
+    foreach ($columns as $col_specs)
+    {
+        $field = $col_specs['Field'];
+        if ($field != $_POST['search_field'])
+        {
+            echo "<th data-filed=\"$field\" data-sortable=\"true\">$field</th>";
+        }
+    }
+    echo '</tr></thead>';
+    echo '<tbody>';
+    echo '</tbody>';
     echo '</table>';
 }
 ?>
