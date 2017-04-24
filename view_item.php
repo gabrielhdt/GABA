@@ -63,7 +63,10 @@ THEAD;
         $field = $col_specs['Field'];
         $line_beg = "<th data-filed=\"$field\" data-sortable=\"true\">";
         $line_end = '</th>';
-        echo $line_beg . ucfirst($displayed_fields[$field]) . $line_end;
+        if ($field != $search_field)
+        {
+            echo $line_beg . ucfirst($displayed_fields[$field]) . $line_end;
+        }
     }
     echo '</tr></thead>';
 
