@@ -36,10 +36,11 @@ foreach ($columns as $col_specs)
     $field = $col_specs['Field'];
     if ($col_specs['Key'] == 'MUL')
     {
-        $displayed_fields[$field] = ucfirst($keys_tables[$field]);
+        $displayed_fields[$field] = $keys_tables[$field];
     }
-    else $displayed_fields[$field] = ucfirst($field);
-    echo "<option values=\"$field\">" . $displayed_fields[$field] . "</option>";
+    else $displayed_fields[$field] = $field;
+    echo "<option values=\"$field\">" . ucfirst($displayed_fields[$field]) .
+        "</option>";
 }
 ?>
         </select>
