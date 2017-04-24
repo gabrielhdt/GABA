@@ -49,7 +49,6 @@ if (array_key_exists('search_field', $_POST))
 <thead>
 <tr>
 <th data-filed="s_field" data-sortable="true">$search_field</th>
-</thead>
 THEAD;
     foreach ($columns as $col_specs)
     {
