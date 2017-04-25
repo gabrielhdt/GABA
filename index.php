@@ -2,7 +2,9 @@
 <?php include 'db.php' ?>
 <html lang="fr">
 
+<?php include "head.html" ?>
 <body>
+    <?php include "nav.html" ?>
     <div class="container">
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-7 col-md-offset-7 col-sm-offset-5">
             <div class="description">
@@ -85,10 +87,6 @@
             </form>
         </div>
 </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</body>
-
 <?php $facspecs = get_values('Facility', array('name', 'gnss_coord', 'type')); ?>
                 <script type="text/javascript" charset="utf-8">
                     var labmap = L.map('labmap').setView([90, 0], 2);
@@ -105,5 +103,6 @@ foreach ($facspecs as $facility) {
 }
 ?>
                 </script>
-
+<?php include "footer.html" ?>
+</body>
 </html>
