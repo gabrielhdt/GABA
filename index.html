@@ -16,14 +16,19 @@
                     <li><a href="#">Notre labo</a></li>
                     <li>
                         <div class="dropdown">
-                            <button class="dropbtn">Recherche</button>
-                            <div class="dropdown-content">
-                                <a href="#">Espèces</a>
-                                <a href="#">Individus</a>
-                                <a href="#">Bâtiments</a>
-                                <a href="#">Chercheurs</a>
-                            </div>
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Dropdown
+    <span class="caret"></span>
+  </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
                         </div>
+                        
                     </li>
                     <li><a href="#contact">Contact</a></li>
                     <li><a href="#">Help</a></li>
@@ -39,20 +44,15 @@
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-7 col-md-offset-7 col-sm-offset-5">
             <div class="description">
                 <h1>A propos de nous...</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.</p>
-                <div id="labmap" style = "height: 180px"></div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <div id="labmap" style="height: 180px"></div>
                 <script type="text/javascript" charset="utf-8">
                     var labmap = L.map('labmap').setView([43.13093, -0.45336], 13);
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                            attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-                            subdomain: ['a', 'b', 'c']}).addTo(labmap);
+                        attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                        subdomain: ['a', 'b', 'c']
+                    }).addTo(labmap);
                     var marker = L.marker([43.13102, -0.45352]).addTo(labmap);
                 </script>
             </div>
