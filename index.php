@@ -2,9 +2,9 @@
 <?php include 'db.php' ?>
 <html lang="fr">
 
-<?php include "head.html" ?>
+<?php include "head.php" ?>
 <body>
-    <?php include "nav.html" ?>
+    <?php include "nav.php" ?>
     <div class="container">
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-7 col-md-offset-7 col-sm-offset-5">
             <div class="description">
@@ -104,6 +104,6 @@ foreach ($facspecs as $facility) {
 }
 ?>
                 </script>
-<?php include "footer.html" ?>
+<?php include "footer.php" ?>
 </body>
 </html>
