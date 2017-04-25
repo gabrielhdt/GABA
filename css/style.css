@@ -235,6 +235,7 @@ footer li {
     list-style-type: none;
     display: inline-block;
     margin: auto;
+    padding: 0 10px;
 }
 footer a {
     color: rgb(77, 142, 54);
@@ -242,6 +243,5 @@ footer a {
 
 footer a:hover{
     text-decoration: none;
-    color: rgb(77, 142, 54);
-    font-weight: bold;
+    color: rgb(10, 105, 8);
 }
