@@ -87,20 +87,45 @@ QRY;
     $conn = null;
 }
 
-function get_values($table, $columns)
+function get_values($select, $table, $where=array())
 {
+    /* select: array of selected fields
+     * $table: name of table
+     * where: array 'column name' => 'value'
+     */
     global $servername, $username, $dbname, $password, $charset;
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
             $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $query = 'SELECT ';
-        foreach ($columns as $col)
+        foreach ($select as $selcol)
         {
-            $query .= "$col, ";
+            $query .= "$selcol, ";
         }
         $query = rtrim($query, ' ,');
-        $query .= " FROM $table;";
+        $query .= " FROM $table";
+        if (!$where)
+        {
+            $query .= ';';
+        }
+        else
+        {
+            $query.= ' WHERE ';
+            foreach ($where as $col => $val)
+            {
+                if (gettype($val) == 'string')
+                {
+                    $query .= "'$col' LIKE '%$val%' AND ";
+                }
+                else
+                {
+                    $query .= "'$col' = $val AND";
+                }
+            }
+            $query = rtrim($query, ' AND');
+            $query .= ';';
+        }
         $stmt = $conn->query($query);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $rslt = $stmt->fetchAll();

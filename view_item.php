@@ -66,9 +66,7 @@ function create_tablehead($search_field, $columns, $displayed_fields)
     }
     echo '</tr></thead>';
 
-    // Create body containing results
 }
-// Create first row containing fields
 if (array_key_exists('search_field', $_POST))
 {
     echo '<table class="table" data-toggle="table" data-search="true">';
