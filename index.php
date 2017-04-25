@@ -11,7 +11,7 @@
                 <h1>A propos de nous...</h1>
                 <p>Lorem nim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
                     aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <div id = "more"><button type="button" class="btn btn-primary btn-sm">En savoir plus</button></div>
+                <div id = "more"><button type="button" class="btn btn-success btn-sm">En savoir plus</button></div>
             </div>
         </div>
     </div>
@@ -33,7 +33,7 @@
                     <h1>Le saviez-vous ?</h1>
                     <p>Au cours de l'année, 3 faons sont nés au sein de nos laboratoires.</p>
                     <p class="legende">Notre site vous permet de découvrir le nombre d'individus de l'espèce de votre choix qui sont nés au sein de notre laboratoire durant la période demandée.</p>
-                    <button type="button" class="btn btn-primary btn-sm">Chercher d'autres naissances</button>
+                    <button type="button" class="btn btn-success btn-sm">Chercher d'autres naissances</button>
                 </div>
             </div>
             <div class="item">
@@ -42,7 +42,7 @@
                     <h1>Le saviez-vous ?</h1>
                     <p>Dans nos laboratoires, les lions pèsent en moyenne 103 kilos.</p>
                     <p class="legende">Notre site vous permet de découvrir le poids moyen des individus de notre laboratoire de l'espèce de votre choix.</p>
-                    <button type="button" class="btn btn-primary btn-sm">Chercher d'autres statistiques</button>
+                    <button type="button" class="btn btn-success btn-sm">Chercher d'autres statistiques</button>
                 </div>
             </div>
             <div class="item">
@@ -51,7 +51,7 @@
                     <h1>Le saviez-vous ?</h1>
                     <p>Dans nos laboratoires, les manchots mesurent en moyenne 1,30m.</p>
                     <p class="legende">Notre site vous permet de découvrir la taille moyenne des individus de notre laboratoire de l'espèce de votre choix.</p>
-                    <button type="button" class="btn btn-primary btn-sm">Chercher d'autres statistiques</button>
+                    <button type="button" class="btn btn-success btn-sm">Chercher d'autres statistiques</button>
                 </div>
             </div>
         </div>
@@ -71,7 +71,7 @@
                 <p>Afin de vous faire profiter pleinement de toutes les possibilités qu'offre notre site, nous avons créer un manuel d'utilisation pour vous permettre de découvrir et de manipuler avec plus d'aisance toutes les fonctionnalités mises en ligne.</p>
                 <p>C'est aussi ici que vous trouverez la page Webmaster, donnant de plus amples informations sur les constructeurs du site.</p>
             </div>
-            <div><button id = 'more' type="button" class="btn btn-primary btn-sm">En savoir plus.</button></div>
+            <div><button id = 'more' type="button" class="btn btn-success btn-sm">En savoir plus.</button></div>
         </div>
     </div>
     <div class = 'row'>
@@ -83,7 +83,7 @@
                 <input type="text" name="name" placeholder="Votre nom*">
                 <input type="text" name="email" placeholder="Votre e-mail*">
                 <textarea name="msg" rows="8" cols="80" placeholder="Votre message*"></textarea>
-                <button class="btn btn-primary" type="submit" name="submit_contact">Envoyer le message</button>
+                <button class="btn btn-success" type="submit" name="submit_contact">Envoyer le message</button>
             </form>
         </div>
 </div>
