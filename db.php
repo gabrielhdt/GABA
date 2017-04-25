@@ -111,6 +111,61 @@ function get_values($table, $columns)
     return $rslt;
 }
 
+function get_columns($table)
+{
+    global $servername, $username, $dbname, $password, $charset;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = "SHOW columns FROM $table;";
+        $stmt = $conn->query($query);
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $rslt = $stmt->fetchAll();
+    } catch (PDOException $e) {
+        echo 'Something went wrong: ' . $e->getMessage();
+    }
+    $conn = null;
+    return $rslt;
+}
+
+function main_tables_from_keys()
+{
+    global $servername, $username, $dbname, $password, $charset;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = "SHOW tables;";
+        $stmt = $conn->query($query);
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $tables_zipped = $stmt->fetchAll();
+        $tables = array();
+        // unzipping
+        foreach ($tables_zipped as $tab)
+        {
+            array_push($tables, $tab['Tables_in_IENAC_GABA']);
+        }
+
+        $key_table = array();
+        foreach ($tables as $table)
+        {
+            $query = "SHOW INDEX FROM $table;";
+            $stmt = $conn -> query($query);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $pkeys = $stmt -> fetchAll();
+            if (count($pkeys) == 1) {
+                $key_table[$pkeys[0]['Column_name']] = $table;
+            }
+        }
+    } catch (PDOException $e) {
+        echo 'Something went wrong: ' . $e->getMessage();
+    }
+    $conn = null;
+    return $key_table;
+}
+
+
 function update_line($table, $change, $col_condition, $val_condition)
 {
     // change : array('col' => 'val')
@@ -178,26 +233,21 @@ function verify_login($login, $pwd){
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $query = "SELECT login FROM Staff WHERE login=?";
         $stmt = $conn->prepare($query);
-        stmt -> binParam(1, $login, PDO::PARAM_STR, 30);
+        $stmt -> bindParam(1, $login, PDO::PARAM_STR, 30);
         $stmt -> execute();
-        $result = $stmt -> fetch(PDO::FETCH_ASSOC);
-        if ($result != null) { // test login in database
-            $query = "SELECT pwhash FROM Staff WHERE login=?";
-            $stmt = $conn->prepare($query);
-            stmt -> binParam(1, $login, PDO::PARAM_STR, 30);
-            $stmt -> execute();
-            $result = $stmt -> fetch(PDO::FETCH_ASSOC);
-            if (password_hash($pwd, PASSWORD_DEFAULT) == $result) { // test hash(pwd) ok
-                echo "ok"
-            }
-        }
-        else {
-            echo  "login ou mot de passe incorrect"
-        }
+        $log = $stmt -> fetch(PDO::FETCH_ASSOC);
+
+        $query = "SELECT pwhash FROM Staff WHERE login=?";
+        $stmt = $conn->prepare($query);
+        $stmt -> bindParam(1, $login, PDO::PARAM_STR, 30);
+        $stmt -> execute();
+        $hpwd = $stmt -> fetch(PDO::FETCH_ASSOC);
+
+        $authok = $log and password_verify($pwd, $hpwd['pwhash']);
     } catch (PDOException $e) {
         echo 'Something went wrong: ' . $e->getMessage();
     }
     $conn = null;
-
+    return($authok);
 }
 ?>
