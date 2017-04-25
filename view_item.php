@@ -35,6 +35,7 @@ function create_choice_list($displayed_fields)
 }
 $columns = get_columns('Followed');
 $displayed_fields = create_fields_array($columns);
+create_choice_list($displayed_fields);
 ?>
         </select>
     </div>
