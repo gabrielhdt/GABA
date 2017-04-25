@@ -87,6 +87,7 @@
             </form>
         </div>
 </div>
+<div id="labmap" style="height: 180px"></div>
 <?php $facspecs = get_values('Facility', array('name', 'gnss_coord', 'type')); ?>
                 <script type="text/javascript" charset="utf-8">
                     var labmap = L.map('labmap').setView([90, 0], 2);
