@@ -5,13 +5,15 @@ if (isset($_POST['connexion']) && $_POST['connexion'] == 'Connexion') {
 
         $test_conn = verify_login($_POST['login'], $_POST['password']); // on verfie login et pwd (bool)
 
-        if ($data) { // si ok -> next page
+        if ($data == 1) { // si ok -> next page
             session_start(); // debut de la session
             $_SESSION['login'] = $_POST['login'];
             header('Location: membre_index.php'); // redirection vers la 'page index de session'
             exit();
-        } else {
+        } else if ($data == 0 ) {
             $erreur = 'Login ou mot de passe incorrect';
+        } else {
+            $erreur = 'Erreur de connexion';
         }
     } else {
         $erreur = 'Au moins un des champs est vide.';
