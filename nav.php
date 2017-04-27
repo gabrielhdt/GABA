@@ -31,7 +31,7 @@ function current_nav() {
                 $nav .= "    <li class='active'> <a href='recherche.php'>Recherche</a>
                 <ul class='dropdown-menu'>";
             } else {
-                $nav .= "    <li> <a href='#'>Recherche</a>
+                $nav .= "    <li> <a href='recherche.php'>Recherche</a>
         <ul class='dropdown-menu'>";
             }
             for ($j=4; $j < 8; $j++) {
