@@ -1,16 +1,29 @@
 <?php
+// TODO: penser à mettre à jour les liens des pages
+?>
+
+<?php
 session_start();
 
 function current_nav() {
+    /************************
+    fonction qui gère la les différentes navbar en fonction de la
+    page consultée et de la connexion ou non de l'utilisateur
+    (indentation pour une meilleur lisibilité du code HTML)
+    ************************/
     $links = array('index.php', 'labo.php', 'recherche.php', 'index.php/#contact', 'help.php');
     $menu_text = array('Accueil', 'Notre Labo', 'Recherche', 'Contact', 'Help');
 
+    // on cherche le nom de la page en cours
+    $page_name = substr( $_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '/')+1, strrpos($_SERVER['PHP_SELF'],'.php')-1);
+    // debut du nav
     $nav = "<ul class='nav navbar-nav'>\n";
-    $nom_page = substr( $_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '/')+1, strrpos($_SERVER['PHP_SELF'],'.php')-1);
-    $i = 0;
+
     for ($i=0; $i < 5; $i++) {
         if ($i == 2) {
-            if ($nom_page == 'recherche.php' || $nom_page == 'especes.php' || $nom_page == 'individu.php' ||$nom_page == 'batiment.php' ||$nom_page == 'chercheur.php') {
+            // test si l'une des pages de la liste recherche est en cours de consultation
+            if ($page_name == 'recherche.php' || $page_name == 'especes.php'
+            || $page_name == 'individu.php' ||$page_name == 'batiment.php' ||$page_name == 'chercheur.php') {
                 $nav .= "    <li class='active'> <a href='#'>Recherche</a>
         <ul class='dropdown-menu'>
             <li class='rechercher'><a href='#'>Espèce</a></li>
@@ -30,15 +43,16 @@ function current_nav() {
     </li>\n";
             }
         } else {
-            if ($nom_page == $links[$i]){
+            if ($page_name == $links[$i]){
                 $nav .= "    <li class='active'><a href='".$links[$i]."'>".$menu_text[$i]."</a></li>\n";
             } else {
                 $nav .= "    <li><a href='".$links[$i]."'>".$menu_text[$i]."</a></li>\n";
             }
         }
     }
-    if (!isset($_SESSION['login'])) { // test si l'utilisateur est connecté (navbar différente sinon)
-        if ($nom_page == 'login.php'){
+    // test si l'utilisateur n'est pas connecté, seulement onglet 'connexion' à droite
+    if (!isset($_SESSION['login'])) {
+        if ($page_name == 'login.php'){
             $nav .=
 "</ul>
 <ul class='nav navbar-nav navbar-right'>
@@ -51,8 +65,9 @@ function current_nav() {
     <li><a href='login.php'><span class='glyphicon glyphicon-log-in'></span> Connexion</a></li>
 </ul>";
         }
+    // test si l'utilisateur est connecté, onglets 'espace perso' et 'déconnexion' à droite
     } else {
-        if ($nom_page == 'membre_index.php'){
+        if ($page_name == 'membre_index.php'){
             $nav .=
 "</ul>
 <ul class='nav navbar-nav navbar-right'>
