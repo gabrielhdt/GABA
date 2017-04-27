@@ -3,7 +3,7 @@ include('db.php');
 if (isset($_POST['connexion']) && $_POST['connexion'] == 'Connexion') {
     if ((isset($_POST['login']) && !empty($_POST['login'])) && (isset($_POST['password']) && !empty($_POST['password']))) {
 
-        $test_conn = verify_login($_POST['login'], $_POST['password']); // on verfie login et pwd (bool)
+        $test_conn = verify_login($_POST['login'], $_POST['password']); // on verfie login et pwd (int)
 
         if ($data == 1) { // si ok -> next page
             session_start(); // debut de la session
