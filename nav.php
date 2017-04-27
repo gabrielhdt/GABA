@@ -11,59 +11,57 @@ function current_nav() {
     page consultée et de la connexion ou non de l'utilisateur
     (indentation pour une meilleur lisibilité du code HTML)
     ************************/
-    $links = array('index.php', 'labo.php', 'recherche.php', 'help.php');
-    $menu_text = array('Accueil', 'Notre Labo', 'Recherche', 'Help');
+    // definition des liens et du texte a afficher dans la navbar
+    $links = array('index.php', 'labo.php', 'recherche.php', 'help.php', 'espece.php', 'individu.php',
+                    'batiment.php', 'chercheur.php', 'index.php#contact', 'login.php', 'membre_inde.php', 'deconnexion.php');
+    $text = array('Accueil', 'Notre Labo', 'Recherche', 'Help', 'Espèce', 'Individu', 'Bâtiment', 'Chercheur',
+                    'Conctact', 'Connexion', 'Espace Perso', 'Déconnexion');
 
     // on cherche le nom de la page en cours
     $page_name = substr( $_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '/')+1, strrpos($_SERVER['PHP_SELF'],'.php')-1);
     // debut du nav
     $nav = "<ul class='nav navbar-nav'>\n";
 
-    for ($i=0; $i < 5; $i++) {
+    for ($i=0; $i < 4; $i++) {
+        // cas du dropdown-menu, actif si l'une de ses pages est consultée
         if ($i == 2) {
             // test si l'une des pages de la liste recherche est en cours de consultation
-            if ($page_name == 'recherche.php' || $page_name == 'espece.php'
-            || $page_name == 'individu.php' ||$page_name == 'batiment.php' ||$page_name == 'chercheur.php') {
-                $nav .= "    <li class='active'> <a href='#'>Recherche</a>
-        <ul class='dropdown-menu'>
-            <li class='rechercher'><a href='espece.php'>Espèce</a></li>
-            <li class='rechercher'><a href='individu.php'>individu</a></li>
-            <li class='rechercher'><a href='batiment.php'>bâtiment</a></li>
-            <li class='rechercher'><a href='chercheur.php'>chercheur</a></li>
-        </ul>
-    </li>\n";
+            if ($page_name == $links[2] || $page_name == $links[4]
+            || $page_name == $links[5] ||$page_name == $links[6] ||$page_name == $links[7]) {
+                $nav .= "    <li class='active'> <a href='recherche.php'>Recherche</a>
+                <ul class='dropdown-menu'>";
             } else {
                 $nav .= "    <li> <a href='#'>Recherche</a>
-        <ul class='dropdown-menu'>
-            <li class='rechercher'><a href='espece.php'>Espèce</a></li>
-            <li class='rechercher'><a href='individu.php'>individu</a></li>
-            <li class='rechercher'><a href='batiment.php'>bâtiment</a></li>
-            <li class='rechercher'><a href='chercheur.php'>chercheur</a></li>
-        </ul>
-    </li>\n";
+        <ul class='dropdown-menu'>";
             }
-            $nav .= "    <li><a href='index.php#contact'>Contact</a></li>\n";
+            for ($j=4; $j < 8; $j++) {
+                $nav .= "<li><a href='$links[$j]'>$text[$j]</a></li>\n";
+            }
+            $nav .= "</ul>
+            </li>
+            <li><a href='$links[8]'>Contact</a></li>\n"; //cas de l'ancre 'contact'
+        // autres liens
         } else {
             if ($page_name == $links[$i]){
-                $nav .= "    <li class='active'><a href='".$links[$i]."'>".$menu_text[$i]."</a></li>\n";
+                $nav .= "    <li class='active'><a href='$links[$i]'>$text[$i]</a></li>\n";
             } else {
-                $nav .= "    <li><a href='".$links[$i]."'>".$menu_text[$i]."</a></li>\n";
+                $nav .= "    <li><a href='$links[$i]'>$text[$i]</a></li>\n";
             }
         }
     }
     // test si l'utilisateur n'est pas connecté, seulement onglet 'connexion' à droite
     if (!isset($_SESSION['login'])) {
-        if ($page_name == 'login.php'){
+        if ($page_name == $links[9]){
             $nav .=
 "</ul>
 <ul class='nav navbar-nav navbar-right'>
-    <li class='active'><a href='login.php'><span class='glyphicon glyphicon-log-in'></span> Connexion</a></li>
+    <li class='active'><a href='$links[9]'><span class='glyphicon glyphicon-log-in'></span> $text[9]</a></li>
 </ul>";
         } else {
             $nav .=
 "</ul>
 <ul class='nav navbar-nav navbar-right'>
-    <li><a href='login.php'><span class='glyphicon glyphicon-log-in'></span> Connexion</a></li>
+    <li><a href='$links[9]'><span class='glyphicon glyphicon-log-in'></span> $text[9]</a></li>
 </ul>";
         }
     // test si l'utilisateur est connecté, onglets 'espace perso' et 'déconnexion' à droite
@@ -72,15 +70,15 @@ function current_nav() {
             $nav .=
 "</ul>
 <ul class='nav navbar-nav navbar-right'>
-    <li class='active'><a href='membre_index.php'><span class='glyphicon glyphicon-log-in'></span> Espace Perso</a></li>
-    <li><a href='membre_index.php'><span class='glyphicon glyphicon-log-out'></span> Déconnexion</a></li>
+    <li class='active'><a href='$links[10]'><span class='glyphicon glyphicon-log-in'></span> $text[10]</a></li>
+    <li><a href='$links[11]'><span class='glyphicon glyphicon-log-out'></span> $text[11]</a></li>
 </ul>";
         } else {
             $nav .=
 "</ul>
 <ul class='nav navbar-nav navbar-right'>
-    <li><a href='membre_index.php'><span class='glyphicon glyphicon-log-in'></span> Espace Perso</a></li>
-    <li><a href='membre_index.php'><span class='glyphicon glyphicon-log-out'></span> Déconnexion</a></li>
+    <li><a href='$links[10]'><span class='glyphicon glyphicon-log-in'></span> $text[10]</a></li>
+    <li><a href='$links[11]'><span class='glyphicon glyphicon-log-out'></span> $text[11]</a></li>
 </ul>";
         }
     }
