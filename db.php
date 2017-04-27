@@ -6,6 +6,21 @@ $dbname = 'IENAC_GABA';
 $password = 'abag';
 $charset = 'utf8mb4';
 
+function strlist_of_array($strings, $sep)
+{
+    /* strings array of strings
+     * sep: string
+     * returns: strings[0] . $sep . strings[1] . ... . strings[n]
+     */
+    $rslt = "";
+    foreach ($strings as $str)
+    {
+        $reslt .= $str . " $sep ";
+    }
+    $rslt = rtrim($rslt, "$sep ");
+    return($rslt);
+}
+
 function add_line($table, $valarr)
 {
     // Values are set to lowercase!
@@ -85,6 +100,52 @@ QRY;
         echo "Something went wrong: " . $e->getMessage();
     }
     $conn = null;
+}
+
+function build_where($wherearr)
+{
+    $query = 'WHERE ';
+    foreach ($wherearr as $col => $val)
+    {
+        if (gettype($val) == 'string')
+        {
+            $query .= "'$col' LIKE '%$val%' AND ";
+        }
+        else
+        {
+            $query .= "'$col' = $val AND";
+        }
+    }
+    $query = rtrim($query, ' AND');
+    $query .= ';';
+    return($query);
+}
+
+function joined_view($view_name, $table_ref, $tables_to_join)
+{
+    //tables_to_join tablename => column join on
+    global $servername, $username, $dbname, $password, $charset;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = "CREATE VIEW $view_name AS SELECT * FROM";
+        $query_tables = "";
+        $wherearr = array();
+        $col_ref = $tables_to_join[$table_ref];
+        foreach ($tables_to_join as $table => $joincol)
+        {
+           $query_tables .= $table . ', ';
+           $wherearr["$table.$joincol"] = "$table_ref.$col_ref";
+        }
+        $query_tables = rtrim($query_tables, ' ,');
+        $conn -> exec($query);
+        $viewcols = get_columns($view_name);
+    } catch (PDOException $e) {
+        echo 'Something went wrong: ' . $e->getMessage();
+    }
+    $conn = null;
+    return($viewcols);
 }
 
 function get_values($select, $table, $where=array())
