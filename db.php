@@ -256,23 +256,32 @@ function verify_login($login, $pwd){
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
             $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $query = "SELECT login FROM Staff WHERE login=?";
+
+        // $query = "SELECT login FROM Staff WHERE login=?";
+        // $stmt = $conn->prepare($query);
+        // $stmt -> bindParam(1, $login, PDO::PARAM_STR, 30);
+        // $stmt -> execute();
+        // $log = $stmt -> fetch(PDO::FETCH_ASSOC);
+
+        // $query = "SELECT pwhash FROM Staff WHERE login=?";
+        // $stmt = $conn->prepare($query);
+        // $stmt -> bindParam(1, $login, PDO::PARAM_STR, 30);
+        // $stmt -> execute();
+        // $hpwd = $stmt -> fetch(PDO::FETCH_ASSOC);
+
+        $query = "SELECT count(*) FROM Staff WHERE login=? AND pwhash=?";
         $stmt = $conn->prepare($query);
         $stmt -> bindParam(1, $login, PDO::PARAM_STR, 30);
+        $stmt -> bindParam(1, password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR, 30);
         $stmt -> execute();
-        $log = $stmt -> fetch(PDO::FETCH_ASSOC);
+        $nb = $stmt -> fetch(PDO::FETCH_ASSOC);
 
-        $query = "SELECT pwhash FROM Staff WHERE login=?";
-        $stmt = $conn->prepare($query);
-        $stmt -> bindParam(1, $login, PDO::PARAM_STR, 30);
-        $stmt -> execute();
-        $hpwd = $stmt -> fetch(PDO::FETCH_ASSOC);
+        // $authok = $log and password_verify($pwd, $hpwd['pwhash']);
 
-        $authok = $log and password_verify($pwd, $hpwd['pwhash']);
     } catch (PDOException $e) {
         echo 'Something went wrong: ' . $e->getMessage();
     }
     $conn = null;
-    return($authok);
+    return($authok[0]);
 }
 ?>
