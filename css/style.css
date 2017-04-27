@@ -23,12 +23,14 @@ __________________________________________*/
     color: black;
 }
 
-.navbar li a {
+.navbar li a,
+.nav .active ul li a {
     color: black;
     padding-left: 0;
     padding-right: 0;
     margin: 0 20px;
     text-transform: uppercase;
+    border: 0;
 }
 
 .navbar li a:hover, .nav .active a {
