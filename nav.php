@@ -11,8 +11,8 @@ function current_nav() {
     page consultée et de la connexion ou non de l'utilisateur
     (indentation pour une meilleur lisibilité du code HTML)
     ************************/
-    $links = array('index.php', 'labo.php', 'recherche.php', 'index.php/#contact', 'help.php');
-    $menu_text = array('Accueil', 'Notre Labo', 'Recherche', 'Contact', 'Help');
+    $links = array('index.php', 'labo.php', 'recherche.php', 'help.php');
+    $menu_text = array('Accueil', 'Notre Labo', 'Recherche', 'Help');
 
     // on cherche le nom de la page en cours
     $page_name = substr( $_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '/')+1, strrpos($_SERVER['PHP_SELF'],'.php')-1);
@@ -22,26 +22,27 @@ function current_nav() {
     for ($i=0; $i < 5; $i++) {
         if ($i == 2) {
             // test si l'une des pages de la liste recherche est en cours de consultation
-            if ($page_name == 'recherche.php' || $page_name == 'especes.php'
+            if ($page_name == 'recherche.php' || $page_name == 'espece.php'
             || $page_name == 'individu.php' ||$page_name == 'batiment.php' ||$page_name == 'chercheur.php') {
                 $nav .= "    <li class='active'> <a href='#'>Recherche</a>
         <ul class='dropdown-menu'>
-            <li class='rechercher'><a href='#'>Espèce</a></li>
-            <li class='rechercher'><a href='#'>individu</a></li>
-            <li class='rechercher'><a href='#'>bâtiment</a></li>
-            <li class='rechercher'><a href='#'>chercheur</a></li>
+            <li class='rechercher'><a href='espece.php'>Espèce</a></li>
+            <li class='rechercher'><a href='individu.php'>individu</a></li>
+            <li class='rechercher'><a href='batiment.php'>bâtiment</a></li>
+            <li class='rechercher'><a href='chercheur.php'>chercheur</a></li>
         </ul>
     </li>\n";
             } else {
                 $nav .= "    <li> <a href='#'>Recherche</a>
         <ul class='dropdown-menu'>
-            <li class='rechercher'><a href='#'>Espèce</a></li>
-            <li class='rechercher'><a href='#'>individu</a></li>
-            <li class='rechercher'><a href='#'>bâtiment</a></li>
-            <li class='rechercher'><a href='#'>chercheur</a></li>
+            <li class='rechercher'><a href='espece.php'>Espèce</a></li>
+            <li class='rechercher'><a href='individu.php'>individu</a></li>
+            <li class='rechercher'><a href='batiment.php'>bâtiment</a></li>
+            <li class='rechercher'><a href='chercheur.php'>chercheur</a></li>
         </ul>
     </li>\n";
             }
+            $nav .= "    <li><a href='index.php#contact'>Contact</a></li>\n";
         } else {
             if ($page_name == $links[$i]){
                 $nav .= "    <li class='active'><a href='".$links[$i]."'>".$menu_text[$i]."</a></li>\n";
@@ -85,7 +86,6 @@ function current_nav() {
     }
     return $nav;
 }
-echo nav();
 ?>
 
 
@@ -98,7 +98,7 @@ echo nav();
             <a class="navbar-brand" href="#"><img id="logo" src="image/logo.png" alt=""></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
-            <?php current_nav() ?>
+            <?php echo current_nav(); ?>
         </div>
     </div>
 </nav>
