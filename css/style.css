@@ -247,3 +247,10 @@ footer a:hover{
     text-decoration: none;
     color: rgb(10, 105, 8);
 }
+.footer-up {
+    float: right;
+    border: 2px;
+    margin-right: 15px;
+    font-size: 25px;
+    color: inherit;
+}
