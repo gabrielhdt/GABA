@@ -2,14 +2,7 @@
 <html>
 <?php include "db.php";
 include "head.php";
-?>
-<body>
-<form action="search_followed.php" method="post" accept-charset="utf-8"
-    enctype="multipart/form-data">
-    <div class="form-group">
-        <label for="sel_followed">Rechercher animal selon:</label>
-        <select name="search_field" id="sel_followed" class="form-control">
-<?php //Creates list of choices
+
 function create_fields_array($columns)
 {
     /* Creates the list of fields and they display labels
@@ -42,16 +35,7 @@ function create_choice_list($disp_fields)
         echo "<option value=\"$col\">" . ucfirst($disp) . "</option>";
     }
 }
-$columns = get_columns('Followed');
-$disp_fields = create_fields_array($columns);
-create_choice_list($disp_fields);
-?>
-        </select>
-    </div>
-    <button type="submit" class="btn btn-default">Rechercher animal</button>
-</form>
 
-<?php //Creates array
 function create_tablehead($search_field, $disp_fields)
 {
     /* $search_field must be a columns name
@@ -75,6 +59,7 @@ function create_tablehead($search_field, $disp_fields)
     echo '</tr></thead>';
 
 }
+
 function create_tablebody($search_field, $colnames)
 {
     //$viewname = 'followedsearch';
@@ -93,6 +78,25 @@ function create_tablebody($search_field, $colnames)
         echo "</tr>";
     }
 }
+?>
+<body>
+<form action="search_followed.php" method="post" accept-charset="utf-8"
+    enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="sel_followed">Rechercher animal selon:</label>
+        <select name="search_field" id="sel_followed" class="form-control">
+<?php //Creates list of choices
+
+$columns = get_columns('Followed');
+$disp_fields = create_fields_array($columns);
+create_choice_list($disp_fields);
+?>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-default">Rechercher animal</button>
+</form>
+
+<?php
 if (array_key_exists('search_field', $_POST))
 {
     echo '<table class="table" data-toggle="table" data-search="true">';
