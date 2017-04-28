@@ -12,6 +12,12 @@ include "head.php";
 <?php //Creates list of choices
 function create_fields_array($columns)
 {
+    /* Creates the list of fields and they display labels
+     * if the field has nothing special, it is only capitalised
+     * if the field is a foreign key, the displayed field is the capitalised
+     * table name to which the key refers
+     * columns: result of show columns from (e.g. Followed);
+     */
     $displayed_fields = array();  //field => displayed
     $keys_tables = main_tables_from_keys();
     foreach ($columns as $col_specs)
@@ -26,16 +32,19 @@ function create_fields_array($columns)
     return $displayed_fields;
 }
 
-function create_choice_list($displayed_fields)
+function create_choice_list($disp_fields)
 {
-    foreach ($displayed_fields as $field => $disp)
+    /* Creates a choice list
+     * disp_fields array (column name => displayed name)
+     */
+    foreach ($disp_fields as $col => $disp)
     {
-        echo "<option value=\"$field\">" . ucfirst($disp) . "</option>";
+        echo "<option value=\"$col\">" . ucfirst($disp) . "</option>";
     }
 }
 $columns = get_columns('Followed');
-$displayed_fields = create_fields_array($columns);
-create_choice_list($displayed_fields);
+$disp_fields = create_fields_array($columns);
+create_choice_list($disp_fields);
 ?>
         </select>
     </div>
@@ -43,26 +52,24 @@ create_choice_list($displayed_fields);
 </form>
 
 <?php //Creates array
-function create_tablehead($search_field, $columns, $displayed_fields)
+function create_tablehead($search_field, $disp_fields)
 {
     /* $search_field must be a columns name
-     * $columns result of SHOW columns FROM i.e. all available columns
      * $displayed fields array ($col_name => $displayed_value
      */
     echo '<thead><tr>';
     echo '<th data-filed="s_field" data-sortable="true">' .
         ucfirst($search_field) . '</th>';
-    foreach ($columns as $col_specs)
+    foreach ($disp_fields as $col => $disp)
     {
-        $field = $col_specs['Field'];
-        $line_beg = "<th data-filed=\"$field\" data-sortable=\"true\">";
+        $line_beg = "<th data-filed=\"$col\" data-sortable=\"true\">";
         $line_end = '</th>';
         // Ceinture & bretelles, fishy management of search_field
         // (becomes Species instead of idSpecies
-        if (mb_strtolower($field) != mb_strtolower($search_field) &&
-        mb_strtolower($displayed_fields[$field] != mb_strtolower($search_field)))
+        if (mb_strtolower($col) != mb_strtolower($search_field) &&
+        mb_strtolower($disp != mb_strtolower($search_field)))
         {
-            echo $line_beg . ucfirst($displayed_fields[$field]) . $line_end;
+            echo $line_beg . ucfirst($disp) . $line_end;
         }
     }
     echo '</tr></thead>';
