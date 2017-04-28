@@ -4,7 +4,7 @@
 include "head.php";
 ?>
 <body>
-<form action="view_item.php" method="post" accept-charset="utf-8"
+<form action="search_followed.php" method="post" accept-charset="utf-8"
     enctype="multipart/form-data">
     <div class="form-group">
         <label for="sel_followed">Rechercher animal selon:</label>
