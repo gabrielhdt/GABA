@@ -11,25 +11,35 @@ if (isset($_POST['connexion']) && $_POST['connexion'] == 'Connexion') {
             header('Location: membre_index.php'); // redirection vers la 'page index de session'
             exit();
         } else {
-            $erreur = 'Login ou mot de passe incorrect.';
+            $erreur = 'Login ou mot de passe incorrect';
         }
     }
 }
 ?>
 <html>
-    <head>
-        <title>Accueil</title>
-    </head>
+
+    <?php
+    include 'head.php';
+    include 'nav.php';
+    ?>
+    <link rel="stylesheet" href="css/login.css">
 
     <body>
-        Connexion à l'espace membre :<br />
-        <?php //afficher une éventuelle erreur
-            if (isset($erreur)) {echo $erreur."<br>";}
-        ?>
-        <form action="login.php" method="post" autofocus>
-            <input type="text" name="login" required>
-            <input type="password" name="password" required>
-            <input type="submit" name="connexion" value="Connexion">
-        </form>
+        <div class="mybg">
+        <div class="card card-container">
+            <img id="profile-img" class="profile-img-card" src="image/logo_login.png" />
+            <p id="profile-name" class="profile-name-card"></p>
+            <form class="form-signin" action="login.php" method="post">
+                <?php //afficher une éventuelle erreur
+                if (isset($erreur)) {echo $erreur."<br>";}
+                ?>
+                <input type="text" class="form-control" name="login" placeholder="Login" required autofocus>
+                <input type="password" class="form-control" name="password" placeholder="Mot de passe" required>
+                <input type="submit" class="btn btn-lg btn-primary btn-block btn-signin" name="connexion" value="Connexion">
+            </form>
+        </div><!-- /card-container -->
+    </div>
+    <!-- </div> -->
+        <?php include 'footer.php'; ?>
     </body>
 </html>
