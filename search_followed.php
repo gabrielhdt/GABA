@@ -101,7 +101,7 @@ if (array_key_exists('search_field', $_POST))
 {
     echo '<table class="table" data-toggle="table" data-search="true">';
     echo '<thead>';
-    create_tablehead($_POST['search_field'], $columns, $disp_fields);
+    create_tablehead($_POST['search_field'], $disp_fields);
     echo '</thead>';
     echo '<tbody>';
     create_tablebody($_POST['search_field'], array_keys($disp_fields));
