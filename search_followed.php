@@ -98,8 +98,10 @@ if (array_key_exists('search_field', $_POST))
     $colnames = array_keys($disp_fields);
     if ($colnames[0] != $search_field)
     {
-        $colnames = array_merge(array($search_field),
-            array_diff($colnames, array($search_field)));
+        $keysf = array_search($search_field, $colnames);
+        $buf = $colnames[0];
+        $colnames[0] = $search_field;
+        $colnames[$keysf] = $buf;
     }
     echo '<table class="table" data-toggle="table" data-search="true">';
     echo '<thead>';
