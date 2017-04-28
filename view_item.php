@@ -77,10 +77,10 @@ function create_tablebody($search_field, $colnames)
     foreach ($search_res as $line)
     {
         echo "<tr>";
-        foreach ($columns as $col_specs)
+        foreach ($colnames as $colname)
         {
             echo "<td>";
-            echo $line[$colnames];
+            echo $line[$colname];
             echo "</td>";
         }
         echo "</tr>";
