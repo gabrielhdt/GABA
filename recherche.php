@@ -4,33 +4,26 @@
     include 'head.php';
     include 'nav.php';
     ?>
-    <link rel="stylesheet" href="css/login.css">
     <style>
     </style>
 
     <body>
         <div class="container-fluid">
-                <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
-                    <a href="espece.php">
-                        <div id="espece">Espèce</div>
-                    </a>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12" id="espece">
+                    <a href="espece.php">Espèce</a>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
-                    <a href="individu.php">
-                        <div id="individu">Individu</div>
-                    </a>
+                <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 " id="individu">
+                    <a href="individu.php">Individu</a>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
-                    <a href="batiment.php">
-                        <div id="batiment">Bâtiment</div>
-                    </a>
+                <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12" id="batiment">
+                    <a href="batiment.php">Bâtiment</a>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
-                    <a href="chercheur.php">
-                        <div id="chercheur">Chercheur</div>
-                    </a>
+                <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12" id="chercheur">
+                    <a href="chercheur.php">Chercheur</a>
+                </div>
             </div>
-            </div>
+        </div>
 
 
         <?php include 'footer.php'; ?>
