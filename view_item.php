@@ -45,9 +45,10 @@ create_choice_list($displayed_fields);
 <?php //Creates array
 function create_tablehead($search_field, $columns, $displayed_fields)
 {
-    //$search_field must be a columns name
-    //$columns result of SHOW columns FROM
-    //$displayed fields array ($col_name => $displayed_value
+    /* $search_field must be a columns name
+     * $columns result of SHOW columns FROM i.e. all available columns
+     * $displayed fields array ($col_name => $displayed_value
+     */
     echo '<thead><tr>';
     echo '<th data-filed="s_field" data-sortable="true">' .
         ucfirst($search_field) . '</th>';
@@ -67,11 +68,30 @@ function create_tablehead($search_field, $columns, $displayed_fields)
     echo '</tr></thead>';
 
 }
+function create_tablebody($search_field, $colnames)
+{
+    //$viewname = 'followedsearch';
+    //$tables = array('Followed' => 'idSpecies', 'Species' => 'idSpecies');
+    //$columns = joined_view($viewname, $tables);
+    $search_res = get_values($colnames, 'Followed');
+    foreach ($search_res as $line)
+    {
+        echo "<tr>";
+        foreach ($columns as $col_specs)
+        {
+            echo "<td>";
+            echo $line[$colnames];
+            echo "</td>";
+        }
+        echo "</tr>";
+    }
+}
 if (array_key_exists('search_field', $_POST))
 {
     echo '<table class="table" data-toggle="table" data-search="true">';
     create_tablehead($_POST['search_field'], $columns, $displayed_fields);
     echo '<tbody>';
+    create_tablebody($_POST['search_field'], array_keys($displayed_fields));
     echo '</tbody>';
     echo '</table>';
 }
