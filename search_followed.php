@@ -66,16 +66,19 @@ function create_tablebody($search_field, $colnames)
     //$tables = array('Followed' => 'idSpecies', 'Species' => 'idSpecies');
     //$columns = joined_view($viewname, $tables);
     $search_res = get_values($colnames, 'Followed');
+    // Creates array without search field
+    $colnames_nosf = array_diff_key($colnames, array($search_field => ''));
     foreach ($search_res as $line)
     {
-        echo "<tr>";
-        foreach ($colnames as $colname)
+        echo '<tr>';
+        echo '<td>' . $line[$search_field] . '</td>';
+        foreach ($colnames_nosf as $colname)
         {
-            echo "<td>";
+            echo '<td>';
             echo $line[$colname];
-            echo "</td>";
+            echo '</td>';
         }
-        echo "</tr>";
+        echo '</tr>';
     }
 }
 ?>
