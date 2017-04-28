@@ -118,26 +118,25 @@ QRY;
     $conn = null;
 }
 
-function joined_view($view_name, $table_ref, $tables_to_join)
+function joined_view($view_name, $tables)
 {
-    /* tables_to_join tablename => column join on
+    /* tables tablename => column join on
      * returns: list of columns available
      */
+    if (count($tables) > 2) {
+        echo "Not yet available for more than two tables\n";
+        return(False);
+    }
     global $servername, $username, $dbname, $password, $charset;
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
             $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $query = "CREATE VIEW $view_name AS SELECT * FROM";
-        $query_tables = "";
-        $wherearr = array();
-        $col_ref = $tables_to_join[$table_ref];
-        foreach ($tables_to_join as $table => $joincol)
-        {
-           $query_tables .= $table . ', ';
-           $wherearr["$table.$joincol"] = "$table_ref.$col_ref";
-        }
-        $query_tables = rtrim($query_tables, ' ,');
+        $query = "CREATE VIEW $view_name AS SELECT * FROM ";
+        $tnames = array_keys($tables);
+        $query .= "$tnames[0] INNER JOIN $tnames[1] ON ";
+        $query .= $tnames[0].'.'.$tables[$tnames[0]].'='.
+            $tnames[1].'.'.$tables[$tnames[1]].';';
         $conn -> exec($query);
         $viewcols = get_columns($view_name);
     } catch (PDOException $e) {
