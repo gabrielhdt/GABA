@@ -6,10 +6,41 @@ $dbname = 'IENAC_GABA';
 $password = 'abag';
 $charset = 'utf8mb4';
 
+function build_where($val, $col)
+{
+    /* $col and $val such as WHERE $col =|LIKE $val
+     * returns where query with LIKE or = depending on datatype
+     */
+    $query = '';
+    if (gettype($val) == 'string')
+    {
+        $query .= "'$col' LIKE '%$val%'";
+    }
+    else
+    {
+        $query .= "'$col' = $val";
+    }
+    return($query);
+}
+
+function array_map_keys($callback, $array)
+{
+    /* like map but callback accepts two parameters:
+     * first is value, second is the key
+     * returns: array containing (f($val1, $key1), ..., f($valn, $keyn))
+     */
+    return(array_map($callback, array_values($array), array_keys($array)));
+}
+
+function arithmetic_mean($real_arr) {
+    return array_sum($real_arr)/count($real_arr);
+}
+
 function add_line($table, $valarr)
 {
-    // Values are set to lowercase!
-    // $valarr["column name"] = column_value
+    /* Values are set to lowercase!
+     * $valarr["column name"] = column_value
+     */
     global $servername, $username, $dbname, $password, $charset;
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
@@ -18,7 +49,7 @@ function add_line($table, $valarr)
         $query = "INSERT INTO $table";
         $columns = '(';
         $values = '(';
-        foreach ($valarr as $col => $val)
+        foreach ($valarr as $col => $val)  //Implode not used to keep order
         {
             $columns .= $col . ', ';
             $values .= mb_strtolower($val) . ', ';
@@ -53,7 +84,7 @@ function add_staff($password, $type, $first_name, $last_name)
     {
         $login = mb_substr($lname_filtered, 0, 6);
     }
-    $login .= mb_substr($firstname, 0, 2);
+    $login .= mb_substr($first_name, 0, 2);
     // Password hashes must be stored in at least 255 chars (with PW_DEFAULT)
     // algorithm
     $pwhash = password_hash($password, PASSWORD_DEFAULT);
@@ -87,20 +118,60 @@ QRY;
     $conn = null;
 }
 
-function get_values($table, $columns)
+function joined_view($view_name, $tables)
 {
+    /* tables tablename => column join on
+     * returns: list of columns available
+     */
+    if (count($tables) > 2) {
+        echo "Not yet available for more than two tables\n";
+        return(False);
+    }
+    global $servername, $username, $dbname, $password, $charset;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = "CREATE VIEW $view_name AS SELECT * FROM ";
+        $tnames = array_keys($tables);
+        $query .= "$tnames[0] INNER JOIN $tnames[1] ON ";
+        $query .= $tnames[0].'.'.$tables[$tnames[0]].'='.
+            $tnames[1].'.'.$tables[$tnames[1]].';';
+        $conn -> exec($query);
+        $viewcols = get_columns($view_name);
+    } catch (PDOException $e) {
+        echo 'Something went wrong: ' . $e->getMessage();
+    }
+    $conn = null;
+    return($viewcols);
+}
+
+function get_values($select, $table, $where=array())
+{
+    /* select: array of selected fields
+     * $table: name of table
+     * where: array 'column name' => 'value'
+     */
     global $servername, $username, $dbname, $password, $charset;
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
             $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $query = 'SELECT ';
-        foreach ($columns as $col)
+        $query .= implode(', ', $select);
+        $query .= " FROM $table";
+        if (!$where)
         {
-            $query .= "$col, ";
+            $query .= ';';
         }
-        $query = rtrim($query, ' ,');
-        $query .= " FROM $table;";
+        else
+        {
+            $query.= ' WHERE ';
+            $whereqrys = array();
+            $whereqrys = array_map_keys("build_where", $where);
+            $query .= implode($whereqrys, ' AND ');
+            $query .= ';';
+        }
         $stmt = $conn->query($query);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $rslt = $stmt->fetchAll();
@@ -113,6 +184,8 @@ function get_values($table, $columns)
 
 function get_columns($table)
 {
+    /* outputs array of colummns of $table 
+     */
     global $servername, $username, $dbname, $password, $charset;
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
@@ -131,6 +204,11 @@ function get_columns($table)
 
 function main_tables_from_keys()
 {
+    /* returns associative array
+     * $table => $primary_key
+     * does not include table containing two primary keys
+     * possible bug with classes
+     */
     global $servername, $username, $dbname, $password, $charset;
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
@@ -168,27 +246,27 @@ function main_tables_from_keys()
 
 function update_line($table, $change, $col_condition, $val_condition)
 {
-    // change : array('col' => 'val')
+    /* change : array('col' => 'val')
+     * updates line satisfying $col_condition = $val_condition
+     */
     global $servername, $username, $dbname, $password, $charset;
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
             $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $query = "UPDATE $table SET ";
-        foreach ($change as $col => $val) {
-            $query .= "$col='$val', ";
-        }
-        $query = rtrim($query, ' ,');
+
+        $uparr = array_map_keys(function($col, $val) {
+            return("'$col' = '$val'");
+        }, $change);
+        $query .= implode($uparr, ', ');
+
         $query .= " WHERE $col_condition='$val_condition';";
         $conn->exec($query);
     } catch (PDOException $e) {
         echo 'Something went wrong: ' . $e->getMessage();
     }
     $conn = null;
-}
-
-function arithmetic_mean($real_arr) {
-    return array_sum($real_arr)/count($real_arr);
 }
 
 function classify_process($table, $valc, $critc, $mod, $fct = arithmetic_mean)
@@ -231,6 +309,7 @@ function verify_login($login, $pwd){
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
             $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
         $query = "SELECT login FROM Staff WHERE login=?";
         $stmt = $conn->prepare($query);
         $stmt -> bindParam(1, $login, PDO::PARAM_STR, 30);
@@ -243,11 +322,12 @@ function verify_login($login, $pwd){
         $stmt -> execute();
         $hpwd = $stmt -> fetch(PDO::FETCH_ASSOC);
 
-        $authok = $log and password_verify($pwd, $hpwd['pwhash']);
+        $authok = $log && password_verify($pwd, $hpwd['pwhash']); // bon password ?
+
     } catch (PDOException $e) {
         echo 'Something went wrong: ' . $e->getMessage();
     }
     $conn = null;
-    return($authok);
+    return $authok; // bon duo login pwd ? (bool)
 }
 ?>
