@@ -172,7 +172,6 @@ function get_values($select, $table, $where=array())
             $query .= implode($whereqrys, ' AND ');
             $query .= ';';
         }
-        echo $query;
         $stmt = $conn->query($query);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $rslt = $stmt->fetchAll();
