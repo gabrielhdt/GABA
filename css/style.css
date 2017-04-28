@@ -107,7 +107,7 @@ nav ul ul li {
 /*a propos de nous*/
 
 .container {
-    background-image: url('../image/owl3.jpg');
+    background-image: url('../data/pics/unordered/owl3.jpg');
     width: 100%;
     height: 600px;
     background-repeat: no-repeat;
@@ -119,7 +119,7 @@ nav ul ul li {
 /* Carousel Styling */
 
 .slide1 {
-    background-image: url('../image/faon1.jpg');
+    background-image: url('../data/pics/unordered/faon1.jpg');
     height: 600px;
     background-repeat: no-repeat;
     background-position: center;
@@ -127,7 +127,7 @@ nav ul ul li {
 }
 
 .slide2 {
-    background-image: url('../image/lion1.jpg');
+    background-image: url('../data/pics/unordered/lion1.jpg');
     height: 600px;
     background-repeat: no-repeat;
     background-position: center;
@@ -135,7 +135,7 @@ nav ul ul li {
 }
 
 .slide3 {
-    background-image: url('../image/pingouin1.jpg');
+    background-image: url('../data/pics/unordered/pingouin1.jpg');
     height: 600px;
     background-repeat: no-repeat;
     background-position: center;
@@ -175,7 +175,7 @@ nav ul ul li {
 /*Aide*/
 
 .container2 {
-    background-image: url('../image/livre.jpg');
+    background-image: url('../data/pics/unordered/livre.jpg');
     width: 100%;
     height: 600px;
     background-repeat: no-repeat;
