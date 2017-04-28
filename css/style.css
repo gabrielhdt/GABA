@@ -3,6 +3,8 @@ logo
 ---------------------------*/
 
 #logo {
+    padding: 0;
+    margin: auto;
     width: 166px;
     height: 75px;
 }
@@ -23,12 +25,14 @@ __________________________________________*/
     color: black;
 }
 
-.navbar li a {
+.navbar li a,
+.nav .active ul li a {
     color: black;
     padding-left: 0;
     padding-right: 0;
     margin: 0 20px;
     text-transform: uppercase;
+    border: 0;
 }
 
 .navbar li a:hover, .nav .active a {
@@ -83,17 +87,18 @@ nav ul ul li {
 .description {
     margin: 100px 0;
     height: 400px;
-    text-align: right;
-    background-color: rgba(255, 255, 255, 0.63)
+    background-color: rgba(255, 255, 255, 0.63);
 }
 
 .description h1 {
     font-family: 'Courier New';
     color: rgb(94, 94, 94);
+    margin: 0;
 }
 
 .container .description p {
     font-size: 20px;
+    text-align: center;
     font-family: 'Palatino Linotype';
     margin: 20px 20px;
 }
@@ -102,7 +107,7 @@ nav ul ul li {
 /*a propos de nous*/
 
 .container {
-    background-image: url('../image/labo.jpg');
+    background-image: url('../image/owl3.jpg');
     width: 100%;
     height: 600px;
     background-repeat: no-repeat;
@@ -163,6 +168,7 @@ nav ul ul li {
     font-size: 1.5em;
     font-family: cursive, 'Palatino Linotype';
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    padding-bottom: 15px;
 }
 
 
@@ -244,4 +250,11 @@ footer a {
 footer a:hover{
     text-decoration: none;
     color: rgb(10, 105, 8);
+}
+.footer-up {
+    float: right;
+    border: 2px;
+    margin-right: 15px;
+    font-size: 25px;
+    color: inherit;
 }

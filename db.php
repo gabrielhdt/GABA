@@ -84,7 +84,7 @@ function add_staff($password, $type, $first_name, $last_name)
     {
         $login = mb_substr($lname_filtered, 0, 6);
     }
-    $login .= mb_substr($firstname, 0, 2);
+    $login .= mb_substr($first_name, 0, 2);
     // Password hashes must be stored in at least 255 chars (with PW_DEFAULT)
     // algorithm
     $pwhash = password_hash($password, PASSWORD_DEFAULT);
@@ -312,31 +312,24 @@ function verify_login($login, $pwd){
             $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // $query = "SELECT login FROM Staff WHERE login=?";
-        // $stmt = $conn->prepare($query);
-        // $stmt -> bindParam(1, $login, PDO::PARAM_STR, 30);
-        // $stmt -> execute();
-        // $log = $stmt -> fetch(PDO::FETCH_ASSOC);
-
-        // $query = "SELECT pwhash FROM Staff WHERE login=?";
-        // $stmt = $conn->prepare($query);
-        // $stmt -> bindParam(1, $login, PDO::PARAM_STR, 30);
-        // $stmt -> execute();
-        // $hpwd = $stmt -> fetch(PDO::FETCH_ASSOC);
-
-        $query = "SELECT count(*) FROM Staff WHERE login=? AND pwhash=?";
+        $query = "SELECT login FROM Staff WHERE login=?";
         $stmt = $conn->prepare($query);
         $stmt -> bindParam(1, $login, PDO::PARAM_STR, 30);
-        $stmt -> bindParam(1, password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR, 30);
         $stmt -> execute();
-        $nb = $stmt -> fetch(PDO::FETCH_ASSOC);
+        $log = $stmt -> fetch(PDO::FETCH_ASSOC);
 
-        // $authok = $log and password_verify($pwd, $hpwd['pwhash']);
+        $query = "SELECT pwhash FROM Staff WHERE login=?";
+        $stmt = $conn->prepare($query);
+        $stmt -> bindParam(1, $login, PDO::PARAM_STR, 30);
+        $stmt -> execute();
+        $hpwd = $stmt -> fetch(PDO::FETCH_ASSOC);
+
+        $authok = $log && password_verify($pwd, $hpwd['pwhash']); // bon password ?
 
     } catch (PDOException $e) {
         echo 'Something went wrong: ' . $e->getMessage();
     }
     $conn = null;
-    return($authok[0]);
+    return $authok; // bon duo login pwd ? (bool)
 }
 ?>
