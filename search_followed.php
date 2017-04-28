@@ -2,14 +2,7 @@
 <html>
 <?php include "db.php";
 include "head.php";
-?>
-<body>
-<form action="search_followed.php" method="post" accept-charset="utf-8"
-    enctype="multipart/form-data">
-    <div class="form-group">
-        <label for="sel_followed">Rechercher animal selon:</label>
-        <select name="search_field" id="sel_followed" class="form-control">
-<?php //Creates list of choices
+
 function create_fields_array($columns)
 {
     /* Creates the list of fields and they display labels
@@ -42,22 +35,13 @@ function create_choice_list($disp_fields)
         echo "<option value=\"$col\">" . ucfirst($disp) . "</option>";
     }
 }
-$columns = get_columns('Followed');
-$disp_fields = create_fields_array($columns);
-create_choice_list($disp_fields);
-?>
-        </select>
-    </div>
-    <button type="submit" class="btn btn-default">Rechercher animal</button>
-</form>
 
-<?php //Creates array
 function create_tablehead($search_field, $disp_fields)
 {
     /* $search_field must be a columns name
      * $displayed fields array ($col_name => $displayed_value
      */
-    echo '<thead><tr>';
+    echo '<tr>';
     echo '<th data-filed="s_field" data-sortable="true">' .
         ucfirst($search_field) . '</th>';
     foreach ($disp_fields as $col => $disp)
@@ -72,33 +56,58 @@ function create_tablehead($search_field, $disp_fields)
             echo $line_beg . ucfirst($disp) . $line_end;
         }
     }
-    echo '</tr></thead>';
+    echo '</tr>';
 
 }
+
 function create_tablebody($search_field, $colnames)
 {
     //$viewname = 'followedsearch';
     //$tables = array('Followed' => 'idSpecies', 'Species' => 'idSpecies');
     //$columns = joined_view($viewname, $tables);
     $search_res = get_values($colnames, 'Followed');
+    // Creates array without search field
+    $colnames_nosf = array_diff_key($colnames, array($search_field => ''));
     foreach ($search_res as $line)
     {
-        echo "<tr>";
-        foreach ($colnames as $colname)
+        echo '<tr>';
+        echo '<td>' . $line[$search_field] . '</td>';
+        foreach ($colnames_nosf as $colname)
         {
-            echo "<td>";
+            echo '<td>';
             echo $line[$colname];
-            echo "</td>";
+            echo '</td>';
         }
-        echo "</tr>";
+        echo '</tr>';
     }
 }
+?>
+<body>
+<form action="search_followed.php" method="post" accept-charset="utf-8"
+    enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="sel_followed">Rechercher animal selon:</label>
+        <select name="search_field" id="sel_followed" class="form-control">
+<?php //Creates list of choices
+
+$columns = get_columns('Followed');
+$disp_fields = create_fields_array($columns);
+create_choice_list($disp_fields);
+?>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-default">Rechercher animal</button>
+</form>
+
+<?php
 if (array_key_exists('search_field', $_POST))
 {
     echo '<table class="table" data-toggle="table" data-search="true">';
-    create_tablehead($_POST['search_field'], $columns, $displayed_fields);
+    echo '<thead>';
+    create_tablehead($_POST['search_field'], $disp_fields);
+    echo '</thead>';
     echo '<tbody>';
-    create_tablebody($_POST['search_field'], array_keys($displayed_fields));
+    create_tablebody($_POST['search_field'], array_keys($disp_fields));
     echo '</tbody>';
     echo '</table>';
 }
