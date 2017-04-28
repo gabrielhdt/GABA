@@ -41,7 +41,7 @@ function create_tablehead($search_field, $disp_fields)
     /* $search_field must be a columns name
      * $displayed fields array ($col_name => $displayed_value
      */
-    echo '<thead><tr>';
+    echo '<tr>';
     echo '<th data-filed="s_field" data-sortable="true">' .
         ucfirst($search_field) . '</th>';
     foreach ($disp_fields as $col => $disp)
@@ -56,7 +56,7 @@ function create_tablehead($search_field, $disp_fields)
             echo $line_beg . ucfirst($disp) . $line_end;
         }
     }
-    echo '</tr></thead>';
+    echo '</tr>';
 
 }
 
@@ -100,7 +100,9 @@ create_choice_list($disp_fields);
 if (array_key_exists('search_field', $_POST))
 {
     echo '<table class="table" data-toggle="table" data-search="true">';
+    echo "<thead>";
     create_tablehead($_POST['search_field'], $columns, $displayed_fields);
+    echo "</thead>";
     echo '<tbody>';
     create_tablebody($_POST['search_field'], array_keys($displayed_fields));
     echo '</tbody>';
