@@ -36,43 +36,36 @@ function create_choice_list($disp_fields)
     }
 }
 
-function create_tablehead($search_field, $disp_fields)
+function create_tablehead($search_field, $colnames, $disp_fields)
 {
     /* $search_field must be a columns name
      * $displayed fields array ($col_name => $displayed_value
      */
     echo '<tr>';
-    echo '<th data-filed="s_field" data-sortable="true">' .
-        ucfirst($search_field) . '</th>';
-    foreach ($disp_fields as $col => $disp)
+    foreach ($colnames as $colname)
     {
-        $line_beg = "<th data-filed=\"$col\" data-sortable=\"true\">";
-        $line_end = '</th>';
-        // Ceinture & bretelles, fishy management of search_field
-        // (becomes Species instead of idSpecies
-        if (mb_strtolower($col) != mb_strtolower($search_field) &&
-        mb_strtolower($disp != mb_strtolower($search_field)))
-        {
-            echo $line_beg . ucfirst($disp) . $line_end;
-        }
+        echo "<th data-filed=\"$colname\" data-sortable=\"true\">";
+        echo ucfirst($disp_fields[$colname]);
+        echo '</th>';
     }
     echo '</tr>';
 
 }
 
-function create_tablebody($search_field, $colnames)
+function create_tablebody($colnames)
 {
+    /* colnames array containing column names, with
+     * search_field first
+     */
     //$viewname = 'followedsearch';
     //$tables = array('Followed' => 'idSpecies', 'Species' => 'idSpecies');
     //$columns = joined_view($viewname, $tables);
     $search_res = get_values($colnames, 'Followed');
     // Creates array without search field
-    $colnames_nosf = array_diff_key($colnames, array($search_field => ''));
     foreach ($search_res as $line)
     {
         echo '<tr>';
-        echo '<td>' . $line[$search_field] . '</td>';
-        foreach ($colnames_nosf as $colname)
+        foreach ($colnames as $colname)
         {
             echo '<td>';
             echo $line[$colname];
@@ -102,12 +95,18 @@ create_choice_list($disp_fields);
 <?php
 if (array_key_exists('search_field', $_POST))
 {
+    $colnames = array_keys($disp_fields);
+    if ($colnames[0] != $search_field)
+    {
+        $colnames = array_merge(array($search_field),
+            array_diff($colnames, array($search_field)));
+    }
     echo '<table class="table" data-toggle="table" data-search="true">';
     echo '<thead>';
-    create_tablehead($_POST['search_field'], $disp_fields);
+    create_tablehead($_POST['search_field'],$colnames, $disp_fields);
     echo '</thead>';
     echo '<tbody>';
-    create_tablebody($_POST['search_field'], array_keys($disp_fields));
+    create_tablebody($_POST['search_field'], $colnames);
     echo '</tbody>';
     echo '</table>';
 }
