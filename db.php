@@ -153,6 +153,10 @@ function get_values($select, $table, $where=array())
      * where: array 'column name' => 'value'
      */
     global $servername, $username, $dbname, $password, $charset;
+    if (!$select) {
+        echo "Nothing to select in get_values, exiting\n";
+        return(False);
+    }
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
             $username, $password);
