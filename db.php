@@ -61,7 +61,7 @@ function add_line($table, $valarr)
         $query .= " $columns VALUES $values;";
         $conn->exec($query);
     } catch (PDOException $e) {
-        echo 'Insertion failed: ' . $e->getMessage();
+        echo 'Insertion failed (add_line): ' . $e->getMessage();
     }
     $conn = null;
 }
@@ -140,7 +140,7 @@ function joined_view($view_name, $tables)
         $conn -> exec($query);
         $viewcols = get_columns($view_name);
     } catch (PDOException $e) {
-        echo 'Something went wrong: ' . $e->getMessage();
+        echo 'Something went wrong (joined_view): ' . $e->getMessage();
     }
     $conn = null;
     return($viewcols);
@@ -176,7 +176,7 @@ function get_values($select, $table, $where=array())
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $rslt = $stmt->fetchAll();
     } catch (PDOException $e) {
-        echo 'Something went wrong: ' . $e->getMessage();
+        echo 'Something went wrong (get_values): ' . $e->getMessage();
     }
     $conn = null;
     return $rslt;
@@ -196,7 +196,7 @@ function get_columns($table)
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $rslt = $stmt->fetchAll();
     } catch (PDOException $e) {
-        echo 'Something went wrong: ' . $e->getMessage();
+        echo 'Something went wrong (get_columns): ' . $e->getMessage();
     }
     $conn = null;
     return $rslt;
@@ -237,7 +237,8 @@ function main_tables_from_keys()
             }
         }
     } catch (PDOException $e) {
-        echo 'Something went wrong: ' . $e->getMessage();
+        echo 'Something went wrong (main_tables_from_keys): ' .
+            $e->getMessage();
     }
     $conn = null;
     return $key_table;
@@ -264,7 +265,7 @@ function update_line($table, $change, $col_condition, $val_condition)
         $query .= " WHERE $col_condition='$val_condition';";
         $conn->exec($query);
     } catch (PDOException $e) {
-        echo 'Something went wrong: ' . $e->getMessage();
+        echo 'Something went wrong (update_line): ' . $e->getMessage();
     }
     $conn = null;
 }
@@ -296,7 +297,7 @@ function classify_process($table, $valc, $critc, $mod, $fct = arithmetic_mean)
         }
 
     } catch (PDOException $e) {
-        echo 'Something went wrong: ' . $e->getMessage();
+        echo 'Something went wrong (classify_process): ' . $e->getMessage();
     }
     $conn = null;
     return $rslt;
@@ -325,7 +326,7 @@ function verify_login($login, $pwd){
         $authok = $log && password_verify($pwd, $hpwd['pwhash']); // bon password ?
 
     } catch (PDOException $e) {
-        echo 'Something went wrong: ' . $e->getMessage();
+        echo 'Something went wrong (verify_login): ' . $e->getMessage();
     }
     $conn = null;
     return $authok; // bon duo login pwd ? (bool)
