@@ -6,25 +6,41 @@ $dbname = 'IENAC_GABA';
 $password = 'abag';
 $charset = 'utf8mb4';
 
-function strlist_of_array($strings, $sep)
+function build_where($val, $col)
 {
-    /* strings array of strings
-     * sep: string
-     * returns: strings[0] . $sep . strings[1] . ... . strings[n]
+    /* $col and $val such as WHERE $col =|LIKE $val
+     * returns where query with LIKE or = depending on datatype
      */
-    $rslt = "";
-    foreach ($strings as $str)
+    $query = '';
+    if (gettype($val) == 'string')
     {
-        $reslt .= $str . " $sep ";
+        $query .= "'$col' LIKE '%$val%'";
     }
-    $rslt = rtrim($rslt, "$sep ");
-    return($rslt);
+    else
+    {
+        $query .= "'$col' = $val";
+    }
+    return($query);
+}
+
+function array_map_keys($callback, $array)
+{
+    /* like map but callback accepts two parameters:
+     * first is value, second is the key
+     * returns: array containing (f($val1, $key1), ..., f($valn, $keyn))
+     */
+    return(array_map($callback, array_values($array), array_keys($array)));
+}
+
+function arithmetic_mean($real_arr) {
+    return array_sum($real_arr)/count($real_arr);
 }
 
 function add_line($table, $valarr)
 {
-    // Values are set to lowercase!
-    // $valarr["column name"] = column_value
+    /* Values are set to lowercase!
+     * $valarr["column name"] = column_value
+     */
     global $servername, $username, $dbname, $password, $charset;
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
@@ -33,7 +49,7 @@ function add_line($table, $valarr)
         $query = "INSERT INTO $table";
         $columns = '(';
         $values = '(';
-        foreach ($valarr as $col => $val)
+        foreach ($valarr as $col => $val)  //Implode not used to keep order
         {
             $columns .= $col . ', ';
             $values .= mb_strtolower($val) . ', ';
@@ -102,28 +118,11 @@ QRY;
     $conn = null;
 }
 
-function build_where($wherearr)
-{
-    $query = 'WHERE ';
-    foreach ($wherearr as $col => $val)
-    {
-        if (gettype($val) == 'string')
-        {
-            $query .= "'$col' LIKE '%$val%' AND ";
-        }
-        else
-        {
-            $query .= "'$col' = $val AND";
-        }
-    }
-    $query = rtrim($query, ' AND');
-    $query .= ';';
-    return($query);
-}
-
 function joined_view($view_name, $table_ref, $tables_to_join)
 {
-    //tables_to_join tablename => column join on
+    /* tables_to_join tablename => column join on
+     * returns: list of columns available
+     */
     global $servername, $username, $dbname, $password, $charset;
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
@@ -160,11 +159,7 @@ function get_values($select, $table, $where=array())
             $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $query = 'SELECT ';
-        foreach ($select as $selcol)
-        {
-            $query .= "$selcol, ";
-        }
-        $query = rtrim($query, ' ,');
+        $query .= implode(', ', $select);
         $query .= " FROM $table";
         if (!$where)
         {
@@ -173,20 +168,12 @@ function get_values($select, $table, $where=array())
         else
         {
             $query.= ' WHERE ';
-            foreach ($where as $col => $val)
-            {
-                if (gettype($val) == 'string')
-                {
-                    $query .= "'$col' LIKE '%$val%' AND ";
-                }
-                else
-                {
-                    $query .= "'$col' = $val AND";
-                }
-            }
-            $query = rtrim($query, ' AND');
+            $whereqrys = array();
+            $whereqrys = array_map_keys("build_where", $where);
+            $query .= implode($whereqrys, ' AND ');
             $query .= ';';
         }
+        echo $query;
         $stmt = $conn->query($query);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $rslt = $stmt->fetchAll();
@@ -199,6 +186,8 @@ function get_values($select, $table, $where=array())
 
 function get_columns($table)
 {
+    /* outputs array of colummns of $table 
+     */
     global $servername, $username, $dbname, $password, $charset;
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
@@ -217,6 +206,11 @@ function get_columns($table)
 
 function main_tables_from_keys()
 {
+    /* returns associative array
+     * $table => $primary_key
+     * does not include table containing two primary keys
+     * possible bug with classes
+     */
     global $servername, $username, $dbname, $password, $charset;
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
@@ -254,27 +248,27 @@ function main_tables_from_keys()
 
 function update_line($table, $change, $col_condition, $val_condition)
 {
-    // change : array('col' => 'val')
+    /* change : array('col' => 'val')
+     * updates line satisfying $col_condition = $val_condition
+     */
     global $servername, $username, $dbname, $password, $charset;
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
             $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $query = "UPDATE $table SET ";
-        foreach ($change as $col => $val) {
-            $query .= "$col='$val', ";
-        }
-        $query = rtrim($query, ' ,');
+
+        $uparr = array_map_keys(function($col, $val) {
+            return("'$col' = '$val'");
+        }, $change);
+        $query .= implode($uparr, ', ');
+
         $query .= " WHERE $col_condition='$val_condition';";
         $conn->exec($query);
     } catch (PDOException $e) {
         echo 'Something went wrong: ' . $e->getMessage();
     }
     $conn = null;
-}
-
-function arithmetic_mean($real_arr) {
-    return array_sum($real_arr)/count($real_arr);
 }
 
 function classify_process($table, $valc, $critc, $mod, $fct = arithmetic_mean)
