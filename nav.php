@@ -28,10 +28,10 @@ function current_nav() {
             // test si l'une des pages de la liste recherche est en cours de consultation
             if ($page_name == $links[2] || $page_name == $links[4]
             || $page_name == $links[5] ||$page_name == $links[6] ||$page_name == $links[7]) {
-                $nav .= "    <li class='active'> <a href='recherche.php'>Recherche</a>
+                $nav .= "    <li class='active'> <a href='$links[2]'>text[2]</a>
                 <ul class='dropdown-menu'>";
             } else {
-                $nav .= "    <li> <a href='recherche.php'>Recherche</a>
+                $nav .= "    <li> <a href='$links[2]'>text[2]</a>
         <ul class='dropdown-menu'>";
             }
             for ($j=4; $j < 8; $j++) {
