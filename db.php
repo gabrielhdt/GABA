@@ -6,13 +6,14 @@ $dbname = 'IENAC_GABA';
 $password = 'abag';
 $charset = 'utf8mb4';
 
-function build_where($val, $col)
+function build_where($val, $col, $strict=FALSE)
 {
     /* $col and $val such as WHERE $col =|LIKE $val
+     * strict defines whether we force the use of '=' and no 'LIKE'
      * returns where query with LIKE or = depending on datatype
      */
     $query = '';
-    if (gettype($val) == 'string')
+    if (gettype($val) == 'string' && !$strict)
     {
         $query .= "'$col' LIKE '%$val%'";
     }
@@ -23,10 +24,16 @@ function build_where($val, $col)
     return($query);
 }
 
+function build_where_strict($val, $col)
+{
+    return("$col = $val");
+}
+
 function array_map_keys($callback, $array)
 {
     /* like map but callback accepts two parameters:
      * first is value, second is the key
+     * callback: function with two or three args
      * returns: array containing (f($val1, $key1), ..., f($valn, $keyn))
      */
     return(array_map($callback, array_values($array), array_keys($array)));
@@ -181,6 +188,57 @@ function get_values($select, $table, $where=array())
         $rslt = $stmt->fetchAll();
     } catch (PDOException $e) {
         echo 'Something went wrong (get_values): ' . $e->getMessage();
+    }
+    $conn = null;
+    return $rslt;
+}
+
+function super_sel($cols, $tables, $constraints, $where=array())
+{
+    /* Selects cols after joining tables on constraints
+     * $cols: array(column name) for selection
+     * $tables: array(table name) tables to join together
+     * $constraints: array("tab1.id1 = tab2.id2", "tabn.idn = tabk.idk")
+     * columns on which the former will be joined
+     * where: additional classic where array
+     */
+    if (count($constraints) != count($tables) - 1)
+    {
+        echo "Illegal number of constraints.\n";
+        return(FALSE);
+    }
+    else if (!$select) {
+        echo "Nothing to select in get_values, exiting\n";
+        return(False);
+    }
+    global $servername, $username, $dbname, $password, $charset;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = 'SELECT ';
+        $query .= implode(', ', $select);
+        $query .= ' FROM ' . implode(', ', $tables);
+        $query .= ' WHERE ';
+        $whereqrys = array_map_keys("build_where_strict", $constraints);
+        $query .= implode($whereqrys, ' AND ');
+        if (!$where)
+        {
+            $query .= ';';
+        }
+        else
+        {
+            $query.= ' AND ';
+            $whereqrys = array();
+            $whereqrys = array_map_keys("build_where", $where);
+            $query .= implode($whereqrys, ' AND ');
+            $query .= ';';
+        }
+        $stmt = $conn->query($query);
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $rslt = $stmt->fetchAll();
+    } catch (PDOException $e) {
+        echo 'Something went wrong (super_sel): ' . $e->getMessage();
     }
     $conn = null;
     return $rslt;
