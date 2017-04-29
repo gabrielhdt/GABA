@@ -43,7 +43,7 @@ function arithmetic_mean($real_arr) {
     return array_sum($real_arr)/count($real_arr);
 }
 
-function does_view_exist($viewname)
+function view_exists($viewname)
 {
     /* $viewname: string, name of a view
      * returns: boolean, TRUE if view exists, else FALSE
@@ -58,7 +58,12 @@ SHOW FULL tables WHERE Table_type='VIEW';
 QRY;
         $stmt = $conn -> query($query);
         $stmt -> setFetchMode(PDO::FETCH_ASSOC);
-        $exists = count($stmt->fetchAll()) > 0;
+        $views = $stmt -> fetchAll();
+        $exists = false;
+        foreach ($views as $view)
+        {
+            $exists = $exists || $view['Tables_in_IENAC_GABA'] == $viewname;
+        }
     } catch (PDOException $e) {
         echo 'Something went wrong (output_views): ' . $e->getMessage();
     }
