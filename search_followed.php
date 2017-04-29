@@ -3,6 +3,13 @@
 <?php include "db.php";
 include "head.php";
 
+function swap(&$arr, $ind_a, $ind_b)
+{
+    $buf = $arr[$ind_b];
+    $arr[$ind_b] = $arr[$ind_a];
+    $arr[$ind_a] = $buf;
+}
+
 function create_fields_array($columns)
 {
     /* Creates the list of fields and they display labels
@@ -96,12 +103,10 @@ create_choice_list($disp_fields);
 if (array_key_exists('search_field', $_POST))
 {
     $colnames = array_keys($disp_fields);
-    if ($colnames[0] != $search_field)
+    if ($colnames[0] != $_POST['search_field'])
     {
-        $keysf = array_search($search_field, $colnames);
-        $buf = $colnames[0];
-        $colnames[0] = $search_field;
-        $colnames[$keysf] = $buf;
+        $keysf = array_search($_POST['search_field'], $colnames);
+        swap($colnames, 0, $keysf);
     }
     echo '<table class="table" data-toggle="table" data-search="true">';
     echo '<thead>';
