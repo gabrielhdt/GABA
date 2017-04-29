@@ -1,0 +1,74 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <title>GABA V1</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav id="mynav" class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="glyphicon glyphicon-chevron-down"></span>
+          </button>
+                <a class="navbar-brand" href="#"><img id="logo" src="image/logo.png" alt=""></a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Accueil</a></li>
+                    <li><a href="#">Notre labo</a></li>
+                    <li> <a href="#">Recherche</a>
+                        <ul class="dropdown-menu">
+                            <li class='rechercher'><a href="#">Espèce</a></li>
+                            <li class='rechercher'><a href="#">individu</a></li>
+                            <li class='rechercher'><a href="#">bâtiment</a></li>
+                            <li class='rechercher'><a href="#">chercheur</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#">Help</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Connexion</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div id="labmap" style="height: 180px"></div>
+            <?php $facspecs = get_values('Facility', array('name', 'gnss_coord', 'type')); ?>
+            <script type="text/javascript" charset="utf-8">
+                var labmap = L.map('labmap').setView([90, 0], 2);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                    subdomain: ['a', 'b', 'c']
+                }).addTo(labmap);
+                <?php
+        foreach ($facspecs as $facility) {
+            $latlong = explode(',', $facility['gnss_coord']);
+            $type = $facility['type'];
+            $name = $facility['name'];
+            echo "var marker = L.marker([$latlong[0], $latlong[1]]).addTo(labmap);";
+            echo "marker.bindPopup(\"<b>$name</b><br>$type\");";
+        }
+        ?>
+            </script>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <p>Le laboratoire science exchange étudie les animaux depuis 1987 et se situe au ... Nox chercheurs avaient l'habitude d'échanger leur données avec des confrères d'autres laboratoires mais aussi de zoos ou autres complexe animaliers. Ceci impliquait
+                un travail fastidieux, le format des données n'étant pas forcément adapté aux échanges par mail par exemple.</p>
+            <p>Ils ont alors fait appel à notre équipe de webmasters pour leur construire un site capable de faciliter cet échange et de rendre la restitution des données la plus simple possible à travers son interface graphique. Seuls les chercheurs acrédités peuvent
+                rajouter, supprimer ou simplement modifier la base de données. Mais les informations sont accessibles à tous ! Ainsi vous pouvez par exemple chercher tous les individus appartenant à l'espèce singe, ou bien découvrir que le poids moyen
+                d'un lion faisant parti de nos laboratoires est de 203 kilos !</p>
+            <p>
+                N'hésitez pas à découvrir toutes les fonctionnalités qu'offre notre site et profitez au maximum de votre expérience grâceà la section aide ! </p>
+        </div>
+    </div>
+</body>
