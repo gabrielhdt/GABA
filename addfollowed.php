@@ -26,14 +26,13 @@ foreach ($lines as $line)
 create_choice_list($id_biname);
 ?>
                         </select>
-                        <input type="text" name="gender" placeholder="Sexe*">
                         <select name="gender" class="form-control input-sm">
                             <option value='m'>Male</option>
                             <option value='f'>Female</option>
                             <option value='h'>Hermaphrodite</option>
                         </select>
-                        <input type="date" name="birth" placeholder="Date de naissance*">
-                        <input type="text" name="health" placeholder="Etat de santé*">
+                        <input type="date" name="birth" class="form-control" placeholder="Date de naissance*">
+                        <input type="text" name="health" class="form-control" placeholder="Etat de santé*">
                         <button class="btn btn-success" type="submit" name="add_followed">Enregistrer</button>
                     </form>
 <?php
