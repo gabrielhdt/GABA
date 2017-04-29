@@ -440,7 +440,7 @@ function update_view($view)
         if ($view == 'vSearchFoll')
         {
             $query = <<<QRY
-CREATE VIEW OR REPLACE vSearchFoll AS
+CREATE OR REPLACE VIEW vSearchFoll AS
 SELECT idFollowed, binomial_name AS sp_binomial_name,
     common_name AS sp_common_name,
     Facility.name AS fa_name,
@@ -458,7 +458,7 @@ QRY;
         }
     $conn -> exec($query);
     } catch (PDOException $e) {
-        echo 'Something went wrong (update_vSearchFoll): ' . $e->getMessage();
+        echo 'Something went wrong (update_view): ' . $e->getMessage();
     }
     $conn = null;
 }
