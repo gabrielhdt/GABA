@@ -52,7 +52,7 @@ function add_line($table, $valarr)
         foreach ($valarr as $col => $val)  //Implode not used to keep order
         {
             $columns .= $col . ', ';
-            $values .= mb_strtolower($val) . ', ';
+            $values .= "'$val', ";
         }
         $columns = rtrim($columns, ' ,'); //Removes last ', '
         $values = rtrim($values, ' ,');
