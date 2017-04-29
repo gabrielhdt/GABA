@@ -43,6 +43,29 @@ function arithmetic_mean($real_arr) {
     return array_sum($real_arr)/count($real_arr);
 }
 
+function does_view_exist($viewname)
+{
+    /* $viewname: string, name of a view
+     * returns: boolean, TRUE if view exists, else FALSE
+     */
+    global $servername, $username, $dbname, $password, $charset;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = <<<QRY
+SHOW FULL tables WHERE Table_type='VIEW';
+QRY;
+        $stmt = $conn -> query($query);
+        $stmt -> setFetchMode(PDO::FETCH_ASSOC);
+        $exists = count($stmt->fetchAll()) > 0;
+    } catch (PDOException $e) {
+        echo 'Something went wrong (output_views): ' . $e->getMessage();
+    }
+    $conn = null;
+    return($exists);
+}
+
 function add_line($table, $valarr)
 {
     /* Values are set to lowercase!
@@ -246,7 +269,7 @@ function super_sel($cols, $tables, $constraints, $where=array())
 
 function get_columns($table)
 {
-    /* outputs array of colummns of $table
+    /* outputs array of colummns of $table 
      */
     global $servername, $username, $dbname, $password, $charset;
     try {
@@ -401,4 +424,38 @@ function verify_login($login, $pwd){
     $conn = null;
     return $id; // qui se connecte ? (admin/staff/invalide)
 }
+
+function update_view($view)
+{
+    global $servername, $username, $dbname, $password, $charset;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        if ($view == 'vSearchFoll')
+        {
+            $query = <<<QRY
+CREATE VIEW OR REPLACE vSearchFoll AS
+SELECT idFollowed, binomial_name AS sp_binomial_name,
+    common_name AS sp_common_name,
+    Facility.name AS fa_name,
+    gender, birth, death, health
+FROM Followed, Species, Facility
+WHERE Followed.idSpecies = Species.idSpecies AND
+    Followed.idFacility = Facility.idFacility;
+QRY;
+        }
+        else
+        {
+            echo "No view named $view.\n";
+            $conn = null;
+            return(false);
+        }
+    $conn -> exec($query);
+    } catch (PDOException $e) {
+        echo 'Something went wrong (update_vSearchFoll): ' . $e->getMessage();
+    }
+    $conn = null;
+}
+
 ?>
