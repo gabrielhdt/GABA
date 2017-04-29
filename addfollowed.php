@@ -15,11 +15,11 @@ include "head.php"; ?>
                     <p>Remplissez le formulaire ci-dessous pour compléter notre base de donnée.</p>
                     <p>Chaque contribution nous permet de vous offrir un service de meilleur qualité.</p>
                     <form action="addfollowed.php" method="post">
-                        <select name="species" class="form-control">
+                        <select name="species" class="form-control input-sm">
                             <option value='1'>Lynx Rufus</option>
                         </select>
                         <input type="text" name="gender" placeholder="Sexe*">
-                        <select name="gender" class="form-control">
+                        <select name="gender" class="form-control input-sm">
                             <option value='m'>Male</option>
                             <option value='f'>Female</option>
                             <option value='h'>Hermaphrodite</option>
