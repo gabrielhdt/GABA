@@ -32,7 +32,7 @@ function create_tablebody($colnames, $view)
     /* colnames array containing column names, with
      * search_field first
      */
-    if (!does_view_exist($view))
+    if (!view_exists($view))
     {
         update_view($view);
     }
