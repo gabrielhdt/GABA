@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <?php include "db.php";
+include 'form_func.php';
 include "head.php";
 
 function swap(&$arr, $ind_a, $ind_b)
@@ -17,6 +18,7 @@ function create_fields_array($columns)
      * if the field is a foreign key, the displayed field is the capitalised
      * table name to which the key refers
      * columns: result of show columns from (e.g. Followed);
+     * returns: array (column name => displayed name)
      */
     $displayed_fields = array();  //field => displayed
     $keys_tables = main_tables_from_keys();
@@ -30,18 +32,6 @@ function create_fields_array($columns)
         else $displayed_fields[$field] = $field;
     }
     return $displayed_fields;
-}
-
-function create_choice_list($disp_fields)
-{
-    /* Creates a choice list
-     * disp_fields array (column name => displayed name)
-     * Doesn't include the <select name= id= class=> </select>
-     */
-    foreach ($disp_fields as $col => $disp)
-    {
-        echo "<option value=\"$col\">" . ucfirst($disp) . "</option>";
-    }
 }
 
 function create_tablehead($search_field, $colnames, $disp_fields)
