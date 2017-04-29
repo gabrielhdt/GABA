@@ -3,14 +3,19 @@ include('db.php');
 if (isset($_POST['connexion']) && $_POST['connexion'] == 'Connexion') {
     if ((isset($_POST['login']) && !empty($_POST['login'])) && (isset($_POST['password']) && !empty($_POST['password']))) {
 
-        $test_conn = verify_login($_POST['login'], $_POST['password']); // on verfie login et pwd (bool)
+        $test_conn = verify_login($_POST['login'], $_POST['password']); // on verfie qui se connecte (admin/staff/invalide)
 
-        if ($test_conn) { // si ok -> next page
+        if ($test_conn == 'staff') { // si ok -> next page
             session_start(); // debut de la session
             $_SESSION['login'] = $_POST['login'];
             header('Location: membre_index.php'); // redirection vers la 'page index de session'
             exit();
-        } else {
+        } elseif ($test_conn == 'admin') {
+            session_start(); // debut de la session
+            $_SESSION['login'] = $_POST['login'];
+            header('Location: admin_index.php'); // redirection vers la 'page index de session'
+            exit();
+        } elseif ($test_conn == 'inconnu') {
             $erreur = 'Login ou mot de passe incorrect';
         }
     }
