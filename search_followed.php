@@ -60,7 +60,7 @@ function create_tablebody($colnames, $view)
     /* colnames array containing column names, with
      * search_field first
      */
-    get_values($colnames, $view);
+    $search_res = get_values($colnames, $view);
     foreach ($search_res as $line)
     {
         echo '<tr>';
