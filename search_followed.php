@@ -32,7 +32,7 @@ function create_tablebody($colnames, $view)
     /* colnames array containing column names, with
      * search_field first
      */
-    if (!$does_view_exist($view))
+    if (!does_view_exist($view))
     {
         update_view($view);
     }
@@ -70,11 +70,11 @@ function create_tablebody($colnames, $view)
 if (array_key_exists('search_field', $_POST))
 {
     $colfoll = array('idFollowed', 'idSpecies', 'idFacility', 'gender', 'birth',
-        'death');
+        'death', 'health');
     $labels = array('Identifier', 'Species', 'Facility', 'Gender', 'Birth',
-        'Death');
-    $colview = array('idFollowed', 'binomial_name', 'common_name', 'gender',
-        'birth', 'death');
+        'Death', 'Health');
+    $colview = array('idFollowed', 'sp_binomial_name', 'fa_name', 'gender',
+        'birth', 'death', 'health');
     if ($colfoll[0] != $_POST['search_field'])
     {
         $keysf = array_search($_POST['search_field'], $colfoll);
@@ -86,7 +86,6 @@ if (array_key_exists('search_field', $_POST))
     echo '<thead>';
     create_tablehead($colfoll, $labels);
     echo '</thead>';
-    $colfoll['idSpecies'] = 'binomial_name';
     echo '<tbody>';
     create_tablebody($colview, 'vSearchFoll');
     echo '</tbody>';
