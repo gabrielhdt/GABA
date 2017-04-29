@@ -113,7 +113,7 @@ if (array_key_exists('search_field', $_POST))
     create_tablehead($_POST['search_field'],$colnames, $disp_fields);
     echo '</thead>';
     echo '<tbody>';
-    create_tablebody($_POST['search_field'], $colnames);
+    create_tablebody($colnames);
     echo '</tbody>';
     echo '</table>';
 }
