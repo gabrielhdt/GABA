@@ -385,7 +385,7 @@ recherche.php
 *************************************/
 #espece{
     height: 650px;
-    background: linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../image/horde_pingouins.jpg');
+    background: linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../data/pics/unordered/horde_pingouins.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -394,7 +394,7 @@ recherche.php
 }
 #espece:hover {
     height: 650px;
-    background: url('../image/horde_pingouins.jpg');
+    background: url('../data/pics/unordered/horde_pingouins.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -402,7 +402,7 @@ recherche.php
 }
 #individu{
     height: 650px;
-    background: linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../image/bambi.jpg');
+    background: linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../data/pics/unordered/bambi.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -411,7 +411,7 @@ recherche.php
 }
 #individu:hover {
     height: 650px;
-    background: url('../image/bambi.jpg');
+    background: url('../data/pics/unordered/bambi.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -419,7 +419,7 @@ recherche.php
 }
 #batiment{
     height: 650px;
-    background: linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../image/zoo.jpg');
+    background: linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../data/pics/unordered/zoo.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -428,7 +428,7 @@ recherche.php
 }
 #batiment:hover {
     height: 650px;
-    background: url('../image/zoo.jpg');
+    background: url('../data/pics/unordered/zoo.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -436,7 +436,7 @@ recherche.php
 }
 #chercheur{
     height: 650px;
-    background: linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../image/vet_tigre.jpg');
+    background: linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../data/pics/unordered/vet_tigre.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -445,7 +445,7 @@ recherche.php
 }
 #chercheur:hover {
     height: 650px;
-    background: url('../image/vet_tigre.jpg');
+    background: url('../data/pics/unordered/vet_tigre.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
