@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <?php include 'db.php';
-include 'forms_fct.php';
+include 'form_func.php';
 include "head.php"; ?>
 <body>
 <?php include "nav.php" ?>
@@ -16,7 +16,15 @@ include "head.php"; ?>
                     <p>Chaque contribution nous permet de vous offrir un service de meilleur qualité.</p>
                     <form action="addfollowed.php" method="post">
                         <select name="species" class="form-control input-sm">
-                            <option value='1'>Lynx Rufus</option>
+<?php
+$id_biname = array();
+$lines = get_values(array('idSpecies', 'binomial_name'), 'Species');
+foreach ($lines as $line)
+{
+    $id_biname[$line['idSpecies']] = $line['binomial_name'];
+}
+create_choice_list($id_biname);
+?>
                         </select>
                         <input type="text" name="gender" placeholder="Sexe*">
                         <select name="gender" class="form-control input-sm">
