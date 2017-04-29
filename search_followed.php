@@ -19,47 +19,48 @@ function create_fields_array($columns)
      * table name to which the key refers
      * columns: result of show columns from (e.g. Followed);
      * returns: array (column name => displayed name)
+     * and array (foreign key column number => other table name)
      */
-    $displayed_fields = array();  //field => displayed
+    $displayed_fields = array();
+    $forkey = array();
     $keys_tables = main_tables_from_keys();
+    $i = 0;
     foreach ($columns as $col_specs)
     {
         $field = $col_specs['Field'];
         if ($col_specs['Key'] == 'MUL')
         {
             $displayed_fields[$field] = $keys_tables[$field];
+            $forkey[$i] = $keys_tables[$field];
         }
         else $displayed_fields[$field] = $field;
+        $i++;
     }
-    return $displayed_fields;
+    return(array($displayed_fields, $forkey));
 }
 
-function create_tablehead($search_field, $colnames, $disp_fields)
+function create_tablehead($colfoll, $labels)
 {
     /* $search_field must be a columns name
      * $displayed fields array ($col_name => $displayed_value
      */
     echo '<tr>';
-    foreach ($colnames as $colname)
+    for ($i = 0 ; $i < count($colfoll) ; $i++)
     {
-        echo "<th data-filed=\"$colname\" data-sortable=\"true\">";
-        echo ucfirst($disp_fields[$colname]);
+        echo '<th data-filed="'.$colfoll[$i].'" data-sortable="true">';
+        echo $labels[$i];
         echo '</th>';
     }
     echo '</tr>';
 
 }
 
-function create_tablebody($colnames)
+function create_tablebody($colnames, $view)
 {
     /* colnames array containing column names, with
      * search_field first
      */
-    //$viewname = 'followedsearch';
-    //$tables = array('Followed' => 'idSpecies', 'Species' => 'idSpecies');
-    //$columns = joined_view($viewname, $tables);
-    $search_res = get_values($colnames, 'Followed');
-    // Creates array without search field
+    get_values($colnames, $view);
     foreach ($search_res as $line)
     {
         echo '<tr>';
@@ -79,32 +80,39 @@ function create_tablebody($colnames)
     <div class="form-group">
         <label for="sel_followed">Rechercher animal selon:</label>
         <select name="search_field" id="sel_followed" class="form-control">
-<?php //Creates list of choices
-
-$columns = get_columns('Followed');
-$disp_fields = create_fields_array($columns);
-create_choice_list($disp_fields);
-?>
+            <option value='idFollowed'>Identifier</option>
+            <option value='gender'>Gender</option>
+            <option value='birth'>Birth</option>
+            <option value='death'>Death</option>
+            <option value='idSpecies'>Species</option>
+            <option value='idFacility'>Facility</option>
         </select>
     </div>
     <button type="submit" class="btn btn-default">Rechercher animal</button>
 </form>
-
 <?php
 if (array_key_exists('search_field', $_POST))
 {
-    $colnames = array_keys($disp_fields);
-    if ($colnames[0] != $_POST['search_field'])
+    $colfoll = array('idFollowed', 'idSpecies', 'idFacility', 'gender', 'birth',
+        'death');
+    $labels = array('Identifier', 'Species', 'Facility', 'Gender', 'Birth',
+        'Death');
+    $colview = array('idFollowed', 'binomial_name', 'common_name', 'gender',
+        'birth', 'death');
+    if ($colfoll[0] != $_POST['search_field'])
     {
-        $keysf = array_search($_POST['search_field'], $colnames);
-        swap($colnames, 0, $keysf);
+        $keysf = array_search($_POST['search_field'], $colfoll);
+        swap($colfoll, 0, $keysf);
+        swap($labels, 0, $keysf);
+        swap($colview, 0, $keysf);
     }
     echo '<table class="table" data-toggle="table" data-search="true">';
     echo '<thead>';
-    create_tablehead($_POST['search_field'],$colnames, $disp_fields);
+    create_tablehead($colfoll, $labels);
     echo '</thead>';
+    $colfoll['idSpecies'] = 'binomial_name';
     echo '<tbody>';
-    create_tablebody($colnames);
+    create_tablebody($colview, 'search_foll');
     echo '</tbody>';
     echo '</table>';
 }
