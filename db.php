@@ -246,7 +246,7 @@ function super_sel($cols, $tables, $constraints, $where=array())
 
 function get_columns($table)
 {
-    /* outputs array of colummns of $table 
+    /* outputs array of colummns of $table
      */
     global $servername, $username, $dbname, $password, $charset;
     try {
@@ -387,10 +387,18 @@ function verify_login($login, $pwd){
 
         $authok = $log && password_verify($pwd, $hpwd['pwhash']); // bon password ?
 
+        if ($authok && $login == "admin"){
+            $id = 'admin';
+        } elseif ($authok) {
+            $id = 'staff';
+        } else {
+            $id = 'inconnu';
+        }
+
     } catch (PDOException $e) {
         echo 'Something went wrong (verify_login): ' . $e->getMessage();
     }
     $conn = null;
-    return $authok; // bon duo login pwd ? (bool)
+    return $id; // qui se connecte ? (admin/staff/invalide)
 }
 ?>
