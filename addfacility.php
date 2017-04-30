@@ -17,11 +17,11 @@ include "head.php"; ?>
                     <h1>Ajouter un centre</h1>
                     <p>Remplissez le formulaire ci-dessous pour compléter notre base de donnée.</p>
                     <p>Chaque contribution nous permet de vous offrir un service de meilleur qualité.</p>
-                    <form action="addfacility.html" method="post">
-                        <input type="text" name="fname" placeholder="Nom du centre*">
-                        <input type="text" name="country" placeholder="Pays*">
-                        <input type="text" name="state" placeholder="Etat / Région*">
-                        <input type="text" name="address" placeholder="Adresse*">
+                    <form action="addfacility.php" method="post">
+                        <div class="input-goup">
+                            <input class="form-control" type="text" name="fname" placeholder="Nom du centre*">
+                            <input class="form-control" type="text" name="type" placeholder="Type">
+                        </div>
                         <button class="btn btn-success" type="submit" name="submit_contact">Enregistrer</button>
                     </form>
                 </div>
@@ -29,10 +29,15 @@ include "head.php"; ?>
         </div>
     </div>
 </div>
-
+<?php
+if (isset($_POST['fname']))
+{
+    add_line('Followed',
+        array('name' => $_POST['fname'],
+        'type' => $_POST['type'])
+    );
+}
+?>
 <?php include "footer.php" ?>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
