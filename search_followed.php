@@ -82,7 +82,7 @@ if (array_key_exists('search_field', $_POST))
         swap($labels, 0, $keysf);
         swap($colview, 0, $keysf);
     }
-    echo '<table class="table" data-toggle="table" data-search="true">';
+    echo "<table class='table' data-toggle='table' data-search='true' data-pagination='true'>";
     echo '<thead>';
     create_tablehead($colfoll, $labels);
     echo '</thead>';
@@ -93,7 +93,5 @@ if (array_key_exists('search_field', $_POST))
 }
 ?>
 <?php include "footer.php"; ?>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table-locale-all.min.js"
-    type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
