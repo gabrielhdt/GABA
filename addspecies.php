@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
-<?php include 'db.php' ?>
-<?php include "head.php" ?>
+<?php include 'db.php';
+include "head.php"; ?>
 
 
 <body>
@@ -31,7 +31,21 @@
         </div>
     </div>
 </div>
-
+<?php
+if (isset($_POST['species']))
+{
+    add_line('Species',
+        array('binomial_name' => $_POST['species'],
+        'kingdom' => $_POST['kingdom'],
+        'phylum' => $_POST['phylum'],
+        'class' => $_POST['class'],
+        'order_s' => $_POST['order'],
+        'family' => $_POST['family'],
+        'genus' => $_POST['genus'],
+        'conservation_status' => $_POST['status'])
+    );
+}
+?>
 <br><br><br>
 
 <?php include "footer.php" ?>
