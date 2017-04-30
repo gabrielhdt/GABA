@@ -28,29 +28,18 @@ foreach ($lines as $line)
                     <p>Remplissez le formulaire ci-dessous pour compléter notre base de donnée.</p>
                     <p>Chaque contribution nous permet de vous offrir un service de meilleur qualité.</p>
                     <form action="addfollowed.php" method="post">
-                        <div class="input-group">
-                            <select name="species" class="form-control input-sm">
+                        <div class="form-group">
+                            <select name="species" class="form-control">
                                 <?php create_choice_list($id_biname); ?>
                             </select>
-                            <select name='facility' class='form-control input-sm'>
+                            <select name='facility' class='form-control'>
                                 <?php create_choice_list($id_faname, $defsel='1'); ?>
                             </select>
-                         </div>
-                         <div class="radio">
-                            <label>
-                                <input type="radio" name="gender" values="m">
-                                Male
-                            </label>
-                            <label>
-                                <input type="radio" name="gender" values="f">
-                                Female
-                            </label>
-                            <label>
-                                <input type="radio" name="gender" values="h">
-                                Hermaphrodite
-                            </label>
-                        </div>
-                        <div class="input-group">
+                            <select name="gender" class="form-control">
+                                <option value="m">Male</option>
+                                <option value="f">Female</option>
+                                <option value="h">Hermaphrodite</option>
+                            </select>
                             <input type="date" name="birth" class="form-control" placeholder="Date de naissance*">
                             <input type="text" name="health" class="form-control" placeholder="Etat de santé*">
                         </div>
