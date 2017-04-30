@@ -61,6 +61,7 @@ if (isset($_POST['species']))
         'gender' => $_POST['gender'],
         'birth' => $_POST['birth'],
         'health' => $_POST['health']));
+    update_view('vSearchFoll');
 }
 ?>
                 </div>
