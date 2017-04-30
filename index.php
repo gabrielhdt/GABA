@@ -88,22 +88,25 @@
         </div>
 </div>
 <div id="labmap" style="height: 180px"></div>
-<?php $facspecs = get_values('Facility', array('name', 'gnss_coord', 'type')); ?>
-                <script type="text/javascript" charset="utf-8">
-                    var labmap = L.map('labmap').setView([90, 0], 2);
-                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                            attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-                            subdomain: ['a', 'b', 'c']}).addTo(labmap);
+<?php $facspecs = get_values(array('name', 'gnss_coord', 'type'), 'Facility'); ?>
+<script type="text/javascript" charset="utf-8">
+    var labmap = L.map('labmap').setView([90, 0], 2);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+            subdomain: ['a', 'b', 'c']}).addTo(labmap);
 <?php
 foreach ($facspecs as $facility) {
-    $latlong = explode(',', $facility['gnss_coord']);
-    $type = $facility['type'];
-    $name = $facility['name'];
-    echo "var marker = L.marker([$latlong[0], $latlong[1]]).addTo(labmap);";
-    echo "marker.bindPopup(\"<b>$name</b><br>$type\");";
+    if ($facility['gnss_coord'] != null)
+    {
+        $latlong = explode(',', $facility['gnss_coord']);
+        $type = $facility['type'];
+        $name = $facility['name'];
+        echo "var marker = L.marker([$latlong[0], $latlong[1]]).addTo(labmap);";
+        echo "marker.bindPopup(\"<b>$name</b><br>$type\");";
+    }
 }
 ?>
-                </script>
+</script>
 <?php include "footer.php" ?>
 </body>
 </html>
