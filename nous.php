@@ -44,7 +44,7 @@ include 'head.php';
 </div>
 <?php include 'footer.php'; ?>
 <script type="text/javascript" charset="utf-8">
-    var contwidth = $('#map-container').wdth();
+    var contwidth = $('#map-container').width();
     var contheight = $('#verbotron').height();
     document.getElementById('labmap').style.width = contwidth;
     document.getElementById('labmap').style.height = contheight;
