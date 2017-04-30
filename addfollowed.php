@@ -28,26 +28,31 @@ foreach ($lines as $line)
                     <p>Remplissez le formulaire ci-dessous pour compléter notre base de donnée.</p>
                     <p>Chaque contribution nous permet de vous offrir un service de meilleur qualité.</p>
                     <form action="addfollowed.php" method="post">
-                        <div class="form-group">
+                        <div class="input-group">
                             <select name="species" class="form-control input-sm">
                                 <?php create_choice_list($id_biname); ?>
                             </select>
                             <select name='facility' class='form-control input-sm'>
                                 <?php create_choice_list($id_faname, $defsel='1'); ?>
                             </select>
-                            <label class='radio-inline'>
-                                <input type='radio' name='gender' value='m'>Male
+                         </div>
+                         <div class="radio">
+                            <label>
+                                <input type="radio" name="gender" values="m">
+                                Male
                             </label>
-                            <label class='radio-inline'>
-                                <input type='radio' name='gender' value='f'>Female
+                            <label>
+                                <input type="radio" name="gender" values="f">
+                                Female
                             </label>
-                            <label class='radio-inline'>
-                                <input type='radio' name='gender' value='h'>Hermaphrodite
+                            <label>
+                                <input type="radio" name="gender" values="h">
+                                Hermaphrodite
                             </label>
-                            <div class="input-group">
-                                <input type="date" name="birth" class="form-control" placeholder="Date de naissance*">
-                                <input type="text" name="health" class="form-control" placeholder="Etat de santé*">
-                            </div>
+                        </div>
+                        <div="input-group">
+                            <input type="date" name="birth" class="form-control" placeholder="Date de naissance*">
+                            <input type="text" name="health" class="form-control" placeholder="Etat de santé*">
                         </div>
                         <button class="btn btn-success" type="submit" name="add_followed">Enregistrer</button>
                     </form>
