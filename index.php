@@ -90,7 +90,7 @@
 <div id="labmap" style="height: 180px"></div>
 <?php $facspecs = get_values(array('name', 'gnss_coord', 'type'), 'Facility'); ?>
 <script type="text/javascript" charset="utf-8">
-    var labmap = L.map('labmap').setView([90, 0], 2);
+    var labmap = L.map('labmap').setView([0, 0], 2);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
             subdomain: ['a', 'b', 'c']}).addTo(labmap);
