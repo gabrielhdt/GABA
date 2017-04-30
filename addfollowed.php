@@ -26,11 +26,26 @@ foreach ($lines as $line)
 create_choice_list($id_biname);
 ?>
                         </select>
-                        <select name="gender" class="form-control input-sm">
-                            <option value='m'>Male</option>
-                            <option value='f'>Female</option>
-                            <option value='h'>Hermaphrodite</option>
+                        <select name='facility' class='form-control input-sm'>
+<?php
+$lines = get_values(array('idFacility', 'name'), 'Facility');
+$id_faname = array();
+foreach ($lines as $line)
+{
+    $id_faname[$line['idFacility']] = $line['name'];
+}
+create_choice_list($id_faname, $defsel='1');
+?>
                         </select>
+                        <label class='radio-inline'>
+                            <input type='radio' name='gender' value='m'>Male
+                        </label>
+                        <label class='radio-inline'>
+                            <input type='radio' name='gender' value='f'>Female
+                        </label>
+                        <label class='radio-inline'>
+                            <input type='radio' name='gender' value='h'>Hermaphrodite
+                        </label>
                         <input type="date" name="birth" class="form-control" placeholder="Date de naissance*">
                         <input type="text" name="health" class="form-control" placeholder="Etat de santé*">
                         <button class="btn btn-success" type="submit" name="add_followed">Enregistrer</button>

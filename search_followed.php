@@ -11,34 +11,6 @@ function swap(&$arr, $ind_a, $ind_b)
     $arr[$ind_a] = $buf;
 }
 
-function create_fields_array($columns)
-{
-    /* Creates the list of fields and they display labels
-     * if the field has nothing special, it is only capitalised
-     * if the field is a foreign key, the displayed field is the capitalised
-     * table name to which the key refers
-     * columns: result of show columns from (e.g. Followed);
-     * returns: array (column name => displayed name)
-     * and array (foreign key column number => other table name)
-     */
-    $displayed_fields = array();
-    $forkey = array();
-    $keys_tables = main_tables_from_keys();
-    $i = 0;
-    foreach ($columns as $col_specs)
-    {
-        $field = $col_specs['Field'];
-        if ($col_specs['Key'] == 'MUL')
-        {
-            $displayed_fields[$field] = $keys_tables[$field];
-            $forkey[$i] = $keys_tables[$field];
-        }
-        else $displayed_fields[$field] = $field;
-        $i++;
-    }
-    return(array($displayed_fields, $forkey));
-}
-
 function create_tablehead($colfoll, $labels)
 {
     /* $search_field must be a columns name
@@ -60,6 +32,10 @@ function create_tablebody($colnames, $view)
     /* colnames array containing column names, with
      * search_field first
      */
+    if (!view_exists($view))
+    {
+        update_view($view);
+    }
     $search_res = get_values($colnames, $view);
     foreach ($search_res as $line)
     {
@@ -67,7 +43,7 @@ function create_tablebody($colnames, $view)
         foreach ($colnames as $colname)
         {
             echo '<td>';
-            echo $line[$colname];
+            echo ucwords($line[$colname]);
             echo '</td>';
         }
         echo '</tr>';
@@ -94,11 +70,11 @@ function create_tablebody($colnames, $view)
 if (array_key_exists('search_field', $_POST))
 {
     $colfoll = array('idFollowed', 'idSpecies', 'idFacility', 'gender', 'birth',
-        'death');
+        'death', 'health');
     $labels = array('Identifier', 'Species', 'Facility', 'Gender', 'Birth',
-        'Death');
-    $colview = array('idFollowed', 'binomial_name', 'common_name', 'gender',
-        'birth', 'death');
+        'Death', 'Health');
+    $colview = array('idFollowed', 'sp_binomial_name', 'fa_name', 'gender',
+        'birth', 'death', 'health');
     if ($colfoll[0] != $_POST['search_field'])
     {
         $keysf = array_search($_POST['search_field'], $colfoll);
@@ -106,19 +82,16 @@ if (array_key_exists('search_field', $_POST))
         swap($labels, 0, $keysf);
         swap($colview, 0, $keysf);
     }
-    echo '<table class="table" data-toggle="table" data-search="true">';
+    echo "<table class='table' data-toggle='table' data-search='true' data-pagination='true'>";
     echo '<thead>';
     create_tablehead($colfoll, $labels);
     echo '</thead>';
-    $colfoll['idSpecies'] = 'binomial_name';
     echo '<tbody>';
-    create_tablebody($colview, 'search_foll');
+    create_tablebody($colview, 'vSearchFoll');
     echo '</tbody>';
     echo '</table>';
 }
 ?>
 <?php include "footer.php"; ?>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table-locale-all.min.js"
-    type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
