@@ -9,23 +9,26 @@ include 'head.php';
     <div class="row">
         <!-- <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="labmap"> -->
             <div id="labmap"></div>
-            <?php $facspecs = get_values('Facility', array('name', 'gnss_coord', 'type')); ?>
-            <script type="text/javascript" charset="utf-8">
-                var labmap = L.map('labmap').setView([90, 0], 2);
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+<?php $facspecs = get_values(array('name', 'gnss_coord', 'type'), 'Facility'); ?>
+                <script type="text/javascript" charset="utf-8">
+                    var labmap = L.map('labmap').setView([90, 0], 2);
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
                     subdomain: ['a', 'b', 'c']
-                }).addTo(labmap);
-                <?php
-        foreach ($facspecs as $facility) {
-            $latlong = explode(',', $facility['gnss_coord']);
-            $type = $facility['type'];
-            $name = $facility['name'];
-            echo "var marker = L.marker([$latlong[0], $latlong[1]]).addTo(labmap);";
-            echo "marker.bindPopup(\"<b>$name</b><br>$type\");";
-        }
-        ?>
-            </script>
+                    }).addTo(labmap);
+<?php
+foreach ($facspecs as $facility) {
+    if ($facility['gnss_coord'] != null)
+    {
+        $latlong = explode(',', $facility['gnss_coord']);
+        $type = $facility['type'];
+        $name = $facility['name'];
+        echo "var marker = L.marker([$latlong[0], $latlong[1]]).addTo(labmap);";
+        echo "marker.bindPopup(\"<b>$name</b><br>$type\");";
+    }
+}
+?>
+                </script>
         <!-- <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"> -->
             <div class="jumbotron">
                 <h1>A propos de nous</h1>
