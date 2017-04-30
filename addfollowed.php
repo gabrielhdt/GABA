@@ -50,7 +50,7 @@ foreach ($lines as $line)
                                 Hermaphrodite
                             </label>
                         </div>
-                        <div="input-group">
+                        <div class="input-group">
                             <input type="date" name="birth" class="form-control" placeholder="Date de naissance*">
                             <input type="text" name="health" class="form-control" placeholder="Etat de santé*">
                         </div>
