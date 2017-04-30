@@ -7,15 +7,20 @@ include 'head.php';
     <?php include 'nav.php'; ?>
     <div class="container-fluid">
     <div class="row">
-        <!-- <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="labmap"> -->
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="labmap">
             <div id="labmap"></div>
+        </div>
 <?php $facspecs = get_values(array('name', 'gnss_coord', 'type'), 'Facility'); ?>
-                <script type="text/javascript" charset="utf-8">
-                    var labmap = L.map('labmap').setView([90, 0], 2);
-                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-                    subdomain: ['a', 'b', 'c']
-                    }).addTo(labmap);
+            <script type="text/javascript" charset="utf-8">
+                var contwidth = $('#map-container').outerWidth();
+                var contheight = $('#map-container').outerHeight();
+                document.getElementById('labmap').style.width = contwidth;
+                document.getElementById('labmap').style.height = contheight;
+                var labmap = L.map('labmap').setView([90, 0], 2);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                subdomain: ['a', 'b', 'c']
+                }).addTo(labmap);
 <?php
 foreach ($facspecs as $facility) {
     if ($facility['gnss_coord'] != null)
@@ -28,8 +33,8 @@ foreach ($facspecs as $facility) {
     }
 }
 ?>
-                </script>
-        <!-- <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"> -->
+            </script>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="jumbotron">
                 <h1>A propos de nous</h1>
                 <hr>
