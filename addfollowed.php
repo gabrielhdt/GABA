@@ -26,6 +26,17 @@ foreach ($lines as $line)
 create_choice_list($id_biname);
 ?>
                         </select>
+                        <select name='facility' class='form-control input-sm'>
+<?php
+$lines = get_values(array('idFacility', 'name'), 'Facility');
+$id_faname = array();
+foreach ($lines as $line)
+{
+    $id_faname[$line['idFacility']] = $line['name'];
+}
+create_choice_list($id_faname, $defsel='1');
+?>
+                        </select>
                         <select name="gender" class="form-control input-sm">
                             <option value='m'>Male</option>
                             <option value='f'>Female</option>
