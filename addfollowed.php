@@ -50,17 +50,6 @@ create_choice_list($id_faname, $defsel='1');
                         <input type="text" name="health" class="form-control" placeholder="Etat de santé*">
                         <button class="btn btn-success" type="submit" name="add_followed">Enregistrer</button>
                     </form>
-<?php
-if (isset($_POST['species']))
-{
-    add_line('Followed',
-        array('idSpecies' => $_POST['species'],
-        'gender' => $_POST['gender'],
-        'birth' => $_POST['birth'],
-        'health' => $_POST['health']));
-    update_view('vSearchFoll');
-}
-?>
                 </div>
             </div>
         </div>
@@ -68,7 +57,19 @@ if (isset($_POST['species']))
 </div>
 
 <br><br><br>
-
+<?php
+if (isset($_POST['species']))
+{
+    add_line('Followed',
+        array('idSpecies' => $_POST['species'],
+        'gender' => mb_strtolower($_POST['gender']),
+        'birth' => $_POST['birth'],
+        'health' => mb_strtolower($_POST['health']),
+        'idFacility' => $_POST['facility'])
+    );
+    update_view('vSearchFoll');
+}
+?>
 <?php include "footer.php" ?>
 </body>
 </html>
