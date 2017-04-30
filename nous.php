@@ -8,7 +8,7 @@ include 'head.php';
     <div class="container-fluid">
     <div class="row">
         <!-- <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="labmap"> -->
-            <div id="labmap">
+            <div id="labmap"></div>
             <?php $facspecs = get_values('Facility', array('name', 'gnss_coord', 'type')); ?>
             <script type="text/javascript" charset="utf-8">
                 var labmap = L.map('labmap').setView([90, 0], 2);
@@ -26,7 +26,6 @@ include 'head.php';
         }
         ?>
             </script>
-        </div>
         <!-- <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"> -->
             <div class="jumbotron">
                 <h1>A propos de nous</h1>
