@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <?php include 'db.php';
 include 'form_func.php';
 include "head.php"; ?>
+
 <body>
+
 <?php include "nav.php" ?>
 
 <div class="container3">
@@ -66,8 +69,7 @@ if (isset($_POST['species']))
     </div>
 </div>
 
-<br><br><br>
-
 <?php include "footer.php" ?>
+
 </body>
 </html>
