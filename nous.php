@@ -48,7 +48,7 @@ include 'head.php';
     var contheight = $('#verbotron').height();
     document.getElementById('labmap').style.width = contwidth;
     document.getElementById('labmap').style.height = contheight;
-    var labmap = L.map('labmap').setView([90, 0], 2);
+    var labmap = L.map('labmap').setView([0, 0], 2);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     subdomain: ['a', 'b', 'c']
