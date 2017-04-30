@@ -43,7 +43,7 @@ function create_tablebody($colnames, $view)
         foreach ($colnames as $colname)
         {
             echo '<td>';
-            echo $line[$colname];
+            echo ucwords($line[$colname]);
             echo '</td>';
         }
         echo '</tr>';
