@@ -37,9 +37,15 @@ foreach ($lines as $line)
 create_choice_list($id_faname, $defsel='1');
 ?>
                         </select>
-                        <input type='radio' name='gender' value='m'>Male
-                        <input type='radio' name='gender' value='f'>Female
-                        <input type='radio' name='gender' value='h'>Hermaphrodite
+                        <label class='radio-inline'>
+                            <input type='radio' name='gender' value='m'>Male
+                        </label>
+                        <label class='radio-inline'>
+                            <input type='radio' name='gender' value='f'>Female
+                        </label>
+                        <label class='radio-inline'>
+                            <input type='radio' name='gender' value='h'>Hermaphrodite
+                        </label>
                         <input type="date" name="birth" class="form-control" placeholder="Date de naissance*">
                         <input type="text" name="health" class="form-control" placeholder="Etat de santé*">
                         <button class="btn btn-success" type="submit" name="add_followed">Enregistrer</button>
