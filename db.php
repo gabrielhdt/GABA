@@ -470,4 +470,29 @@ QRY;
     $conn = null;
     return(true);
 }
+
+function id_from_login($login)
+{
+    /* Returns id of a give $login name
+     * Works because logins are bijectively linked to ids
+     * $login: string
+     */
+    global $servername, $username, $dbname, $password, $charset;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $qery = "SELECT (idStaff) FROM Staff WHERE login=?";
+        $stmt = $conn->prepare($query);
+        $stmt -> bindParam(1, $login, $data_type=PDO::PARAM_STR,
+            $length=12);
+        $stmt -> execute();
+        $rslt = $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo 'Something went wrong (get_columns): ' . $e->getMessage();
+    }
+    $conn = null;
+    return $rslt['idStaff'];
+
+}
 ?>
