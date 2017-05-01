@@ -67,30 +67,19 @@ function current_nav() {
         // cas du dropdown-menu, actif si l'une de ses pages est consultée
         if ($i == 2) {
             // test si l'une des pages de la liste recherche est en cours de consultation
-            if ($page_name == $links[2] || $page_name == $links[4]
-            || $page_name == $links[5] ||$page_name == $links[6] ||$page_name == $links[7]) {
-                $nav .= "<li class='active'> <a href='$links[2]'>$text[2]</a>
-<ul class='dropdown-menu'>";
-            } else {
-                $nav .=
-                $nav .= "<li> <a href='$links[2]'>$text[2]</a>
-<ul class='dropdown-menu'>";
-            }
+            $cond = ($page_name == $links[2] || $page_name == $links[4] || $page_name == $links[5] ||$page_name == $links[6] ||$page_name == $links[7]);
+            $nav .= "<li ".($cond ? "class='active'" : "")."> <a href='$links[2]'>$text[2]</a>
+<ul class='dropdown-menu'>\n";
+
             for ($j=4; $j < 8; $j++) {
-                $nav .= sprintf($format, "", "", $links[$j], $text[$j]);
-                // $nav .= "<li><a href='$links[$j]'>$text[$j]</a></li>\n";
+                $nav .= sprintf($format, "", $links[$j], "", $text[$j]);
             }
             $nav .= "</ul>
 </li>
 <li><a href='$links[8]'>Contact</a></li>\n"; //cas de l'ancre 'contact'
         // autres liens
         } else {
-            $nav .= sprintf($format, ($page_name == $links[$i]) ? "class='active'" : "", $links[$i], "", $text[$i]);
-            // if ($page_name == $links[$i]){
-            //     $nav .= "<li class='active'><a href='$links[$i]'>$text[$i]</a></li>\n";
-            // } else {
-            //     $nav .= "<li><a href='$links[$i]'>$text[$i]</a></li>\n";
-            // }
+            $nav .= sprintf($format, (($page_name == $links[$i]) ? "class='active'" : ""), $links[$i], "", $text[$i]);
         }
     }
     // test si l'utilisateur n'est pas connecté, seulement onglet 'connexion' à droite
@@ -99,25 +88,14 @@ function current_nav() {
     if (!isset($_SESSION['login'])) {
         $nav .= sprintf($format, ($page_name == $links[9]) ? "class='active'" : "",
                         $links[9], "<span class='glyphicon glyphicon-log-in'></span>", $text[9])."</ul>";
-//         $nav .= ($page_name == $links[9]) ? "class='active'" : "";
-//         $nav .= "><a href='$links[9]'><span class='glyphicon glyphicon-log-in'></span> $text[9]</a></li>
-// </ul>";
     // test si l'utilisateur est connecté, onglets 'espace perso' et 'déconnexion' à droite
     } else {
         if ($_SESSION['login'] == 'admin'){
             $nav .= sprintf($format, ($page_name == 'admin_index.php') ? "class='active'" : "", $links[12], "", $text[10]);
             $nav .= sprintf($format, "", $links[11], "<span class='glyphicon glyphicon-log-out'></span>", $text[11])."</ul>";
-//             $nav .= ($page_name == 'admin_index.php') ? "class='active'" : "";
-//             $nav .= "><a href='$links[12]'><span class='glyphicon glyphicon-log-in'></span> $text[10]</a></li>
-// <li><a href='$links[11]'><span class='glyphicon glyphicon-log-out'></span> $text[11]</a></li>
-// </ul>";
         } else {
             $nav .= sprintf($format, ($page_name == 'membre_index.php') ? "class='active'" : "", $links[10], "", $text[10]);
-            $nav .= sprintf($format, "", $links[10], "<span class='glyphicon glyphicon-log-out'></span>", $text[11])."</ul>";
-//             $nav .= ($page_name == 'membre_index.php') ? "class='active'" : "";
-//             $nav .= "><a href='$links[10]'><span class='glyphicon glyphicon-log-in'></span> $text[10]</a></li>
-// <li><a href='$links[11]'><span class='glyphicon glyphicon-log-out'></span> $text[11]</a></li>
-// </ul>";
+            $nav .= sprintf($format, "", $links[11], "<span class='glyphicon glyphicon-log-out'></span>", $text[11])."</ul>";
         }
     }
     return $nav;
