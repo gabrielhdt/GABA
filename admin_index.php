@@ -29,7 +29,7 @@ include 'db.php';
                     <label class="radio-inline"><input type="radio" name="typeStaff" value="vet">Veterinaire</label>
                     <label class="radio-inline"><input type="radio" name="typeStaff" value="cher">Chercheur</label>
                     <label class="radio-inline"><input type="radio" name="typeStaff" value="tech">Technicien</label><br>
-                    <input onclick="myTest()" class="btn btn-success" name="submit_contact" value="Enregistrer">
+                    <input onclick="myAdd()" class="btn btn-success" name="submit_contact" value="Enregistrer">
                 </form>
             </div>
 
@@ -45,7 +45,7 @@ include 'db.php';
     <?php include 'footer.php'; ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
-        function myTest(){
+        function myAdd(){
             $.post(
                 'addStaff_script.php',
                 {   nom: $("input[name=nom]").val(),
@@ -76,6 +76,13 @@ include 'db.php';
                 }
             );
             // alert(p1);
+        }
+
+        function myDelete(id_msg){
+            $.post(
+                'test.php',
+                {id: id_msg}
+            );
         }
     </script>
 </body>
