@@ -128,6 +128,7 @@ function detail_formatter(index, row) {
             if (output) {
                 html.push('<img src="'+output+'" class="img-responsive>');
             }
+        },
     });
     $.ajax({url: 'search_script.php',
         type: 'post',
@@ -139,7 +140,7 @@ function detail_formatter(index, row) {
             /* output ought to be geolocation data
              */
             html.push('Yet to come...');
-        }
+        },
     });
     return html.join('');
 }
