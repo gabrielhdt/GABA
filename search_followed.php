@@ -114,6 +114,7 @@ $('#table').bootstrapTable({
             }
             success: function(output) {
                 console.log('Worked');
+            }
     });
     }
 });
