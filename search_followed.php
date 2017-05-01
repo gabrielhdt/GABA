@@ -111,7 +111,7 @@ $table.on('refresh.bs.table', function (e) {
             data: {
                 action: 'refresh',
                 viewname: 'vSearchFoll'
-            }
+            },
             success: function(output) {
                 console.log('Refreshed');
             }
