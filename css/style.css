@@ -564,10 +564,28 @@ recherche.php
     font-family: 'Palatino Linotype';
     margin: 20px 20px;
 }
+#msg {
+    background-color: lightgrey;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px;
+}
+#msg span {
+    float: right;
+}
+#messages {
+    /*border-left: 2px solid black;*/
+    /*border-top: 1px solid rgb(150, 150, 150);*/
+    height: 750px;
+    overflow: scroll;
+}
+#messages h1 {
+    text-align: center;
+}
 #add_staff {
     text-align: center;
     padding: 20px 0;
-    border-top: 1px solid rgb(150, 150, 150);
+    /*border-top: 1px solid rgb(150, 150, 150);*/
 }
 #add_staff input[name='nom'],
 #add_staff input[name='prenom'],
@@ -584,4 +602,7 @@ recherche.php
 }
 #add_staff form button{
     margin: 15px 0;
+}
+#add_staff p {
+    color : red;
 }
