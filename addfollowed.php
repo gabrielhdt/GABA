@@ -35,11 +35,9 @@ foreach ($lines as $line)
                             <select name='facility' class='form-control'>
                                 <?php create_choice_list($id_faname, $defsel='1'); ?>
                             </select>
-                            <select name="gender" class="form-control">
-                                <option value="m">Male</option>
-                                <option value="f">Female</option>
-                                <option value="h">Hermaphrodite</option>
-                            </select>
+                            <label class="radio-inline"><input type="radio" name="gender" value="m">Male</label>
+                            <label class="radio-inline"><input type="radio" name="gender" value="f">Female</label>
+                            <label class="radio-inline"><input type="radio" name="gender" value="h">Hermaphrodite</label><br>
                             <input type="date" name="birth" class="form-control" placeholder="Date de naissance*">
                             <input type="text" name="health" class="form-control" placeholder="Etat de santé*">
                         </div>
