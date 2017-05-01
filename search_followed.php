@@ -108,10 +108,7 @@ $table.on('refresh.bs.table', function (e) {
         $.ajax({
             url: 'search_script.php',
             type: 'post',
-            data: {
-                action: 'refresh',
-                viewname: 'vSearchFoll'
-            },
+            data: {viewname: 'vSearchFoll'},
             success: function(output) {
                 console.log('Refreshed');
             }
@@ -120,6 +117,15 @@ $table.on('refresh.bs.table', function (e) {
 
 function detail_formatter(index, row) {
     var html = [];
+    var picpath = '';
+    picpath = $.ajax({url: 'search_script.php',
+        type: 'post',
+        data: {
+            id: row['idFollowed'],
+            table: 'Followed'
+        },
+    });
+    html.push('<p>' + picpath + '</p>');
     $.each(row, function (key, value) {
         html.push('<p><b>' + key + ':<b> ' + value + '</p>');
     });
