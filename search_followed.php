@@ -82,7 +82,14 @@ if (array_key_exists('search_field', $_POST))
         swap($labels, 0, $keysf);
         swap($colview, 0, $keysf);
     }
-    echo "<table class='table' data-toggle='table' data-search='true' data-pagination='true'>";
+    echo "<table class='table'
+        data-toggle='table'
+        data-search='true'
+        data-show-refresh='true'
+        data-pagination='true'
+        data-detail-view='true'
+        data-detail-formatter='detailFormatter'
+        data-show-footer='true'>";
     echo '<thead>';
     create_tablehead($colfoll, $labels);
     echo '</thead>';

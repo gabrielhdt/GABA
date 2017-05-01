@@ -11,7 +11,7 @@ function create_choice_list($disp_fields, $defsel=null)
     {
         if ($col == $defsel)
         {
-            echo "<option selected value\"$col\">".ucwords($disp).'</option>';
+            echo "<option selected value=\"$col\">".ucwords($disp).'</option>';
         }
         else
         {

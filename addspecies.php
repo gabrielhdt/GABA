@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <?php include 'db.php';
+include 'form_func.php';
 include "head.php"; ?>
 
-
 <body>
+
 <?php include "nav.php" ?>
 
 <div class="container4">
@@ -15,7 +17,7 @@ include "head.php"; ?>
                     <h1>Ajouter une espèce</h1>
                     <p>Remplissez le formulaire ci-dessous pour compléter notre base de donnée.</p>
                     <p>Chaque contribution nous permet de vous offrir un service de meilleur qualité.</p>
-                    <form action="addspecies.html" method="post">
+                    <form action="addspecies.php" method="post">
                         <input type="text" name="species" placeholder="Nom de l'espèce*">
                         <input type="text" name="kingdom" placeholder="Royaume*">
                         <input type="text" name="phylum" placeholder="Phylum*">
@@ -46,8 +48,8 @@ if (isset($_POST['species']))
     );
 }
 ?>
-<br><br><br>
 
 <?php include "footer.php" ?>
+
 </body>
 </html>
