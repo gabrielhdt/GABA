@@ -103,8 +103,8 @@ if (array_key_exists('search_field', $_POST))
 <?php include "footer.php"; ?>
 </body>
 <script>
-$('#table').bootstrapTable({
-    onRefresh: function () {
+var $table = $('#table');
+$table.on('refresh.bs.table', function (e) {
         $.ajax({
             url: '/search_script.php',
             type: 'post',
@@ -113,10 +113,9 @@ $('#table').bootstrapTable({
                 viewname: 'vSearchFoll'
             }
             success: function(output) {
-                console.log('Worked');
+                console.log('Refreshed');
             }
     });
-    }
 });
 </script>
 </html>
