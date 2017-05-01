@@ -25,4 +25,4 @@ function get_picpath($table, $id)
     $line = get_values(array('pic_path'), $table, array($pkeycolname => $id));
     return($line[0]['pic_path']);
 }
-
+?>
