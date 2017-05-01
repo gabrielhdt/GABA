@@ -59,7 +59,7 @@ if (isset($_POST['species']))
         'health' => mb_strtolower($_POST['health']),
         'idFacility' => $_POST['facility'])
     );
-    if ($added) {
+    if ($added_id) {
         update_view('vSearchFoll');
         add_line('FollowedEdition',
             array('idStaff' => $_SESSION['idstaff'],
