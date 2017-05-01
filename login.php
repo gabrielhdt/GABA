@@ -8,6 +8,7 @@ if (isset($_POST['connexion']) && $_POST['connexion'] == 'Connexion') {
         if ($test_conn == 'staff') { // si ok -> next page
             session_start(); // debut de la session
             $_SESSION['login'] = $_POST['login'];
+            $_SESSION['idstaff'] = id_from_login($_POST['login']);
             header('Location: membre_index.php'); // redirection vers la 'page index de session'
             exit();
         } elseif ($test_conn == 'admin') {
