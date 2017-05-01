@@ -522,11 +522,9 @@ function list_msg(){
         while ($donnees = $reponse->fetch())  {
             format_msg($donnees['id'], $donnees['date'], $donnees['name'], $donnees['email'], $donnees['message'])."\n";
         }
-
     } catch(PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
     $conn = null;
-    echo "</table>";
     }
 ?>
