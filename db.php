@@ -280,7 +280,7 @@ function super_sel($cols, $tables, $constraints, $where=array())
 
 function get_columns($table)
 {
-    /* outputs array of colummns of $table 
+    /* outputs array of colummns of $table
      */
     global $servername, $username, $dbname, $password, $charset;
     try {
@@ -497,4 +497,35 @@ function id_from_login($login)
     $conn = null;
     return $rslt['idStaff'];
 }
+
+function format_msg($id, $date, $name, $email, $msg){
+    echo "<div class='alert alert-info alert-dismissable'>
+<a id='$id' href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+Date : $date
+<hr>
+Nom : $name
+<hr>
+E-mail : $email
+<hr>
+Message : $msg
+</div>";
+}
+
+function list_msg(){
+    global $servername, $username, $dbname, $password, $charset;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $reponse = $conn->query('SELECT * FROM messages');
+        while ($donnees = $reponse->fetch())  {
+            format_msg($donnees['id'], $donnees['date'], $donnees['name'], $donnees['email'], $donnees['message'])."\n";
+        }
+
+    } catch(PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+    $conn = null;
+    echo "</table>";
+    }
+?>
 ?>

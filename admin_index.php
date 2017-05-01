@@ -18,7 +18,6 @@
                 <h1>Ajout de personnel :</h1>
                 <form>
                     <div id="alert">
-
                     </div>
                     <input class='form-control' name="nom" placeholder="Nom">
                     <input class='form-control' name="prenom" placeholder="Prenom">
