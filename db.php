@@ -75,6 +75,7 @@ function add_line($table, $valarr)
 {
     /* Values are set to lowercase!
      * $valarr["column name"] = column_value
+     * returns: id of last inserted row
      */
     global $servername, $username, $dbname, $password, $charset;
     try {
@@ -95,12 +96,13 @@ function add_line($table, $valarr)
         $values .= ')';
         $query .= " $columns VALUES $values;";
         $conn->exec($query);
+        $id_addition = $conn ->lastInsertId();
     } catch (PDOException $e) {
         echo 'Insertion failed (add_line): ' . $e->getMessage();
         return(false);
     }
     $conn = null;
-    return(true);
+    return($id_addition);
 }
 
 function add_staff($password, $type, $first_name, $last_name)
@@ -489,10 +491,10 @@ function id_from_login($login)
         $stmt -> execute();
         $rslt = $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
-        echo 'Something went wrong (get_columns): ' . $e->getMessage();
+        echo 'Something went wrong (id_from_login): ' . $e->getMessage();
+        return(false);
     }
     $conn = null;
     return $rslt['idStaff'];
-
 }
 ?>
