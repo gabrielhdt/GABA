@@ -499,6 +499,7 @@ function id_from_login($login)
 }
 
 function format_msg($id, $date, $name, $email, $msg){
+    // fonction qui formate les msg avant affichage
     echo "<div class='alert alert-info alert-dismissable'>
 <a id='$id' href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
 Date : $date
@@ -512,6 +513,7 @@ Message : $msg
 }
 
 function list_msg(){
+    // recuperation et affichages des messages pour l'administrateur
     global $servername, $username, $dbname, $password, $charset;
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -527,5 +529,4 @@ function list_msg(){
     $conn = null;
     echo "</table>";
     }
-?>
 ?>
