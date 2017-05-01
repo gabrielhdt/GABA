@@ -106,7 +106,7 @@ if (array_key_exists('search_field', $_POST))
 var $table = $('#table');
 $table.on('refresh.bs.table', function (e) {
         $.ajax({
-            url: '/search_script.php',
+            url: 'search_script.php',
             type: 'post',
             data: {
                 action: 'refresh',
