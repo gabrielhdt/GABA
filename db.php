@@ -500,7 +500,8 @@ function id_from_login($login)
 
 function format_msg($id, $date, $name, $email, $msg){
     // fonction qui formate les msg avant affichage
-    echo "<div class='alert alert-info alert-dismissable'>
+    echo <<<MSG
+<div class='alert alert-info alert-dismissable'>
 <a id='$id' href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
 Date : $date
 <hr>
@@ -509,7 +510,8 @@ Nom : $name
 E-mail : $email
 <hr>
 Message : $msg
-</div>";
+</div>
+MSG;
 }
 
 function list_msg(){
@@ -520,11 +522,12 @@ function list_msg(){
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $reponse = $conn->query('SELECT * FROM messages ORDER BY date desc');
         while ($donnees = $reponse->fetch())  {
-            format_msg($donnees['id'], $donnees['date'], $donnees['name'], $donnees['email'], $donnees['message'])."\n";
+            format_msg($donnees['id'], $donnees['date'], $donnees['name'],
+                $donnees['email'], $donnees['message'])."\n";
         }
     } catch(PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
     $conn = null;
-    }
+}
 ?>
