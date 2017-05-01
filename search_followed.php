@@ -19,7 +19,7 @@ function create_tablehead($colfoll, $labels)
     echo '<tr>';
     for ($i = 0 ; $i < count($colfoll) ; $i++)
     {
-        echo '<th data-filed="'.$colfoll[$i].'" data-sortable="true">';
+        echo '<th data-field="'.$colfoll[$i].'" data-sortable="true">';
         echo $labels[$i];
         echo '</th>';
     }
@@ -120,7 +120,7 @@ $table.on('refresh.bs.table', function (e) {
 
 function detail_formatter(index, row) {
     var html = [];
-    $.each(row, function (key, value {
+    $.each(row, function (key, value) {
         html.push('<p><b>' + key + ':<b> ' + value + '</p>');
     });
     return html.join('');
