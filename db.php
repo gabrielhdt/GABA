@@ -75,6 +75,7 @@ function add_line($table, $valarr)
 {
     /* Values are set to lowercase!
      * $valarr["column name"] = column_value
+     * returns: id of last inserted row
      */
     global $servername, $username, $dbname, $password, $charset;
     try {
@@ -95,10 +96,13 @@ function add_line($table, $valarr)
         $values .= ')';
         $query .= " $columns VALUES $values;";
         $conn->exec($query);
+        $id_addition = $conn ->lastInsertId();
     } catch (PDOException $e) {
         echo 'Insertion failed (add_line): ' . $e->getMessage();
+        return(false);
     }
     $conn = null;
+    return($id_addition);
 }
 
 function add_staff($password, $type, $first_name, $last_name)
@@ -149,8 +153,10 @@ QRY;
         $conn->exec($query);
     } catch (PDOException $e) {
         echo "Something went wrong: " . $e->getMessage();
+        return(false);
     }
     $conn = null;
+    return(true);
 }
 
 function joined_view($view_name, $tables)
@@ -356,8 +362,10 @@ function update_line($table, $change, $col_condition, $val_condition)
         $conn->exec($query);
     } catch (PDOException $e) {
         echo 'Something went wrong (update_line): ' . $e->getMessage();
+        return(true);
     }
     $conn = null;
+    return(true);
 }
 
 function classify_process($table, $valc, $critc, $mod, $fct = arithmetic_mean)
@@ -459,8 +467,34 @@ QRY;
     $conn -> exec($query);
     } catch (PDOException $e) {
         echo 'Something went wrong (update_view): ' . $e->getMessage();
+        return(false);
     }
     $conn = null;
+    return(true);
 }
 
+function id_from_login($login)
+{
+    /* Returns id of a give $login name
+     * Works because logins are bijectively linked to ids
+     * $login: string
+     */
+    global $servername, $username, $dbname, $password, $charset;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $qery = "SELECT (idStaff) FROM Staff WHERE login=?";
+        $stmt = $conn->prepare($query);
+        $stmt -> bindParam(1, $login, $data_type=PDO::PARAM_STR,
+            $length=12);
+        $stmt -> execute();
+        $rslt = $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo 'Something went wrong (id_from_login): ' . $e->getMessage();
+        return(false);
+    }
+    $conn = null;
+    return $rslt['idStaff'];
+}
 ?>

@@ -35,11 +35,9 @@ foreach ($lines as $line)
                             <select name='facility' class='form-control'>
                                 <?php create_choice_list($id_faname, $defsel='1'); ?>
                             </select>
-                            <select name="gender" class="form-control">
-                                <option value="m">Male</option>
-                                <option value="f">Female</option>
-                                <option value="h">Hermaphrodite</option>
-                            </select>
+                            <label class="radio-inline"><input type="radio" name="gender" value="m">Male</label>
+                            <label class="radio-inline"><input type="radio" name="gender" value="f">Female</label>
+                            <label class="radio-inline"><input type="radio" name="gender" value="h">Hermaphrodite</label><br>
                             <input type="date" name="birth" class="form-control" placeholder="Date de naissance*">
                             <input type="text" name="health" class="form-control" placeholder="Etat de santé*">
                         </div>
@@ -54,14 +52,21 @@ foreach ($lines as $line)
 <?php
 if (isset($_POST['species']))
 {
-    add_line('Followed',
+    $added_id = add_line('Followed',
         array('idSpecies' => $_POST['species'],
         'gender' => mb_strtolower($_POST['gender']),
         'birth' => $_POST['birth'],
         'health' => mb_strtolower($_POST['health']),
         'idFacility' => $_POST['facility'])
     );
-    update_view('vSearchFoll');
+    if ($added) {
+        update_view('vSearchFoll');
+        add_line('FollowedEdition',
+            array('idStaff' => $_SESSION['idstaff'],
+            'idFollowed' => $added_id,
+            'type' => 'addition')
+        );
+    }
 }
 ?>
 <?php include "footer.php" ?>

@@ -82,7 +82,8 @@ if (array_key_exists('search_field', $_POST))
         swap($labels, 0, $keysf);
         swap($colview, 0, $keysf);
     }
-    echo "<table class='table'
+    echo "<table id='table'
+        class='table'
         data-toggle='table'
         data-search='true'
         data-show-refresh='true'
@@ -101,4 +102,21 @@ if (array_key_exists('search_field', $_POST))
 ?>
 <?php include "footer.php"; ?>
 </body>
+<script>
+$('#table').bootstrapTable({
+    onRefresh: function () {
+        $.ajax({
+            url: '/search_script.php',
+            type: 'post',
+            data: {
+                action: 'refresh',
+                viewname: 'vSearchFoll'
+            }
+            success: function(output) {
+                console.log('Worked');
+            }
+    });
+    }
+});
+</script>
 </html>
