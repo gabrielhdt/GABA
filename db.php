@@ -97,8 +97,10 @@ function add_line($table, $valarr)
         $conn->exec($query);
     } catch (PDOException $e) {
         echo 'Insertion failed (add_line): ' . $e->getMessage();
+        return(false);
     }
     $conn = null;
+    return(true);
 }
 
 function add_staff($password, $type, $first_name, $last_name)
@@ -149,8 +151,10 @@ QRY;
         $conn->exec($query);
     } catch (PDOException $e) {
         echo "Something went wrong: " . $e->getMessage();
+        return(false);
     }
     $conn = null;
+    return(true);
 }
 
 function joined_view($view_name, $tables)
@@ -356,8 +360,10 @@ function update_line($table, $change, $col_condition, $val_condition)
         $conn->exec($query);
     } catch (PDOException $e) {
         echo 'Something went wrong (update_line): ' . $e->getMessage();
+        return(true);
     }
     $conn = null;
+    return(true);
 }
 
 function classify_process($table, $valc, $critc, $mod, $fct = arithmetic_mean)
@@ -459,8 +465,9 @@ QRY;
     $conn -> exec($query);
     } catch (PDOException $e) {
         echo 'Something went wrong (update_view): ' . $e->getMessage();
+        return(false);
     }
     $conn = null;
+    return(true);
 }
-
 ?>
