@@ -518,15 +518,13 @@ function list_msg(){
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $reponse = $conn->query('SELECT * FROM messages');
+        $reponse = $conn->query('SELECT * FROM messages ORDER BY date desc');
         while ($donnees = $reponse->fetch())  {
             format_msg($donnees['id'], $donnees['date'], $donnees['name'], $donnees['email'], $donnees['message'])."\n";
         }
-
     } catch(PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
     $conn = null;
-    echo "</table>";
     }
 ?>

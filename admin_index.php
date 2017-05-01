@@ -35,6 +35,9 @@ include 'db.php';
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="messages">
                 <h1>Messages :</h1>
+                <div class='alert alert-danger alert-dismissable'>
+                    <strong>Attention!</strong> La suppression d'un message est irréversible.
+                </div>
                 <?php list_msg(); ?>
             </div>
         </div>
