@@ -13,4 +13,8 @@ if( isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['pwd1']) && 
         echo -1;
     }
 }
+
+if (isset($_POST['id'])) {
+    delete_msg($_POST['id']);
+}
 ?>
