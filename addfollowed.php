@@ -54,14 +54,21 @@ foreach ($lines as $line)
 <?php
 if (isset($_POST['species']))
 {
-    add_line('Followed',
+    $added_id = add_line('Followed',
         array('idSpecies' => $_POST['species'],
         'gender' => mb_strtolower($_POST['gender']),
         'birth' => $_POST['birth'],
         'health' => mb_strtolower($_POST['health']),
         'idFacility' => $_POST['facility'])
     );
-    update_view('vSearchFoll');
+    if ($added) {
+        update_view('vSearchFoll');
+        add_line('FollowedEdition',
+            array('idStaff' => $_SESSION['idstaff'],
+            'idFollowed' => $added_id,
+            'type' => 'addition')
+        );
+    }
 }
 ?>
 <?php include "footer.php" ?>
