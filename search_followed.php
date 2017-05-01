@@ -118,16 +118,28 @@ $table.on('refresh.bs.table', function (e) {
 function detail_formatter(index, row) {
     var html = [];
     var picpath = '';
-    picpath = $.ajax({url: 'search_script.php',
+    $.ajax({url: 'search_script.php',
         type: 'post',
         data: {
             id: row['idFollowed'],
             table: 'Followed'
         },
+        success: function(output) {
+            if (output) {
+                html.push('<img src="'+output+'" class="img-responsive>');
+            }
     });
-    html.push('<p>' + picpath + '</p>');
-    $.each(row, function (key, value) {
-        html.push('<p><b>' + key + ':<b> ' + value + '</p>');
+    $.ajax({url: 'search_script.php',
+        type: 'post',
+        data: { id: row['idFollowed'],
+            action: 'location'
+        },
+        success: function(output)
+        {
+            /* output ought to be geolocation data
+             */
+            html.push('Yet to come...');
+        }
     });
     return html.join('');
 }
