@@ -499,10 +499,8 @@ function id_from_login($login)
 }
 
 function format_msg($id, $date, $name, $email, $msg){
-    // fonction qui formate les msg avant affichage
-    echo <<<MSG
-<div class='alert alert-info alert-dismissable'>
-<a id='$id' href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+    echo "<div class='alert alert-info alert-dismissable'>
+<a href='#' onclick=\"myDelete('$id')\" class='close' data-dismiss='alert' aria-label='close'>&times;</a>
 Date : $date
 <hr>
 Nom : $name
@@ -510,8 +508,7 @@ Nom : $name
 E-mail : $email
 <hr>
 Message : $msg
-</div>
-MSG;
+</div>";
 }
 
 function list_msg(){
@@ -527,6 +524,21 @@ function list_msg(){
         }
     } catch(PDOException $e) {
         echo "Error: " . $e->getMessage();
+    }
+    $conn = null;
+}
+
+function delete_msg($id)
+{
+    global $servername, $username, $dbname, $password, $charset;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = "DELETE FROM messages WHERE id=$id";
+        $conn->exec($query);
+    } catch (PDOException $e) {
+        echo 'Insertion failed (add_line): ' . $e->getMessage();
     }
     $conn = null;
 }
