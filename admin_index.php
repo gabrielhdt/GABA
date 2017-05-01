@@ -80,7 +80,7 @@ include 'db.php';
 
         function myDelete(id_msg){
             $.post(
-                'test.php',
+                'addStaff_script.php',
                 {id: id_msg}
             );
         }
