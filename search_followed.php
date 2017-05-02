@@ -96,7 +96,7 @@ foreach ($lines as $line)
 </form>
 <?php
 $where = array();
-if (isset($_POST['lowbirth']))
+if (isset($_POST['lowbirth']) & !empty($_POST['lowbirth']))
 {
     array_push($where,
         array(
@@ -107,7 +107,7 @@ if (isset($_POST['lowbirth']))
         )
     );
 }
-elseif (isset($_POST['upbirth']))
+if (isset($_POST['upbirth']) && !empty($_POST['upbirth']))
 {
     array_push($where,
         array(
@@ -118,7 +118,7 @@ elseif (isset($_POST['upbirth']))
         )
     );
 }
-elseif (isset($_POST['gender']))
+if (isset($_POST['gender']) && !empty($_POST['gender']))
 {
     array_push($where,
         array(
@@ -129,7 +129,7 @@ elseif (isset($_POST['gender']))
         )
     );
 }
-elseif (isset($_POST['idspecies']))
+if (isset($_POST['idspecies']) && !empty($_POST['idspecies']))
 {
     array_push($where,
         array(
@@ -140,7 +140,7 @@ elseif (isset($_POST['idspecies']))
         )
     );
 }
-elseif (isset($_POST['idfacility']))
+if (isset($_POST['idfacility']) && !empty($_POST['idfacility']))
 {
     array_push($where,
         array(
