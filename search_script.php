@@ -8,6 +8,11 @@ elseif (isset($_POST['id'], $_POST['table']))
 {
     return(get_picpath($_POST['table'], $_POST['id']));
 }
+elseif (isset($_POST['id'], $_POST['action']) &&
+    $_POST['action'] == 'geolocation')
+{
+    echo "Coming soon...";
+}
 
 function refresh($viewname) {
     update_view($viewname);
@@ -23,6 +28,6 @@ function get_picpath($table, $id)
      */
     $pkeycolname = 'id'.$table;  // God bless the database creator
     $line = get_values(array('pic_path'), $table, array($pkeycolname => $id));
-    return($line[0]['pic_path']);
+    return($line ? $line[0]['pic_path'] : false);
 }
-
+?>
