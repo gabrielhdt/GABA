@@ -49,6 +49,18 @@ function create_tablebody($colnames, $view)
         echo '</tr>';
     }
 }
+$id_biname = array();
+$lines = get_values(array('idSpecies', 'binomial_name'), 'Species');
+foreach ($lines as $line)
+{
+    $id_biname[$line['idSpecies']] = $line['binomial_name'];
+}
+$lines = get_values(array('idFacility', 'name'), 'Facility');
+$id_faname = array();
+foreach ($lines as $line)
+{
+    $id_faname[$line['idFacility']] = $line['name'];
+}
 ?>
 <body>
 <form action="search_followed.php" method="post" accept-charset="utf-8"
@@ -65,11 +77,11 @@ function create_tablebody($colnames, $view)
         </select>
         <label for="sel_species">Of species:</label>
         <select name="idspecies[]" id="sel_species" class="form-control" multiple>
-        <?php create_species_list(); ?>
+        <?php create_choice_list($id_biname); ?>
         </select>
         <label for="sel_facility">In facilities:</label>
         <select name="idfacility[]" id="sel_facility" class="form-control" multiple>
-        <?php create_facility_list(); ?>
+        <?php create_choice_list($id_faname); ?>
         </select>
         <br>
         <label for="sel_birth">Born between:</label>
