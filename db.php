@@ -534,7 +534,8 @@ function update_view($view)
         {
             $query = <<<QRY
 CREATE OR REPLACE VIEW vSearchFoll AS
-SELECT idFollowed, binomial_name AS sp_binomial_name,
+SELECT Followed.idFollowed, Followed.idSpecies, Followed.idFacility,
+    binomial_name AS sp_binomial_name,
     common_name AS sp_common_name,
     Facility.name AS fa_name,
     gender, birth, death, health
