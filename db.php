@@ -237,6 +237,8 @@ function get_whereplus($select, $table, $where=array())
      * which results in the query
      * SELECT $select FROM $table WHERE
      * $where[i]['field'] $where[i]['binrel'] $where[i]['value']
+     * In addition, $where[i]['value'] can be an array of values,
+     * e.g. for WHERE field IN (v0, v1, ...)
      */
     global $servername, $username, $dbname, $password, $charset;
     if (!$select) {
@@ -257,20 +259,48 @@ function get_whereplus($select, $table, $where=array())
         else
         {
             $query.= ' WHERE ';
-            $whereqrys = array();
+            $whereqrys = array();  // Will contain separate criteria
             foreach ($where as $wh)
             {
-                array_push($whereqrys,
-                    $wh['field'].$wh['binrel'].':'.$wh['field']
-                );
+                if (is_array($wh['value']))
+                {
+                    // Typically, for IN (v1, v2, ...)
+                    $len = count($wh['value']);
+                    $paramlst = array();
+                    for ($i = 0 ; $i < $len ; $i++)
+                    {
+                        $paramlst[$i] = ':'.$wh['field'].$i;
+                    }
+                    $paramlst = '('.implode($paramlst, ', ').')';
+                    // Should contain '(:field0, :field1, ...)'
+                    array_push($whereqrys,
+                        $wh['field'].' '.$wh['binrel'].' '.$paramlst);
+                }
+                else
+                {
+                    array_push($whereqrys,
+                        $wh['field'].$wh['binrel'].':'.$wh['field']
+                    );
+                }
             }
             $query .= implode($whereqrys, ' AND ');
             $query .= ';';
         }
-        $stmt = $conn -> prepare($query);
+        $stmt = $conn->prepare($query);
         foreach ($where as $wh)
         {
-            $stmt->bindParam(':'.$wh['field'], $wh['value'], $wh['type']);
+            if (is_array($wh['value']))
+            {
+                $len = count($wh['value']);
+                foreach($wh['value'] as $i => $whelt)
+                {
+                    $stmt->bindParam(':'.$wh['field'].$i, $whelt, $wh['type']);
+                }
+            }
+            else
+            {
+                $stmt->bindParam(':'.$wh['field'], $wh['value'], $wh['type']);
+            }
         }
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
