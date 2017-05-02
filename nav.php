@@ -76,7 +76,7 @@ function current_nav() {
             }
             $nav .= "</ul>
 </li>
-<li><a href='$links[8]'>Contact</a></li>\n"; //cas de l'ancre 'contact'
+<li><a href='$links[8]'>'$text[8]'</a></li>\n"; //cas de l'ancre 'contact'
         // autres liens
         } else {
             $nav .= sprintf($format, (($page_name == $links[$i]) ? "class='active'" : ""), $links[$i], "", $text[$i]);
