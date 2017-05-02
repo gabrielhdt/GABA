@@ -63,6 +63,20 @@ function create_tablebody($colnames, $view)
             <option value='idSpecies'>Species</option>
             <option value='idFacility'>Facility</option>
         </select>
+        <label for="sel_species">Of species:</label>
+        <select name="idspecies" id="sel_species" class="form-control" multiple>
+        </select>
+        <label for="sel_facility">In facilities:</label>
+        <select name="idfacility" id="sel_facility" class="form-control" multiple>
+        </select>
+        <br>
+        <label for="sel_birth">Born between:</label>
+        <input type="date" name="lowbirth" class="form-control" id="lowbirth" placeholder="After the">
+        <input type="date" name="upbirth" class="form-control" id="upbirth" placeholder="Before the">
+        <br>
+        <label class="radio-inline"><input type="radio" name="gender" value="m">Male</label>
+        <label class="radio-inline"><input type="radio" name="gender" value="f">Female</label>
+        <label class="radio-inline"><input type="radio" name="gender" value="h">Hermaphrodite</label><br>
     </div>
     <button type="submit" class="btn btn-default">Rechercher animal</button>
 </form>
