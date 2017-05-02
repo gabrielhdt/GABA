@@ -227,6 +227,61 @@ function get_values($select, $table, $where=array())
     return $rslt;
 }
 
+function get_whereplus($select, $table, $where=array())
+{
+    /* select: array of selected fields
+     * table: explicit
+     * where: array of arrays, with
+     * where[i] = array('binrel' => R, 'field' => field, 'value' =>  value,
+     *  'type' => pdotype)
+     * which results in the query
+     * SELECT $select FROM $table WHERE
+     * $where[i]['field'] $where[i]['binrel'] $where[i]['value']
+     */
+    global $servername, $username, $dbname, $password, $charset;
+    if (!$select) {
+        echo "Nothing to select in get_values, exiting\n";
+        return(False);
+    }
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = 'SELECT ';
+        $query .= implode(', ', $select);
+        $query .= " FROM $table";
+        if (!$where)
+        {
+            $query .= ';';
+        }
+        else
+        {
+            $query.= ' WHERE ';
+            $whereqrys = array();
+            foreach ($where as $wh)
+            {
+                array_push($whereqrys,
+                    $wh['field'].$wh['binrel'].':'.$wh['field']
+                );
+            }
+            $query .= implode($whereqrys, ' AND ');
+            $query .= ';';
+        }
+        $stmt = $conn -> prepare($query);
+        foreach ($where as $wh)
+        {
+            $stmt->bindParam(':'.$wh['field'], $wh['value'], $wh['type']);
+        }
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $rslt = $stmt->fetchAll();
+    } catch (PDOException $e) {
+        echo 'Something went wrong (get_whereplus): ' . $e->getMessage();
+    }
+    $conn = null;
+    return $rslt;
+}
+
 function super_sel($cols, $tables, $constraints, $where=array())
 {
     /* Selects cols after joining tables on constraints
