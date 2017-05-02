@@ -64,10 +64,12 @@ function create_tablebody($colnames, $view)
             <option value='idFacility'>Facility</option>
         </select>
         <label for="sel_species">Of species:</label>
-        <select name="idspecies" id="sel_species" class="form-control" multiple>
+        <select name="idspecies[]" id="sel_species" class="form-control" multiple>
+        <?php create_species_list(); ?>
         </select>
         <label for="sel_facility">In facilities:</label>
-        <select name="idfacility" id="sel_facility" class="form-control" multiple>
+        <select name="idfacility[]" id="sel_facility" class="form-control" multiple>
+        <?php create_facility_list(); ?>
         </select>
         <br>
         <label for="sel_birth">Born between:</label>
@@ -84,39 +86,81 @@ function create_tablebody($colnames, $view)
 $where = array();
 if (isset($_POST['lowbirth']))
 {
-    array_push($where, array('binrel' => '>=', 'colname' => 'birth',
-        'val' => $_POST['lowbirth']));
+    array_push($where,
+        array(
+            'binrel' => '>=',
+            'field' => 'birth',
+            'value' => $_POST['lowbirth'],
+            'type' => PDO::PARAM_STR
+        )
+    );
 }
 elseif (isset($_POST['upbirth']))
 {
-    array_push($where, array('binrel' => '<=', 'colname' => 'birth',
-        'val' => $_POST['upbirth']));
+    array_push($where,
+        array(
+            'binrel' => '<=',
+            'field' => 'birth',
+            'value' => $_POST['upbirth'],
+            'type' => PDO::PARAM_STR
+        )
+    );
 }
-else
+elseif (isset($_POST['gender']))
 {
-    $colfoll = array('idFollowed', 'idSpecies', 'idFacility', 'gender', 'birth',
-        'death', 'health');
-    $labels = array('Identifier', 'Species', 'Facility', 'Gender', 'Birth',
-        'Death', 'Health');
-    $colview = array('idFollowed', 'sp_binomial_name', 'fa_name', 'gender',
-        'birth', 'death', 'health');
-    echo "<table id='table'
-        class='table'
-        data-toggle='table'
-        data-search='true'
-        data-show-refresh='true'
-        data-pagination='true'
-        data-detail-view='true'
-        data-detail-formatter='detail_formatter'
-        data-show-footer='true'>";
-    echo '<thead>';
-    create_tablehead($colfoll, $labels);
-    echo '</thead>';
-    echo '<tbody>';
-    create_tablebody($colview, 'vSearchFoll');
-    echo '</tbody>';
-    echo '</table>';
+    array_push($where,
+        array(
+            'binrel' => '=',
+            'field' => 'gender',
+            'value' => $_POST['gender'],
+            'type' => PDO::PARAM_STR
+        )
+    );
 }
+elseif (isset($_POST['idspecies']))
+{
+    array_push($where,
+        array(
+            'binrel' => 'IN',
+            'field' => 'idSpecies',
+            'value' => $_POST['idspecies'],
+            'type' => PDO::PARAM_INT
+        )
+    );
+}
+elseif (isset($_POST['idfacility']))
+{
+    array_push($where,
+        array(
+            'binrel' => 'IN',
+            'field' => 'idFacility',
+            'value' => $_POST['idfacility'],
+            'type' => PDO::PARAM_INT
+        )
+    );
+}
+$colfoll = array('idFollowed', 'idSpecies', 'idFacility', 'gender', 'birth',
+    'death', 'health');
+$labels = array('Identifier', 'Species', 'Facility', 'Gender', 'Birth',
+    'Death', 'Health');
+$colview = array('idFollowed', 'sp_binomial_name', 'fa_name', 'gender',
+    'birth', 'death', 'health');
+echo "<table id='table'
+    class='table'
+    data-toggle='table'
+    data-search='true'
+    data-show-refresh='true'
+    data-pagination='true'
+    data-detail-view='true'
+    data-detail-formatter='detail_formatter'
+    data-show-footer='true'>";
+echo '<thead>';
+create_tablehead($colfoll, $labels);
+echo '</thead>';
+echo '<tbody>';
+create_tablebody($colview, 'vSearchFoll');
+echo '</tbody>';
+echo '</table>';
 ?>
 <?php include "footer.php"; ?>
 </body>
