@@ -47,7 +47,7 @@ include 'db.php';
     <script type="text/javascript">
         function myAdd(){
             $.post(
-                'addStaff_script.php',
+                'script/addStaff_script.php',
                 {   nom: $("input[name=nom]").val(),
                     prenom: $("input[name=prenom]").val(),
                     typeStaff: $("input[name=typeStaff]").val(),
@@ -80,7 +80,7 @@ include 'db.php';
 
         function myDelete(id_msg){
             $.post(
-                'addStaff_script.php',
+                'script/addStaff_script.php',
                 {id: id_msg}
             );
         }
