@@ -27,7 +27,7 @@ function create_tablehead($colfoll, $labels)
 
 }
 
-function create_tablebody($colnames, $view)
+function create_tablebody($colnames, $view, $where)
 {
     /* colnames array containing column names, with
      * search_field first
@@ -36,7 +36,7 @@ function create_tablebody($colnames, $view)
     {
         update_view($view);
     }
-    $search_res = get_values($colnames, $view);
+    $search_res = get_whereplus($colnames, $view, $where);
     foreach ($search_res as $line)
     {
         echo '<tr>';
@@ -170,7 +170,7 @@ echo '<thead>';
 create_tablehead($colfoll, $labels);
 echo '</thead>';
 echo '<tbody>';
-create_tablebody($colview, 'vSearchFoll');
+create_tablebody($colview, 'vSearchFoll', $where);
 echo '</tbody>';
 echo '</table>';
 ?>
