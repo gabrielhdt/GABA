@@ -260,6 +260,16 @@ footer a:hover{
     color: inherit;
 }
 /*************************************
+bouton go up
+*************************************/
+#goTop{
+color: inherit;
+padding:5px;
+position:fixed;
+bottom:-100px;
+right:10px;
+}
+/*************************************
 login.php
 *************************************/
 
