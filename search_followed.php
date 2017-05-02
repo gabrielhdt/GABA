@@ -81,7 +81,18 @@ function create_tablebody($colnames, $view)
     <button type="submit" class="btn btn-default">Rechercher animal</button>
 </form>
 <?php
-if (array_key_exists('search_field', $_POST))
+$where = array();
+if (isset($_POST['lowbirth']))
+{
+    array_push($where, array('binrel' => '>=', 'colname' => 'birth',
+        'val' => $_POST['lowbirth']));
+}
+elseif (isset($_POST['upbirth']))
+{
+    array_push($where, array('binrel' => '<=', 'colname' => 'birth',
+        'val' => $_POST['upbirth']));
+}
+else
 {
     $colfoll = array('idFollowed', 'idSpecies', 'idFacility', 'gender', 'birth',
         'death', 'health');
@@ -89,13 +100,6 @@ if (array_key_exists('search_field', $_POST))
         'Death', 'Health');
     $colview = array('idFollowed', 'sp_binomial_name', 'fa_name', 'gender',
         'birth', 'death', 'health');
-    if ($colfoll[0] != $_POST['search_field'])
-    {
-        $keysf = array_search($_POST['search_field'], $colfoll);
-        swap($colfoll, 0, $keysf);
-        swap($labels, 0, $keysf);
-        swap($colview, 0, $keysf);
-    }
     echo "<table id='table'
         class='table'
         data-toggle='table'
