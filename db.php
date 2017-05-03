@@ -290,7 +290,7 @@ function get_whereplus($select, $table, $where=array())
                 $len = count($wh['value']);
                 foreach($wh['value'] as $whelt)
                 {
-                    $stmt->bindParam($qumarkcounter, $whelt, $wh['type']);
+                    $stmt->bindValue($qumarkcounter, $whelt, $wh['type']);
                     $qumarkcounter++;
                 }
             }
