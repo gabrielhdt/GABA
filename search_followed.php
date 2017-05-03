@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
 <html>
 <?php include "db.php";
-include 'form_func.php';
+include "form_func.php";
 include "head.php";
 
-$dateregex = "\d{4}[-./][01]?\d[-./][0-3]?\d";
+$dateregex = "\d{4}[-.\/][01]?\d[-.\/][0-3]?\d";
 
 function create_tablehead($colfoll, $labels)
 {
