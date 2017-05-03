@@ -266,13 +266,8 @@ function get_whereplus($select, $table, $where=array())
                 {
                     // Typically, for IN (v1, v2, ...)
                     $len = count($wh['value']);
-                    $paramlst = array();
-                    for ($i = 0 ; $i < $len ; $i++)
-                    {
-                        $paramlst[$i] = ':'.$wh['field'].$i;
-                    }
-                    $paramlst = '('.implode($paramlst, ', ').')';
-                    // Should contain '(:field0, :field1, ...)'
+                    $paramlst = '('.implode(array_fill(0, $len, '?'), ', ').')';
+                    // Should contain '(?, ?, ?, ...)'
                     array_push($whereqrys,
                         $wh['field'].' '.$wh['binrel'].' '.$paramlst);
                 }
@@ -287,14 +282,16 @@ function get_whereplus($select, $table, $where=array())
             $query .= ';';
         }
         $stmt = $conn->prepare($query);
+        $qumarkcounter = 1;
         foreach ($where as $wh)
         {
             if (is_array($wh['value']))
             {
                 $len = count($wh['value']);
-                foreach($wh['value'] as $i => $whelt)
+                foreach($wh['value'] as $whelt)
                 {
-                    $stmt->bindParam(':'.$wh['field'].$i, $whelt, $wh['type']);
+                    $stmt->bindParam($qumarkcounter, $whelt, $wh['type']);
+                    $qumarkcounter++;
                 }
             }
             else
