@@ -7,6 +7,7 @@ logo
     margin: auto;
     width: 166px;
     height: 75px;
+    margin-top: -30px;
 }
 
 
@@ -257,6 +258,16 @@ footer a:hover{
     margin-right: 15px;
     font-size: 25px;
     color: inherit;
+}
+/*************************************
+bouton go up
+*************************************/
+#goTop{
+color: inherit;
+padding:5px;
+position:fixed;
+bottom:-100px;
+right:10px;
 }
 /*************************************
 login.php
@@ -564,6 +575,49 @@ recherche.php
     font-family: 'Palatino Linotype';
     margin: 20px 20px;
 }
+#msg {
+    background-color: lightgrey;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px;
+}
+#msg span {
+    float: right;
+}
+#messages {
+    /*border-left: 2px solid black;*/
+    /*border-top: 1px solid rgb(150, 150, 150);*/
+    height: 750px;
+    overflow: scroll;
+}
+#messages h1 {
+    text-align: center;
+}
+#add_staff {
+    text-align: center;
+    padding: 20px 0;
+    /*border-top: 1px solid rgb(150, 150, 150);*/
+}
+#add_staff input[name='nom'],
+#add_staff input[name='prenom'],
+#add_staff input[name='pwd1'],
+#add_staff input[name='pwd2'],
+#add_staff input[name='submit_contact'] {
+    margin: 15px 0;
+}
+#add_staff h1{
+    padding-bottom: 35px;
+}
+#add_staff {
+    padding: 0 15px;
+}
+#add_staff form button{
+    margin: 15px 0;
+}
+#add_staff p {
+    color : red;
+}
+
 
 .pic p {
     text-align: right;

@@ -75,6 +75,7 @@ function add_line($table, $valarr)
 {
     /* Values are set to lowercase!
      * $valarr["column name"] = column_value
+     * returns: id of last inserted row
      */
     global $servername, $username, $dbname, $password, $charset;
     try {
@@ -95,10 +96,13 @@ function add_line($table, $valarr)
         $values .= ')';
         $query .= " $columns VALUES $values;";
         $conn->exec($query);
+        $id_addition = $conn ->lastInsertId();
     } catch (PDOException $e) {
         echo 'Insertion failed (add_line): ' . $e->getMessage();
+        return(false);
     }
     $conn = null;
+    return($id_addition);
 }
 
 function add_staff($password, $type, $first_name, $last_name)
@@ -149,8 +153,10 @@ QRY;
         $conn->exec($query);
     } catch (PDOException $e) {
         echo "Something went wrong: " . $e->getMessage();
+        return(false);
     }
     $conn = null;
+    return(true);
 }
 
 function joined_view($view_name, $tables)
@@ -221,6 +227,91 @@ function get_values($select, $table, $where=array())
     return $rslt;
 }
 
+function get_whereplus($select, $table, $where=array())
+{
+    /* select: array of selected fields
+     * table: explicit
+     * where: array of arrays, with
+     * where[i] = array('binrel' => R, 'field' => field, 'value' =>  value,
+     *  'type' => pdotype)
+     * which results in the query
+     * SELECT $select FROM $table WHERE
+     * $where[i]['field'] $where[i]['binrel'] $where[i]['value']
+     * In addition, $where[i]['value'] can be an array of values,
+     * e.g. for WHERE field IN (v0, v1, ...)
+     */
+    global $servername, $username, $dbname, $password, $charset;
+    if (!$select) {
+        echo "Nothing to select in get_values, exiting\n";
+        return(False);
+    }
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = 'SELECT ';
+        $query .= implode(', ', $select);
+        $query .= " FROM $table";
+        if (!$where)
+        {
+            $query .= ';';
+        }
+        else
+        {
+            $query.= ' WHERE ';
+            $whereqrys = array();  // Will contain separate criteria
+            foreach ($where as $wh)
+            {
+                if (is_array($wh['value']))
+                {
+                    // Typically, for IN (v1, v2, ...)
+                    $len = count($wh['value']);
+                    $paramlst = array();
+                    for ($i = 0 ; $i < $len ; $i++)
+                    {
+                        $paramlst[$i] = ':'.$wh['field'].$i;
+                    }
+                    $paramlst = '('.implode($paramlst, ', ').')';
+                    // Should contain '(:field0, :field1, ...)'
+                    array_push($whereqrys,
+                        $wh['field'].' '.$wh['binrel'].' '.$paramlst);
+                }
+                else
+                {
+                    array_push($whereqrys,
+                        $wh['field'].$wh['binrel'].':'.$wh['field']
+                    );
+                }
+            }
+            $query .= implode($whereqrys, ' AND ');
+            $query .= ';';
+        }
+        $stmt = $conn->prepare($query);
+        foreach ($where as $wh)
+        {
+            if (is_array($wh['value']))
+            {
+                $len = count($wh['value']);
+                foreach($wh['value'] as $i => $whelt)
+                {
+                    $stmt->bindParam(':'.$wh['field'].$i, $whelt, $wh['type']);
+                }
+            }
+            else
+            {
+                $stmt->bindParam(':'.$wh['field'], $wh['value'], $wh['type']);
+            }
+        }
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $rslt = $stmt->fetchAll();
+    } catch (PDOException $e) {
+        echo 'Something went wrong (get_whereplus): ' . $e->getMessage();
+    }
+    $conn = null;
+    return $rslt;
+}
+
 function super_sel($cols, $tables, $constraints, $where=array())
 {
     /* Selects cols after joining tables on constraints
@@ -274,7 +365,7 @@ function super_sel($cols, $tables, $constraints, $where=array())
 
 function get_columns($table)
 {
-    /* outputs array of colummns of $table 
+    /* outputs array of colummns of $table
      */
     global $servername, $username, $dbname, $password, $charset;
     try {
@@ -356,8 +447,10 @@ function update_line($table, $change, $col_condition, $val_condition)
         $conn->exec($query);
     } catch (PDOException $e) {
         echo 'Something went wrong (update_line): ' . $e->getMessage();
+        return(true);
     }
     $conn = null;
+    return(true);
 }
 
 function classify_process($table, $valc, $critc, $mod, $fct = arithmetic_mean)
@@ -441,7 +534,8 @@ function update_view($view)
         {
             $query = <<<QRY
 CREATE OR REPLACE VIEW vSearchFoll AS
-SELECT idFollowed, binomial_name AS sp_binomial_name,
+SELECT Followed.idFollowed, Followed.idSpecies, Followed.idFacility,
+    binomial_name AS sp_binomial_name,
     common_name AS sp_common_name,
     Facility.name AS fa_name,
     gender, birth, death, health
@@ -459,8 +553,79 @@ QRY;
     $conn -> exec($query);
     } catch (PDOException $e) {
         echo 'Something went wrong (update_view): ' . $e->getMessage();
+        return(false);
+    }
+    $conn = null;
+    return(true);
+}
+
+function id_from_login($login)
+{
+    /* Returns id of a give $login name
+     * Works because logins are bijectively linked to ids
+     * $login: string
+     */
+    global $servername, $username, $dbname, $password, $charset;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $qery = "SELECT (idStaff) FROM Staff WHERE login=?";
+        $stmt = $conn->prepare($query);
+        $stmt -> bindParam(1, $login, $data_type=PDO::PARAM_STR,
+            $length=12);
+        $stmt -> execute();
+        $rslt = $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo 'Something went wrong (id_from_login): ' . $e->getMessage();
+        return(false);
+    }
+    $conn = null;
+    return $rslt['idStaff'];
+}
+
+function format_msg($id, $date, $name, $email, $msg){
+    echo "<div class='alert alert-info alert-dismissable'>
+<a href='#' onclick=\"myDelete('$id')\" class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+Date : $date
+<hr>
+Nom : $name
+<hr>
+E-mail : $email
+<hr>
+Message : $msg
+</div>";
+}
+
+function list_msg(){
+    // recuperation et affichages des messages pour l'administrateur
+    global $servername, $username, $dbname, $password, $charset;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $reponse = $conn->query('SELECT * FROM messages ORDER BY date desc');
+        while ($donnees = $reponse->fetch())  {
+            format_msg($donnees['id'], $donnees['date'], $donnees['name'],
+                $donnees['email'], $donnees['message'])."\n";
+        }
+    } catch(PDOException $e) {
+        echo "Error: " . $e->getMessage();
     }
     $conn = null;
 }
 
+function delete_msg($id)
+{
+    global $servername, $username, $dbname, $password, $charset;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $query = "DELETE FROM messages WHERE id=$id";
+        $conn->exec($query);
+    } catch (PDOException $e) {
+        echo 'Insertion failed (add_line): ' . $e->getMessage();
+    }
+    $conn = null;
+}
 ?>

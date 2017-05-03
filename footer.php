@@ -9,10 +9,32 @@
         <li><a href="#">Help</a></li>
     </ul>
     &copy All rights reserved GABA
-    <br>
-    <div class="footer-up">
-        <a href="#mynav">Up <span class="glyphicon glyphicon-chevron-up"></span></a>
-    </div>
+    <a id="goTop"><span class="glyphicon glyphicon-chevron-up"></a>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $(window).scroll(function() {
+            if($(this).scrollTop() > 100){
+                $('#goTop').stop().animate({
+                    bottom: '20px'
+                    }, 500);
+            }
+            else{
+                $('#goTop').stop().animate({
+                   bottom: '-100px'
+                }, 500);
+            }
+        });
+        $('#goTop').click(function() {
+            $('html, body').stop().animate({
+               scrollTop: 0
+            }, 500, function() {
+               $('#goTop').stop().animate({
+                   bottom: '-100px'
+               }, 500);
+            });
+        });
+    });
+    </script>
 </footer>
