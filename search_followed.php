@@ -210,7 +210,7 @@ echo '</table>';
 var $table = $('#table');
 $table.on('refresh.bs.table', function (e) {
         $.ajax({
-            url: 'search_script.php',
+            url: 'script/search_script.php',
             type: 'post',
             data: {viewname: 'vSearchFoll'},
             success: function(output) {
@@ -222,7 +222,7 @@ $table.on('refresh.bs.table', function (e) {
 function detail_formatter(index, row) {
     var html = [];
     var picpath = '';
-    $.ajax({url: 'search_script.php',
+    $.ajax({url: 'script/search_script.php',
         type: 'post',
         data: {
             id: row['idFollowed'],
@@ -234,7 +234,7 @@ function detail_formatter(index, row) {
             }
         },
     });
-    $.ajax({url: 'search_script.php',
+    $.ajax({url: 'script/search_script.php',
         type: 'post',
         data: { id: row['idFollowed'],
             action: 'location'
