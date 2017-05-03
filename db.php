@@ -273,9 +273,7 @@ function get_whereplus($select, $table, $where=array())
                 }
                 else
                 {
-                    array_push($whereqrys,
-                        $wh['field'].$wh['binrel'].':'.$wh['field']
-                    );
+                    array_push($whereqrys, $wh['field'].$wh['binrel'].'?');
                 }
             }
             $query .= implode($whereqrys, ' AND ');
@@ -296,7 +294,8 @@ function get_whereplus($select, $table, $where=array())
             }
             else
             {
-                $stmt->bindParam(':'.$wh['field'], $wh['value'], $wh['type']);
+                $stmt->bindValue($qumarkcounter, $wh['value'], $wh['type']);
+                $qumarkcounter++;
             }
         }
         $stmt->execute();
