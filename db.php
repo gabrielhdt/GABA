@@ -29,6 +29,34 @@ function build_where_strict($val, $col)
     return("$col = $val");
 }
 
+function build_whereplus($where)
+{
+    /* where as defined in get_whereplus
+     * returns the part
+     * WHERE $where[i]['field']$where[i]['binrel']$where['value']
+     */
+    $query= 'WHERE ';
+    $whereqrys = array();  // Will contain separate criteria
+    foreach ($where as $wh)
+    {
+        if (is_array($wh['value']))
+        {
+            // Typically, for IN (v1, v2, ...)
+            $len = count($wh['value']);
+            $paramlst = '('.implode(array_fill(0, $len, '?'), ', ').')';
+            // Should contain '(?, ?, ?, ...)'
+            array_push($whereqrys,
+                $wh['field'].' '.$wh['binrel'].' '.$paramlst);
+        }
+        else
+        {
+            array_push($whereqrys, $wh['field'].$wh['binrel'].'?');
+        }
+    }
+    $query .= implode($whereqrys, ' AND ');
+    return($query);
+}
+
 function array_map_keys($callback, $array)
 {
     /* like map but callback accepts two parameters:
@@ -224,33 +252,11 @@ function get_whereplus($select, $table, $where=array())
         $query = 'SELECT ';
         $query .= implode(', ', $select);
         $query .= " FROM $table";
-        if (!$where)
+        if ($where)
         {
-            $query .= ';';
+            $query .= ' '.build_whereplus($where);
         }
-        else
-        {
-            $query.= ' WHERE ';
-            $whereqrys = array();  // Will contain separate criteria
-            foreach ($where as $wh)
-            {
-                if (is_array($wh['value']))
-                {
-                    // Typically, for IN (v1, v2, ...)
-                    $len = count($wh['value']);
-                    $paramlst = '('.implode(array_fill(0, $len, '?'), ', ').')';
-                    // Should contain '(?, ?, ?, ...)'
-                    array_push($whereqrys,
-                        $wh['field'].' '.$wh['binrel'].' '.$paramlst);
-                }
-                else
-                {
-                    array_push($whereqrys, $wh['field'].$wh['binrel'].'?');
-                }
-            }
-            $query .= implode($whereqrys, ' AND ');
-            $query .= ';';
-        }
+        $query .= ';';
         $stmt = $conn->prepare($query);
         $qumarkcounter = 1;  // ? indexed from 1
         foreach ($where as $wh)
