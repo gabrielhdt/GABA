@@ -110,6 +110,7 @@ if (isset($_POST['lowbirth']) & !empty($_POST['lowbirth']))
     else
     {
         echo "Data manipulated.\n";
+    }
 }
 if (isset($_POST['upbirth']) && !empty($_POST['upbirth']))
 {
