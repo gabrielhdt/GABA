@@ -4,12 +4,7 @@
 include 'form_func.php';
 include "head.php";
 
-function swap(&$arr, $ind_a, $ind_b)
-{
-    $buf = $arr[$ind_b];
-    $arr[$ind_b] = $arr[$ind_a];
-    $arr[$ind_a] = $buf;
-}
+$dateregex = "\d{4}[-./][01]?\d[-./][0-3]?\d";
 
 function create_tablehead($colfoll, $labels)
 {
@@ -84,9 +79,12 @@ foreach ($lines as $line)
         <?php create_choice_list($id_faname); ?>
         </select>
         <br>
-        <label for="sel_birth">Born between:</label>
-        <input type="date" name="lowbirth" class="form-control" id="lowbirth" placeholder="After the">
-        <input type="date" name="upbirth" class="form-control" id="upbirth" placeholder="Before the">
+        <label for="lowbirth">Born after:</label>
+        <input type="date" name="lowbirth" class="form-control" id="lowbirth"
+            <?php echo $dateregex; ?> placeholder="yyyy-mm-dd">
+        <label for="upbirth">Born before:</label>
+        <input type="date" name="upbirth" class="form-control" id="upbirth"
+            <?php echo $dateregex; ?> placeholder="yyyy-mm-dd">
         <br>
         <label class="radio-inline"><input type="radio" name="gender" value="m">Male</label>
         <label class="radio-inline"><input type="radio" name="gender" value="f">Female</label>
@@ -98,25 +96,38 @@ foreach ($lines as $line)
 $where = array();
 if (isset($_POST['lowbirth']) & !empty($_POST['lowbirth']))
 {
-    array_push($where,
-        array(
-            'binrel' => '>=',
-            'field' => 'birth',
-            'value' => $_POST['lowbirth'],
-            'type' => PDO::PARAM_STR
-        )
-    );
+    if (preg_match("/$dateregex/", $_POST['lowbirth']))
+    {
+        array_push($where,
+            array(
+                'binrel' => '>=',
+                'field' => 'birth',
+                'value' => $_POST['lowbirth'],
+                'type' => PDO::PARAM_STR
+            )
+        );
+    }
+    else
+    {
+        echo "Data manipulated.\n";
 }
 if (isset($_POST['upbirth']) && !empty($_POST['upbirth']))
 {
-    array_push($where,
-        array(
-            'binrel' => '<=',
-            'field' => 'birth',
-            'value' => $_POST['upbirth'],
-            'type' => PDO::PARAM_STR
-        )
-    );
+    if (preg_match("/$dateregex/", $_POST['upbirth']))
+    {
+        array_push($where,
+            array(
+                'binrel' => '<=',
+                'field' => 'birth',
+                'value' => $_POST['upbirth'],
+                'type' => PDO::PARAM_STR
+            )
+        );
+    }
+    else
+    {
+        echo "Data manipulated.\n";
+    }
 }
 if (isset($_POST['gender']) && !empty($_POST['gender']))
 {
