@@ -61,15 +61,6 @@ foreach ($lines as $line)
 <form action="search_followed.php" method="post" accept-charset="utf-8"
     enctype="multipart/form-data">
     <div class="form-group">
-        <label for="sel_followed">Rechercher animal selon:</label>
-        <select name="search_field" id="sel_followed" class="form-control">
-            <option value='idFollowed'>Identifier</option>
-            <option value='gender'>Gender</option>
-            <option value='birth'>Birth</option>
-            <option value='death'>Death</option>
-            <option value='idSpecies'>Species</option>
-            <option value='idFacility'>Facility</option>
-        </select>
         <label for="sel_species">Of species:</label>
         <select name="idspecies[]" id="sel_species" class="form-control" multiple>
         <?php create_choice_list($id_biname); ?>
@@ -81,10 +72,17 @@ foreach ($lines as $line)
         <br>
         <label for="lowbirth">Born after:</label>
         <input type="date" name="lowbirth" class="form-control" id="lowbirth"
-            <?php echo $dateregex; ?> placeholder="yyyy-mm-dd">
+            pattern="<?php echo $dateregex; ?>" placeholder="yyyy-mm-dd">
         <label for="upbirth">Born before:</label>
         <input type="date" name="upbirth" class="form-control" id="upbirth"
-            <?php echo $dateregex; ?> placeholder="yyyy-mm-dd">
+            pattern="<?php echo $dateregex; ?>" placeholder="yyyy-mm-dd">
+        <br>
+        <label for="lowdeath">Died after:</label>
+        <input type="date" name="lowdeath" class="form-control" id="lowdeath"
+            pattern="<?php echo $dateregex; ?>" placeholder="yyyy-mm-dd">
+        <label for="updeath">Died before:</label>
+        <input type="date" name="updeath" class="form-control" id="updeath"
+            pattern="<?php echo $dateregex; ?>" placeholder="yyyy-mm-dd">
         <br>
         <label class="radio-inline"><input type="radio" name="gender" value="m">Male</label>
         <label class="radio-inline"><input type="radio" name="gender" value="f">Female</label>
@@ -107,10 +105,6 @@ if (isset($_POST['lowbirth']) & !empty($_POST['lowbirth']))
             )
         );
     }
-    else
-    {
-        echo "Data manipulated.\n";
-    }
 }
 if (isset($_POST['upbirth']) && !empty($_POST['upbirth']))
 {
@@ -125,9 +119,33 @@ if (isset($_POST['upbirth']) && !empty($_POST['upbirth']))
             )
         );
     }
-    else
+}
+if (isset($_POST['lowdeath']) & !empty($_POST['lowdeath']))
+{
+    if (preg_match("/$dateregex/", $_POST['lowdeath']))
     {
-        echo "Data manipulated.\n";
+        array_push($where,
+            array(
+                'binrel' => '>=',
+                'field' => 'death',
+                'value' => $_POST['lowdeath'],
+                'type' => PDO::PARAM_STR
+            )
+        );
+    }
+}
+if (isset($_POST['updeath']) && !empty($_POST['updeath']))
+{
+    if (preg_match("/$dateregex/", $_POST['updeath']))
+    {
+        array_push($where,
+            array(
+                'binrel' => '<=',
+                'field' => 'death',
+                'value' => $_POST['updeath'],
+                'type' => PDO::PARAM_STR
+            )
+        );
     }
 }
 if (isset($_POST['gender']) && !empty($_POST['gender']))
