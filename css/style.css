@@ -617,3 +617,35 @@ recherche.php
 #add_staff p {
     color : red;
 }
+
+
+.pic p {
+    text-align: right;
+    font-family: 'Palatino Linotype';
+    font-style: italic;
+}
+
+.intel {
+    font-family: 'Palatino Linotype';
+}
+
+.intel h2 {
+    font-style: italic;
+    font-size: 18px;
+}
+
+
+table {
+    font-family: 'Palatino Linotype';
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
