@@ -559,7 +559,8 @@ function id_from_login($login)
 }
 
 function format_msg($id, $date, $name, $email, $msg){
-    echo "<div class='alert alert-info alert-dismissable'>
+    echo <<<FMT
+<div class='alert alert-info alert-dismissable'>
 <a href='#' onclick=\"myDelete('$id')\" class='close' data-dismiss='alert' aria-label='close'>&times;</a>
 Date : $date
 <hr>
@@ -568,7 +569,8 @@ Nom : $name
 E-mail : $email
 <hr>
 Message : $msg
-</div>";
+</div>
+FMT;
 }
 
 function list_msg(){
