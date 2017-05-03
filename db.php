@@ -280,7 +280,7 @@ function get_whereplus($select, $table, $where=array())
             $query .= ';';
         }
         $stmt = $conn->prepare($query);
-        $qumarkcounter = 1;
+        $qumarkcounter = 1;  // ? indexed from 1
         foreach ($where as $wh)
         {
             if (is_array($wh['value']))
