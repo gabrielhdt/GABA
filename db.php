@@ -159,34 +159,6 @@ QRY;
     return(true);
 }
 
-function joined_view($view_name, $tables)
-{
-    /* tables tablename => column join on
-     * returns: list of columns available
-     */
-    if (count($tables) > 2) {
-        echo "Not yet available for more than two tables\n";
-        return(False);
-    }
-    global $servername, $username, $dbname, $password, $charset;
-    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
-            $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $query = "CREATE VIEW $view_name AS SELECT * FROM ";
-        $tnames = array_keys($tables);
-        $query .= "$tnames[0] INNER JOIN $tnames[1] ON ";
-        $query .= $tnames[0].'.'.$tables[$tnames[0]].'='.
-            $tnames[1].'.'.$tables[$tnames[1]].';';
-        $conn -> exec($query);
-        $viewcols = get_columns($view_name);
-    } catch (PDOException $e) {
-        echo 'Something went wrong (joined_view): ' . $e->getMessage();
-    }
-    $conn = null;
-    return($viewcols);
-}
-
 function get_values($select, $table, $where=array())
 {
     /* select: array of selected fields
