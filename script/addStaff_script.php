@@ -17,7 +17,11 @@ elseif (isset($_POST['id'])) {
     delete_msg($_POST['id']);
 }
 elseif (isset($_POST['nom'], $_POST['email'], $_POST['msg'])) {
-    add_line('messages', array('name' => $_POST['nom'], 'email' => $_POST['email']));
+    add_line('messages',
+        array(
+            'name' => $_POST['nom'], 'email' => $_POST['email'],
+            'message' => $_POST['msg']
+        ));
     echo 1;
 }
 ?>
