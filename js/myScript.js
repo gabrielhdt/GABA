@@ -38,7 +38,7 @@ function myAdd() {
 function myDelete(id_msg) {
     // fonction qui efface les messages par l'admin
     $.post(
-        '../script/addStaff_script.php', {
+        'script/addStaff_script.php', {
             id: id_msg
         }
     );
@@ -49,7 +49,7 @@ fonctions de index.php
 function addMsg() {
     // ajout d'un msg dans la bbd
     $.post(
-        '../script/addStaff_script.php', {
+        'script/addStaff_script.php', {
             nom: $("input[name=name]").val(),
             email: $("input[name=email]").val(),
             msg: $("input[name=msg]").val()
