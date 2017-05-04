@@ -1,5 +1,4 @@
 <?php
-include "db.php";
 
 $geostack = array();
 if (isset($_POST['geoloc']) && !empty($_POST['geoloc']))
