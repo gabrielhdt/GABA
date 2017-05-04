@@ -12,13 +12,13 @@
     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>
     <link rel="stylesheet" href="css/style.css">
     <style media="screen">
-    #goTop{
-color: inherit;
-padding:5px;
-position:fixed;
-bottom:-100px;
-right:10px;
-}
+        #goTop {
+            color: inherit;
+            padding: 5px;
+            position: fixed;
+            bottom: -100px;
+            right: 10px;
+        }
     </style>
 </head>
 
@@ -132,7 +132,7 @@ right:10px;
                     <input type="text" name="name" placeholder="Votre nom*">
                     <input type="email" name="email" placeholder="Votre e-mail*">
                     <textarea name="msg" rows="8" cols="80" placeholder="Votre message*"></textarea>
-                    <input onclick="addMsg()" class="btn btn-success" name="submit_contact" value="Envoyer le message">
+                    <input type="sumbit" onclick="addMsg()" class="btn btn-success" name="submit_contact" value="Envoyer le message">
                 </form>
                 <div class="modal fade" id="myModal" role="dialog">
                     <div class="modal-dialog modal-lg">
@@ -166,13 +166,12 @@ right:10px;
         <script type="text/javascript">
             function addMsg() {
                 $.post(
-                    'script/addStaff_script.php',
-                    {
+                    'script/addStaff_script.php', {
                         nom: $("input[name=name]").val(),
                         email: $("input[name=email]").val(),
                         msg: $("input[name=msg]").val()
                     },
-                    function(data){
+                    function(data) {
                         $("#myModal").modal("show");
                         $("input[name=name]").val('');
                         $("input[name=email]").val('');
@@ -182,26 +181,34 @@ right:10px;
 
             $(document).ready(function() {
                 $(window).scroll(function() {
-                    if($(this).scrollTop() > 100){
+                    if ($(this).scrollTop() > 100) {
                         $('#goTop').stop().animate({
                             bottom: '20px'
-                            }, 500);
-                    }
-                    else{
+                        }, 500);
+                    } else {
                         $('#goTop').stop().animate({
-                           bottom: '-100px'
+                            bottom: '-100px'
                         }, 500);
                     }
                 });
                 $('#goTop').click(function() {
                     $('html, body').stop().animate({
-                       scrollTop: 0
+                        scrollTop: 0
                     }, 500, function() {
-                       $('#goTop').stop().animate({
-                           bottom: '-100px'
-                       }, 500);
+                        $('#goTop').stop().animate({
+                            bottom: '-100px'
+                        }, 500);
                     });
                 });
+            });
+
+            $('a[href^="#"]').click(function() {
+                var the_id = $(this).attr("href");
+
+                $('html, body').animate({
+                    scrollTop: $(the_id).offset().top
+                }, 'slow');
+                return false;
             });
         </script>
 </body>
