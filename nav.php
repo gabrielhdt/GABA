@@ -76,7 +76,7 @@ function current_nav() {
             }
             $nav .= "</ul>
 </li>
-<li><a href='$links[8]'>'$text[8]'</a></li>\n"; //cas de l'ancre 'contact'
+<li><a href='$links[8]'>$text[8]</a></li>\n"; //cas de l'ancre 'contact'
         // autres liens
         } else {
             $nav .= sprintf($format, (($page_name == $links[$i]) ? "class='active'" : ""), $links[$i], "", $text[$i]);
@@ -104,15 +104,15 @@ function current_nav() {
 
 
 <nav class="navbar">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="glyphicon glyphicon-chevron-down"></span>
-      </button>
-            <a class="navbar-brand" href="#"><img id="logo" src="image/logo.png" alt=""></a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <?php echo current_nav(); ?>
-        </div>
-    </div>
+<div class="container-fluid">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+<span class="glyphicon glyphicon-chevron-down"></span>
+</button>
+<a class="navbar-brand" href="#"><img id="logo" src="image/logo.png" alt=""></a>
+</div>
+<div class="collapse navbar-collapse" id="myNavbar">
+<?php echo current_nav(); ?>
+</div>
+</div>
 </nav>
