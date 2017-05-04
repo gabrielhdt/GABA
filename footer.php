@@ -8,8 +8,8 @@
         <li><a href="#">Chercheur</a></li>|
         <li><a href="#">Help</a></li>
     </ul>
-    &copy All rights reserved GABA
-    <a id="goTop"><span class="glyphicon glyphicon-chevron-up"></a>
+    &copy; All rights reserved GABA
+    <a id="goTop"><span class="glyphicon glyphicon-chevron-up"></span></a>
 </footer>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
