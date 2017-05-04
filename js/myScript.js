@@ -38,7 +38,7 @@ function myAdd() {
 function myDelete(id_msg) {
     // fonction qui efface les messages par l'admin
     $.post(
-        'script/addStaff_script.php', {
+        '../script/addStaff_script.php', {
             id: id_msg
         }
     );
@@ -49,7 +49,7 @@ fonctions de index.php
 function addMsg() {
     // ajout d'un msg dans la bbd
     $.post(
-        'script/addStaff_script.php', {
+        '../script/addStaff_script.php', {
             nom: $("input[name=name]").val(),
             email: $("input[name=email]").val(),
             msg: $("input[name=msg]").val()
@@ -65,8 +65,8 @@ function addMsg() {
 }
 
 // permet un scroll "smooth" vers la section contact
-$('a[href^="#"]').click(function() {
-    var the_id = $(this).attr("href");
+$('a[href^="index.php#"]').click(function() {
+    var the_id = 'contact';
 
     $('html, body').animate({
         scrollTop: $(the_id).offset().top
