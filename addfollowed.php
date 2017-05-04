@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
-<?php include 'db.php';
-include 'form_func.php';
-include "head.php"; ?>
+<?php
+include "db.php";
+include "form_func.php";
+include "head.php";
+include "script/add_script.php"
+?>
 <body>
 <?php include "nav.php" ?>
 <?php
@@ -35,9 +38,22 @@ foreach ($lines as $line)
                             <select name='facility' class='form-control'>
                                 <?php create_choice_list($id_faname, $defsel='1'); ?>
                             </select>
-                            <label class="radio-inline"><input type="radio" name="gender" value="m">Male</label>
-                            <label class="radio-inline"><input type="radio" name="gender" value="f">Female</label>
-                            <label class="radio-inline"><input type="radio" name="gender" value="h">Hermaphrodite</label><br>
+                            <label class="radio-inline">
+                                <input type="radio" name="gender" value="m">Male
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="gender" value="f">
+                                Female
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="gender" value="h">
+                                Hermaphrodite
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="use_geoloc" name="use_geoloc" value="on">
+                                Use current position as animal's
+                            </label>
+                            <br>
                             <input type="date" name="birth" class="form-control" placeholder="Date de naissance*">
                             <input type="text" name="health" class="form-control" placeholder="Etat de santé*">
                         </div>
@@ -66,9 +82,34 @@ if (isset($_POST['species']))
             'idFollowed' => $added_id,
             'type' => 'addition')
         );
+        if (isset($_POST['use_geoloc']) && $_POST['use_geoloc'] == 'on')
+        {
+            $gnss_coord = get_last_coord();
+            add_line('Location',
+                array(
+                    'gnss_coord' => $gnss_coord,
+                    'idFollowed' => $added_id,
+                    'idStaff' => $_SESSION['idstaff'],
+                    'date_measure' => time()
+                )
+            );
+        }
     }
 }
+
 ?>
 <?php include "footer.php" ?>
 </body>
+<script>
+document.getElementById('use_geoloc').onclick = function() {
+    if (this.checked) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            $.ajax({url: 'script/add_script.php',
+                type: 'post',
+                data: { geoloc: position },
+            });
+        });
+    }
+}
+</script>
 </html>
