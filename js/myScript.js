@@ -52,7 +52,7 @@ function addMsg() {
         'script/addStaff_script.php', {
             nom: $("input[name=name]").val(),
             email: $("input[name=email]").val(),
-            msg: $("input[name=msg]").val()
+            msg: $("textarea[name=msg]").val()
         },
         function(data) {
             $("#res_msg").html("<div class='alert alert-success alert-dismissable'>\
