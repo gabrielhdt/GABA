@@ -89,6 +89,8 @@
 </div>
 <div id="labmap" style="height: 180px"></div>
 <?php $facspecs = get_values(array('name', 'gnss_coord', 'type'), 'Facility'); ?>
+<?php include "footer.php" ?>
+</body>
 <script type="text/javascript" charset="utf-8">
     var labmap = L.map('labmap').setView([0, 0], 2);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -107,6 +109,4 @@ foreach ($facspecs as $facility) {
 }
 ?>
 </script>
-<?php include "footer.php" ?>
-</body>
 </html>
