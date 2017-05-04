@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<?php include 'db.php' ?>
 <html lang="fr">
 
-<?php include "head.php" ?>
+<head>
+    <?php include 'head.php'; ?>
+</head>
+
+
 <body>
-    <?php include "nav.php" ?>
+    <?php include 'nav.php'; ?>
     <div class="container">
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-7 col-md-offset-7 col-sm-offset-5">
             <div class="description">
-                <h1>A propos de nous...</h1>
-                <p>Lorem nim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <div id = "more"><button type="button" class="btn btn-success btn-sm">En savoir plus</button></div>
+                <h1>A propos de nous ...</h1>
+                <p>Le laboratoire science exchange a pour mission de regrouper les informations de multiples laboratoires de recherche animale et de mettre à disposition les données sur nottre plateforme. <br>L'objectif est de faciliter le travail des chercheurs
+                    mais le site permet aussi d'assouvir votre curiosité de manière ludique ! </p>
+                <div id="more"><button type="button" class="btn btn-success">En savoir plus</button></div>
             </div>
         </div>
     </div>
@@ -33,7 +36,7 @@
                     <h1>Le saviez-vous ?</h1>
                     <p>Au cours de l'année, 3 faons sont nés au sein de nos laboratoires.</p>
                     <p class="legende">Notre site vous permet de découvrir le nombre d'individus de l'espèce de votre choix qui sont nés au sein de notre laboratoire durant la période demandée.</p>
-                    <button type="button" class="btn btn-success btn-sm">Chercher d'autres naissances</button>
+                    <button type="button" class="btn btn-success">Chercher d'autres naissances</button>
                 </div>
             </div>
             <div class="item">
@@ -42,7 +45,7 @@
                     <h1>Le saviez-vous ?</h1>
                     <p>Dans nos laboratoires, les lions pèsent en moyenne 103 kilos.</p>
                     <p class="legende">Notre site vous permet de découvrir le poids moyen des individus de notre laboratoire de l'espèce de votre choix.</p>
-                    <button type="button" class="btn btn-success btn-sm">Chercher d'autres statistiques</button>
+                    <button type="button" class="btn btn-success">Chercher d'autres statistiques</button>
                 </div>
             </div>
             <div class="item">
@@ -51,7 +54,7 @@
                     <h1>Le saviez-vous ?</h1>
                     <p>Dans nos laboratoires, les manchots mesurent en moyenne 1,30m.</p>
                     <p class="legende">Notre site vous permet de découvrir la taille moyenne des individus de notre laboratoire de l'espèce de votre choix.</p>
-                    <button type="button" class="btn btn-success btn-sm">Chercher d'autres statistiques</button>
+                    <button type="button" class="btn btn-success">Chercher d'autres statistiques</button>
                 </div>
             </div>
         </div>
@@ -71,42 +74,28 @@
                 <p>Afin de vous faire profiter pleinement de toutes les possibilités qu'offre notre site, nous avons créer un manuel d'utilisation pour vous permettre de découvrir et de manipuler avec plus d'aisance toutes les fonctionnalités mises en ligne.</p>
                 <p>C'est aussi ici que vous trouverez la page Webmaster, donnant de plus amples informations sur les constructeurs du site.</p>
             </div>
-            <div><button id = 'more' type="button" class="btn btn-success btn-sm">En savoir plus.</button></div>
+            <div><button id='more' type="button" class="btn btn-success">En savoir plus</button></div>
         </div>
     </div>
-    <div class = 'row'>
-        <div id="contact" class="col-lg-10 col-md-10 col-sm-10 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
-            <h1>Nous contacter</h1>
-            <p>Vous voulez communiquer avec un de nos chercheurs ? Lui poser des questions sur ses recherches et données ? Vous n'avez qu'à communiquer vos contacts et nous vous mettrons en relation rapidemment.</p>
-            <p>N'hésitez pas non plus à faire part de vos remarques et suggestions dans le but d'améliorer l'utilisation du site.</p>
-            <form action="index.html" method="post">
-                <input type="text" name="name" placeholder="Votre nom*">
-                <input type="text" name="email" placeholder="Votre e-mail*">
-                <textarea name="msg" rows="8" cols="80" placeholder="Votre message*"></textarea>
-                <button class="btn btn-success" type="submit" name="submit_contact">Envoyer le message</button>
-            </form>
+    <div class="container-fluid">
+        <div class='row'>
+            <div id="contact" class="col-lg-10 col-md-10 col-sm-10 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
+                <h1>Nous contacter</h1>
+                <p>Vous voulez communiquer avec un de nos chercheurs ? Lui poser des questions sur ses recherches et données ? Vous n'avez qu'à communiquer vos contacts et nous vous mettrons en relation rapidemment.</p>
+                <p>N'hésitez pas non plus à faire part de vos remarques et suggestions dans le but d'améliorer l'utilisation du site.</p>
+                <form action="index.html" method="post">
+                    <input type="text" name="name" placeholder="Votre nom*">
+                    <input type="email" name="email" placeholder="Votre e-mail*">
+                    <textarea name="msg" rows="8" cols="80" placeholder="Votre message*"></textarea>
+                    <input type="sumbit" onclick="addMsg()" class="btn btn-success" name="submit_contact" value="Envoyer le message">
+                </form>
+                <div id='res_msg'>
+                    <!--message envoi de msg-->
+                </div>
+            </div>
         </div>
-</div>
-<div id="labmap" style="height: 180px"></div>
-<?php $facspecs = get_values(array('name', 'gnss_coord', 'type'), 'Facility'); ?>
-<?php include "footer.php" ?>
+
+        <?php include 'footer.php'; ?>
 </body>
-<script type="text/javascript" charset="utf-8">
-    var labmap = L.map('labmap').setView([0, 0], 2);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-            subdomain: ['a', 'b', 'c']}).addTo(labmap);
-<?php
-foreach ($facspecs as $facility) {
-    if ($facility['gnss_coord'] != null)
-    {
-        $latlong = explode(',', $facility['gnss_coord']);
-        $type = $facility['type'];
-        $name = $facility['name'];
-        echo "var marker = L.marker([$latlong[0], $latlong[1]]).addTo(labmap);";
-        echo "marker.bindPopup(\"<b>$name</b><br>$type\");";
-    }
-}
-?>
-</script>
+
 </html>
