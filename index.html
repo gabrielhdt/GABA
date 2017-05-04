@@ -134,16 +134,8 @@
                     <textarea name="msg" rows="8" cols="80" placeholder="Votre message*"></textarea>
                     <input type="sumbit" onclick="addMsg()" class="btn btn-success" name="submit_contact" value="Envoyer le message">
                 </form>
-                <div class="modal fade" id="myModal" role="dialog">
-                    <div class="modal-dialog modal-lg">
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <a href='#' class='close' data-dismiss='modal' aria-label='close'>&times;</a>
-                                <p>Votre message a bien été envoyé.</p>
-                            </div>
-                        </div>
-                    </div>
+                <div id='res_msg'>
+                    <!--message envoi de msg-->
                 </div>
             </div>
         </div>
@@ -172,7 +164,9 @@
                         msg: $("input[name=msg]").val()
                     },
                     function(data) {
-                        $("#myModal").modal("show");
+                        $("#res_msg").html("<div class='alert alert-success alert-dismissable'>\
+<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>\
+<strong>Succès!</strong> Votre message a bien été enregistré.</div>");
                         $("input[name=name]").val('');
                         $("input[name=email]").val('');
                         $("textarea[name=msg]").val('');
