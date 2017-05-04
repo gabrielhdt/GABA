@@ -9,3 +9,4 @@
     integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
     crossorigin=""/>
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/nav_size.css">
