@@ -17,4 +17,28 @@
 integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
 crossorigin=""></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="script/myScript.js"></script>
+<script src="script/myScript.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 100) {
+            $('#goTop').stop().animate({
+                bottom: '20px'
+            }, 500);
+        } else {
+            $('#goTop').stop().animate({
+                bottom: '-100px'
+            }, 500);
+        }
+    });
+    $('#goTop').click(function() {
+        $('html, body').stop().animate({
+            scrollTop: 0
+        }, 500, function() {
+            $('#goTop').stop().animate({
+                bottom: '-100px'
+            }, 500);
+        });
+    });
+});
+</script>
