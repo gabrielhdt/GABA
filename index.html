@@ -12,13 +12,13 @@
     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>
     <link rel="stylesheet" href="css/style.css">
     <style media="screen">
-    #goTop{
-color: inherit;
-padding:5px;
-position:fixed;
-bottom:-100px;
-right:10px;
-}
+        #goTop {
+            color: inherit;
+            padding: 5px;
+            position: fixed;
+            bottom: -100px;
+            right: 10px;
+        }
     </style>
 </head>
 
@@ -132,18 +132,10 @@ right:10px;
                     <input type="text" name="name" placeholder="Votre nom*">
                     <input type="email" name="email" placeholder="Votre e-mail*">
                     <textarea name="msg" rows="8" cols="80" placeholder="Votre message*"></textarea>
-                    <input onclick="addMsg()" class="btn btn-success" name="submit_contact" value="Envoyer le message">
+                    <input type="sumbit" onclick="addMsg()" class="btn btn-success" name="submit_contact" value="Envoyer le message">
                 </form>
-                <div class="modal fade" id="myModal" role="dialog">
-                    <div class="modal-dialog modal-lg">
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <a href='#' class='close' data-dismiss='modal' aria-label='close'>&times;</a>
-                                <p>Votre message a bien été envoyé.</p>
-                            </div>
-                        </div>
-                    </div>
+                <div id='res_msg'>
+                    <!--message envoi de msg-->
                 </div>
             </div>
         </div>
@@ -163,47 +155,6 @@ right:10px;
         </footer>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script type="text/javascript">
-            function addMsg() {
-                $.post(
-                    'script/addStaff_script.php',
-                    {
-                        nom: $("input[name=name]").val(),
-                        email: $("input[name=email]").val(),
-                        msg: $("input[name=msg]").val()
-                    },
-                    function(data){
-                        $("#myModal").modal("show");
-                        $("input[name=name]").val('');
-                        $("input[name=email]").val('');
-                        $("textarea[name=msg]").val('');
-                    });
-            }
-
-            $(document).ready(function() {
-                $(window).scroll(function() {
-                    if($(this).scrollTop() > 100){
-                        $('#goTop').stop().animate({
-                            bottom: '20px'
-                            }, 500);
-                    }
-                    else{
-                        $('#goTop').stop().animate({
-                           bottom: '-100px'
-                        }, 500);
-                    }
-                });
-                $('#goTop').click(function() {
-                    $('html, body').stop().animate({
-                       scrollTop: 0
-                    }, 500, function() {
-                       $('#goTop').stop().animate({
-                           bottom: '-100px'
-                       }, 500);
-                    });
-                });
-            });
-        </script>
 </body>
 
 </html>

@@ -2,46 +2,6 @@
 // TODO: penser à mettre à jour les liens des pages
 ?>
 
-<style media="screen">
-@media (max-width: 1320px) {
-    .navbar-header {
-        float: none;
-    }
-    .navbar-toggle {
-        display: block;
-    }
-    .navbar-collapse {
-        border-top: 1px solid transparent;
-        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-    }
-    .navbar-collapse.collapse {
-        display: none!important;
-    }
-    .navbar-nav {
-        float: none!important;
-        margin: 7.5px -15px;
-    }
-    .navbar-nav>li {
-        float: none;
-    }
-    .navbar-nav>li>a {
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-    .navbar-text {
-        float: none;
-        margin: 15px 0;
-    }
-    /* since 3.1.0 */
-    .navbar-collapse.collapse.in {
-        display: block!important;
-    }
-    .collapsing {
-        overflow: hidden!important;
-    }
-}
-</style>
-
 <?php
 session_start();
 
@@ -76,7 +36,7 @@ function current_nav() {
             }
             $nav .= "</ul>
 </li>
-<li><a href='$links[8]'>'$text[8]'</a></li>\n"; //cas de l'ancre 'contact'
+<li><a href='$links[8]'>$text[8]</a></li>\n"; //cas de l'ancre 'contact'
         // autres liens
         } else {
             $nav .= sprintf($format, (($page_name == $links[$i]) ? "class='active'" : ""), $links[$i], "", $text[$i]);
@@ -104,15 +64,15 @@ function current_nav() {
 
 
 <nav class="navbar">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="glyphicon glyphicon-chevron-down"></span>
-      </button>
-            <a class="navbar-brand" href="#"><img id="logo" src="image/logo.png" alt=""></a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <?php echo current_nav(); ?>
-        </div>
-    </div>
+<div class="container-fluid">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+<span class="glyphicon glyphicon-chevron-down"></span>
+</button>
+<a class="navbar-brand" href="#"><img id="logo" src="image/logo.png" alt=""></a>
+</div>
+<div class="collapse navbar-collapse" id="myNavbar">
+<?php echo current_nav(); ?>
+</div>
+</div>
 </nav>
