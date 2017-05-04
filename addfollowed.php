@@ -87,10 +87,11 @@ if (isset($_POST['species']))
             $gnss_coord = get_last_coord();
             add_line('Location',
                 array(
-                    'gnss_coord' => $gnss_coord,
+                    'lat' => $gnss_coord['lat'],
+                    'long' => $gnss_coord['long'],
                     'idFollowed' => $added_id,
                     'idStaff' => $_SESSION['idstaff'],
-                    'date_measure' => time()
+                    'date_measure' => $gnss_coord['time']
                 )
             );
         }
@@ -104,10 +105,15 @@ if (isset($_POST['species']))
 document.getElementById('use_geoloc').onclick = function() {
     if (this.checked) {
         navigator.geolocation.getCurrentPosition(function(position) {
-            $.ajax({url: 'script/add_script.php',
+            $.ajax({
+                url: 'script/add_script.php',
                 type: 'post',
-                data: { geoloc: position },
-            });
+                data: {
+                    geoloc_lat: position.coords.latitude,
+                    geoloc_long: position.coords.longitude,
+                    geoloc_time: position.timestamp,
+                    }
+                });
         });
     }
 }
