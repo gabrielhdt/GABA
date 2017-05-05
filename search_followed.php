@@ -6,40 +6,6 @@ include "head.php";
 
 $dateregex = "\d{4}[-.\/][01]?\d[-.\/][0-3]?\d";
 
-function create_tablehead($colfoll, $labels)
-{
-    /* $search_field must be a columns name
-     * $displayed fields array ($col_name => $displayed_value
-     */
-    echo '<tr>';
-    for ($i = 0 ; $i < count($colfoll) ; $i++)
-    {
-        echo '<th data-field="'.$colfoll[$i].'" data-sortable="true">';
-        echo $labels[$i];
-        echo '</th>';
-    }
-    echo '</tr>';
-
-}
-
-function create_tablebody($fields, $tables, $where, $constraints)
-{
-    /* basically, a get_values with table creation,
-     * refer to db.php, get_values doc for more info
-     */
-    $search_res = get_values($fields, $tables, $where, $constraints);
-    foreach ($search_res as $line)
-    {
-        echo '<tr>';
-        foreach ($fields as $field)
-        {
-            echo '<td>';
-            echo ucwords($line[$field]);
-            echo '</td>';
-        }
-        echo '</tr>';
-    }
-}
 $id_biname = array();
 $lines = get_values(array('idSpecies', 'binomial_name'), 'Species');
 foreach ($lines as $line)

@@ -19,4 +19,39 @@ function create_choice_list($disp_fields, $defsel=null)
         }
     }
 }
+
+function create_tablehead($colid, $labels)
+{
+    /* $search_field must be a columns name
+     * $displayed fields array ($col_name => $displayed_value
+     */
+    echo '<tr>';
+    for ($i = 0 ; $i < count($colid) ; $i++)
+    {
+        echo '<th data-field="'.$colid[$i].'" data-sortable="true">';
+        echo $labels[$i];
+        echo '</th>';
+    }
+    echo '</tr>';
+
+}
+
+function create_tablebody($fields, $tables, $where, $constraints)
+{
+    /* basically, a get_values with table creation,
+     * refer to db.php, get_values doc for more info
+     */
+    $search_res = get_values($fields, $tables, $where, $constraints);
+    foreach ($search_res as $line)
+    {
+        echo '<tr>';
+        foreach ($fields as $field)
+        {
+            echo '<td>';
+            echo ucwords($line[$field]);
+            echo '</td>';
+        }
+        echo '</tr>';
+    }
+}
 ?>
