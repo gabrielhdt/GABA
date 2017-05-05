@@ -216,7 +216,7 @@ function get_values($select, $table, $where=array(), $constraints=array())
         $query .= $where || $constraints ? ' WHERE ' : null;
         $query .= $where ? build_where($where) : null;
         $query .= $where && $constraints ? ' AND ' : null;
-        $query .= $constraints ? build_constaints($constraints) : null;
+        $query .= $constraints ? build_constraints($constraints) : null;
         $query .= ';';
 
         $stmt = $conn->prepare($query);
