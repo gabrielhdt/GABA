@@ -22,28 +22,71 @@
 </head>
 
 <body>
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <nav id="mynav" class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="glyphicon glyphicon-chevron-down"></span>
+          </button>
+                <a class="navbar-brand" href="#"><img id="logo" src="image/logo.png" alt=""></a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Accueil</a></li>
+                    <li><a href="#">Notre labo</a></li>
+                    <li> <a href="#">Recherche</a>
+                        <ul class="dropdown-menu">
+                            <li class='rechercher'><a href="#">Espèce</a></li>
+                            <li class='rechercher'><a href="#">individu</a></li>
+                            <li class='rechercher'><a href="#">bâtiment</a></li>
+                            <li class='rechercher'><a href="#">chercheur</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#">Help</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Connexion</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
         <div class="jumbotron" id='verbotron'>
             <h1>Fonctionnalités du site</h1>
             <hr>
             <p>Ce site a été conçu dans l'espoir d'aider les chercheurs de laboratoires animaliers à partager les données des individus dont ils s'occupent. Seuls les chercheurs de nos laboratoires sont acrédités à saisir les informations sur une espèce
-                ou un individu en particulier, ou bien des informations sur les lieux où peuvent se rencontrer ces animaux, dans la base de données.
-                <p>
-                    Notre site a donc un aspect pratique mais aussi un côté ludique pour les personnes qui ne sont pas chercheurs, mais simplement curieuses et qui souhaitent en savoir plus sur les animaux étudiés ! Ces personnes là, même si elles ne peuvent pas la modifier,
-                    ont elles aussi accès à la base de données de nos centres animaliers et peuvent rechercher des données d'une espèce, d'un individus, des batiments ou encore des informations sur nos chercheurs. Si vous ne savez pas execatement quelles
-                    informations regarder, Par exemple, notre site propose de découvrir des statistiques sur le nombre d'individus d'une espèce nées au cours d'une certaine période, ou encore le poids moyen des individus d'une espèce précise etudiée dans
-                    nos laboratoires
-                </p>
+                ou un individu en particulier, ou bien des informations sur les lieux où peuvent se rencontrer ces animaux, dans la base de données. Pour cela, ils doivent rentrer leur identifiant et mot de passe sur la page <a href="login.php">Login</a>.
+            </p>
+            <p>
+                Notre site a donc un aspect pratique mais aussi un côté ludique pour les personnes qui ne sont pas chercheurs, mais simplement curieuses et qui souhaitent en savoir plus sur les animaux étudiés ! Ces personnes là, même si elles ne peuvent pas la modifier,
+                ont elles aussi accès à la base de données de nos centres animaliers et peuvent rechercher des données d'une espèce, d'un individus, des batiments ou encore des informations sur nos chercheurs grâce à l'onglet <a href="recherche.php">Recherche</a>.
+                Si vous ne savez pas execatement quelles informations regarder, laissez vous happer par les activités proposées au fil des pages !
+            </p>
+            <p>
+                Par exemple, notre site propose de découvrir des statistiques sur le nombre d'individus d'une espèce nés au cours d'une certaine période, ou encore le poids moyen des individus d'une espèce etudiée dans nos laboratoires. Cette activité et proposée en
+                cliquant sur des liens de notre
+                <a href="theCarousel">carrousel</a> en page d'acceuil ! Vous pouvez aussi en apprendre un peu plus sur notre objectif de base, le <i>"pourquoi du comment"</i> du site et le laboratoire à l'origine de tout cela sur notre page
+                <a href="nous.php">Notre Labo</a>.
+            </p>
+            <p>
+                Enfin, n'hésitez pas à laissez des commentaires sur vos impressions grâce à la section <a href="contact">Contact</a> de la page d'accueil, ou à demander à prendre contact avec certains de nos chercheurs afin d'en apprendre plus sur ses
+                recherches ou sur le metier. Vos coordonnées leur seront transmis par l'intermédiaire du gérant du site pour qu'il puisse vous joindre personnelllement. Cette section commentaire vous permet aussi de nous faire part de vos remarques ou
+                améliorations que l'on pourrait apporter au site pour toujours plus de plaisir et d'aisance lors de la manipulation des pages.
+            </p>
+            <p>
+                Vous trouverez dans la vidéo ci-contre un aperçu des fonctionnalités citées précedemment et comment les utiliser au mieux. Notre équipe vous souhaite de passer un agréable moment sur notre site et espère réveiller l'animal qui est en vous !
+
             </p>
         </div>
     </div>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <div class="jumbotron" id='verbotron'>
-                <h1>Webmaster</h1>
-                <p>Le laboratoire science exchange a pour mission de regrouper les informations de multiples laboratoires de recherche animale et de mettre à disposition les données sur nottre plateforme. <br>L'objectif est de faciliter le travail des chercheurs
-                    mais le site permet aussi d'assouvir votre curiosité de manière ludique ! </p>
-            </div>
+            <h1>Webmaster</h1>
+            <p>Le laboratoire science exchange a pour mission de regrouper les informations de multiples laboratoires de recherche animale et de mettre à disposition les données sur nottre plateforme. <br>L'objectif est de faciliter le travail des chercheurs
+                mais le site permet aussi d'assouvir votre curiosité de manière ludique ! </p>
         </div>
+    </div>
     </div>
 </body>
