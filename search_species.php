@@ -13,7 +13,7 @@ foreach ($lines as $line)
 ?>
 <body>
 <?php include "nav.php"; ?>
-<form action="search_followed.php" method="post" accept-charset="utf-8"
+<form action="search_species.php" method="post" accept-charset="utf-8"
     enctype="multipart/form-data">
     <div class="form-group">
         <label for="sel_facility">In facilities:</label>
