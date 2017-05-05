@@ -276,6 +276,7 @@ function get_values(
         $rslt = $stmt->fetchAll();
     } catch (PDOException $e) {
         echo 'Something went wrong (get_values): ' . $e->getMessage();
+        return(false);
     }
     $conn = null;
     return $rslt;
