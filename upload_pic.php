@@ -17,8 +17,16 @@ $uploadfile = $uploaddir . basename($fname);
 if (move_uploaded_file($_FILES['userpic']['tmp_name'], $uploadfile)) {
     echo "Picture is valid, and successfully uploaded.\n";
     $id = 'id' . ucfirst($table);
+    $where = array(
+        array(
+            'field' => $id,
+            'value' => $_POST['id'],
+            'binrel' => '=',
+            'type' => PDO::PARAM_INT
+        )
+    );
     update_line($_POST['table'], array('pic_path' => $uploadfile),
-        $id, $_POST['id']);
+        $where);
 }
 else {
     echo "Possible file upload attack.\n";

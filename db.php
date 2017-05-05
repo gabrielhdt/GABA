@@ -9,6 +9,12 @@ $charset = 'utf8mb4';
 function build_where($where)
 {
     /* where as defined in get_values
+     * $where is either an array of arrays, each array containing:
+     *  field -> column name,
+     *  value -> the value the column must match
+     *  binrel -> the binary relation between field and value
+     *  type -> the PDO type
+     * or just an array as defined above
      * returns the part
      * WHERE $where[i]['field']$where[i]['binrel']$where['value']
      */
@@ -286,10 +292,12 @@ function main_tables_from_keys()
 }
 
 
-function update_line($table, $change, $col_condition, $val_condition)
+function update_line($table, $change, $where)
 {
     /* change : array('col' => 'val')
-     * updates line satisfying $col_condition = $val_condition
+     * where: the famous where array containing
+     *  field, value, type, binrel
+     * Updates line satisfying where query
      */
     global $servername, $username, $dbname, $password, $charset;
     try {
@@ -299,11 +307,12 @@ function update_line($table, $change, $col_condition, $val_condition)
         $query = "UPDATE $table SET ";
 
         $uparr = array_map_keys(function($col, $val) {
-            return("'$col' = '$val'");
+            return("'$col'='$val'");
         }, $change);
         $query .= implode($uparr, ', ');
 
-        $query .= " WHERE $col_condition='$val_condition';";
+        $query .= ' '.build_where($where);
+        $query .= ';';
         $conn->exec($query);
     } catch (PDOException $e) {
         echo 'Something went wrong (update_line): ' . $e->getMessage();
