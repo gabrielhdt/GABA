@@ -173,7 +173,7 @@ create_tablehead($colfoll, $labels);
 echo '</thead>';
 echo '<tbody>';
 $search_res = get_values($fields, $tables, $where, $constraints);
-create_tablebody($search_res);
+create_tablebody($fields, $search_res);
 echo '</tbody>';
 echo '</table>';
 ?>

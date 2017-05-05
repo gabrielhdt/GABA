@@ -36,7 +36,7 @@ function create_tablehead($colid, $labels)
 
 }
 
-function create_tablebody($search_res)
+function create_tablebody($fields, $search_res)
 {
     /* basically, a get_values with table creation,
      * refer to db.php, get_values doc for more info
