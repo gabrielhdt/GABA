@@ -18,8 +18,8 @@ function build_where($where)
      * returns the part
      * WHERE $where[i]['field']$where[i]['binrel']$where['value']
      */
-    $query= 'WHERE ';
-    $whereqrys = array();  // Will contain separate criteria
+    $query= '';
+    $wherequeries = array();  // Will contain separate criteria
     foreach ($where as $wh)
     {
         if (is_array($wh['value']))
@@ -28,16 +28,31 @@ function build_where($where)
             $len = count($wh['value']);
             $paramlst = '('.implode(array_fill(0, $len, '?'), ', ').')';
             // Should contain '(?, ?, ?, ...)'
-            array_push($whereqrys,
+            array_push($wherequeries,
                 $wh['field'].' '.$wh['binrel'].' '.$paramlst);
         }
         else
         {
-            array_push($whereqrys, $wh['field'].$wh['binrel'].'?');
+            array_push($wherequeries, $wh['field'].$wh['binrel'].'?');
         }
     }
-    $query .= implode($whereqrys, ' AND ');
+    $query .= implode($wherequeries, ' AND ');
     return($query);
+}
+
+function build_constraints($constraints)
+{
+    /* Used to join two table,
+     * constraints array (field a => field b) for
+     * table_a.field_a = table_b.field_b
+     */
+    $query = '';
+    $consqueries = array();
+    foreach ($constraints as $f1 => $f2)
+    {
+        array_push($consqueries, "$f1=$f2");
+    }
+    return(implode($consqueries, ' AND '));
 }
 
 function array_map_keys($callback, $array)
@@ -170,7 +185,7 @@ QRY;
     return(true);
 }
 
-function get_values($select, $table, $where=array())
+function get_values($select, $table, $where=array(), $constraints=array())
 {
     /* select: array of selected fields
      * table: explicit
@@ -182,6 +197,7 @@ function get_values($select, $table, $where=array())
      * $where[i]['field'] $where[i]['binrel'] $where[i]['value']
      * In addition, $where[i]['value'] can be an array of values,
      * e.g. for WHERE field IN (v0, v1, ...)
+     * constraints: array of constraintes between tables columns, for joining
      */
     global $servername, $username, $dbname, $password, $charset;
     if (!$select) {
@@ -192,14 +208,17 @@ function get_values($select, $table, $where=array())
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
             $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
         $query = 'SELECT ';
-        $query .= implode(', ', $select);
-        $query .= " FROM $table";
-        if ($where)
-        {
-            $query .= ' '.build_where($where);
-        }
+        $query .= is_array($select) ? implode(', ', $select) : $select;
+        $query .= ' FROM ';
+        $query .= is_array($table) ? implode($table, ', ') : $table;
+        $query .= ' WHERE ';
+        $query .= $where ? build_where($where) : null;
+        $query .= $where && $constraints ? ' AND ' : null;
+        $query .= $constraints ? build_constaints($constraints) : null;
         $query .= ';';
+
         $stmt = $conn->prepare($query);
         $qumarkcounter = 1;  // ? indexed from 1
         foreach ($where as $wh)
@@ -311,7 +330,8 @@ function update_line($table, $change, $where)
         }, $change);
         $query .= implode($uparr, ', ');
 
-        $query .= ' '.build_where($where);
+        $query .= ' WHERE ';
+        $query .= build_where($where);
         $query .= ';';
         $conn->exec($query);
     } catch (PDOException $e) {
