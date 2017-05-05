@@ -248,6 +248,9 @@ function get_values(
         $select_func =
             is_array($select) ?
             detail_select($select, $sqlfuncs, "apply_sqlfunc") : null;
+        $select_complete =
+            is_array($select) ?
+            detail_select($select_func, $alias, "apply_alias") : null;
 
         $query = 'SELECT ';
         $query .= is_array($select) ? implode(', ', $select_func) : $select;
