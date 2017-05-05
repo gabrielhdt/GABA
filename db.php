@@ -193,19 +193,25 @@ function apply_sqlfunc($field, $func)
     return($func ? "$func($field)" : $field);
 }
 
-function select2select_func($select, $sqlfuncs)
+function apply_alias($field, $alias)
 {
-    /* Apply functions in sqlfuncs to associated select fields.
-     * sqlfuncs: array((int) key => (str) sql func)
-     * key of the function must match the one of the field on which the
-     * function must be applied
+    return($alias ? "$field AS $alias" : $field);
+}
+
+function detail_select($select, $cplmts, $apply_func)
+{
+    /* Applies a chosen function on one field of $select
+     * cplmts: array((int) key => (str) sql func)
+     *  cplmt string which will be added via apply_func
+     * apply_func: function taking two args: the field (basis) and
+     *  the other string
      */
     $select_funcs = array_map(
-        "apply_sqlfunc",
+        $apply_func,
         $select,
         array_replace(
             array_fill(0, count($select) - 1, null),
-            $sqlfuncs
+            $cplmts
         )
     );
     return($select_funcs);
@@ -213,7 +219,7 @@ function select2select_func($select, $sqlfuncs)
 
 function get_values(
     $select, $table, $where=array(), $constraints=array(),
-    $groupby=null, $sqlfuncs=array()
+    $groupby=null, $sqlfuncs=array(), $alias=array(), $having=array()
 )
 {
     /* select: array of selected fields
@@ -227,6 +233,7 @@ function get_values(
      * In addition, $where[i]['value'] can be an array of values,
      * e.g. for WHERE field IN (v0, v1, ...)
      * constraints: array of constraintes between tables columns, for joining
+     * alias and sqlfuncs work the same way
      * TODO: verify each variables (regexp?)
      */
     global $servername, $username, $dbname, $password, $charset;
@@ -239,7 +246,8 @@ function get_values(
             $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $select_func =
-            is_array($select) ? select2select_func($select, $sqlfuncs) : null;
+            is_array($select) ?
+            detail_select($select, $sqlfuncs, "apply_sqlfunc") : null;
 
         $query = 'SELECT ';
         $query .= is_array($select) ? implode(', ', $select_func) : $select;
@@ -250,6 +258,7 @@ function get_values(
         $query .= $where && $constraints ? ' AND ' : null;
         $query .= $constraints ? build_constraints($constraints) : null;
         $query .= $groupby ? " GROUP BY $groupby" : null;
+        $query .= $having ? " HAVING ".build_where($having) : null;
         $query .= ';';
 
         $stmt = $conn->prepare($query);
@@ -270,6 +279,11 @@ function get_values(
                 $stmt->bindValue($qumarkcounter, $wh['value'], $wh['type']);
                 $qumarkcounter++;
             }
+        }
+        foreach($having as $hv)
+        {
+            $stmt->bindValue($qumarkcounter, $hv['value'], $hv['type']);
+            $qumarkcounter++;
         }
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
