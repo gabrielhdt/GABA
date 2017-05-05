@@ -31,6 +31,12 @@ foreach ($lines as $line)
 <?php
 $colsp = array('idSpecies', 'binomial_name', 'nfoll');
 $labels = array('Identifier', 'Binomial name', 'Number of followed individuals');
+$select = array('idSpecies', 'binomial_name', 'idFollowed');
+$tables = array('Species', 'Followed');
+$constraints = array('Species.idSpecies', 'Followed.idSpecies');
+$groupby = 'Species.idSpecies';
+$sqlfuncs = array(2 => 'COUNT');
+$search_res = get_values($select, $tables, $constraints, $groupby, $sqlfuncs);
 echo <<<TH
 <table id='table'
 class='table'
@@ -45,6 +51,7 @@ echo '<thead>';
 create_tablehead($colsp, $labels);
 echo '</thead>';
 echo '<tbody>';
+create_tablebody($search_res);
 echo'</tbody>';
 echo '</table>';
 ?>
