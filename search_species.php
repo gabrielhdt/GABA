@@ -29,7 +29,7 @@ foreach ($lines as $line)
     <button type="submit" class="btn btn-default">Rechercher animal</button>
 </form>
 <?php
-$colsp = array('idSpecies', 'binomial_name', 'COUNT(idFollowed)');
+$colsp = array('idSpecies', 'binomial_name', 'nfoll');
 $labels = array('Identifier', 'Binomial name', 'Number of followed individuals');
 $fields = array('Species.idSpecies', 'binomial_name', 'idFollowed');
 $tables = array('Species', 'Followed');
@@ -37,7 +37,41 @@ $where = array();
 $constraints = array('Species.idSpecies' => 'Followed.idSpecies');
 $groupby = 'Species.idSpecies';
 $sqlfuncs = array(2 => 'COUNT');
-$search_res = get_values($fields, $tables, $where, $constraints, $groupby, $sqlfuncs);
+$having = array();
+$alias = array(2 => 'nfoll');
+$search_res = get_values(
+    $fields,
+    $tables,
+    $where,
+    $constraints,
+    $groupby,
+    $sqlfuncs,
+    $alias,
+    $having
+);
+if (isset($_POST['low_nfoll']) && !empty($_POST['low_nfoll']))
+{
+    array_push($having,
+        array(
+            'binrel' => '>=',
+            'field' => 'nfoll',
+            'value' => $_POST['low_nfoll'],
+            'type' => PDO::PARAM_INT
+        )
+    );
+}
+if (isset($_POST['up_nfoll']) && !empty($_POST['up_nfoll']))
+{
+    array_push($having,
+        array(
+            'binrel' => '<=',
+            'field' => 'nfoll',
+            'value' => $_POST['up_nfoll'],
+            'type' => PDO::PARAM_INT
+        )
+    );
+}
+
 echo <<<TH
 <table id='table'
 class='table'
