@@ -213,7 +213,7 @@ function get_values($select, $table, $where=array(), $constraints=array())
         $query .= is_array($select) ? implode(', ', $select) : $select;
         $query .= ' FROM ';
         $query .= is_array($table) ? implode($table, ', ') : $table;
-        $query .= ' WHERE ';
+        $query .= $where || $constraints ? ' WHERE ' : null;
         $query .= $where ? build_where($where) : null;
         $query .= $where && $constraints ? ' AND ' : null;
         $query .= $constraints ? build_constaints($constraints) : null;
