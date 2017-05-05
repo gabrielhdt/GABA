@@ -246,57 +246,6 @@ function get_values($select, $table, $where=array())
     return $rslt;
 }
 
-function super_sel($cols, $tables, $constraints, $where=array())
-{
-    /* Selects cols after joining tables on constraints
-     * $cols: array(column name) for selection
-     * $tables: array(table name) tables to join together
-     * $constraints: array("tab1.id1 = tab2.id2", "tabn.idn = tabk.idk")
-     * columns on which the former will be joined
-     * where: additional classic where array
-     */
-    if (count($constraints) != count($tables) - 1)
-    {
-        echo "Illegal number of constraints.\n";
-        return(FALSE);
-    }
-    else if (!$select) {
-        echo "Nothing to select in get_values, exiting\n";
-        return(False);
-    }
-    global $servername, $username, $dbname, $password, $charset;
-    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
-            $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $query = 'SELECT ';
-        $query .= implode(', ', $select);
-        $query .= ' FROM ' . implode(', ', $tables);
-        $query .= ' WHERE ';
-        $whereqrys = array_map_keys("build_where_strict", $constraints);
-        $query .= implode($whereqrys, ' AND ');
-        if (!$where)
-        {
-            $query .= ';';
-        }
-        else
-        {
-            $query.= ' AND ';
-            $whereqrys = array();
-            $whereqrys = array_map_keys("build_where", $where);
-            $query .= implode($whereqrys, ' AND ');
-            $query .= ';';
-        }
-        $stmt = $conn->query($query);
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        $rslt = $stmt->fetchAll();
-    } catch (PDOException $e) {
-        echo 'Something went wrong (super_sel): ' . $e->getMessage();
-    }
-    $conn = null;
-    return $rslt;
-}
-
 function get_columns($table)
 {
     /* outputs array of colummns of $table
