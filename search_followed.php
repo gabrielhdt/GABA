@@ -22,23 +22,18 @@ function create_tablehead($colfoll, $labels)
 
 }
 
-function create_tablebody($colnames, $view, $where)
+function create_tablebody($fields, $tables, $where, $constraints)
 {
     /* colnames array containing column names, with
-     * search_field first
      */
-    if (!view_exists($view))
-    {
-        update_view($view);
-    }
-    $search_res = get_values($colnames, $view, $where);
+    $search_res = get_values($colnames, $tables, $where, $constraints);
     foreach ($search_res as $line)
     {
         echo '<tr>';
-        foreach ($colnames as $colname)
+        foreach ($fields as $field)
         {
             echo '<td>';
-            echo ucwords($line[$colname]);
+            echo ucwords($line[$field]);
             echo '</td>';
         }
         echo '</tr>';
@@ -165,7 +160,7 @@ if (isset($_POST['idspecies']) && !empty($_POST['idspecies']))
     array_push($where,
         array(
             'binrel' => 'IN',
-            'field' => 'idSpecies',
+            'field' => 'Followed.idSpecies',
             'value' => $_POST['idspecies'],
             'type' => PDO::PARAM_INT
         )
@@ -176,23 +171,32 @@ if (isset($_POST['idfacility']) && !empty($_POST['idfacility']))
     array_push($where,
         array(
             'binrel' => 'IN',
-            'field' => 'idFacility',
+            'field' => 'Followed.idFacility',
             'value' => $_POST['idfacility'],
             'type' => PDO::PARAM_INT
         )
     );
 }
+$tables = array('Followed', 'Species', 'Facility');
+$constraints = array(
+    'Followed.idSpecies' => 'Species.idSpecies',
+    'Followed.idFacility' => 'Facility.idFacility'
+);
 $colfoll = array('idFollowed', 'idSpecies', 'idFacility', 'gender', 'birth',
     'death', 'health');
 $labels = array('Identifier', 'Species', 'Facility', 'Gender', 'Birth',
     'Death', 'Health');
-$colview = array('idFollowed', 'sp_binomial_name', 'fa_name', 'gender',
-    'birth', 'death', 'health');
+$fields = array(
+    'Followed.idFollowed',
+    'Species.binomial_name',
+    'Facility.name',
+    'Followed.gender',
+    'Followed.birth', 'Followed.death', 'Followed.health'
+);
 echo "<table id='table'
     class='table'
     data-toggle='table'
     data-search='true'
-    data-show-refresh='true'
     data-pagination='true'
     data-detail-view='true'
     data-detail-formatter='detail_formatter'
@@ -201,7 +205,7 @@ echo '<thead>';
 create_tablehead($colfoll, $labels);
 echo '</thead>';
 echo '<tbody>';
-create_tablebody($colview, 'vSearchFoll', $where);
+create_tablebody($fields, $tables, $where, $constraints);
 echo '</tbody>';
 echo '</table>';
 ?>
@@ -209,17 +213,6 @@ echo '</table>';
 </body>
 <script>
 var $table = $('#table');
-$table.on('refresh.bs.table', function (e) {
-        $.ajax({
-            url: 'script/search_script.php',
-            type: 'post',
-            data: {viewname: 'vSearchFoll'},
-            success: function(output) {
-                console.log('Refreshed');
-            }
-    });
-});
-
 function detail_formatter(index, row) {
     var html = [];
     var picpath = '';
