@@ -29,7 +29,7 @@ foreach ($lines as $line)
     <button type="submit" class="btn btn-default">Rechercher animal</button>
 </form>
 <?php
-$colsp = array('idSpecies', 'binomial_name', 'nfoll');
+$colsp = array('idSpecies', 'binomial_name', 'COUNT(idFollowed)');
 $labels = array('Identifier', 'Binomial name', 'Number of followed individuals');
 $fields = array('Species.idSpecies', 'binomial_name', 'idFollowed');
 $tables = array('Species', 'Followed');
@@ -52,7 +52,7 @@ echo '<thead>';
 create_tablehead($colsp, $labels);
 echo '</thead>';
 echo '<tbody>';
-create_tablebody($fields, $search_res);
+create_tablebody($colsp, $search_res);
 echo'</tbody>';
 echo '</table>';
 ?>
