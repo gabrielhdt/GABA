@@ -187,46 +187,6 @@ QRY;
     return(true);
 }
 
-function get_values($select, $table, $where=array())
-{
-    /* select: array of selected fields
-     * $table: name of table
-     * where: array 'column name' => 'value'
-     */
-    global $servername, $username, $dbname, $password, $charset;
-    if (!$select) {
-        echo "Nothing to select in get_values, exiting\n";
-        return(False);
-    }
-    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
-            $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $query = 'SELECT ';
-        $query .= implode(', ', $select);
-        $query .= " FROM $table";
-        if (!$where)
-        {
-            $query .= ';';
-        }
-        else
-        {
-            $query.= ' WHERE ';
-            $whereqrys = array();
-            $whereqrys = array_map_keys("build_where", $where);
-            $query .= implode($whereqrys, ' AND ');
-            $query .= ';';
-        }
-        $stmt = $conn->query($query);
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        $rslt = $stmt->fetchAll();
-    } catch (PDOException $e) {
-        echo 'Something went wrong (get_values): ' . $e->getMessage();
-    }
-    $conn = null;
-    return $rslt;
-}
-
 function get_whereplus($select, $table, $where=array())
 {
     /* select: array of selected fields
