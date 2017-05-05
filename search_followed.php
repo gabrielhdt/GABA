@@ -188,11 +188,11 @@ $colfoll = array('idFollowed', 'idSpecies', 'idFacility', 'gender', 'birth',
 $labels = array('Identifier', 'Species', 'Facility', 'Gender', 'Birth',
     'Death', 'Health');
 $fields = array(
-    'Followed.idFollowed',
-    'Species.binomial_name',
-    'Facility.name',
-    'Followed.gender',
-    'Followed.birth', 'Followed.death', 'Followed.health'
+    'idFollowed',
+    'binomial_name',
+    'name',
+    'gender',
+    'birth', 'death', 'health'
 );
 echo "<table id='table'
     class='table'
