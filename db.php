@@ -6,30 +6,7 @@ $dbname = 'IENAC_GABA';
 $password = 'abag';
 $charset = 'utf8mb4';
 
-function build_where($val, $col, $strict=FALSE)
-{
-    /* $col and $val such as WHERE $col =|LIKE $val
-     * strict defines whether we force the use of '=' and no 'LIKE'
-     * returns where query with LIKE or = depending on datatype
-     */
-    $query = '';
-    if (gettype($val) == 'string' && !$strict)
-    {
-        $query .= "'$col' LIKE '%$val%'";
-    }
-    else
-    {
-        $query .= "'$col' = $val";
-    }
-    return($query);
-}
-
-function build_where_strict($val, $col)
-{
-    return("$col = $val");
-}
-
-function build_whereplus($where)
+function build_where($where)
 {
     /* where as defined in get_values
      * returns the part
@@ -214,7 +191,7 @@ function get_values($select, $table, $where=array())
         $query .= " FROM $table";
         if ($where)
         {
-            $query .= ' '.build_whereplus($where);
+            $query .= ' '.build_where($where);
         }
         $query .= ';';
         $stmt = $conn->prepare($query);
