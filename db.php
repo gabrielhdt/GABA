@@ -185,9 +185,35 @@ QRY;
     return(true);
 }
 
+function apply_sqlfunc($field, $func)
+{
+    /* Apply the sql function $func to $field.
+     * $func must be either a valid sql func (e.g. COUNT) or null
+     */
+    return($func ? "$func($field)" : $field);
+}
+
+function select2select_func($select, $sqlfuncs)
+{
+    /* Apply functions in sqlfuncs to associated select fields.
+     * sqlfuncs: array((int) key => (str) sql func)
+     * key of the function must match the one of the field on which the
+     * function must be applied
+     */
+    $select_funcs = array_map(
+        "apply_sqlfunc",
+        $select,
+        array_replace(
+            array_fill(0, count($select) - 1, null),
+            $sqlfuncs
+        )
+    );
+    return($select_funcs);
+}
+
 function get_values(
     $select, $table, $where=array(), $constraints=array(),
-    $groupby=null
+    $groupby=null, $sqlfuncs=array()
 )
 {
     /* select: array of selected fields
@@ -212,9 +238,11 @@ function get_values(
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
             $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $select_func =
+            is_array($select) ? select2select_func($select, $sqlfuncs) : null;
 
         $query = 'SELECT ';
-        $query .= is_array($select) ? implode(', ', $select) : $select;
+        $query .= is_array($select) ? implode(', ', $select_func) : $select;
         $query .= ' FROM ';
         $query .= is_array($table) ? implode($table, ', ') : $table;
         $query .= $where || $constraints ? ' WHERE ' : null;
