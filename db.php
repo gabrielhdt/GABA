@@ -31,7 +31,7 @@ function build_where_strict($val, $col)
 
 function build_whereplus($where)
 {
-    /* where as defined in get_whereplus
+    /* where as defined in get_values
      * returns the part
      * WHERE $where[i]['field']$where[i]['binrel']$where['value']
      */
@@ -187,7 +187,7 @@ QRY;
     return(true);
 }
 
-function get_whereplus($select, $table, $where=array())
+function get_values($select, $table, $where=array())
 {
     /* select: array of selected fields
      * table: explicit
@@ -240,7 +240,7 @@ function get_whereplus($select, $table, $where=array())
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $rslt = $stmt->fetchAll();
     } catch (PDOException $e) {
-        echo 'Something went wrong (get_whereplus): ' . $e->getMessage();
+        echo 'Something went wrong (get_values): ' . $e->getMessage();
     }
     $conn = null;
     return $rslt;

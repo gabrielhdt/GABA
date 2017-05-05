@@ -31,7 +31,7 @@ function create_tablebody($colnames, $view, $where)
     {
         update_view($view);
     }
-    $search_res = get_whereplus($colnames, $view, $where);
+    $search_res = get_values($colnames, $view, $where);
     foreach ($search_res as $line)
     {
         echo '<tr>';
@@ -45,12 +45,12 @@ function create_tablebody($colnames, $view, $where)
     }
 }
 $id_biname = array();
-$lines = get_whereplus(array('idSpecies', 'binomial_name'), 'Species');
+$lines = get_values(array('idSpecies', 'binomial_name'), 'Species');
 foreach ($lines as $line)
 {
     $id_biname[$line['idSpecies']] = $line['binomial_name'];
 }
-$lines = get_whereplus(array('idFacility', 'name'), 'Facility');
+$lines = get_values(array('idFacility', 'name'), 'Facility');
 $id_faname = array();
 foreach ($lines as $line)
 {

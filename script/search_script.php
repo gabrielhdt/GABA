@@ -35,7 +35,7 @@ function get_picpath($table, $id)
             'type' => PDO::PARAM_INT
         )
     );
-    $line = get_whereplus(array('pic_path'), $table, $where);
+    $line = get_values(array('pic_path'), $table, $where);
     return($line ? $line[0]['pic_path'] : false);
 }
 ?>
