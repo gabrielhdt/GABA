@@ -39,16 +39,6 @@ $groupby = 'Species.idSpecies';
 $sqlfuncs = array(2 => 'COUNT');
 $having = array();
 $alias = array(2 => 'nfoll');
-$search_res = get_values(
-    $fields,
-    $tables,
-    $where,
-    $constraints,
-    $groupby,
-    $sqlfuncs,
-    $alias,
-    $having
-);
 if (isset($_POST['low_nfoll']) && !empty($_POST['low_nfoll']))
 {
     array_push($having,
@@ -71,7 +61,16 @@ if (isset($_POST['up_nfoll']) && !empty($_POST['up_nfoll']))
         )
     );
 }
-
+$search_res = get_values(
+    $fields,
+    $tables,
+    $where,
+    $constraints,
+    $groupby,
+    $sqlfuncs,
+    $alias,
+    $having
+);
 echo <<<TH
 <table id='table'
 class='table'
