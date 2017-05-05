@@ -248,12 +248,12 @@ function get_values(
         $select_func =
             is_array($select) ?
             detail_select($select, $sqlfuncs, "apply_sqlfunc") : null;
-        $select_complete =
+        $select_full =
             is_array($select) ?
             detail_select($select_func, $alias, "apply_alias") : null;
 
         $query = 'SELECT ';
-        $query .= is_array($select) ? implode(', ', $select_func) : $select;
+        $query .= is_array($select) ? implode(', ', $select_full) : $select;
         $query .= ' FROM ';
         $query .= is_array($table) ? implode($table, ', ') : $table;
         $query .= $where || $constraints ? ' WHERE ' : null;
