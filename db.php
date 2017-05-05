@@ -185,7 +185,10 @@ QRY;
     return(true);
 }
 
-function get_values($select, $table, $where=array(), $constraints=array())
+function get_values(
+    $select, $table, $where=array(), $constraints=array(),
+    $groupby=null
+)
 {
     /* select: array of selected fields
      * table: explicit
@@ -198,6 +201,7 @@ function get_values($select, $table, $where=array(), $constraints=array())
      * In addition, $where[i]['value'] can be an array of values,
      * e.g. for WHERE field IN (v0, v1, ...)
      * constraints: array of constraintes between tables columns, for joining
+     * TODO: verify each variables (regexp?)
      */
     global $servername, $username, $dbname, $password, $charset;
     if (!$select) {
@@ -217,6 +221,7 @@ function get_values($select, $table, $where=array(), $constraints=array())
         $query .= $where ? build_where($where) : null;
         $query .= $where && $constraints ? ' AND ' : null;
         $query .= $constraints ? build_constraints($constraints) : null;
+        $query .= $groupby ? " GROUP BY $groupby" : null;
         $query .= ';';
 
         $stmt = $conn->prepare($query);
