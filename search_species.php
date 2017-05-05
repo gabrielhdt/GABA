@@ -31,10 +31,10 @@ foreach ($lines as $line)
 <?php
 $colsp = array('idSpecies', 'binomial_name', 'nfoll');
 $labels = array('Identifier', 'Binomial name', 'Number of followed individuals');
-$fields = array('idSpecies', 'binomial_name', 'idFollowed');
+$fields = array('Species.idSpecies', 'binomial_name', 'idFollowed');
 $tables = array('Species', 'Followed');
 $where = array();
-$constraints = array('Species.idSpecies', 'Followed.idSpecies');
+$constraints = array('Species.idSpecies' => 'Followed.idSpecies');
 $groupby = 'Species.idSpecies';
 $sqlfuncs = array(2 => 'COUNT');
 $search_res = get_values($fields, $tables, $where, $constraints, $groupby, $sqlfuncs);
