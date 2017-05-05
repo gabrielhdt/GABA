@@ -27,7 +27,15 @@ function get_picpath($table, $id)
      * idTable
      */
     $pkeycolname = 'id'.$table;  // God bless the database creator
-    $line = get_values(array('pic_path'), $table, array($pkeycolname => $id));
+    $where = array(
+        array(
+            'field' => $pkeycolname,
+            'value' => $id,
+            'binrel' => '=',
+            'type' => PDO::PARAM_INT
+        )
+    );
+    $line = get_whereplus(array('pic_path'), $table, $where);
     return($line ? $line[0]['pic_path'] : false);
 }
 ?>
