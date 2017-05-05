@@ -36,12 +36,11 @@ function create_tablehead($colid, $labels)
 
 }
 
-function create_tablebody($fields, $tables, $where, $constraints)
+function create_tablebody($search_res)
 {
     /* basically, a get_values with table creation,
      * refer to db.php, get_values doc for more info
      */
-    $search_res = get_values($fields, $tables, $where, $constraints);
     foreach ($search_res as $line)
     {
         echo '<tr>';
