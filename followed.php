@@ -12,7 +12,7 @@ include 'nav.php';
 <?php
 $idfollowed = $_GET['id'];
 $fields = <<<FLD
-binomial_name, common_name, gender, birth, health, death
+binomial_name, common_name, gender, birth, health, death, pic_path
 FLD;
 $table = <<<TAB
 Followed INNER JOIN Species ON Followed.idSpecies = Species.idSpecies
@@ -29,7 +29,10 @@ $search_res = get_values_light($fields, $table, $where)[0];
 
 <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
     <div class="pic">
-        <img src="data/pics/unordered/gator.jpg" style="width:100%;height:100%;"/>
+        <?php
+        echo '<img src="'.$search_res['pic_path'].
+            '" class = "img-responsive" style="width:100%;height:100%;"/>';
+        ?>
         <p>Painting of a swedish gator hunting in his natural habitat.</p>
     </div>
 </div>
@@ -40,7 +43,7 @@ $search_res = get_values_light($fields, $table, $where)[0];
         echo '<h2>'.$search_res['binomial_name'].'</h2>';
         ?>
         <br>
-        <p>Born on January the 1st, 500 B.C.</p>
+        <p>Born on <?php echo $birth; ?></p>
         <p>Last known location: 175°120'N 074°300'W (Map?)</p>
         <br><br>
         <table>
