@@ -36,10 +36,12 @@ function create_tablehead($colid, $labels)
 
 }
 
-function create_tablebody($fields, $search_res)
+function create_tablebody($fields, $search_res, $pagelink=null, $linkarg=null)
 {
-    /* basically, a get_values with table creation,
-     * refer to db.php, get_values doc for more info
+    /* $fields: database column names
+     * search_res: result of a SELECT on fields $fields
+     * pagelink used to make a link to another page, via get method
+     * linkarg is the variable in search_res for GET
      */
     foreach ($search_res as $line)
     {
@@ -47,7 +49,11 @@ function create_tablebody($fields, $search_res)
         foreach ($fields as $field)
         {
             echo '<td>';
+            echo $pagelink && $linkarg == $field ?
+                '<a href="'.$pagelink.'?id='.$line[$linkarg].'">' : '';
             echo ucwords($line[$field]);
+            echo $pagelink && $linkarg == $field ?
+                '</a>' : '';
             echo '</td>';
         }
         echo '</tr>';
