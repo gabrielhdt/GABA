@@ -378,7 +378,7 @@ function get_values_light($select,
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $rslt = $stmt->fetchAll();
     } catch (PDOException $e) {
-        echo 'Something went wrong (get_columns): ' . $e->getMessage();
+        echo 'Something went wrong (get_values_light): '.$e->getMessage();
         $conn = null;
         return(false);
     }
