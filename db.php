@@ -470,7 +470,7 @@ function update_line($table, $change, $where)
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $query = "UPDATE $table SET ";
 
-        $uparr = array_map_keys(function($col, $val) {
+        $uparr = array_map_keys(function($val, $col) {
             return("'$col'='$val'");
         }, $change);
         $query .= implode($uparr, ', ');
