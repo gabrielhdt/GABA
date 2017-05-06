@@ -66,6 +66,7 @@ $search_res = get_values(
     $alias,
     $having
 );
+echo !$search_res ? "Error while querying" : null;
 echo <<<TH
 <table id='table'
 class='table'
