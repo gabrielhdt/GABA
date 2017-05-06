@@ -13,14 +13,9 @@ foreach ($lines as $line)
 ?>
 <body>
 <?php include "nav.php"; ?>
-<form action="search_followed.php" method="post" accept-charset="utf-8"
+<form action="search_species.php" method="post" accept-charset="utf-8"
     enctype="multipart/form-data">
     <div class="form-group">
-        <label for="sel_facility">In facilities:</label>
-        <select name="idfacility[]" id="sel_facility" class="form-control" multiple>
-        <?php create_choice_list($id_faname); ?>
-        </select>
-        <br>
         <label for="low_nfoll">Having more followed individuals than:
         <input type="number" name="low_nfoll" class="form-control" id="low_nfoll">
         <label for="up_nfoll">Having fewer followed individuals than:
@@ -31,6 +26,46 @@ foreach ($lines as $line)
 <?php
 $colsp = array('idSpecies', 'binomial_name', 'nfoll');
 $labels = array('Identifier', 'Binomial name', 'Number of followed individuals');
+$fields = array('Species.idSpecies', 'binomial_name', 'idFollowed');
+$tables = array('Species', 'Followed');
+$where = array();
+$constraints = array('Species.idSpecies' => 'Followed.idSpecies');
+$groupby = 'Species.idSpecies';
+$sqlfuncs = array(2 => 'COUNT');
+$having = array();
+$alias = array(2 => 'nfoll');
+if (isset($_POST['low_nfoll']) && !empty($_POST['low_nfoll']))
+{
+    array_push($having,
+        array(
+            'binrel' => '>=',
+            'field' => 'nfoll',
+            'value' => $_POST['low_nfoll'],
+            'type' => PDO::PARAM_INT
+        )
+    );
+}
+if (isset($_POST['up_nfoll']) && !empty($_POST['up_nfoll']))
+{
+    array_push($having,
+        array(
+            'binrel' => '<=',
+            'field' => 'nfoll',
+            'value' => $_POST['up_nfoll'],
+            'type' => PDO::PARAM_INT
+        )
+    );
+}
+$search_res = get_values(
+    $fields,
+    $tables,
+    $where,
+    $constraints,
+    $groupby,
+    $sqlfuncs,
+    $alias,
+    $having
+);
 echo <<<TH
 <table id='table'
 class='table'
@@ -45,6 +80,7 @@ echo '<thead>';
 create_tablehead($colsp, $labels);
 echo '</thead>';
 echo '<tbody>';
+create_tablebody($colsp, $search_res);
 echo'</tbody>';
 echo '</table>';
 ?>
