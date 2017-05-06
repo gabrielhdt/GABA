@@ -16,10 +16,9 @@ $uploadfile = $uploaddir . $fname;
 
 if (move_uploaded_file($_FILES['userpic']['tmp_name'], $uploadfile)) {
     echo "Picture is valid, and successfully uploaded.\n";
-    $id = 'id' . ucfirst($table);
     $where = array(
         array(
-            'field' => $id,
+            'field' => 'id' . ucfirst($_POST['table']),
             'value' => $_POST['id'],
             'binrel' => '=',
             'type' => PDO::PARAM_INT
