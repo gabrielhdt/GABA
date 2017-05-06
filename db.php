@@ -364,15 +364,21 @@ function get_values_light($select,
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $stmt = $conn->prepare($query);
         $qumarkcounter = 1; // ? Indexed from 1
-        foreach ($where['valtype'] as $whval)
+        if ($where)
         {
-            $stmt->bindValue($qumarkcounter, $whval['value'], $whval['type']);
-            $qumarkcounter++;
+            foreach ($where['valtype'] as $whval)
+            {
+                $stmt->bindValue($qumarkcounter, $whval['value'], $whval['type']);
+                $qumarkcounter++;
+            }
         }
-        foreach ($having['valtype'] as $hvval)
+        if ($having)
         {
-            $stmt->bindValue($qumarkcounter, $hvval['value'], $hvval['type']);
-            $qumarkcounter++;
+            foreach ($having['valtype'] as $hvval)
+            {
+                $stmt->bindValue($qumarkcounter, $hvval['value'], $hvval['type']);
+                $qumarkcounter++;
+            }
         }
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
