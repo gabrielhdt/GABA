@@ -16,11 +16,6 @@ foreach ($lines as $line)
 <form action="search_species.php" method="post" accept-charset="utf-8"
     enctype="multipart/form-data">
     <div class="form-group">
-        <label for="sel_facility">In facilities:</label>
-        <select name="idfacility[]" id="sel_facility" class="form-control" multiple>
-        <?php create_choice_list($id_faname); ?>
-        </select>
-        <br>
         <label for="low_nfoll">Having more followed individuals than:
         <input type="number" name="low_nfoll" class="form-control" id="low_nfoll">
         <label for="up_nfoll">Having fewer followed individuals than:
