@@ -217,6 +217,22 @@ function detail_select($select, $cplmts, $apply_func)
     return($select_funcs);
 }
 
+function verify_args($where, $having)
+{
+    $all_right = true;
+    foreach (array_merge($where, $having) as $input)
+    {
+        if ($input['type'] == PDO::PARAM_INT)
+        {
+            $all_right *= mb_ereg_match("/^[0-9]+$/", $input['value']);
+        }
+        elseif ($input['type'] == PDO::PARAM_STR)
+        {
+            $all_right *= mb_ereg_match("/^(\w|%|_)+$/", $input['value']);
+        }
+    }
+}
+
 function get_values(
     $select, $table, $where=array(), $constraints=array(),
     $groupby=null, $sqlfuncs=array(), $alias=array(), $having=array()
@@ -236,11 +252,11 @@ function get_values(
      * alias and sqlfuncs work the same way
      * TODO: verify each variables (regexp?)
      */
-    global $servername, $username, $dbname, $password, $charset;
-    if (!$select) {
-        echo "Nothing to select in get_values, exiting\n";
-        return(False);
+    if (!verify_args($where, $having))
+    {
+        return(false);
     }
+    global $servername, $username, $dbname, $password, $charset;
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
             $username, $password);
