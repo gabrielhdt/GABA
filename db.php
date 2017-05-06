@@ -478,7 +478,14 @@ function update_line($table, $change, $where)
         $query .= ' WHERE ';
         $query .= build_where($where);
         $query .= ';';
-        $conn->exec($query);
+        $stmt = $conn->prepare($query);
+        $qumarkcounter = 1;
+        foreach ($where as $wh)
+        {
+            $stmt->bindValue($qumarkcounter, $wh['value'], $wh['type']);
+            $qumarkcounter++;
+        }
+        $stmt->execute();
     } catch (PDOException $e) {
         echo 'Something went wrong (update_line): ' . $e->getMessage();
         return(true);
