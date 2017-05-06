@@ -107,6 +107,8 @@ nav ul ul li {
 /*-----------------------------------------------------
 JUMBOTRON : là où on écrit nos textes
 --------------------------------------------------------*/
+
+
 .jumbotron h1{
     font-family: 'Courier New';
     color: rgb(94, 94, 94);
@@ -118,7 +120,14 @@ JUMBOTRON : là où on écrit nos textes
     text-align: justify;
     font-family: 'Palatino Linotype';
     margin: 0 20px;
+display: table-cell;
+}
 
+.flotte_g {
+    float : left;
+}
+.flotte_d {
+    float : right;
 }
 
 
