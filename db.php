@@ -336,6 +336,57 @@ function get_values(
     return $rslt;
 }
 
+function get_values_light($select,
+    $tables, $where=array(), $groupby=array(), $having=array(),
+    $orderby=null)
+{
+    /* $select, tables, orderby, groupby: strings, as would appear in the
+     * sql query, but without the keywords.
+     * $where and having:
+     *  array('str' => query with ? instead of values,
+     *        'valtype' => array(
+     *            i => array('value' => value of the i-th ?,
+     *                       'type' => pdo type of value
+     *             )
+     *        )
+     *    )
+     */
+    global $servername, $username, $dbname, $password, $charset;
+    try {
+        $query = "SELECT $select FROM $tables";
+        $query .= $where ? ' WHERE '.$where['str'] : null;
+        $query .= $groupby ? ' GROUP BY '.$groupby : null;
+        $query .= $having ? ' HAVING '.$having['str'] : null;
+        $query .= $orderby ? ' ORDER BY '.$orderby : null;
+        $query .= ';';
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stmt = $conn->prepare($query);
+        $qumarkcounter = 1; // ? Indexed from 1
+        foreach ($where['valtype'] as $whval)
+        {
+            $stmt->bindValue($qumarkcounter, $whval['value'], $whval['type']);
+            $qumarkcounter++;
+        }
+        foreach ($having['valtype'] as $hvval)
+        {
+            $stmt->bindValue($qumarkcounter, $hvval['value'], $hvval['type']);
+            $qumarkcounter++;
+        }
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $rslt = $stmt->fetchAll();
+    } catch (PDOException $e) {
+        echo 'Something went wrong (get_columns): ' . $e->getMessage();
+        $conn = null;
+        return(false);
+    }
+    $conn = null;
+    return $rslt;
+}
+
+
 function get_columns($table)
 {
     /* outputs array of colummns of $table
