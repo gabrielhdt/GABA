@@ -12,7 +12,8 @@ include 'nav.php';
 <?php
 $idfollowed = $_GET['id'];
 $fields = <<<FLD
-binomial_name, common_name, gender, birth, health, death, pic_path
+binomial_name, common_name, gender, birth, health, death,
+Followed.pic_path AS pic_path
 FLD;
 $table = <<<TAB
 Followed INNER JOIN Species ON Followed.idSpecies = Species.idSpecies
@@ -39,8 +40,8 @@ $search_res = get_values_light($fields, $table, $where)[0];
 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
     <div class="intel">
         <?php
-        echo '<h1>'.$search_res['common_name'].'</h1>'; 
-        echo '<h2>'.$search_res['binomial_name'].'</h2>';
+        echo '<h1>'.ucfirst($search_res['common_name']).'</h1>'; 
+        echo '<h2>'.ucfirst($search_res['binomial_name']).'</h2>';
         ?>
         <br>
         <p>Born on <?php echo $birth; ?></p>
@@ -87,6 +88,12 @@ $search_res = get_values_light($fields, $table, $where)[0];
         <p>Last update Misc by Johnny on Tomorrow (Useless?)</p>
     </div>
 </div>
+<form action="upload_pic.php" method="post" enctype="multiplart/form-data">
+<input type="file" name="userpic">
+<input type="hidden" name="id" readonly value="<?php echo $idfollowed ?>">
+<input type="hidden" name="table" readonly value="Followed">
+<button class="btn btn-default" type="submit" name="upload_pic">Upload picture</button>
+</form>
 </body>
 
 <?php
