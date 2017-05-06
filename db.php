@@ -471,7 +471,7 @@ function update_line($table, $change, $where)
         $query = "UPDATE $table SET ";
 
         $uparr = array_map_keys(function($val, $col) {
-            return("'$col'='$val'");
+            return("$col='$val'");
         }, $change);
         $query .= implode($uparr, ', ');
 
