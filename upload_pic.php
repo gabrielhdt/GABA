@@ -9,17 +9,16 @@ include 'db.php';
  * musicbrainz for example)
  */
 $picprop = getimagesize($_FILES['userpic']['tmp_name']);
-$ext = $picprop['mime'];
-$fname = mb_substr($_POST['table'], 0, 2) . $_POST['id'] . ".$ext";
-$uploaddir = "/var/www/html/data/pics/";
-$uploadfile = $uploaddir . basename($fname);
+$ext = basename($picprop['mime']);
+$fname = mb_strtolower(mb_substr($_POST['table'], 0, 2).$_POST['id']);
+$uploaddir = "data/pics/";
+$uploadfile = $uploaddir . $fname;
 
 if (move_uploaded_file($_FILES['userpic']['tmp_name'], $uploadfile)) {
     echo "Picture is valid, and successfully uploaded.\n";
-    $id = 'id' . ucfirst($table);
     $where = array(
         array(
-            'field' => $id,
+            'field' => 'id' . ucfirst($_POST['table']),
             'value' => $_POST['id'],
             'binrel' => '=',
             'type' => PDO::PARAM_INT
