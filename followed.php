@@ -44,7 +44,7 @@ $search_res = get_values_light($fields, $table, $where)[0];
         echo '<h2>'.ucfirst($search_res['binomial_name']).'</h2>';
         ?>
         <br>
-        <p>Born on <?php echo $birth; ?></p>
+        <p>Born on <?php echo $search_res['birth']; ?></p>
         <p>Last known location: 175°120'N 074°300'W (Map?)</p>
         <br><br>
         <table>
@@ -89,7 +89,7 @@ $search_res = get_values_light($fields, $table, $where)[0];
     </div>
 </div>
 <form action="upload_pic.php" method="post" enctype="multiplart/form-data">
-<input type="file" name="userpic">
+<input type="file" name="userpic" id="userpic">
 <input type="hidden" name="id" readonly value="<?php echo $idfollowed ?>">
 <input type="hidden" name="table" readonly value="Followed">
 <button class="btn btn-default" type="submit" name="upload_pic">Upload picture</button>
