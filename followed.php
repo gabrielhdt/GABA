@@ -21,7 +21,9 @@ $where = array();
 $where['str'] = <<<WH
 Followed.idFollowed=?
 WH;
-$where['valtype'] = array('value' => $idfollowed, 'type' => PDO::PARAM_STR);
+$where['valtype'] = array(
+    array('value' => $idfollowed, 'type' => PDO::PARAM_STR)
+);
 $search_res = get_values_light($fields, $table, $where)[0];
 ?>
 
