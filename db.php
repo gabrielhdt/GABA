@@ -228,12 +228,12 @@ function verify_args($where, $having)
             {
                 foreach ($input['value'] as $iv)
                 {
-                    $all_right *= mb_ereg_match("/^[0-9]+$/", $iv);
+                    $all_right *= preg_match("/^[0-9]+$/", $iv);
                 }
             }
             else
             {
-                $all_right *= mb_ereg_match("/^[0-9]+$/", $input['value']);
+                $all_right *= preg_match("/^[0-9]+$/", $input['value']);
             }
         }
         elseif ($input['type'] == PDO::PARAM_STR)
@@ -242,12 +242,12 @@ function verify_args($where, $having)
             {
                 foreach ($input['value'] as $iv)
                 {
-                    $all_right *= mb_ereg_match("/^(\w|%|_)+$/", $iv);
+                    $all_right *= preg_match("/^(\w|%|_|-)+$/", $iv);
                 }
             }
             else
             {
-                $all_right *= mb_ereg_match("/^(\w|%|_)+$/", $input['value']);
+                $all_right *= preg_match("/^(\w|%|_|-)+$/", $input['value']);
             }
         }
     }
