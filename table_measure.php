@@ -9,11 +9,27 @@
 include 'db.php';
 
 function table_type($idFollowed, $type){
+    $constraints = array('MiscQuantity.idMeasure' => 'Measure.idMeasure');
+    $table = array('MiscQuantity', 'Measure');
+    $where = array(
+        array(
+            'binrel' => '=',
+            'field' => 'Measure.idFollowed',
+            'value' =>  "$idFollowed",
+            'type' => PDO::PARAM_STR
+        ),
+        array(
+            'binrel' => '=',
+            'field' => 'MiscQuantity.type',
+            'value' =>  "$type",
+            'type' => PDO::PARAM_STR
+        )
+    ); // + and id =, order by date_measure
     $result = get_values(
-        array('DISTINCT MiscQuantity.value, MiscQuantity.unit, Measure.date_measure'),
-        'MiscQuantity INNER JOIN Measure ON MiscQuantity.idMeasure = Measure.idMeasure',
-        $where=array(array('binrel' => '=', 'field' => 'Measure.idFollowed', 'value' =>  "$idFollowed", 'type' => PDO::PARAM_STR),
-                     array('binrel' => '=', 'field' => 'MiscQuantity.type', 'value' =>  "$type", 'type' => PDO::PARAM_STR))); // + and id =, order by date_measure
+        array('MiscQuantity.value', 'MiscQuantity.unit',
+        'Measure.date_measure'),
+        $table, $where, $constraints
+    );
     $tableType = "<h1>$type</h1>\n<table>\n";
     $val = array();
     $unit = array();
