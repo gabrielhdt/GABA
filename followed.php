@@ -32,7 +32,7 @@ $search_res = get_values_light($fields, $table, $where)[0];
     <div class="pic">
         <?php
         echo '<img src="'.$search_res['pic_path'].
-            '" class = "img-responsive" style="width:100%;height:100%;"/>';
+            '" class = "img-responsive">';
         ?>
         <p>Painting of a swedish gator hunting in his natural habitat.</p>
     </div>
@@ -88,11 +88,11 @@ $search_res = get_values_light($fields, $table, $where)[0];
         <p>Last update Misc by Johnny on Tomorrow (Useless?)</p>
     </div>
 </div>
-<form action="upload_pic.php" method="post" enctype="multiplart/form-data">
-<input type="file" name="userpic" id="userpic">
+<form action="upload_pic.php" method="post" enctype="multipart/form-data">
 <input type="hidden" name="id" readonly value="<?php echo $idfollowed ?>">
 <input type="hidden" name="table" readonly value="Followed">
-<button class="btn btn-default" type="submit" name="upload_pic">Upload picture</button>
+<input type="file" name="userpic">
+<button type="submit" class="btn btn-default">Upload pic</button>
 </form>
 </body>
 
