@@ -231,6 +231,7 @@ function verify_args($where, $having)
             $all_right *= mb_ereg_match("/^(\w|%|_)+$/", $input['value']);
         }
     }
+    return($all_right);
 }
 
 function get_values(
