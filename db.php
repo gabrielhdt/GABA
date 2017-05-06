@@ -224,11 +224,31 @@ function verify_args($where, $having)
     {
         if ($input['type'] == PDO::PARAM_INT)
         {
-            $all_right *= mb_ereg_match("/^[0-9]+$/", $input['value']);
+            if (is_array($input['value']))
+            {
+                foreach ($input['value'] as $iv)
+                {
+                    $all_right *= mb_ereg_match("/^[0-9]+$/", $iv);
+                }
+            }
+            else
+            {
+                $all_right *= mb_ereg_match("/^[0-9]+$/", $input['value']);
+            }
         }
         elseif ($input['type'] == PDO::PARAM_STR)
         {
-            $all_right *= mb_ereg_match("/^(\w|%|_)+$/", $input['value']);
+            if (is_array($input['value']))
+            {
+                foreach ($input['value'] as $iv)
+                {
+                    $all_right *= mb_ereg_match("/^(\w|%|_)+$/", $iv);
+                }
+            }
+            else
+            {
+                $all_right *= mb_ereg_match("/^(\w|%|_)+$/", $input['value']);
+            }
         }
     }
     return($all_right);
