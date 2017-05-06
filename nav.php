@@ -13,7 +13,7 @@ function current_nav() {
     // definition des liens et du texte a afficher dans la navbar
     $links = array('index.php', 'labo.php', 'recherche.php', 'help.php', 'espece.php', 'search_followed.php',
                     'batiment.php', 'chercheur.php', 'index.php#contact', 'login.php', 'membre_index.php',
-                    'deconnexion.php', 'admin_index.php');
+                    'logout.php', 'admin_index.php');
     $text = array('Accueil', 'Notre Labo', 'Recherche', 'Help', 'Espèce', 'Individu', 'Bâtiment', 'Chercheur',
                     'Conctact', 'Connexion', 'Espace Perso', 'Déconnexion');
 
