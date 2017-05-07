@@ -10,4 +10,4 @@
     crossorigin=""/>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/nav_size.css">
-<link rel="icon" href="image/icon.png">
+<link rel="icon" href="image/icon.svg">
