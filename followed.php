@@ -78,7 +78,7 @@ $loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
 <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
     <div class="intel">
         <?php
-        echo '<h1>'.ucfirst($search_res['common_name']).'</h1>';
+        echo '<h1>'.ucfirst($search_res['binomial_name']).'</h1>';
         ?>
         <p>
             Last known location:
