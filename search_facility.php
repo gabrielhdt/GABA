@@ -51,46 +51,29 @@ foreach ($lines as $line)
 <?php
 $colsp = array('idSpecies', 'binomial_name', 'nfoll');
 $labels = array('Identifier', 'Binomial name', 'Number of followed individuals');
-$fields = array('Species.idSpecies', 'binomial_name', 'idFollowed');
-$tables = array('Species', 'Followed');
-$where = array();
-$constraints = array('Species.idSpecies' => 'Followed.idSpecies');
-$groupby = 'Species.idSpecies';
-$sqlfuncs = array(2 => 'COUNT');
-$having = array();
-$alias = array(2 => 'nfoll');
+
+$fields = <<<FLD
+Facility.idFacility, Facility.name AS fa_name,
+COUNT(Followed.idFollowed) as nfoll, COUNT(Staff.idStaff) as nstaff
+FLD;
+$groupby = 'Facility.idFacility';
+
 if (isset($_POST['low_nfoll']) && !empty($_POST['low_nfoll']))
 {
-    array_push($having,
-        array(
-            'binrel' => '>=',
-            'field' => 'nfoll',
-            'value' => $_POST['low_nfoll'],
-            'type' => PDO::PARAM_INT
-        )
+    $having['str'] = 'COUNT(Followed.idFollowed)>=?';
+    $having['valtype'] = array(
+        array('value' => $_POST['low_nfoll'], 'type' => PDO::PARAM_STR)
     );
 }
 if (isset($_POST['up_nfoll']) && !empty($_POST['up_nfoll']))
 {
-    array_push($having,
-        array(
-            'binrel' => '<=',
-            'field' => 'nfoll',
-            'value' => $_POST['up_nfoll'],
-            'type' => PDO::PARAM_INT
-        )
-    );
+    $tmp_str = 'COUNT(Followed.idFollowed)<=?';
+    $having['str'] = isset($having['str']) ?
+        $having['str'] . ' AND '.$tmp_str : $tmp_str; 
+    $tmp_hv = array('value' => $_POST['low_nfoll'], 'type' => PDO::PARAM_STR);
+    $having['valtype'] = isset($having['valtype']) ?
+        array_merge($having['valtype'], $tmp_hv) : $tmp_hv;
 }
-$search_res = get_values(
-    $fields,
-    $tables,
-    $where,
-    $constraints,
-    $groupby,
-    $sqlfuncs,
-    $alias,
-    $having
-);
 echo !$search_res ? "Error while querying" : null;
 echo <<<TH
 <table id='table'
