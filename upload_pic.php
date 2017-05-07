@@ -10,7 +10,7 @@ include 'db.php';
  */
 $picprop = getimagesize($_FILES['userpic']['tmp_name']);
 $ext = basename($picprop['mime']);
-$fname = mb_strtolower(mb_substr($_POST['table'], 0, 2).$_POST['id']).$ext;
+$fname = mb_strtolower(mb_substr($_POST['table'], 0, 2).$_POST['id']).".$ext";
 $uploaddir = "data/pics/";
 $uploadfile = $uploaddir . $fname;
 
