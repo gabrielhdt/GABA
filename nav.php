@@ -52,11 +52,10 @@ function current_nav() {
     } else {
         if ($_SESSION['login'] == 'admin'){
             $nav .= sprintf($format, ($page_name == 'admin_index.php') ? "class='active'" : "", $links[12], "", $text[10]);
-            $nav .= sprintf($format, "", $links[11], "<span class='glyphicon glyphicon-log-out'></span>", $text[11])."</ul>";
         } else {
             $nav .= sprintf($format, ($page_name == 'membre_index.php') ? "class='active'" : "", $links[10], "", $text[10]);
-            $nav .= sprintf($format, "", $links[11], "<span class='glyphicon glyphicon-log-out'></span>", $text[11])."</ul>";
         }
+        $nav .= sprintf($format, "", $links[11], "<span class='glyphicon glyphicon-log-out'></span>", $text[11])."</ul>";
     }
     return $nav;
 }
