@@ -20,7 +20,7 @@ function info_followed_table ($id) {
     "Followed", $where);
     $table = "<table>\n";
     foreach ($infos[0] as $key => $value) {
-        $table .= "<tr><td>$key</td><td>$value</td></tr>\n";
+        $table .= "<tr><td>$key</td><td>".($value ? $value : 'null')"</td></tr>\n";
     }
     $table .= "</table>\n";
     echo $table;
