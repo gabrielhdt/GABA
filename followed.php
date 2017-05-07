@@ -79,10 +79,7 @@ $loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
     <div class="intel">
         <?php
         echo '<h1>'.ucfirst($search_res['common_name']).'</h1>';
-        echo '<h2>'.ucfirst($search_res['binomial_name']).'</h2>';
         ?>
-        <br>
-        <p>Born on <?php echo $search_res['birth']; ?></p>
         <p>
             Last known location:
             <?php echo $loc['latitude'] . 'W ' . $loc['longitude'] . 'N'; ?>
