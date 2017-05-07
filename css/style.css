@@ -1,3 +1,31 @@
+/******************************************************************************
+ * FONTS
+ *****************************************************************************/
+@font-face {
+    font-family: "Linux Libertine"
+    src: url("../data/fonts/LinLibertine_R.woff") format('woff');
+    font-style: normal;
+    font-variant: normal;
+}
+@font-face {
+    font-family: "Linux Libertine"
+    src: url("../data/fonts/LinLibertine_R.woff") format('woff');
+    font-style: normal;
+    font-variant: historical-ligatures;
+}
+@font-face {
+    font-family: "Linux Libertine"
+    src: url("../data/fonts/LinLibertine_I.woff") format('woff');
+    font-style: italic;
+    font-variant: normal;
+}
+@font-face {
+    font-family: "Linux Libertine"
+    src: url("../data/fonts/LinLibertine_B.woff") format('woff');
+    font-style: normal;
+    font-variant: normal;
+    font-weight: bold;
+}
 /*-------------------
 logo
 ---------------------------*/
@@ -100,7 +128,7 @@ nav ul ul li {
 .container .description p {
     font-size: 20px;
     text-align: center;
-    font-family: 'Palatino Linotype';
+    font-family: 'Linux Libertine';
     margin: 20px 20px;
 }
 
@@ -118,7 +146,7 @@ JUMBOTRON : là où on écrit nos textes
 .jumbotron p {
     font-size: 20px;
     text-align: justify;
-    font-family: 'Palatino Linotype';
+    font-family: 'Linux Libertine';
     margin: 0 20px;
 display: table-cell;
 }
@@ -172,14 +200,14 @@ display: table-cell;
 
 .carousel-caption h1 {
     font-size: 5em;
-    font-family: cursive, 'Palatino Linotype';
+    font-family: cursive, 'Linux Libertine';
     padding-bottom: .4em;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .carousel-caption p {
     font-size: 2em;
-    font-family: cursive, 'Palatino Linotype';
+    font-family: cursive, 'Linux Libertine';
     padding-right: 10px;
     text-shadow: -1px 0 rgb(27, 27, 26), 0 1px rgb(27, 27, 26), 1px 0 rgb(27, 27, 26), 0 -1px rgb(27, 27, 26);
     background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.37), rgba(255, 255, 255, 0));
@@ -194,7 +222,7 @@ display: table-cell;
 
 .carousel-caption p.legende {
     font-size: 1.5em;
-    font-family: cursive, 'Palatino Linotype';
+    font-family: cursive, 'Linux Libertine';
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     padding-bottom: 15px;
 }
@@ -220,7 +248,7 @@ display: table-cell;
 
 .container2 .description p {
     font-size: 20px;
-    font-family: 'Palatino Linotype';
+    font-family: 'Linux Libertine';
     margin: 20px 20px;
 }
 
@@ -244,7 +272,7 @@ display: table-cell;
 }
 
 #contact p {
-    font-family: 'Palatino Linotype';
+    font-family: 'Linux Libertine';
     font-size: 1.2em;
     width: 75%;
     margin: auto;
@@ -529,7 +557,7 @@ recherche.php
 .container3 .description p {
     font-size: 20px;
     text-align: center;
-    font-family: 'Palatino Linotype';
+    font-family: 'Linux Libertine';
     margin: 20px 20px;
 }
 
@@ -564,7 +592,7 @@ recherche.php
 .container4 .description p {
     font-size: 20px;
     text-align: center;
-    font-family: 'Palatino Linotype';
+    font-family: 'Linux Libertine';
     margin: 20px 20px;
 }
 
@@ -599,7 +627,7 @@ recherche.php
 .container5 .description p {
     font-size: 20px;
     text-align: center;
-    font-family: 'Palatino Linotype';
+    font-family: 'Linux Libertine';
     margin: 20px 20px;
 }
 #msg {
@@ -648,12 +676,12 @@ recherche.php
 
 .pic p {
     text-align: right;
-    font-family: 'Palatino Linotype';
+    font-family: 'Linux Libertine';
     font-style: italic;
 }
 
 .intel {
-    font-family: 'Palatino Linotype';
+    font-family: 'Linux Libertine';
 }
 
 .intel h2 {
@@ -663,7 +691,7 @@ recherche.php
 
 
 table {
-    font-family: 'Palatino Linotype';
+    font-family: 'Linux Libertine';
     border-collapse: collapse;
     width: 100%;
 }
