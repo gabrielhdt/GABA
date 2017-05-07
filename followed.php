@@ -80,34 +80,35 @@ $loc = get_values_light($fields, $table, $where, $groupby, $having);
                 <th>Value</th>
                 <th>Editor</th>
                 <th>Date</th>
+                <th>Edit</th>
             </tr>
             <tr>
                 <td>Health</td>
                 <td>Undead</td>
                 <td>John</td>
                 <td>03/05/2017</td>
-                <td><button class="btn btn-success" type="submit" name="submit_contact">Edit</button></td>
+                <td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a></td>
             </tr>
             <tr>
                 <td>Size</td>
                 <td>175183770845391pm</td>
                 <td>John</td>
                 <td>03/05/2017</td>
-                <td><button class="btn btn-success" type="submit" name="submit_contact">Edit</button></td>
+                <td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a></td>
             </tr>
             <tr>
                 <td>Weight</td>
                 <td>20lbs</td>
                 <td>Me</td>
                 <td>01:47</td>
-                <td><button class="btn btn-success" type="submit" name="submit_contact">Edit</button></td>
+                <td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a></td>
             </tr>
             <tr>
                 <td>Misc</td>
                 <td>$59.99</td>
                 <td>Johnny</td>
                 <td>Tomorrow</td>
-                <td><button class="btn btn-success" type="submit" name="submit_contact">Edit</button></td>
+                <td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a></td>
             </tr>
         </table>
         <p>Last update Misc by Johnny on Tomorrow (Useless?)</p>
