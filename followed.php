@@ -37,20 +37,16 @@ $search_res = get_values_light($fields, $table, $where)[0];
 $fields = "latitude, longitude";
 $table = "Location INNER JOIN Measure ON Location.idMeasure=Measure.idMeasure";
 $wherestr = "Measure.idFollowed=?";
-$where = array(
-    'str' => $wherestr,
-    array(
-        'valtype' => array(
-            array('value' => $idfollowed, 'type' => PDO::PARAM_INT)
-        )
-    )
+$where = array();
+$where['str'] = 'Measure.idFollowed=?';
+$where['valtype'] = array(
+    array('value' => $idfollowed, 'type' => PDO::PARAM_INT)
 );
 $groupby = 'date_measure';
 $having = array(
     'str' => 'date_measure=MAX(date_measure)'
 );
 $loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
-
 ?>
 
 <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
