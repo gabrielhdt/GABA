@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['login']) && $_SESSION['login'] == 'admin') { // test si l'utilisateur est bien passé par le formulaire
+    header ('Location: login.php'); // sinon retour page login
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <?php
@@ -59,7 +67,7 @@ $loc = get_values_light($fields, $table, $where, $groupby, $having);
 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
     <div class="intel">
         <?php
-        echo '<h1>'.ucfirst($search_res['common_name']).'</h1>'; 
+        echo '<h1>'.ucfirst($search_res['common_name']).'</h1>';
         echo '<h2>'.ucfirst($search_res['binomial_name']).'</h2>';
         ?>
         <br>
@@ -75,33 +83,31 @@ $loc = get_values_light($fields, $table, $where, $groupby, $having);
             </tr>
             <tr>
                 <td>Health</td>
-                <td>Undead
-                    <button class="btn btn-success" type="submit" name="submit_contact">Edit</button>
-                </td>
+                <td>Undead</td>
                 <td>John</td>
                 <td>03/05/2017</td>
+                <td><button class="btn btn-success" type="submit" name="submit_contact">Edit</button></td>
             </tr>
             <tr>
                 <td>Size</td>
-                <td>175183770845391pm
-                    <button class="btn btn-success" type="submit" name="submit_contact">Edit</button>
-                </td>
+                <td>175183770845391pm</td>
                 <td>John</td>
                 <td>03/05/2017</td>
+                <td><button class="btn btn-success" type="submit" name="submit_contact">Edit</button></td>
             </tr>
             <tr>
                 <td>Weight</td>
-                <td>20lbs
-                    <button class="btn btn-success" type="submit" name="submit_contact">Edit</button></td>
+                <td>20lbs</td>
                 <td>Me</td>
                 <td>01:47</td>
+                <td><button class="btn btn-success" type="submit" name="submit_contact">Edit</button></td>
             </tr>
             <tr>
                 <td>Misc</td>
-                <td>$59.99
-                    <button class="btn btn-success" type="submit" name="submit_contact">Edit</button></td>
+                <td>$59.99</td>
                 <td>Johnny</td>
                 <td>Tomorrow</td>
+                <td><button class="btn btn-success" type="submit" name="submit_contact">Edit</button></td>
             </tr>
         </table>
         <p>Last update Misc by Johnny on Tomorrow (Useless?)</p>
