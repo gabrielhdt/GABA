@@ -1,3 +1,9 @@
+<?php
+// session_start();
+// $edit = (isset($_SESSION['login']) && $_SESSION['login'] != 'admin') ? true : false; // autoriastion de l'edition pour un membre mais pas l'admin
+$edit = false;
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <?php
@@ -59,7 +65,7 @@ $loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
     <div class="intel">
         <?php
-        echo '<h1>'.ucfirst($search_res['common_name']).'</h1>'; 
+        echo '<h1>'.ucfirst($search_res['common_name']).'</h1>';
         echo '<h2>'.ucfirst($search_res['binomial_name']).'</h2>';
         ?>
         <br>
@@ -76,36 +82,55 @@ $loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
                 <th>Value</th>
                 <th>Editor</th>
                 <th>Date</th>
+                <?php
+                if ($edit) {
+                    echo "<th>Edit</th>";
+                }
+                ?>
             </tr>
             <tr>
                 <td>Health</td>
-                <td>Undead
-                    <button class="btn btn-success" type="submit" name="submit_contact">Edit</button>
-                </td>
+                <td>Undead</td>
                 <td>John</td>
                 <td>03/05/2017</td>
+                <?php
+                if ($edit) {
+                    echo "<td><a href='#'><span class='glyphicon glyphicon-pencil'></span></a></td>";
+                }
+                ?>
             </tr>
             <tr>
                 <td>Size</td>
-                <td>175183770845391pm
-                    <button class="btn btn-success" type="submit" name="submit_contact">Edit</button>
-                </td>
+                <td>175183770845391pm</td>
                 <td>John</td>
                 <td>03/05/2017</td>
+                <?php
+                if ($edit) {
+                    echo "<td><a href='#'><span class='glyphicon glyphicon-pencil'></span></a></td>";
+                }
+                ?>
             </tr>
             <tr>
                 <td>Weight</td>
-                <td>20lbs
-                    <button class="btn btn-success" type="submit" name="submit_contact">Edit</button></td>
+                <td>20lbs</td>
                 <td>Me</td>
                 <td>01:47</td>
+                <?php
+                if ($edit) {
+                    echo "<td><a href='#'><span class='glyphicon glyphicon-pencil'></span></a></td>";
+                }
+                ?>
             </tr>
             <tr>
                 <td>Misc</td>
-                <td>$59.99
-                    <button class="btn btn-success" type="submit" name="submit_contact">Edit</button></td>
+                <td>$59.99</td>
                 <td>Johnny</td>
                 <td>Tomorrow</td>
+                <?php
+                if ($edit) {
+                    echo "<td><a href='#'><span class='glyphicon glyphicon-pencil'></span></a></td>";
+                }
+                ?>
             </tr>
         </table>
         <p>Last update Misc by Johnny on Tomorrow (Useless?)</p>

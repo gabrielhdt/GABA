@@ -15,7 +15,7 @@ function current_nav() {
                     'batiment.php', 'chercheur.php', 'index.php#contact', 'login.php', 'membre_index.php',
                     'logout.php', 'admin_index.php');
     $text = array('Accueil', 'Notre Labo', 'Recherche', 'Help', 'Espèce', 'Individu', 'Bâtiment', 'Chercheur',
-                    'Conctact', 'Connexion', 'Espace Perso', 'Déconnexion');
+                    'Contact', 'Connexion', 'Espace Perso', 'Déconnexion');
 
     $format = "<li %s><a href='%s'>%s %s</a></li>\n";
     // on cherche le nom de la page en cours
