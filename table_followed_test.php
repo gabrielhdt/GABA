@@ -13,18 +13,12 @@ function type_measure ($idFollowed) {
     return unique_type;
 }
 
-function info_followed_table ($id) {
-    $where['str'] = 'idFollowed=?';
+function last_measure($id, $measure) {
+    $where['str'] = 'idFollowed=? AND ';
     $where['valtype'] = array(array('value' => $id, 'type' => PDO::PARAM_INT));
-    $infos = get_values_light("gender, birth, death, health, idSpecies, idFacility, annotation",
-    "Followed", $where);
-    $table = "<table>\n";
-    foreach ($infos[0] as $key => $value) {
-        $table .= "<tr><td>$key</td><td>".($value ? $value : 'null')."</td></tr>\n";
-    }
-    $table .= "</table>\n";
-    echo $table;
+    $measures = type_measure($id);
+
 }
 
-info_followed_table(14);
+
 ?>
