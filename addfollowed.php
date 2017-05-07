@@ -84,14 +84,18 @@ if (isset($_POST['species']))
         );
         if (isset($_POST['use_geoloc']) && $_POST['use_geoloc'] == 'on')
         {
+            $idmeasure = add_line('Measure',
+                array(
+                    'idFollowed' => $added_id,
+                    'idStaff' => $_SESSION['idstaff']
+                )
+            );
             $gnss_coord = get_last_coord();
             add_line('Location',
                 array(
-                    'lat' => $gnss_coord['lat'],
-                    'long' => $gnss_coord['long'],
-                    'idFollowed' => $added_id,
-                    'idStaff' => $_SESSION['idstaff'],
-                    'date_measure' => $gnss_coord['time']
+                    'latitude' => $gnss_coord['lat'],
+                    'longitude' => $gnss_coord['long'],
+                    'idMeasure' => $idmeasure
                 )
             );
         }
@@ -111,7 +115,6 @@ document.getElementById('use_geoloc').onclick = function() {
                 data: {
                     geoloc_lat: position.coords.latitude,
                     geoloc_long: position.coords.longitude,
-                    geoloc_time: position.timestamp,
                     }
                 });
         });
