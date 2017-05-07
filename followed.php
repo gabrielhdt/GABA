@@ -49,7 +49,7 @@ $groupby = 'date_measure';
 $having = array(
     'str' => 'date_measure=MAX(date_measure)'
 );
-$loc = get_values_light($fields, $table, $where, $groupby, $having);
+$loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
 
 ?>
 
@@ -70,7 +70,11 @@ $loc = get_values_light($fields, $table, $where, $groupby, $having);
         ?>
         <br>
         <p>Born on <?php echo $search_res['birth']; ?></p>
-        <p>Last known location: 175°120'N 074°300'W (Map?)</p>
+        <p>
+            Last known location:
+            <?php echo $loc['latitude'] . 'W ' . $loc['longitude'] . 'N'; ?>
+            (Map?)
+        </p>
         <br><br>
         <table>
             <tr>
