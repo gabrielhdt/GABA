@@ -3,6 +3,9 @@ session_start();
 $edit = isset($_SESSION['login']) && $_SESSION['login'] != 'admin'; // autoriastion de l'edition pour un membre mais pas l'admin
 // $edit = false;
 function info_followed_table ($id) {
+    /*************************************************
+    affiche les informations de l'anniaml d'id $id
+    *************************************************/
     $select = "gender, birth, death, health, Species.binomial_name,
 Facility.name, Followed.annotation";
     $from = "Followed INNER JOIN Species ON Species.idSpecies = Followed.idSpecies
@@ -85,67 +88,9 @@ $loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
             <?php echo $loc['latitude'] . 'W ' . $loc['longitude'] . 'N'; ?>
             (Map?)
         </p>
-        <br><br>
-        <h1>Informations générales</h1>
-        <?php info_followed_table($idfollowed); ?>
-        <br><br>
-        <table>
-            <tr>
-                <th></th>
-                <th>Value</th>
-                <th>Editor</th>
-                <th>Date</th>
-                <?php
-                if ($edit) {
-                    echo "<th>Edit</th>";
-                }
-                ?>
-            </tr>
-            <tr>
-                <td>Health</td>
-                <td>Undead</td>
-                <td>John</td>
-                <td>03/05/2017</td>
-                <?php
-                if ($edit) {
-                    echo "<td><a href='#'><span class='glyphicon glyphicon-pencil'></span></a></td>";
-                }
-                ?>
-            </tr>
-            <tr>
-                <td>Size</td>
-                <td>175183770845391pm</td>
-                <td>John</td>
-                <td>03/05/2017</td>
-                <?php
-                if ($edit) {
-                    echo "<td><a href='#'><span class='glyphicon glyphicon-pencil'></span></a></td>";
-                }
-                ?>
-            </tr>
-            <tr>
-                <td>Weight</td>
-                <td>20lbs</td>
-                <td>Me</td>
-                <td>01:47</td>
-                <?php
-                if ($edit) {
-                    echo "<td><a href='#'><span class='glyphicon glyphicon-pencil'></span></a></td>";
-                }
-                ?>
-            </tr>
-            <tr>
-                <td>Misc</td>
-                <td>$59.99</td>
-                <td>Johnny</td>
-                <td>Tomorrow</td>
-                <?php
-                if ($edit) {
-                    echo "<td><a href='#'><span class='glyphicon glyphicon-pencil'></span></a></td>";
-                }
-                ?>
-            </tr>
-        </table>
+        <h1>Informations générales :</h1>
+        <?php info_followed_table($idfollowed); ?>  <!-- tableau d'informations générales -->
+
         <p>Last update Misc by Johnny on Tomorrow (Useless?)</p>
     </div>
 </div>
