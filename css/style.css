@@ -4,20 +4,27 @@
 @font-face {
     font-family: "Linux Libertine";
     src: url("../data/fonts/LinLibertine_R.woff") format('woff');
-    font-style: normal;
-    font-variant: normal;
 }
 @font-face {
     font-family: "Linux Libertine";
     src: url("../data/fonts/LinLibertine_R.woff") format('woff');
-    font-style: normal;
     font-variant: historical-ligatures;
 }
 @font-face {
     font-family: "Linux Libertine";
     src: url("../data/fonts/LinLibertine_RI.woff") format('woff');
     font-style: italic;
-    font-variant: normal;
+}
+@font-face {
+    font-family: "Linux Libertine";
+    src: url("../data/fonts/LinLibertine_RZ.woff") format('woff');
+    font-weight: 600; /* Semi bold */
+}
+@font-face {
+    font-family: "Linux Libertine";
+    src: url("../data/fonts/LinLibertine_RZI.woff") format('woff');
+    font-style: italic;
+    font-weight: 600;
 }
 @font-face {
     font-family: "Linux Libertine";
@@ -25,6 +32,12 @@
     font-style: normal;
     font-variant: normal;
     font-weight: bold;
+}
+@font-face {
+    font-family: "Linux Libertine";
+    src: url("../data/fonts/LinLibertine_aS.woff") format('woff');
+    font-style: normal;
+    font-variant: small-caps;
 }
 @font-face {
     font-family: "Linux Biolinum";
@@ -43,6 +56,12 @@
     src: url("../data/fonts/LinBiolinum_RB.woff") format('woff');
     font-style: normal;
     font-weight: bold;
+}
+@font-face {
+    font-family: "Linux Biolinum";
+    src: url("../data/fonts/LinBiolinum_aS.woff") format('woff');
+    font-style: normal;
+    font-variant: small-caps;
 }
 /*-------------------
 logo
@@ -64,8 +83,9 @@ __________________________________________*/
 .navbar {
     border-radius: 0;
     margin: 50px 0;
-    font-family: 'Courier New';
+    font-family: 'Linux Biolinum';
     font-size: 20px;
+    font-variant: small-caps;
 }
 
 .navbar-brand {
