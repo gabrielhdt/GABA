@@ -66,8 +66,7 @@ $having = array(
 );
 $loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
 ?>
-
-<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
     <div class="pic">
         <?php
         echo '<img src="'.$search_res['pic_path'].
@@ -75,7 +74,8 @@ $loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
         ?>
     </div>
 </div>
-<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
     <div class="intel">
         <?php
         echo '<h1>'.ucfirst($search_res['common_name']).'</h1>';
