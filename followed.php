@@ -1,9 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['login']) && $_SESSION['login'] == 'admin') { // test si l'utilisateur est bien passé par le formulaire
-    header ('Location: login.php'); // sinon retour page login
-    exit();
-}
+$edit = (isset($_SESSION['login']) && $_SESSION['login'] != 'admin') ? true : false; // autoriastion de l'edition pour un membre mais pas l'admin
 ?>
 
 <!DOCTYPE html>
@@ -80,35 +77,55 @@ $loc = get_values_light($fields, $table, $where, $groupby, $having);
                 <th>Value</th>
                 <th>Editor</th>
                 <th>Date</th>
-                <th>Edit</th>
+                <?php
+                if ($edit) {
+                    echo "<th>Edit</th>";
+                }
+                ?>
             </tr>
             <tr>
                 <td>Health</td>
                 <td>Undead</td>
                 <td>John</td>
                 <td>03/05/2017</td>
-                <td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                <?php
+                if ($edit) {
+                    echo "<td><a href='#'><span class='glyphicon glyphicon-pencil'></span></a></td>";
+                }
+                ?>
             </tr>
             <tr>
                 <td>Size</td>
                 <td>175183770845391pm</td>
                 <td>John</td>
                 <td>03/05/2017</td>
-                <td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                <?php
+                if ($edit) {
+                    echo "<td><a href='#'><span class='glyphicon glyphicon-pencil'></span></a></td>";
+                }
+                ?>
             </tr>
             <tr>
                 <td>Weight</td>
                 <td>20lbs</td>
                 <td>Me</td>
                 <td>01:47</td>
-                <td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                <?php
+                if ($edit) {
+                    echo "<td><a href='#'><span class='glyphicon glyphicon-pencil'></span></a></td>";
+                }
+                ?>
             </tr>
             <tr>
                 <td>Misc</td>
                 <td>$59.99</td>
                 <td>Johnny</td>
                 <td>Tomorrow</td>
-                <td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                <?php
+                if ($edit) {
+                    echo "<td><a href='#'><span class='glyphicon glyphicon-pencil'></span></a></td>";
+                }
+                ?>
             </tr>
         </table>
         <p>Last update Misc by Johnny on Tomorrow (Useless?)</p>
