@@ -14,11 +14,13 @@ function type_measure ($idFollowed) {
 }
 
 function info_followed_table ($id) {
-    $from = "Followed INNER JOIN Species ON Species.idSpecies = Followed.idSpecies INNER JOIN Facility ON Facility.idFacility";
+    $select = "gender, birth, death, health, Species.binomial_name,
+Facility.name, Followed.annotation";
+    $from = "Followed INNER JOIN Species ON Species.idSpecies = Followed.idSpecies
+INNER JOIN Facility ON Facility.idFacility";
     $where['str'] = 'idFollowed=?';
     $where['valtype'] = array(array('value' => $id, 'type' => PDO::PARAM_INT));
-    $infos = get_values_light("gender, birth, death, health, Species.binomial_name, Facility.name, Followed.annotation",
-    $from, $where);
+    $infos = get_values_light($select, $from, $where);
     $table = "<table>\n";
     foreach ($infos[0] as $key => $value) {
         $table .= "<tr><td>$key</td><td>".($value ? $value : 'null')."</td></tr>\n";
