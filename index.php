@@ -87,7 +87,7 @@
                     <input type="text" name="name" placeholder="Votre nom*" required>
                     <input type="email" name="email" placeholder="Votre e-mail*" required>
                     <textarea name="msg" rows="8" cols="80" placeholder="Votre message*"></textarea>
-                    <button type="sumbit" name="submit_contact" onclick="addMsg()" class="btn btn-success">Envoyer le message</button>
+                    <button name="submit_contact" onclick="addMsg()" class="btn btn-success">Envoyer le message</button>
                 </form>
                 <div id='res_msg'>
                     <!--message envoi de msg-->
