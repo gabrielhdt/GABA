@@ -84,8 +84,8 @@
                 <p>Vous voulez communiquer avec un de nos chercheurs ? Lui poser des questions sur ses recherches et données ? Vous n'avez qu'à communiquer vos contacts et nous vous mettrons en relation rapidemment.</p>
                 <p>N'hésitez pas non plus à faire part de vos remarques et suggestions dans le but d'améliorer l'utilisation du site.</p>
                 <div class="form-group">
-                    <input type="text" name="name" placeholder="Votre nom*" required>
-                    <input type="email" name="email" placeholder="Votre e-mail*" required>
+                    <input type="text" name="name" placeholder="Votre nom*">
+                    <input type="email" name="email" placeholder="Votre e-mail*">
                     <textarea name="msg" rows="8" cols="80" placeholder="Votre message*"></textarea>
                     <button name="submit_contact" onclick="addMsg()" class="btn btn-success">Envoyer le message</button>
                 </div>
