@@ -13,7 +13,7 @@ foreach ($lines as $line)
 ?>
 <body>
 <?php include "nav.php"; ?>
-<form action="search_species.php" method="post" accept-charset="utf-8"
+<form action="search_facility.php" method="post" accept-charset="utf-8"
     enctype="multipart/form-data">
     <div class="form-group">
         <label for="sel_species">Having species:</label>
@@ -54,7 +54,7 @@ $labels = array('Identifier', 'Facility name', 'Number of followed individuals')
 
 $fields = <<<FLD
 Facility.idFacility, Facility.name AS fa_name,
-COUNT(Followed.idFollowed) as nfoll, COUNT(Staff.idStaff) as nstaff
+COUNT(Followed.idFollowed) as nfoll
 FLD;
 $tables = 'Facility, Followed';
 $where['str'] = 'Facility.idFacility=Followed.idFollowed';
