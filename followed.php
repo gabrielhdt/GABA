@@ -70,7 +70,6 @@ $loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
         echo '<img src="'.$search_res['pic_path'].
             '" class = "img-responsive">';
         ?>
-        <p>Painting of a swedish gator hunting in his natural habitat.</p>
     </div>
 </div>
 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
@@ -87,6 +86,7 @@ $loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
             (Map?)
         </p>
         <br><br>
+        <h1>Informations générales</h1>
         <?php info_followed_table($idfollowed); ?>
         <br><br>
         <table>
