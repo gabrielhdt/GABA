@@ -34,7 +34,7 @@
     font-weight: bold;
 }
 @font-face {
-    font-family: "Linux Libertine";
+    font-family: "Linux Libertine sc";
     src: url("../data/fonts/LinLibertine_aS.woff") format('woff');
     font-style: normal;
     font-variant: small-caps;
@@ -58,7 +58,7 @@
     font-weight: bold;
 }
 @font-face {
-    font-family: "Linux Biolinum";
+    font-family: "Linux Biolinum sc";
     src: url("../data/fonts/LinBiolinum_aS.woff") format('woff');
     font-style: normal;
     font-variant: small-caps;
@@ -83,9 +83,8 @@ __________________________________________*/
 .navbar {
     border-radius: 0;
     margin: 50px 0;
-    font-family: 'Linux Biolinum';
+    font-family: 'Linux Biolinum sc';
     font-size: 20px;
-    font-variant: small-caps;
 }
 
 .navbar-brand {
