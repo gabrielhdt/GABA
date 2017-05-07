@@ -13,7 +13,7 @@ foreach ($lines as $line)
 ?>
 <body>
 <?php include "nav.php"; ?>
-<form action="search_species.php" method="post" accept-charset="utf-8"
+<form action="search_facility.php" method="post" accept-charset="utf-8"
     enctype="multipart/form-data">
     <div class="form-group">
         <label for="sel_species">Having species:</label>
@@ -33,29 +33,32 @@ foreach ($lines as $line)
         <label class="radio-inline"><input type="radio" name="vets_log" value="and">and</label>
         <label class="radio-inline"><input type="radio" name="vets_log" value="or">or</label>
         <br>
-        <label for="low_ntechs">Having more veterinaries than:
+        <label for="low_ntechs">Having more technicians than:
         <input type="number" name="low_ntechs" class="form-control" id="low_ntechs">
-        <label for="up_ntechs">Having fewer veterinaries than:
+        <label for="up_ntechs">Having fewer technicians than:
         <input type="number" name="up_ntechs" class="form-control" id="up_ntechs">
         <br>
         <label class="radio-inline"><input type="radio" name="tech_log" value="and">and</label>
         <label class="radio-inline"><input type="radio" name="tech_log" value="or">or</label>
         <br>
-        <label for="low_nrsch">Having more veterinaries than:
+        <label for="low_nrsch">Having more researchers than:
         <input type="number" name="low_nrsch" class="form-control" id="low_nrsch">
-        <label for="up_nrsch">Having fewer veterinaries than:
+        <label for="up_nrsch">Having fewer researchers than:
         <input type="number" name="up_nrsch" class="form-control" id="up_nrsch">
     </div>
     <button type="submit" class="btn btn-default">Rechercher animal</button>
 </form>
 <?php
-$colsp = array('idSpecies', 'binomial_name', 'nfoll');
-$labels = array('Identifier', 'Binomial name', 'Number of followed individuals');
+$col = array('idFacility', 'fa_name', 'nfoll');
+$labels = array('Identifier', 'Facility name', 'Number of followed individuals');
 
 $fields = <<<FLD
 Facility.idFacility, Facility.name AS fa_name,
-COUNT(Followed.idFollowed) as nfoll, COUNT(Staff.idStaff) as nstaff
+COUNT(Followed.idFollowed) as nfoll
 FLD;
+$tables = 'Facility, Followed';
+$where['str'] = 'Facility.idFacility=Followed.idFollowed';
+$where['valtype'] = array();
 $groupby = 'Facility.idFacility';
 
 if (isset($_POST['low_nfoll']) && !empty($_POST['low_nfoll']))
@@ -70,10 +73,13 @@ if (isset($_POST['up_nfoll']) && !empty($_POST['up_nfoll']))
     $tmp_str = 'COUNT(Followed.idFollowed)<=?';
     $having['str'] = isset($having['str']) ?
         $having['str'] . ' AND '.$tmp_str : $tmp_str; 
-    $tmp_hv = array('value' => $_POST['low_nfoll'], 'type' => PDO::PARAM_STR);
+    $tmp_hv = array(
+        array('value' => $_POST['low_nfoll'], 'type' => PDO::PARAM_STR)
+    );
     $having['valtype'] = isset($having['valtype']) ?
         array_merge($having['valtype'], $tmp_hv) : $tmp_hv;
 }
+$search_res = get_values_light($fields, $tables, $where, $groupby, $having);
 echo !$search_res ? "Error while querying" : null;
 echo <<<TH
 <table id='table'
@@ -86,10 +92,10 @@ data-detail-formatter='detail_formatter'
 data-show-footer='true'>
 TH;
 echo '<thead>';
-create_tablehead($colsp, $labels);
+create_tablehead($col, $labels);
 echo '</thead>';
 echo '<tbody>';
-create_tablebody($colsp, $search_res);
+create_tablebody($col, $search_res);
 echo'</tbody>';
 echo '</table>';
 ?>
