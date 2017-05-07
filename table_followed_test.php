@@ -17,7 +17,7 @@ function info_followed_table ($id) {
     $from = "Followed INNER JOIN Species ON Species.idSpecies = Followed.idSpecies INNER JOIN Facility ON Facility.idFacility";
     $where['str'] = 'idFollowed=?';
     $where['valtype'] = array(array('value' => $id, 'type' => PDO::PARAM_INT));
-    $infos = get_values_light("gender, birth, death, health, Species.binomial_name, Facility.name, annotation",
+    $infos = get_values_light("gender, birth, death, health, Species.binomial_name, Facility.name, Followed.annotation",
     $from, $where);
     $table = "<table>\n";
     foreach ($infos[0] as $key => $value) {
