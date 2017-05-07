@@ -2,6 +2,21 @@
 session_start();
 $edit = isset($_SESSION['login']) && $_SESSION['login'] != 'admin'; // autoriastion de l'edition pour un membre mais pas l'admin
 // $edit = false;
+function info_followed_table ($id) {
+    $select = "gender, birth, death, health, Species.binomial_name,
+Facility.name, Followed.annotation";
+    $from = "Followed INNER JOIN Species ON Species.idSpecies = Followed.idSpecies
+INNER JOIN Facility ON Facility.idFacility";
+    $where['str'] = 'idFollowed=?';
+    $where['valtype'] = array(array('value' => $id, 'type' => PDO::PARAM_INT));
+    $infos = get_values_light($select, $from, $where);
+    $table = "<table>\n";
+    foreach ($infos[0] as $key => $value) {
+        $table .= "<tr><td>$key</td><td>".($value ? $value : 'null')."</td></tr>\n";
+    }
+    $table .= "</table>\n";
+    echo $table;
+}
 ?>
 
 <!DOCTYPE html>
@@ -71,6 +86,8 @@ $loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
             <?php echo $loc['latitude'] . 'W ' . $loc['longitude'] . 'N'; ?>
             (Map?)
         </p>
+        <br><br>
+        <?php info_followed_table($idfollowed); ?>
         <br><br>
         <table>
             <tr>
