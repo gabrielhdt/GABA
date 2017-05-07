@@ -168,7 +168,7 @@ echo "<table id='table'
     data-detail-view='true'
     data-detail-formatter='detail_formatter'
     data-page-list='[10, 25, 50, 100, ALL]'
-    data-show-pagination-switch='true'>";
+    data-pagination='true'>";
 echo '<thead>';
 create_tablehead($colfoll, $labels);
 echo '</thead>';
