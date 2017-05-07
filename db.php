@@ -337,8 +337,8 @@ function get_values(
 }
 
 function get_values_light($select,
-    $tables, $where=array(), $groupby=array(), $having=array(),
-    $orderby=null)
+    $tables, $where=array(), $groupby='', $having=array(),
+    $orderby='')
 {
     /* $select, tables, orderby, groupby: strings, as would appear in the
      * sql query, but without the keywords.
@@ -372,7 +372,7 @@ function get_values_light($select,
                 $qumarkcounter++;
             }
         }
-        if ($having)
+        if ($having && isset($having['valtype']))  // If having depends on var
         {
             foreach ($having['valtype'] as $hvval)
             {
