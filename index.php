@@ -9,8 +9,8 @@
 
 <body>
     <?php include 'nav.php'; ?>
-    <div id="outer" class="container">
-        <div id="middle" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-7 col-md-offset-7 col-sm-offset-5">
+    <div class="container">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-7 col-md-offset-7 col-sm-offset-5">
             <div class="description">
                 <div class="middle">
                     <div class="inner">
