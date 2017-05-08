@@ -81,8 +81,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <div class="jumbotron" id='verbotron'>
             <h1>Webmaster</h1>
@@ -90,6 +88,6 @@
                 mais le site permet aussi d'assouvir votre curiosité de manière ludique ! </p>
         </div>
     </div>
-    </div>
+</div>
     <?php include 'footer.php'; ?>
 </body>
