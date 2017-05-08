@@ -2,6 +2,7 @@
 
     <?php
     include 'head.php';
+    head('Recherche');
     include 'nav.php';
     ?>
     <style>
