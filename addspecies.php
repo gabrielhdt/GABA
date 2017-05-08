@@ -15,37 +15,37 @@ $lines = get_values_light("DISTINCT kingdom", "Species");
 $kingdoms = array();
 foreach ($lines as $line)
 {
-    array_push($kingdoms, $line['kingdom']);
+    array_push($kingdoms, ucfirst($line['kingdom']));
 }
 $lines = get_values_light("DISTINCT phylum", "Species");
 $phylae = array();
 foreach ($lines as $line)
 {
-    array_push($phylae, $line['phylum']);
+    array_push($phylae, ucfirst($line['phylum']));
 }
 $lines = get_values_light("DISTINCT class", "Species");
 $classes = array();
 foreach ($lines as $line)
 {
-    array_push($classes, $line['class']);
+    array_push($classes, ucfirst($line['class']));
 }
 $lines = get_values_light("DISTINCT order_s", "Species");
 $orders = array();
 foreach ($lines as $line)
 {
-    array_push($orders, $line['order_s']);
+    array_push($orders, ucfirst($line['order_s']));
 }
 $lines = get_values_light("DISTINCT family", "Species");
 $families = array();
 foreach ($lines as $line)
 {
-    array_push($families, $line['family']);
+    array_push($families, ucfirst($line['family']));
 }
 $lines = get_values_light("DISTINCT genus", "Species");
 $genuses = array();
 foreach ($lines as $line)
 {
-    array_push($genuses, $line['genus']);
+    array_push($genuses, ucfirst($line['genus']));
 }
 ?>
 
