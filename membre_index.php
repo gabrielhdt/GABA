@@ -13,6 +13,11 @@ if (!isset($_SESSION['login'])) { // test si l'utilisateur est bien passé par l
     include 'head.php';
     include 'nav.php';
     ?>
+    <style media="screen">
+        a {
+            padding: 300px 0;
+        }
+    </style>
     <body>
         <div class="container-fluid">
             <div id="add" class="row">
