@@ -155,8 +155,23 @@ description
 
 .description {
     margin: 100px 0;
+    display: table;
+    position: absolute;
     height: 400px;
+    width: 100%;
     background-color: rgba(255, 255, 255, 0.63);
+    border-radius: 5px;
+}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.inner {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .description h1 {
