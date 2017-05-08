@@ -28,12 +28,13 @@ INNER JOIN Facility ON Facility.idFacility";
 include 'head.php';
 include 'db.php';
 ?>
-<body>
+<body onload="get_coord()">
 <?php
 include 'nav.php';
 ?>
 
 <?php
+$idstaff = $_SESSION['idstaff'];
 $idfollowed = $_GET['id'];
 $fields = <<<FLD
 binomial_name, common_name, gender, birth, health, death,
@@ -90,8 +91,15 @@ $loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
         ?>
         <p>
             Last known location:
-            <?php echo $loc['latitude'] . 'W ' . $loc['longitude'] . 'N'; ?>
-            (Map?)
+            <?php
+            echo $loc['latitude'] . 'W ' . $loc['longitude'] . 'N';
+            if ($edit)
+            {
+                echo "<button onclick=\"write_geoloc($idfollowed, $idstaff)\" type=\"button\" class=\"btn btn-default btn-xs\">";
+                echo 'Update with current localisation';
+                echo '</button>';
+            }
+            ?>
         </p>
         <h1>Informations générales :</h1>
         <?php info_followed_table($idfollowed); ?>  <!-- tableau d'informations générales -->
@@ -111,4 +119,21 @@ $loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
 include 'footer.php';
 ?>
 </body>
+<script>
+function get_coords()
+{
+    navigator.geolocation.getCurrentPosition(coord2cookies);
+}
+function coord2cookies(position)
+{
+    document.cookie = 'geoloc='+position.coords.latitude+','+position.coords.longitude;
+}
+function write_geoloc(idfoll, idstaff)
+{
+    $.post(
+        'script/add_geoloc.php',
+        {idfollowed: idfoll, geoloc: document.cookie, idstaff: idstaff}
+    );
+}
+</script>
 </html>
