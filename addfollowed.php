@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['login']) || $_SESSION['login'] == 'admin') { // test si l'utilisateur est bien passé par le formulaire
+if (!isset($_SESSION['login'], $_SESSION['idstaff']) || $_SESSION['login'] == 'admin') { // test si l'utilisateur est bien passé par le formulaire
     header ('Location: login.php'); // sinon retour page login
     exit();
 }
@@ -84,7 +84,6 @@ if (isset($_POST['species']))
         'idFacility' => $_POST['facility'])
     );
     if ($added_id) {
-        update_view('vSearchFoll');
         add_line('FollowedEdition',
             array('idStaff' => $_SESSION['idstaff'],
             'idFollowed' => $added_id,
