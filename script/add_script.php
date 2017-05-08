@@ -1,18 +1,12 @@
 <?php
 
-if (isset($_POST['geoloc_lat'], $_POST['geoloc_long']) &&
-    !empty($_POST['geoloc_lat']))
+if (isset($_POST['lat'], $_POST['longi']) &&
+    !empty($_POST['lat']))
 {
     $_SESSION['location'] =
         array(
-            'lat' => $_POST['geoloc_lat'],
-            'long' => $_POST['geoloc_long'],
+            'lat' => $_POST['lat'],
+            'long' => $_POST['longi'],
         );
-}
-
-function get_geoloc()
-{
-    /* Get last entered geo location */
-    return array_pop($geostack);
 }
 ?>

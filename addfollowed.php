@@ -112,29 +112,29 @@ if (isset($_POST['species']))
 <?php include "footer.php" ?>
 </body>
 <script>
-document.getElementById('use_geoloc').onclick = function() {
-    if (this.checked) {
+document.getElementById('use_geoloc').onclick = function()
+{
+    if (this.checked)
+    {
         document.getElementById('submitbtn').disabled = true;
-        navigator.geolocation.getCurrentPosition(function(position) {
-            console.log("Sending data: " + position.coords.latitude +
-                position.coords.longitude);
-            $.ajax({
-                url: 'script/add_script.php',
-                type: 'post',
-                data: {
-                    geoloc_lat: position.coords.latitude,
-                    geoloc_long: position.coords.longitude,
-                },
-                success: function(data) {
-                    console.log("Data sent.");
-                    document.getElementById('submitbtn').disabled = false;
-                }
-            });
-        });
+        navigator.geolocation.getCurrentPosition(sessionise_coords);
     }
-    else {
+    else
+    {
         document.getElementById('submitbtn').disabled = false;
     }
+}
+
+function sessionise_coords(position) {
+    $.ajax({
+        url: 'script/add_script.php',
+        type: 'post',
+        data: {lat: position.coords.latitude, longi: position.coords.longitude},
+        success: function(data)
+        {
+            document.getElementById('submitbtn').disabled = false;
+        }
+    });
 }
 </script>
 </html>
