@@ -1,4 +1,5 @@
 <?php
+include 'db.php';
 session_start();
 $edit = isset($_SESSION['login']) && $_SESSION['login'] != 'admin'; // autoriastion de l'edition pour un membre mais pas l'admin
 // $edit = false;
@@ -61,7 +62,6 @@ $loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
 <?php
 include 'head.php';
 head($loc['binomial_name']);
-include 'db.php';
 ?>
 <body onload="get_coord()">
 <?php
