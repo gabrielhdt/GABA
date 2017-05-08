@@ -121,6 +121,7 @@ document.getElementById('use_geoloc').onclick = function()
     {
         document.getElementById('submitbtn').disabled = true;
         navigator.geolocation.getCurrentPosition(coord2cookies);
+        document.getElementById('submitbtn').disabled = false;
     }
     else
     {
