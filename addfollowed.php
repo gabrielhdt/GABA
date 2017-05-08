@@ -97,7 +97,7 @@ if (isset($_POST['species']))
                     'idStaff' => $_SESSION['idstaff']
                 )
             );
-            $coords = explode($_COOKIE['geoloc'], ',');
+            $coords = explode(',', $_COOKIE['geoloc']);
             add_line('Location',
                 array(
                     'latitude' => (float) $coords[0],
