@@ -14,6 +14,9 @@ if (!isset($_SESSION['login'])) { // test si l'utilisateur est bien passé par l
     include 'nav.php';
     ?>
     <style>
+    #add {
+        border: 2px solid red;
+    }
     </style>
 
     <body>
