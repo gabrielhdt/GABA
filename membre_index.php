@@ -15,7 +15,7 @@ if (!isset($_SESSION['login'])) { // test si l'utilisateur est bien passé par l
     ?>
     <style media="screen">
         .row a {
-            padding: auto 0;
+            padding: 200px 0;
             font-size: 5em;
             font-family: 'Linux Biolinum sc';
             color: rgb(85, 172, 59);
