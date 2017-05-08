@@ -13,8 +13,8 @@ foreach ($lines as $line)
 ?>
 <body>
 <?php include "nav.php"; ?>
-<div class="row">
-    <div id="labmap" style="height:800px"></div>
+<div class="row" id="map-container">
+    <div id="map"></div>
 </div>
 <div class="row">
 <form action="search_facility.php" method="post" accept-charset="utf-8"
@@ -70,9 +70,8 @@ echo !$search_res ? "Error while querying" : null;
 ?>
 <script type="text/javascript" charset="utf-8">
     var contwidth = $('#map-container').width();
-    var contheight = $('#verbotron').height();
-    document.getElementById('labmap').style.width = contwidth;
-    document.getElementById('labmap').style.height = contheight;
+    document.getElementById('map').style.width = contwidth;
+    document.getElementById('map').style.height = 0.67*contwidth;
     var labmap = L.map('labmap').setView([0, 0], 2);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
