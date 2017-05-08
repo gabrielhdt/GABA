@@ -31,5 +31,5 @@ QRY;
     $conn = null;
     return(true);
 }
-add_staff('admin', 'admin_gaba');
+add_staff('admin_gaba', 'gaba');
 ?>
