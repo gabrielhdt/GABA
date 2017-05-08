@@ -3,7 +3,9 @@
 
 <?php include 'db.php';
 include 'form_func.php';
-include "head.php"; ?>
+include "head.php";
+head("Ajouter un bâtiment");
+?>
 
 <body>
 
