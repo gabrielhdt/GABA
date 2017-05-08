@@ -11,42 +11,42 @@ include "head.php"; ?>
 
 <?php
 
-$lines = get_values_light("kingdom", "Species");
+$lines = get_values_light("DISTINCT kingdom", "Species");
 $kingdoms = array();
 foreach ($lines as $line)
 {
     array_push($kingdoms, $line['kingdom']);
 }
-$lines = get_values_light("phylum", "Species");
+$lines = get_values_light("DISTINCT phylum", "Species");
+$phylae = array();
 foreach ($lines as $line)
 {
     array_push($phylae, $line['phylum']);
 }
-$phylae = array();
-$lines = get_values_light("class", "Species");
+$lines = get_values_light("DISTINCT class", "Species");
+$classes = array();
 foreach ($lines as $line)
 {
     array_push($classes, $line['class']);
 }
-$classes = array();
-$lines = get_values_light("order_s", "Species");
+$lines = get_values_light("DISTINCT order_s", "Species");
+$orders = array();
 foreach ($lines as $line)
 {
     array_push($orders, $line['order_s']);
 }
-$orders = array();
-$lines = get_values_light("family", "Species");
+$lines = get_values_light("DISTINCT family", "Species");
+$families = array();
 foreach ($lines as $line)
 {
     array_push($families, $line['family']);
 }
-$families = array();
-$lines = get_values_light("genus", "Species");
+$lines = get_values_light("DISTINCT genus", "Species");
+$genuses = array();
 foreach ($lines as $line)
 {
     array_push($genuses, $line['genus']);
 }
-$genuses = array();
 ?>
 
 <div class="container4">
