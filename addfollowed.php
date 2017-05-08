@@ -97,11 +97,10 @@ if (isset($_POST['species']))
                     'idStaff' => $_SESSION['idstaff']
                 )
             );
-            $gnss_coord = get_geoloc();
             add_line('Location',
                 array(
-                    'latitude' => $gnss_coord['lat'],
-                    'longitude' => $gnss_coord['long'],
+                    'latitude' => $_SESSION['location']['lat'],
+                    'longitude' => $_SESSION['location']['long'],
                     'idMeasure' => $idmeasure
                 )
             );
