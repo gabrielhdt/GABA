@@ -4,6 +4,26 @@ if (!isset($_SESSION['login'])) { // test si l'utilisateur est bien passé par l
     header ('Location: login.php'); // sinon retour page login
     exit();
 }
-echo "Bonjour ".$_SESSION['login'];
 
 ?>
+<html>
+
+    <?php
+    include 'head.php';
+    include 'nav.php';
+    ?>
+    <style>
+    </style>
+
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                    <a href="addSpecies.php"><div class="col-lg-3 col-md-6 col-sm-12 col-xs-12" id="espece">Ajout d'une espèce</div></a>
+                    <a href="addFollowed.php"><div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 " id="individu">Ajout d'un individu</div></a>
+                    <a href="addFacility.php"><div class="col-lg-3 col-md-6 col-sm-12 col-xs-12" id="batiment">Ajout d'un bâtiment</div></a>
+                    <a href="perso.php"><div class="col-lg-3 col-md-6 col-sm-12 col-xs-12" id="chercheur">Informations personnelles</div></a>
+            </div>
+        </div>
+        <?php include 'footer.php'; ?>
+    </body>
+</html>
