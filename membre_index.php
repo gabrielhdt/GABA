@@ -9,7 +9,7 @@ if (!isset($_SESSION['login'])) { // test si l'utilisateur est bien passé par l
 <html>
     <style media="screen">
         a {
-            margin: auto;
+            margin: 300px 0;
         }
     </style>
     <?php
