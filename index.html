@@ -11,20 +11,6 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>
     <link rel="stylesheet" href="css/style.css">
-    <style media="screen">
-        .middle {
-            display: table-cell;
-            vertical-align: middle;
-            text-align: center;
-        }
-
-        .inner {
-            margin-left: auto;
-            margin-right: auto;
-            width: /*whatever width you want*/
-            ;
-        }
-    </style>
 </head>
 
 
@@ -62,7 +48,7 @@
         <div id="middle" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-7 col-md-offset-7 col-sm-offset-5">
             <div class="description">
                 <div class="middle">
-                    <!-- <div class="inner"> -->
+                    <div class="inner">
 
                         <h1>A propos de nous ...</h1>
 
@@ -70,7 +56,7 @@
                             des chercheurs mais le site permet aussi d'assouvir votre curiosité de manière ludique ! </p>
                         <button type="button" class="btn btn-success">En savoir plus</button>
 
-                    <!-- </div> -->
+                    </div>
                 </div>
 
             </div>
@@ -128,9 +114,14 @@
     <div class="container2">
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
             <div class="description">
-                <h1>Besoin d'aide ?</h1>
-                <p>Afin de vous faire profiter pleinement de toutes les possibilités qu'offre notre site, nous avons créer un manuel d'utilisation pour vous permettre de découvrir et de manipuler avec plus d'aisance toutes les fonctionnalités mises en ligne.</p>
-                <p>C'est aussi ici que vous trouverez la page Webmaster, donnant de plus amples informations sur les constructeurs du site.</p>
+                <div class="middle">
+                    <div class="inner">
+                        <h1>Besoin d'aide ?</h1>
+                        <p>Afin de vous faire profiter pleinement de toutes les possibilités qu'offre notre site, nous avons créer un manuel d'utilisation pour vous permettre de découvrir et de manipuler avec plus d'aisance toutes les fonctionnalités mises
+                            en ligne.</p>
+                        <p>C'est aussi ici que vous trouverez la page Webmaster, donnant de plus amples informations sur les constructeurs du site.</p>
+                    </div>
+                </div>
             </div>
             <div><button id='more' type="button" class="btn btn-success">En savoir plus</button></div>
         </div>
