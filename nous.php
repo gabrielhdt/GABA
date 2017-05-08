@@ -1,6 +1,7 @@
 <?php
 include 'db.php';
 include 'head.php';
+head('Notre Labo');
 ?>
 
 <body>
