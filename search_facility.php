@@ -14,7 +14,7 @@ foreach ($lines as $line)
 <body>
 <?php include "nav.php"; ?>
 <div class="row">
-    <div id="labmap"></div>
+    <div id="labmap" style="height:800px"></div>
 </div>
 <div class="row">
 <form action="search_facility.php" method="post" accept-charset="utf-8"
