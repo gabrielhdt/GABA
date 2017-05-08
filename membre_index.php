@@ -9,9 +9,11 @@ if (!isset($_SESSION['login'])) { // test si l'utilisateur est bien passé par l
 <html>
     <style media="screen">
         .row {
+            display: table;
             text-align: center;
         }
         a {
+            display: table-cell;
             vertical-align: middle;
         }
     </style>
