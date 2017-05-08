@@ -97,9 +97,7 @@ if (isset($_POST['species']))
                     'idStaff' => $_SESSION['idstaff']
                 )
             );
-            $fname = '/tmp/coord.txt';
-            $coordfile = fopen($fname, 'r');
-            $coords = explode(fread($coordfile, filesize($fname)), ',');
+            $coords = explode($_COOKIE['geoloc'], ',');
             add_line('Location',
                 array(
                     'latitude' => (float) $coords[0],
@@ -114,18 +112,27 @@ if (isset($_POST['species']))
 ?>
 <?php include "footer.php" ?>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.4/js.cookie.min.js">
+</script>
 <script>
 document.getElementById('use_geoloc').onclick = function()
 {
     if (this.checked)
     {
         document.getElementById('submitbtn').disabled = true;
-        navigator.geolocation.getCurrentPosition(sessionise_coords);
+        navigator.geolocation.getCurrentPosition(coord2cookies);
     }
     else
     {
         document.getElementById('submitbtn').disabled = false;
     }
+}
+
+function coord2cookies(position)
+{
+    document.cookie = 'geoloc='+position.coords.latitude+','+position.coords.longitude;
+    Cookies.set('geo_latitude', position.coords.latitude, {expires: 1});
+    Cookies.set('geo_longitude', position.coords.longitude, {expires: 1});
 }
 
 function sessionise_coords(position) {
