@@ -8,8 +8,13 @@ if (!isset($_SESSION['login'])) { // test si l'utilisateur est bien passé par l
 ?>
 <html>
     <style media="screen">
-        #add {
+        .row {
             text-align: center;
+        }
+        a {
+            display: inline-block;
+            vertical-align: middle;
+            line-height: normal;
         }
     </style>
     <?php
