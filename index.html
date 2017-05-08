@@ -16,20 +16,22 @@
             overflow: scroll;
             text-align: center;
         }
-        .outer {
-    display: table;
-}
 
-.middle {
-    display: table-cell;
-    vertical-align: middle;
-}
+        #outer {
+            display: table;
+        }
 
-.description {
-    margin-left: auto;
-    margin-right: auto;
-    width: /*whatever width you want*/;
-}
+        #middle {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        #description {
+            margin-left: auto;
+            margin-right: auto;
+            width: /*whatever width you want*/
+            ;
+        }
     </style>
 </head>
 
@@ -64,9 +66,9 @@
             </div>
         </div>
     </nav>
-    <div class="container outer">
-        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-7 col-md-offset-7 col-sm-offset-5 middle">
-            <div class="description">
+    <div id="outer" class="container">
+        <div id="middle" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-7 col-md-offset-7 col-sm-offset-5">
+            <div id="description" class="description">
                 <h1>A propos de nous ...</h1>
                 <p>Le laboratoire science exchange a pour mission de regrouper les informations de multiples laboratoires de recherche animale et de mettre à disposition les données sur nottre plateforme. <br>L'objectif est de faciliter le travail des chercheurs
                     mais le site permet aussi d'assouvir votre curiosité de manière ludique ! </p>
