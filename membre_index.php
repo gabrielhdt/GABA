@@ -14,7 +14,7 @@ if (!isset($_SESSION['login'])) { // test si l'utilisateur est bien passé par l
     include 'nav.php';
     ?>
     <style media="screen">
-        .photo-menu {
+        #espece, #individu, #batiment, #chercheur {
             padding: 200px 0;
             font-size: 5em;
             font-family: 'Linux Biolinum sc';
@@ -25,10 +25,10 @@ if (!isset($_SESSION['login'])) { // test si l'utilisateur est bien passé par l
     <body>
         <div class="container-fluid">
             <div id="add" class="row">
-                    <a href="addspecies.php" class="col-lg-3 col-md-6 col-sm-12 col-xs-12 photo-menu" id="espece">Ajout d'une espèce</a>
-                    <a href="addfollowed.php" class="col-lg-3 col-md-6 col-sm-12 col-xs-12 photo-menu" id="individu">Ajout d'un individu</a>
-                    <a href="addfacility.php" class="col-lg-3 col-md-6 col-sm-12 col-xs-12 photo-menu" id="batiment">Ajout d'un bâtiment</a>
-                    <a href="perso.php" class="col-lg-3 col-md-6 col-sm-12 col-xs-12 photo-menu" id="chercheur">Informations personnelles</a>
+                    <a href="addspecies.php" class="col-lg-3 col-md-6 col-sm-12 col-xs-12 " id="espece">Ajout d'une espèce</a>
+                    <a href="addfollowed.php" class="col-lg-3 col-md-6 col-sm-12 col-xs-12 " id="individu">Ajout d'un individu</a>
+                    <a href="addfacility.php" class="col-lg-3 col-md-6 col-sm-12 col-xs-12 " id="batiment">Ajout d'un bâtiment</a>
+                    <a href="perso.php" class="col-lg-3 col-md-6 col-sm-12 col-xs-12 " id="chercheur">Informations personnelles</a>
             </div>
         </div>
         <?php include 'footer.php'; ?>
