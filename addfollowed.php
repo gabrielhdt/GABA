@@ -65,7 +65,7 @@ foreach ($lines as $line)
                             <input type="date" name="birth" class="form-control" placeholder="Date de naissance*">
                             <input type="text" name="health" class="form-control" placeholder="Etat de santé*">
                         </div>
-                        <button class="btn btn-success" type="submit" name="add_followed">Enregistrer</button>
+                        <button class="btn btn-success" id="submitbtn" type="submit" name="add_followed">Enregistrer</button>
                     </form>
                 </div>
             </div>
@@ -115,6 +115,7 @@ if (isset($_POST['species']))
 <script>
 document.getElementById('use_geoloc').onclick = function() {
     if (this.checked) {
+        document.getElementById('submitbtn').disabled='false';
         navigator.geolocation.getCurrentPosition(function(position) {
             console.log("Sending data: " + position.coords.latitude +
                 position.coords.longitude);
@@ -124,13 +125,16 @@ document.getElementById('use_geoloc').onclick = function() {
                 data: {
                     geoloc_lat: position.coords.latitude,
                     geoloc_long: position.coords.longitude,
-                    }
                 },
                 success: function(data) {
                     console.log("Data sent.");
+                    document.getElementById('submitbtn').disabled = 'false';
                 }
-            );
+            });
         });
+    }
+    else if (this.unchecked) {
+        document.getElementById('submitbtn').disabled = 'false';
     }
 }
 </script>
