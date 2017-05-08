@@ -8,8 +8,8 @@ if (!isset($_SESSION['login'])) { // test si l'utilisateur est bien passé par l
 ?>
 <html>
     <style media="screen">
-        #addspecies {
-            vertical-align: middle;
+        #add {
+            text-align: center;
         }
     </style>
     <?php
@@ -21,8 +21,8 @@ if (!isset($_SESSION['login'])) { // test si l'utilisateur est bien passé par l
 
     <body>
         <div class="container-fluid">
-            <div class="row">
-                    <a id="addspecies" href="addspecies.php"><div class="col-lg-3 col-md-6 col-sm-12 col-xs-12" id="espece">Ajout d'une espèce</div></a>
+            <div id="add" class="row">
+                    <a href="addspecies.php"><div class="col-lg-3 col-md-6 col-sm-12 col-xs-12" id="espece">Ajout d'une espèce</div></a>
                     <a href="addfollowed.php"><div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 " id="individu">Ajout d'un individu</div></a>
                     <a href="addfacility.php"><div class="col-lg-3 col-md-6 col-sm-12 col-xs-12" id="batiment">Ajout d'un bâtiment</div></a>
                     <a href="perso.php"><div class="col-lg-3 col-md-6 col-sm-12 col-xs-12" id="chercheur">Informations personnelles</div></a>
