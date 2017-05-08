@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['login'], $_SESSION['idstaff']) || $_SESSION['login'] == 'admin') { // test si l'utilisateur est bien passé par le formulaire
+    header ('Location: login.php'); // sinon retour page login
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -94,7 +101,7 @@ foreach ($lines as $line)
 <?php
 if (isset($_POST['species']))
 {
-    add_line('Species',
+    $added_id = add_line('Species',
         array('binomial_name' => $_POST['species'],
         'kingdom' => $_POST['kingdom'],
         'phylum' => $_POST['phylum'],
@@ -104,6 +111,13 @@ if (isset($_POST['species']))
         'genus' => $_POST['genus'],
         'conservation_status' => $_POST['status'])
     );
+}
+    if ($added_id) {
+        add_line('SpeciesEdition',
+            array('idStaff' => $_SESSION['idstaff'],
+            'idSpecies' => $added_id,
+            'type' => 'addition')
+        );
 }
 ?>
 
