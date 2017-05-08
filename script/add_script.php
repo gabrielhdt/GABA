@@ -1,5 +1,5 @@
 <?php
 $coordfile = fopen('/tmp/coord.txt', 'w');
-fwrite($coordfile, $_POST['lat'].','.$_POST['longi']);
+fwrite($coordfile, implode($_POST, ','));
 fclose($coordfile);
 ?>

@@ -97,11 +97,13 @@ if (isset($_POST['species']))
                     'idStaff' => $_SESSION['idstaff']
                 )
             );
-            $coords = explode(fread('/tmp/coords.txt', ','));
+            $fname = '/tmp/coord.txt';
+            $coordfile = fopen($fname, 'r');
+            $coords = explode(fread($coordfile, filesize($fname)), ',');
             add_line('Location',
                 array(
-                    'latitude' => $coords[0],
-                    'longitude' => $coords[1],
+                    'latitude' => (float) $coords[0],
+                    'longitude' => (float) $coords[1],
                     'idMeasure' => $idmeasure
                 )
             );
