@@ -115,7 +115,7 @@ if (isset($_POST['species']))
 <script>
 document.getElementById('use_geoloc').onclick = function() {
     if (this.checked) {
-        document.getElementById('submitbtn').disabled='false';
+        document.getElementById('submitbtn').disabled = true;
         navigator.geolocation.getCurrentPosition(function(position) {
             console.log("Sending data: " + position.coords.latitude +
                 position.coords.longitude);
@@ -128,13 +128,13 @@ document.getElementById('use_geoloc').onclick = function() {
                 },
                 success: function(data) {
                     console.log("Data sent.");
-                    document.getElementById('submitbtn').disabled = 'false';
+                    document.getElementById('submitbtn').disabled = false;
                 }
             });
         });
     }
-    else if (this.unchecked) {
-        document.getElementById('submitbtn').disabled = 'false';
+    else {
+        document.getElementById('submitbtn').disabled = false;
     }
 }
 </script>
