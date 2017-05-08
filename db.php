@@ -611,7 +611,7 @@ function id_from_login($login)
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
             $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $qery = "SELECT (idStaff) FROM Staff WHERE login=?";
+        $query = "SELECT (idStaff) FROM Staff WHERE login=?";
         $stmt = $conn->prepare($query);
         $stmt -> bindParam(1, $login, $data_type=PDO::PARAM_STR,
             $length=12);
