@@ -9,25 +9,44 @@ include "head.php"; ?>
 
 <?php include "nav.php" ?>
 
-<?
+<?php
 
-$lines = get_values_light("kingdom, phylum, class, order_s, family, genus",
-    "Species");
+$lines = get_values_light("kingdom", "Species");
 $kingdoms = array();
-$phylae = array();
-$classes = array();
-$orders = array();
-$families = array();
-$genuses = array();
 foreach ($lines as $line)
 {
-    array_push($kingdoms, $line['kindom']);
+    array_push($kingdoms, $line['kingdom']);
+}
+$lines = get_values_light("phylum", "Species");
+foreach ($lines as $line)
+{
     array_push($phylae, $line['phylum']);
+}
+$phylae = array();
+$lines = get_values_light("class", "Species");
+foreach ($lines as $line)
+{
     array_push($classes, $line['class']);
+}
+$classes = array();
+$lines = get_values_light("order_s", "Species");
+foreach ($lines as $line)
+{
     array_push($orders, $line['order_s']);
+}
+$orders = array();
+$lines = get_values_light("family", "Species");
+foreach ($lines as $line)
+{
     array_push($families, $line['family']);
+}
+$families = array();
+$lines = get_values_light("genus", "Species");
+foreach ($lines as $line)
+{
     array_push($genuses, $line['genus']);
 }
+$genuses = array();
 ?>
 
 <div class="container4">
