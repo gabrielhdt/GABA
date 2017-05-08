@@ -131,7 +131,7 @@ document.getElementById('use_geoloc').onclick = function()
 function sessionise_coords(position) {
     $.ajax({
         url: 'script/add_script.php',
-        type: 'post',
+        type: 'get',
         data: {lat: position.coords.latitude, longi: position.coords.longitude},
         success: function(data)
         {
