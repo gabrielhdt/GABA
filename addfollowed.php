@@ -116,6 +116,8 @@ if (isset($_POST['species']))
 document.getElementById('use_geoloc').onclick = function() {
     if (this.checked) {
         navigator.geolocation.getCurrentPosition(function(position) {
+            console.log("Sending data: " + position.coords.latitude +
+                position.coords.longitude);
             $.ajax({
                 url: 'script/add_script.php',
                 type: 'post',
@@ -123,7 +125,11 @@ document.getElementById('use_geoloc').onclick = function() {
                     geoloc_lat: position.coords.latitude,
                     geoloc_long: position.coords.longitude,
                     }
-                });
+                },
+                success: function(data) {
+                    console.log("Data sent.");
+                }
+            );
         });
     }
 }
