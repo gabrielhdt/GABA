@@ -20,6 +20,15 @@ function create_choice_list($disp_fields, $defsel=null)
     }
 }
 
+function create_autocplt_list($values)
+{
+    /* values array of fields to autocomplete */
+    foreach ($values as $value)
+    {
+        echo "<option>$value</option>";
+    }
+}
+
 function create_tablehead($colid, $labels)
 {
     /* $search_field must be a columns name
