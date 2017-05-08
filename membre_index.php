@@ -19,6 +19,7 @@ if (!isset($_SESSION['login'])) { // test si l'utilisateur est bien passé par l
             font-size: 5em;
             font-family: 'Linux Biolinum sc';
             color: rgb(85, 172, 59);
+            text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
         }
     </style>
     <body>
