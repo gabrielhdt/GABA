@@ -13,24 +13,30 @@ foreach ($lines as $line)
 ?>
 <body>
 <?php include "nav.php"; ?>
-<div class="row" id="map-container">
-    <div id="map"></div>
-</div>
-<div class="row">
-<form action="search_facility.php" method="post" accept-charset="utf-8"
-    enctype="multipart/form-data">
-    <div class="form-group">
-        <label for="sel_species">Having species:</label>
-        <select name="idspecies[]" id="sel_species" class="form-control" multiple>
-        <?php create_choice_list($id_biname); ?>
-        </select>
-        <label for="low_nfoll">Having more followed individuals than:
-        <input type="number" name="low_nfoll" class="form-control" id="low_nfoll">
-        <label for="up_nfoll">Having fewer followed individuals than:
-        <input type="number" name="up_nfoll" class="form-control" id="up_nfoll">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id='map-container'>
+            <div id="labmap"></div>
+        </div>
     </div>
-    <button type="submit" class="btn btn-default">Rechercher animal</button>
-</form>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id='map-container'>
+            <form action="search_facility.php" method="post" accept-charset="utf-8"
+                enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="sel_species">Having species:</label>
+                    <select name="idspecies[]" id="sel_species" class="form-control" multiple>
+                    <?php create_choice_list($id_biname); ?>
+                    </select>
+                    <label for="low_nfoll">Having more followed individuals than:
+                    <input type="number" name="low_nfoll" class="form-control" id="low_nfoll">
+                    <label for="up_nfoll">Having fewer followed individuals than:
+                    <input type="number" name="up_nfoll" class="form-control" id="up_nfoll">
+                </div>
+                <button type="submit" class="btn btn-default">Rechercher animal</button>
+            </form>
+        </div>
+    </div>
 </div>
 <?php include "footer.php"; ?>
 </body>
@@ -70,8 +76,8 @@ echo !$search_res ? "Error while querying" : null;
 ?>
 <script type="text/javascript" charset="utf-8">
     var contwidth = $('#map-container').width();
-    document.getElementById('map').style.width = contwidth;
-    document.getElementById('map').style.height = 0.67*contwidth;
+    document.getElementById('labmap').setAttribute("style",
+        "height:" + 0.33*contwidth + "px");
     var labmap = L.map('labmap').setView([0, 0], 2);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
