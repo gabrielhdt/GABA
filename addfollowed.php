@@ -112,8 +112,6 @@ if (isset($_POST['species']))
 ?>
 <?php include "footer.php" ?>
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.4/js.cookie.min.js">
-</script>
 <script>
 document.getElementById('use_geoloc').onclick = function()
 {
@@ -132,8 +130,6 @@ document.getElementById('use_geoloc').onclick = function()
 function coord2cookies(position)
 {
     document.cookie = 'geoloc='+position.coords.latitude+','+position.coords.longitude;
-    Cookies.set('geo_latitude', position.coords.latitude, {expires: 1});
-    Cookies.set('geo_longitude', position.coords.longitude, {expires: 1});
 }
 
 function sessionise_coords(position) {
