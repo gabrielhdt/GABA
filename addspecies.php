@@ -10,7 +10,9 @@ if (!isset($_SESSION['login'], $_SESSION['idstaff']) || $_SESSION['login'] == 'a
 
 <?php include 'db.php';
 include 'form_func.php';
-include "head.php"; ?>
+include "head.php";
+head("Ajouter une espèce");
+?>
 
 <body>
 
