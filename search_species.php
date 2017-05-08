@@ -3,7 +3,7 @@
 <?php include "db.php";
 include "form_func.php";
 include "head.php";
-head('Recherche bâtiment');
+head('Recherche espèce');
 
 $lines = get_values(array('idFacility', 'name'), 'Facility');
 $id_faname = array();
