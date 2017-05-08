@@ -16,6 +16,7 @@ if (!isset($_SESSION['login'])) { // test si l'utilisateur est bien passé par l
     <style>
     #add {
         border: 2px solid red;
+        text-align: center;
     }
     </style>
 
