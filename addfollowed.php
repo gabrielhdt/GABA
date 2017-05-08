@@ -131,17 +131,5 @@ function coord2cookies(position)
 {
     document.cookie = 'geoloc='+position.coords.latitude+','+position.coords.longitude;
 }
-
-function sessionise_coords(position) {
-    $.ajax({
-        url: 'script/add_script.php',
-        type: 'get',
-        data: {lat: position.coords.latitude, longi: position.coords.longitude},
-        success: function(data)
-        {
-            document.getElementById('submitbtn').disabled = false;
-        }
-    });
-}
 </script>
 </html>
