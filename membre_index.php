@@ -9,7 +9,7 @@ if (!isset($_SESSION['login'])) { // test si l'utilisateur est bien passé par l
 <html>
     <style media="screen">
         #addspecies {
-            align: center;
+            vertical-align: middle;
         }
     </style>
     <?php
