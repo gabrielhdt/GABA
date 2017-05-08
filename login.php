@@ -26,6 +26,7 @@ if (isset($_POST['connexion']) && $_POST['connexion'] == 'Connexion') {
 
     <?php
     include 'head.php';
+    head("login");
     include 'nav.php';
     ?>
     <link rel="stylesheet" href="css/login.css">
