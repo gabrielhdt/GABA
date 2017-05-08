@@ -1,7 +1,9 @@
 <html lang="fr">
 
 
-<?php include 'head.php'; ?>
+<?php include 'head.php';
+head("Help");
+?>
 <style media="screen">
     .row {
         margin: 30px 0;
