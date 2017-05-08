@@ -14,7 +14,7 @@ if (!isset($_SESSION['login'])) { // test si l'utilisateur est bien passé par l
     include 'nav.php';
     ?>
     <style media="screen">
-        a {
+        .row a {
             padding: 300px 0;
             font-size: 20em;
             font-family: 'Linux Biolinum sc';
