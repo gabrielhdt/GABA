@@ -97,10 +97,11 @@ if (isset($_POST['species']))
                     'idStaff' => $_SESSION['idstaff']
                 )
             );
+            $coords = explode(fread('/tmp/coords.txt', ','));
             add_line('Location',
                 array(
-                    'latitude' => $_SESSION['location']['lat'],
-                    'longitude' => $_SESSION['location']['long'],
+                    'latitude' => $coords[0],
+                    'longitude' => $coords[1],
                     'idMeasure' => $idmeasure
                 )
             );
