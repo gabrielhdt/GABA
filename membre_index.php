@@ -1,3 +1,5 @@
+<?php // TODO: ajouter des photos pour le menu ?>
+
 <?php
 session_start();
 if (!isset($_SESSION['login'])) { // test si l'utilisateur est bien passé par le formulaire
