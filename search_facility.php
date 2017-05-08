@@ -13,6 +13,10 @@ foreach ($lines as $line)
 ?>
 <body>
 <?php include "nav.php"; ?>
+<div class="row">
+    <div id="labmap"></div>
+</div>
+<div class="row">
 <form action="search_facility.php" method="post" accept-charset="utf-8"
     enctype="multipart/form-data">
     <div class="form-group">
@@ -24,30 +28,12 @@ foreach ($lines as $line)
         <input type="number" name="low_nfoll" class="form-control" id="low_nfoll">
         <label for="up_nfoll">Having fewer followed individuals than:
         <input type="number" name="up_nfoll" class="form-control" id="up_nfoll">
-
-        <label for="low_nvets">Having more veterinaries than:
-        <input type="number" name="low_nvets" class="form-control" id="low_nvets">
-        <label for="up_nvets">Having fewer veterinaries than:
-        <input type="number" name="up_nvets" class="form-control" id="up_nvets">
-        <br>
-        <label class="radio-inline"><input type="radio" name="vets_log" value="and">and</label>
-        <label class="radio-inline"><input type="radio" name="vets_log" value="or">or</label>
-        <br>
-        <label for="low_ntechs">Having more technicians than:
-        <input type="number" name="low_ntechs" class="form-control" id="low_ntechs">
-        <label for="up_ntechs">Having fewer technicians than:
-        <input type="number" name="up_ntechs" class="form-control" id="up_ntechs">
-        <br>
-        <label class="radio-inline"><input type="radio" name="tech_log" value="and">and</label>
-        <label class="radio-inline"><input type="radio" name="tech_log" value="or">or</label>
-        <br>
-        <label for="low_nrsch">Having more researchers than:
-        <input type="number" name="low_nrsch" class="form-control" id="low_nrsch">
-        <label for="up_nrsch">Having fewer researchers than:
-        <input type="number" name="up_nrsch" class="form-control" id="up_nrsch">
     </div>
     <button type="submit" class="btn btn-default">Rechercher animal</button>
 </form>
+</div>
+<?php include "footer.php"; ?>
+</body>
 <?php
 $col = array('idFacility', 'fa_name', 'nfoll');
 $labels = array('Identifier', 'Facility name', 'Number of followed individuals');
@@ -81,24 +67,29 @@ if (isset($_POST['up_nfoll']) && !empty($_POST['up_nfoll']))
 }
 $search_res = get_values_light($fields, $tables, $where, $groupby, $having);
 echo !$search_res ? "Error while querying" : null;
-echo <<<TH
-<table id='table'
-class='table'
-data-toggle='table'
-data-search='true'
-data-pagination='true'
-data-detail-view='true'
-data-detail-formatter='detail_formatter'
-data-show-footer='true'>
-TH;
-echo '<thead>';
-create_tablehead($col, $labels);
-echo '</thead>';
-echo '<tbody>';
-create_tablebody($col, $search_res);
-echo'</tbody>';
-echo '</table>';
 ?>
-<?php include "footer.php"; ?>
-</body>
+<script type="text/javascript" charset="utf-8">
+    var contwidth = $('#map-container').width();
+    var contheight = $('#verbotron').height();
+    document.getElementById('labmap').style.width = contwidth;
+    document.getElementById('labmap').style.height = contheight;
+    var labmap = L.map('labmap').setView([0, 0], 2);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    subdomain: ['a', 'b', 'c']
+    }).addTo(labmap);
+<?php
+$facspecs = get_values(array('name', 'gnss_coord', 'type'), 'Facility');
+foreach ($facspecs as $facility) {
+    if ($facility['gnss_coord'] != null)
+    {
+        $latlong = explode(',', $facility['gnss_coord']);
+        $type = $facility['type'];
+        $name = $facility['name'];
+        echo "var marker = L.marker([$latlong[0], $latlong[1]]).addTo(labmap);";
+        echo "marker.bindPopup(\"<b>$name</b><br>$type\");";
+    }
+}
+?>
+</script>
 </html>
