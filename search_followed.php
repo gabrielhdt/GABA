@@ -3,6 +3,7 @@
 <?php include "db.php";
 include "form_func.php";
 include "head.php";
+head('Recherche individu');
 
 $dateregex = "\d{4}[-.\/][01]?\d[-.\/][0-3]?\d";
 
