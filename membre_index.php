@@ -17,7 +17,6 @@ if (!isset($_SESSION['login'])) { // test si l'utilisateur est bien passé par l
     #add {
         border: 2px solid red;
         display: table;
-        text-align: center;
     }
     a {
         display: table-cell;
