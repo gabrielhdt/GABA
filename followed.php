@@ -117,7 +117,7 @@ include 'nav.php';
             $loc_str = 'Last known location:';
             $loc_str .= $loc['latitude'] . 'W ' . $loc['longitude'] . 'N';
             echo $search_res['fa_name'] == 'gaia' ?
-                $loc_str : $search_res['fa_name']; 
+                $loc_str : 'At ' . $search_res['fa_name']; 
             if ($edit)
             {
                 echo <<<BTN
