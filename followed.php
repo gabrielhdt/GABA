@@ -48,13 +48,15 @@ $idstaff = $_SESSION['idstaff'];
 $idfollowed = $_GET['id'];
 $fields = <<<FLD
 binomial_name, common_name, gender, birth, health, death,
-Followed.pic_path AS pic_path
+Followed.pic_path AS pic_path, Facility.name AS fa_name
 FLD;
 $table = <<<TAB
-Followed INNER JOIN Species ON Followed.idSpecies = Species.idSpecies
+Followed, Species, Facility
 TAB;
 $where = array();
 $where['str'] = <<<WH
+Followed.idSpecies = Species.idSpecies AND
+Followed.idFacility = Facility.idFacility AND
 Followed.idFollowed=?
 WH;
 $where['valtype'] = array(
@@ -111,9 +113,11 @@ include 'nav.php';
             <?php echo $search_res['gender'] == 'm' ? 'Male' : 'Female'; ?>
             born on <?php echo date_format(date_create($search_res['birth']), 'jS F, Y') ?>
         <p>
-            Last known location:
             <?php
-            echo $loc['latitude'] . 'W ' . $loc['longitude'] . 'N';
+            $loc_str = 'Last known location:';
+            $loc_str .= $loc['latitude'] . 'W ' . $loc['longitude'] . 'N';
+            echo $search_res['fa_name'] == 'gaia' ?
+                $loc_str : $search_res['fa_name']; 
             if ($edit)
             {
                 echo <<<BTN
