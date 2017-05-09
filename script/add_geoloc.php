@@ -1,4 +1,5 @@
 <?php
+include 'db.php';
 $idmeasure = add_line('Measure',
     array(
         'idFollowed' => $_POST['idfollowed'],
