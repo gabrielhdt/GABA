@@ -7,10 +7,14 @@ function info_followed_table ($id) {
     /*************************************************
     affiche les informations de l'anniaml d'id $id
     *************************************************/
-    $select = "gender, birth, death, health, Species.binomial_name,
-Facility.name, Followed.annotation";
-    $from = "Followed INNER JOIN Species ON Species.idSpecies = Followed.idSpecies
-INNER JOIN Facility ON Facility.idFacility";
+    $select = <<<FLD
+gender, birth, death, health, Species.binomial_name,
+Facility.name, Followed.annotation
+FLD;
+    $from = <<<FRM
+Followed INNER JOIN Species ON Species.idSpecies = Followed.idSpecies
+INNER JOIN Facility ON Facility.idFacility
+FRM;
     $where['str'] = 'idFollowed=?';
     $where['valtype'] = array(array('value' => $id, 'type' => PDO::PARAM_INT));
     $infos = get_values_light($select, $from, $where);
@@ -63,7 +67,7 @@ $loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
 include 'head.php';
 head(ucfirst($search_res['binomial_name']));
 ?>
-<body onload="get_coord()">
+<body onload="get_coords()">
 <?php
 include 'nav.php';
 ?>
@@ -91,16 +95,25 @@ include 'nav.php';
         }
         ?>
         <p>
+            <?php echo $search_res['gender'] == 'm' ? 'Male' : 'Female'; ?>
+            born on <?php echo date_format(date_create($search_res['birth']), 'jS F, Y') ?>
+        <p>
             Last known location:
             <?php
             echo $loc['latitude'] . 'W ' . $loc['longitude'] . 'N';
             if ($edit)
             {
-                echo "<button onclick=\"write_geoloc($idfollowed, $idstaff)\" type=\"button\" class=\"btn btn-default btn-xs\">";
-                echo 'Update with current localisation';
-                echo '</button>';
+                echo <<<BTN
+<span class="glyphicon glyphicon-map-marker"
+onclick="write_geoloc($idfollowed, $idstaff)"
+aria-label="Update with current position"></span>
+BTN;
             }
             ?>
+        </p>
+        <p>
+            <?php echo $search_res['annotation'] ?
+            $search_res['annotation'] : 'Write something about this animal!'; ?>
         </p>
         <h1>Informations générales :</h1>
         <?php info_followed_table($idfollowed); ?>  <!-- tableau d'informations générales -->
