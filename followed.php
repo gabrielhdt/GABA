@@ -96,7 +96,7 @@ include 'nav.php';
         ?>
         <p>
             <?php echo $search_res['gender'] == 'm' ? 'Male' : 'Female'; ?>
-            born on <?php echo $search_res['birth'] ?>
+            born on <?php echo date_format(date_create($search_res['birth']), 'jS F, Y') ?>
         <p>
             Last known location:
             <?php
