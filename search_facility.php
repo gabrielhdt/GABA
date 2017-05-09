@@ -29,10 +29,6 @@ foreach ($lines as $line)
                     <select name="idspecies[]" id="sel_species" class="form-control" multiple>
                     <?php create_choice_list($id_biname); ?>
                     </select>
-                    <label for="low_nfoll">Having more followed individuals than:
-                    <input type="number" name="low_nfoll" class="form-control" id="low_nfoll">
-                    <label for="up_nfoll">Having fewer followed individuals than:
-                    <input type="number" name="up_nfoll" class="form-control" id="up_nfoll">
                 </div>
                 <button type="submit" class="btn btn-default">Rechercher animal</button>
             </form>
@@ -54,24 +50,19 @@ $where['str'] = 'Facility.idFacility=Followed.idFollowed';
 $where['valtype'] = array();
 $groupby = 'Facility.idFacility';
 
-if (isset($_POST['low_nfoll']) && !empty($_POST['low_nfoll']))
+if (isset($_POST['idspecies']))
 {
-    $having['str'] = 'COUNT(Followed.idFollowed)>=?';
-    $having['valtype'] = array(
-        array('value' => $_POST['low_nfoll'], 'type' => PDO::PARAM_STR)
-    );
+    $where['str'] .= ' AND Followed.idSpecies IN ';
+    $where['str'] .= '('.implode(', ', '?').')';
+    $where['valtype'] = array();
+    foreach ($_POST['idspecies'] as $idsp)
+    {
+        array_push($where['valtype'],
+            array('value' => $idsp, 'type' => PDO::PARAM_INT)
+        );
+    }
 }
-if (isset($_POST['up_nfoll']) && !empty($_POST['up_nfoll']))
-{
-    $tmp_str = 'COUNT(Followed.idFollowed)<=?';
-    $having['str'] = isset($having['str']) ?
-        $having['str'] . ' AND '.$tmp_str : $tmp_str;
-    $tmp_hv = array(
-        array('value' => $_POST['low_nfoll'], 'type' => PDO::PARAM_STR)
-    );
-    $having['valtype'] = isset($having['valtype']) ?
-        array_merge($having['valtype'], $tmp_hv) : $tmp_hv;
-}
+
 $search_res = get_values_light($fields, $tables, $where, $groupby, $having);
 echo !$search_res ? "Error while querying" : null;
 ?>
