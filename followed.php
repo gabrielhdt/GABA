@@ -44,6 +44,39 @@ function meas_table($idfollowed)
 <!DOCTYPE html>
 <html lang="fr">
 <?php
+$idstaff = $_SESSION['idstaff'];
+$idfollowed = $_GET['id'];
+$fields = <<<FLD
+binomial_name, common_name, gender, birth, health, death,
+Followed.pic_path AS pic_path
+FLD;
+$table = <<<TAB
+Followed INNER JOIN Species ON Followed.idSpecies = Species.idSpecies
+TAB;
+$where = array();
+$where['str'] = <<<WH
+Followed.idFollowed=?
+WH;
+$where['valtype'] = array(
+    array('value' => $idfollowed, 'type' => PDO::PARAM_STR)
+);
+$search_res = get_values_light($fields, $table, $where)[0];
+// Getting last known location
+$fields = "latitude, longitude";
+$table = "Location INNER JOIN Measure ON Location.idMeasure=Measure.idMeasure";
+$wherestr = "Measure.idFollowed=?";
+$where = array();
+$where['str'] = 'Measure.idFollowed=?';
+$where['valtype'] = array(
+    array('value' => $idfollowed, 'type' => PDO::PARAM_INT)
+);
+$groupby = 'date_measure';
+$having = array(
+    'str' => 'date_measure=MAX(date_measure)'
+);
+$loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
+?>
+<?php
 include 'head.php';
 head(ucfirst($search_res['binomial_name']));
 ?>
