@@ -23,6 +23,8 @@ head("Ajouter un bâtiment");
                         <div class="input-goup">
                             <input class="form-control" type="text" name="fname" placeholder="Nom du centre*">
                             <input class="form-control" type="text" name="type" placeholder="Type">
+                            <input class="form-control" type="number" name="latitude" step="0.0001">
+                            <input class="form-control" type="number" name="longitude" step="0.0001">
                         </div>
                         <button class="btn btn-success" type="submit" name="submit_contact">Enregistrer</button>
                     </form>
@@ -32,12 +34,17 @@ head("Ajouter un bâtiment");
     </div>
 </div>
 <?php
+$table = 'Facility';
+$add = array();
+if (isset($_POST['latitude'], $_POST['longitude']))
+{
+    $add['gnss_coord'] = $_POST['latitude'] . ',' . $_POST['longitude'];
+}
 if (isset($_POST['fname']))
 {
-    add_line('Followed',
-        array('name' => $_POST['fname'],
-        'type' => $_POST['type'])
-    );
+    $add['name'] = $_POST['fname'];
+    $add['type'] = $_POST['type'];
+    add_line($table, $add);
 }
 ?>
 <?php include "footer.php" ?>
