@@ -84,7 +84,20 @@ echo !$search_res ? "Error while querying" : null;
     subdomain: ['a', 'b', 'c']
     }).addTo(labmap);
 <?php
-$facspecs = get_values(array('name', 'gnss_coord', 'type'), 'Facility');
+if (isset($_POST['species']))
+{
+    $fields = 'name, gnss_coord, type, COUNT(Followed.idFollowed)';
+    $tables = 'Facility, Followed, Species';
+    $where['str'] = <<<WHR
+Followed.idFacility = Facility.idFacility AND
+Species.idSpecies = Followed.idSpecies AND
+idSpecies=?
+WHR;
+    $where['valtype'] = array(
+        array('value' => $_POST['idspecies'], 'type' => PDO::PARAM_STR)
+    );
+}
+$facspecs = get_values_light('name, gnss_coord, type', 'Facility');
 foreach ($facspecs as $facility) {
     if ($facility['gnss_coord'] != null)
     {
