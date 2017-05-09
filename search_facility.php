@@ -3,6 +3,7 @@
 <?php include "db.php";
 include "form_func.php";
 include "head.php";
+head('Recherche bâtiment');
 
 $id_biname = array();
 $lines = get_values(array('idSpecies', 'binomial_name'), 'Species');
@@ -64,7 +65,7 @@ if (isset($_POST['up_nfoll']) && !empty($_POST['up_nfoll']))
 {
     $tmp_str = 'COUNT(Followed.idFollowed)<=?';
     $having['str'] = isset($having['str']) ?
-        $having['str'] . ' AND '.$tmp_str : $tmp_str; 
+        $having['str'] . ' AND '.$tmp_str : $tmp_str;
     $tmp_hv = array(
         array('value' => $_POST['low_nfoll'], 'type' => PDO::PARAM_STR)
     );

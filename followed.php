@@ -1,4 +1,5 @@
 <?php
+include 'db.php';
 session_start();
 $edit = isset($_SESSION['login']) && $_SESSION['login'] != 'admin'; // autoriastion de l'edition pour un membre mais pas l'admin
 // $edit = false;
@@ -24,15 +25,6 @@ INNER JOIN Facility ON Facility.idFacility";
 
 <!DOCTYPE html>
 <html lang="fr">
-<?php
-include 'head.php';
-include 'db.php';
-?>
-<body onload="get_coord()">
-<?php
-include 'nav.php';
-?>
-
 <?php
 $idstaff = $_SESSION['idstaff'];
 $idfollowed = $_GET['id'];
@@ -67,6 +59,15 @@ $having = array(
 );
 $loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
 ?>
+<?php
+include 'head.php';
+head(ucfirst($search_res['binomial_name']));
+?>
+<body onload="get_coord()">
+<?php
+include 'nav.php';
+?>
+
 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
     <div class="pic">
         <?php

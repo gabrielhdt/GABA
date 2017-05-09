@@ -13,6 +13,7 @@ if (!isset($_SESSION['login'])) { // test si l'utilisateur est bien passé par l
     </style>
     <?php
     include 'head.php';
+    head("Votre compte");
     include 'nav.php';
     ?>
     <body>

@@ -66,7 +66,7 @@ function addMsg() {
 
 // permet un scroll "smooth" vers la section contact
 $('a[href^="index.php#"]').click(function() {
-    var the_id = 'contact';
+    var the_id = '#contact';
 
     $('html, body').animate({
         scrollTop: $(the_id).offset().top
