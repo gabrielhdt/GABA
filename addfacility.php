@@ -23,8 +23,8 @@ head("Ajouter un bâtiment");
                         <div class="input-goup">
                             <input class="form-control" type="text" name="fname" placeholder="Nom du centre*">
                             <input class="form-control" type="text" name="type" placeholder="Type">
-                            <input class="form-control" type="number" name="latitude" step="0.0001">
-                            <input class="form-control" type="number" name="longitude" step="0.0001">
+                            <input class="form-control" type="number" name="latitude" step="0.00000000000000001" placeholder="Latitude">
+                            <input class="form-control" type="number" name="longitude" step="0.00000000000000001" placeholder="Longitude">
                         </div>
                         <button class="btn btn-success" type="submit" name="submit_contact">Enregistrer</button>
                     </form>
