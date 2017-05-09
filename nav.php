@@ -14,7 +14,7 @@ function current_nav() {
     $links = array('index.php', 'nous.php', 'recherche.php', 'help.php', 'search_species.php', 'search_followed.php',
                     'search_facility.php', 'chercheur.php', 'index.php#contact', 'login.php', 'membre_index.php',
                     'logout.php', 'admin_index.php');
-    $text = array('Accueil', 'Notre Labo', 'Recherche', 'Help', 'Espèce', 'Individu', 'Bâtiment', 'Chercheur',
+    $text = array('Accueil', 'Le projet', 'Recherche', 'Help', 'Espèce', 'Individu', 'Bâtiment', 'Chercheur',
                     'Contact', 'Connexion', 'Espace Perso', 'Déconnexion');
 
     $format = "<li %s><a href='%s'>%s %s</a></li>\n";

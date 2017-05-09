@@ -203,9 +203,17 @@ JUMBOTRON : là où on écrit nos textes
     text-align: justify;
     font-family: 'Linux Libertine';
     margin: 0 20px;
-display: table-cell;
+    display: table-cell;
 }
 
+#verbotron p{
+    display: inline-block;
+    margin: 0 10px;
+}
+
+#webmaster p{
+    display: inline-block;
+}
 .flotte_g {
     float : left;
 }
@@ -696,6 +704,23 @@ recherche.php
     font-family: 'Linux Libertine';
     margin: 20px 20px;
 }
+
+
+
+
+/**********************************************************************
+HELP
+*********************************************************************
+#cv .row img{
+    display: inline-block;
+    margin: 20px 10px;
+    margin-top: 0;
+}*/
+#video p{
+    display: block;
+}
+
+
 
 /******************************************************************************
 admin_index.php
