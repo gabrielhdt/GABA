@@ -710,12 +710,35 @@ recherche.php
 
 /**********************************************************************
 HELP
-*********************************************************************
-#cv .row img{
-    display: inline-block;
-    margin: 20px 10px;
-    margin-top: 0;
-}*/
+**********************************************************************
+#adrien{
+    background-image: url('../data/pics/unordered/owl3.jpg');
+    background-repeat: no-repeat;
+    height: 150px;
+    width: 50%;
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+*/
+#cv img{
+position: relative;
+margin: 10px 0;
+}
+#adrien a, #gabriel a, #benoit a, #aurelie a{
+    visibility: hidden;
+    position: absolute;
+    right: 2em;
+    top: 2em;
+    z-index: 10;
+}
+
+#adrien img:hover + a, #aurelie img:hover + a,#benoit img:hover + a,#gabriel img:hover + a {
+    visibility: visible;
+}
+#adrien a:hover, #aurelie a:hover, #benoit a:hover, #gabriel a:hover{
+    visibility: visible;
+}
+
 #video p{
     display: block;
 }
