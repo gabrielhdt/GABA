@@ -25,44 +25,24 @@ FRM;
     $table .= "</table>\n";
     echo $table;
 }
+
+function meas_table($idfollowed)
+{
+    $measures = latest_meas_of($idfollowed);
+    $table = "<table>\n";
+    foreach ($measures as $measure)
+    {
+        $table .= "<tr><td>" . $measure['type'] . "</td><td>" .
+            $measure['value'] . "</td><td>" . $measure['unit'] .
+            $measure['time'] . "</td></tr>\n";
+    }
+    $table .= "</table>\n";
+    return($table);
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
-<?php
-$idstaff = $_SESSION['idstaff'];
-$idfollowed = $_GET['id'];
-$fields = <<<FLD
-binomial_name, common_name, gender, birth, health, death,
-Followed.pic_path AS pic_path
-FLD;
-$table = <<<TAB
-Followed INNER JOIN Species ON Followed.idSpecies = Species.idSpecies
-TAB;
-$where = array();
-$where['str'] = <<<WH
-Followed.idFollowed=?
-WH;
-$where['valtype'] = array(
-    array('value' => $idfollowed, 'type' => PDO::PARAM_STR)
-);
-$search_res = get_values_light($fields, $table, $where)[0];
-
-// Getting last known location
-$fields = "latitude, longitude";
-$table = "Location INNER JOIN Measure ON Location.idMeasure=Measure.idMeasure";
-$wherestr = "Measure.idFollowed=?";
-$where = array();
-$where['str'] = 'Measure.idFollowed=?';
-$where['valtype'] = array(
-    array('value' => $idfollowed, 'type' => PDO::PARAM_INT)
-);
-$groupby = 'date_measure';
-$having = array(
-    'str' => 'date_measure=MAX(date_measure)'
-);
-$loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
-?>
 <?php
 include 'head.php';
 head(ucfirst($search_res['binomial_name']));
@@ -115,8 +95,8 @@ BTN;
             <?php echo $search_res['annotation'] ?
             $search_res['annotation'] : 'Write something about this animal!'; ?>
         </p>
-        <h1>Informations générales :</h1>
-        <?php info_followed_table($idfollowed); ?>  <!-- tableau d'informations générales -->
+        <h1>Data:</h1>
+        <?php echo meas_table($idfollowed); ?>  <!-- tableau d'informations générales -->
 
         <p>Last update Misc by Johnny on Tomorrow (Useless?)</p>
     </div>
