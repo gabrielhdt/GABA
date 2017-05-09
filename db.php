@@ -675,6 +675,8 @@ function delete_msg($id)
 function latest_meas_of($idfollowed)
 {
     /* Returns all latest measures (of each type) of followed idfollowed
+     * each line contains: type of measure, unit, value and date
+     * it should return the last value
      */
     global $servername, $username, $dbname, $password, $charset;
     try {
