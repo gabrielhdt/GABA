@@ -2,7 +2,7 @@
 include 'db.php';
 session_start();
 $edit = isset($_SESSION['login']) && $_SESSION['login'] != 'admin'; // autoriastion de l'edition pour un membre mais pas l'admin
-// $edit = false;
+
 function info_followed_table ($id) {
     /*************************************************
     affiche les informations de l'anniaml d'id $id
@@ -39,11 +39,8 @@ function meas_table($idfollowed)
     $table .= "</table>\n";
     return($table);
 }
-?>
 
-<!DOCTYPE html>
-<html lang="fr">
-<?php
+// Getting information
 $idstaff = $_SESSION['idstaff'];
 $idfollowed = $_GET['id'];
 $fields = <<<FLD
@@ -78,12 +75,13 @@ $having = array(
 );
 $loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
 ?>
+
+<!DOCTYPE html>
+<html lang="fr">
 <?php
 include 'head.php';
 head(ucfirst($search_res['binomial_name']));
-?>
-<body onload="get_coords()">
-<?php
+echo '<body' . $edit ? ' onload="get_coords()"' : '' . '>';
 include 'nav.php';
 ?>
 
