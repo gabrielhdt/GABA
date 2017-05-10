@@ -21,6 +21,9 @@ $groupby = array();
 if (isset($_POST['idspecies']))
 {
     $len = count($_POST['idspecies']);
+    $fields = <<<FLD
+Facility.idFacility, name AS fa_name, gnss_coord
+FLD;
     $tables = 'Facility, Followed, Species';
     $where['str'] = <<<WHR
 Followed.idFacility = Facility.idFacility AND
