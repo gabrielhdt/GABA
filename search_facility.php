@@ -12,7 +12,7 @@ $col = array('idFacility', 'fa_name', 'nfoll');
 $labels = array('Identifier', 'Facility name', 'Number of followed individuals');
 
 $fields = <<<FLD
-Facility.idFacility, Facility.name AS fa_name, gnss_coord
+Facility.idFacility, Facility.name AS fa_name, gnss_coord,
 COUNT(Followed.idFollowed) as nfoll
 FLD;
 $tables = 'Facility, Followed';
