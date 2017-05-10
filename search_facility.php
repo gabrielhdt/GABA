@@ -12,14 +12,11 @@ $col = array('idFacility', 'fa_name', 'nfoll');
 $labels = array('Identifier', 'Facility name', 'Number of followed individuals');
 
 $fields = <<<FLD
-Facility.idFacility, Facility.name AS fa_name, gnss_coord,
-COUNT(Followed.idFollowed) as nfoll
+idFacility, name AS fa_name, gnss_coord
 FLD;
-$tables = 'Facility, Followed';
-$where['str'] = 'Facility.idFacility=Followed.idFacility';
-$where['valtype'] = array();
-$groupby = 'Facility.idFacility';
-$having = array();
+$tables = 'Facility';
+$where = array();
+$groupby = array();
 
 if (isset($_POST['idspecies']))
 {
@@ -31,15 +28,17 @@ Species.idSpecies = Followed.idSpecies AND
 Followed.idSpecies IN
 WHR;
     $where['str'] .= ' ('.implode(', ', array_fill(0, $len, '?')).')';
+    $where['valtype'] = array();
     foreach ($_POST['idspecies'] as $idsp)
     {
         array_push($where['valtype'],
             array('value' => $idsp, 'type' => PDO::PARAM_INT)
         );
     }
+    $groupby = 'Facility.idFacility';
 }
 
-$facspecs = get_values_light($fields, $tables, $where, $groupby, $having);
+$facspecs = get_values_light($fields, $tables, $where, $groupby);
 echo !$facspecs ? "Error while querying" : null;
 ?>
 
