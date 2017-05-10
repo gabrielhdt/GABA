@@ -11,7 +11,7 @@ function meas_table($idfollowed)
     $measures = latest_meas_of($idfollowed);
     foreach ($measures as $measure)
     {
-        $table .= "<tr><td>" . $measure['type'] . "</td><td>" .
+        $table .= "<tr><td>" . ucfirst($measure['type']) . "</td><td>" .
             $measure['value'] . "</td><td>" . $measure['unit'] .
             $measure['time'] . "</td></tr>\n";
     }
@@ -27,7 +27,7 @@ function relation_table($relationships)
             $relationship['idfollowed2'] : $relationship['idfollowed1'];
         $table .= "<tr><td>" .
             "<a href=\"followed?id=$other_id\">$other_id</a>" . "</td><td>" .
-            $relationship['relation_type'] . "</td><td>" .
+            ucfirst($relationship['relation_type']) . "</td><td>" .
             $relationship['begin'] . "</td><td>" .
             $relationship['end'] . "</td></tr>\n";
     }
