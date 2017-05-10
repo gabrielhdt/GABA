@@ -30,7 +30,7 @@ foreach ($lines as $line)
                     <?php create_choice_list($id_biname); ?>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-default">Rechercher animal</button>
+                <button type="submit" class="btn btn-default">Search facility</button>
             </form>
         </div>
     </div>
@@ -49,11 +49,13 @@ $tables = 'Facility, Followed';
 $where['str'] = 'Facility.idFacility=Followed.idFollowed';
 $where['valtype'] = array();
 $groupby = 'Facility.idFacility';
+$having = array();
 
 if (isset($_POST['idspecies']))
 {
+    $len = count($_POST['idspecies']);
     $where['str'] .= ' AND Followed.idSpecies IN ';
-    $where['str'] .= '('.implode(', ', '?').')';
+    $where['str'] .= '('.implode(', ', array_fill(0, $len, '?')).')';
     $where['valtype'] = array();
     foreach ($_POST['idspecies'] as $idsp)
     {
