@@ -29,14 +29,12 @@ FRM;
 function meas_table($idfollowed)
 {
     $measures = latest_meas_of($idfollowed);
-    $table = "<table>\n";
     foreach ($measures as $measure)
     {
         $table .= "<tr><td>" . $measure['type'] . "</td><td>" .
             $measure['value'] . "</td><td>" . $measure['unit'] .
             $measure['time'] . "</td></tr>\n";
     }
-    $table .= "</table>\n";
     return($table);
 }
 
@@ -133,7 +131,20 @@ BTN;
             $search_res['annotation'] : 'Write something about this animal!'; ?>
         </p>
         <h1>Data:</h1>
-        <?php echo meas_table($idfollowed); ?>  <!-- tableau d'informations générales -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Desc.</th>
+                    <th>Value</th>
+                    <th>Unit</th>
+                    <th>Date</th>
+                    <th>Author</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php echo meas_table($idfollowed); ?>
+            </tbody>
+        </table>
 
         <p>Last update Misc by Johnny on Tomorrow (Useless?)</p>
     </div>
