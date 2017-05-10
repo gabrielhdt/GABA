@@ -153,7 +153,7 @@ BTN;
         </table>
 
         <p>Last update Misc by Johnny on Tomorrow (Useless?)</p>
-        <h1>Relationships<h1>
+        <h1>Relationships</h1>
         <table>
             <thead>
                 <tr>
