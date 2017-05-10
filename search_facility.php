@@ -12,11 +12,11 @@ $col = array('idFacility', 'fa_name', 'nfoll');
 $labels = array('Identifier', 'Facility name', 'Number of followed individuals');
 
 $fields = <<<FLD
-Facility.idFacility, Facility.name AS fa_name,
+Facility.idFacility, Facility.name AS fa_name, gnss_coord
 COUNT(Followed.idFollowed) as nfoll
 FLD;
 $tables = 'Facility, Followed';
-$where['str'] = 'Facility.idFacility=Followed.idFollowed';
+$where['str'] = 'Facility.idFacility=Followed.idFacility';
 $where['valtype'] = array();
 $groupby = 'Facility.idFacility';
 $having = array();
@@ -24,9 +24,13 @@ $having = array();
 if (isset($_POST['idspecies']))
 {
     $len = count($_POST['idspecies']);
-    $where['str'] .= ' AND Followed.idSpecies IN ';
-    $where['str'] .= '('.implode(', ', array_fill(0, $len, '?')).')';
-    $where['valtype'] = array();
+    $tables = 'Facility, Followed, Species';
+    $where['str'] = <<<WHR
+Followed.idFacility = Facility.idFacility AND
+Species.idSpecies = Followed.idSpecies AND
+Followed.idSpecies IN
+WHR;
+    $where['str'] .= ' ('.implode(', ', array_fill(0, $len, '?')).')';
     foreach ($_POST['idspecies'] as $idsp)
     {
         array_push($where['valtype'],
@@ -35,23 +39,8 @@ if (isset($_POST['idspecies']))
     }
 }
 
-$search_res = get_values_light($fields, $tables, $where, $groupby, $having);
-echo !$search_res ? "Error while querying" : null;
-
-if (isset($_POST['species']))
-{
-    $fields = 'name, gnss_coord, type, COUNT(Followed.idFollowed)';
-    $tables = 'Facility, Followed, Species';
-    $where['str'] = <<<WHR
-Followed.idFacility = Facility.idFacility AND
-Species.idSpecies = Followed.idSpecies AND
-idSpecies=?
-WHR;
-    $where['valtype'] = array(
-        array('value' => $_POST['idspecies'], 'type' => PDO::PARAM_STR)
-    );
-}
-$facspecs = get_values_light('name, gnss_coord, type', 'Facility');
+$facspecs = get_values_light($fields, $tables, $where, $groupby, $having);
+echo !$facspecs ? "Error while querying" : null;
 ?>
 
 <!DOCTYPE HTML>
@@ -97,7 +86,7 @@ foreach ($facspecs as $facility) {
     {
         $latlong = explode(',', $facility['gnss_coord']);
         $type = $facility['type'];
-        $name = $facility['name'];
+        $name = $facility['fa_name'];
         echo "var marker = L.marker([$latlong[0], $latlong[1]]).addTo(labmap);";
         echo "marker.bindPopup(\"<b>$name</b><br>$type\");";
     }
