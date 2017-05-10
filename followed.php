@@ -3,29 +3,6 @@ include 'db.php';
 session_start();
 $edit = isset($_SESSION['login']) && $_SESSION['login'] != 'admin'; // autoriastion de l'edition pour un membre mais pas l'admin
 
-function info_followed_table ($id) {
-    /*************************************************
-    affiche les informations de l'anniaml d'id $id
-    *************************************************/
-    $select = <<<FLD
-gender, birth, death, health, Species.binomial_name,
-Facility.name, Followed.annotation
-FLD;
-    $from = <<<FRM
-Followed INNER JOIN Species ON Species.idSpecies = Followed.idSpecies
-INNER JOIN Facility ON Facility.idFacility
-FRM;
-    $where['str'] = 'idFollowed=?';
-    $where['valtype'] = array(array('value' => $id, 'type' => PDO::PARAM_INT));
-    $infos = get_values_light($select, $from, $where);
-    $table = "<table>\n";
-    foreach ($infos[0] as $key => $value) {
-        $table .= "<tr><td>$key</td><td>".($value ? $value : 'null')."</td></tr>\n";
-    }
-    $table .= "</table>\n";
-    echo $table;
-}
-
 function meas_table($idfollowed)
 {
     $measures = latest_meas_of($idfollowed);
