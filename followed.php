@@ -1,7 +1,10 @@
 <?php
 include 'db.php';
 session_start();
-$edit = isset($_SESSION['login']) && $_SESSION['login'] != 'admin'; // autoriastion de l'edition pour un membre mais pas l'admin
+// Autoriastion de l'edition pour un membre mais pas l'admin
+$edit = isset($_SESSION['login']) && $_SESSION['login'] != 'admin';
+$idstaff = $_SESSION['idstaff'];
+$idfollowed = $_GET['id'];
 
 function meas_table($idfollowed)
 {
@@ -15,9 +18,23 @@ function meas_table($idfollowed)
     return($table);
 }
 
+function relation_table($relationships)
+{
+    $table = '';
+    foreach ($relationships as $relationship)
+    {
+        $other_id = $relationship['idfollowed1'] == $idfollowed ?
+            $relationship['idfollowed2'] : $relationship['idfollowed1'];
+        $table .= "<tr><td>" . $other_id . "</td><td>" .
+            $relationship['relation_type'] . "</td><td>" .
+            $relationship['begin'] . "</td><td>" .
+            $relationship['end'] . "</td></tr>\n";
+    }
+    return($table);
+}
+
 // Getting information
-$idstaff = $_SESSION['idstaff'];
-$idfollowed = $_GET['id'];
+
 $fields = <<<FLD
 binomial_name, common_name, gender, birth, health, death,
 Followed.pic_path AS pic_path, Facility.name AS fa_name
@@ -35,6 +52,16 @@ $where['valtype'] = array(
     array('value' => $idfollowed, 'type' => PDO::PARAM_STR)
 );
 $search_res = get_values_light($fields, $table, $where)[0];
+
+// Getting relationship information
+$fields = 'idfollowed1, idfollowed2, type_relation, begin, end';
+$table = 'Relation';
+$where['str'] = 'idFollowed1=? OR idFollowed2=?';
+$where['valtype'] = array(
+    array('value' => $idfollowed, 'type' => PDO::PARAM_INT)
+);
+$relationships = get_values_light($fields, $table, $where);
+
 // Getting last known location
 $fields = "latitude, longitude";
 $table = "Location INNER JOIN Measure ON Location.idMeasure=Measure.idMeasure";
@@ -124,6 +151,20 @@ BTN;
         </table>
 
         <p>Last update Misc by Johnny on Tomorrow (Useless?)</p>
+        <h1>Relationships<h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Identifier</th>
+                    <th>Rel. type</th>
+                    <th>Begin</th>
+                    <th>End</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php echo relation_table($relationship); ?>
+            </tbody>
+        </table>
     </div>
 </div>
 <form action="upload_pic.php" method="post" enctype="multipart/form-data">
