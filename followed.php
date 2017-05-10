@@ -121,9 +121,11 @@ include 'nav.php';
             if ($edit)
             {
                 echo <<<BTN
-<span class="glyphicon glyphicon-map-marker"
+<button class="btn btn-default btn-xs"
 onclick="write_geoloc($idfollowed, $idstaff)"
-aria-label="Update with current position"></span>
+aria-label="Update with current position">
+    <span class="glyphicon glyphicon-map-marker"></span>Update
+</button>
 BTN;
             }
             ?>
