@@ -59,6 +59,7 @@ $fields = 'idfollowed1, idfollowed2, type_relation, begin, end';
 $table = 'Relation';
 $where['str'] = 'idFollowed1=? OR idFollowed2=?';
 $where['valtype'] = array(
+    array('value' => $idfollowed, 'type' => PDO::PARAM_INT),
     array('value' => $idfollowed, 'type' => PDO::PARAM_INT)
 );
 $relationships = get_values_light($fields, $table, $where);
