@@ -81,7 +81,7 @@ $loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
 <?php
 include 'head.php';
 head(ucfirst($search_res['binomial_name']));
-echo '<body' . $edit ? ' onload="get_coords()"' : '' . '>';
+echo $edit ? '<body onload="get_coords()">' : '<body>';
 include 'nav.php';
 ?>
 
