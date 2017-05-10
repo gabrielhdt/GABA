@@ -25,7 +25,8 @@ function relation_table($relationships)
     {
         $other_id = $relationship['idfollowed1'] == $idfollowed ?
             $relationship['idfollowed2'] : $relationship['idfollowed1'];
-        $table .= "<tr><td>" . $other_id . "</td><td>" .
+        $table .= "<tr><td>" .
+            "<a href=\"followed?id=$other_id\">$other_id</a>" . "</td><td>" .
             $relationship['relation_type'] . "</td><td>" .
             $relationship['begin'] . "</td><td>" .
             $relationship['end'] . "</td></tr>\n";
