@@ -589,14 +589,14 @@ recherche.php
 }
 
 #chercheur {
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('../data/pics/unordered/vet_tigre.jpg'),
-                center/cover, no-repeat;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)) url('../data/pics/unordered/vet_tigre.jpg')
+                center/cover no-repeat;
     /*background-position: center;*/
     /*background-size: cover;*/
 }
 
 #chercheur:hover {
-    background: url('../data/pics/unordered/vet_tigre.jpg'), center/cover, no-repeat;
+    background: url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
     /*background-position: center;*/
     /*background-size: cover;*/
 }
