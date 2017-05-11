@@ -107,6 +107,9 @@ function modifyAnnotation(id_Followed) {
         {
             idFollowed: id_Followed,
             annotation: $("textarea[name=annotation]").val()
+        },
+        function(data) {
+            console.log(data);
         }
     );
 }
