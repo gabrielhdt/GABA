@@ -77,8 +77,7 @@ include 'nav.php';
         ?>
         We currently have <?php echo $nfoll ?> individuals.
         <p>
-            <?php echo $search_res['annotation'] ?
-            $search_res['annotation'] : 'Write something about this species!'; ?>
+            Data from wikipedia soon
         </p>
     </div>
 </div>
