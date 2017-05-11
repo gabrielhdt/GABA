@@ -6,8 +6,12 @@ $edit = isset($_SESSION['login']) && $_SESSION['login'] != 'admin';
 $idstaff = $_SESSION['idstaff'];
 $idfollowed = $_GET['id'];
 
-function edi_table($lines, $edit_arg)
+function edi_table($lines, $js_func, $edit_arg='')
 {
+    /* js_func the javascript function called for editing,
+     * edit_arg, key of line (in lines) passed to js_func, in addition to
+     * the idfollowed
+     */
     $table = '';
     foreach ($lines as $line)
     {
@@ -22,7 +26,7 @@ function edi_table($lines, $edit_arg)
         $edit = $line['type'];
         $table .= <<<GLPH
 <span title="Add a new entry" class="glyphicon glyphicon-plus"
-onclick="add_measure($idfollowed, $edit)"></span>
+onclick="$js_func($idfollowed, $edit)"></span>
 GLPH;
         $table .= '</td>';
         $table .= '</tr>';
@@ -33,28 +37,34 @@ GLPH;
 function meas_table($idfollowed)
 {
     $measures = latest_meas_of($idfollowed);
-    $table = edi_table($measures, 'type');
+    $table = edi_table($measures, 'add_measure', 'type');
     return($table);
 }
 
-function relation_table($relationships)
+function relation_table($idfollowed)
 {
-    $table = '';
+    // Getting relationship information
+    $fields = 'idfollowed1, idfollowed2, type_relation, begin, end';
+    $table = 'Relation';
+    $where = array();
+    $where['str'] = 'idFollowed1=? OR idFollowed2=?';
+    $where['valtype'] = array(
+        array('value' => $idfollowed, 'type' => PDO::PARAM_INT),
+        array('value' => $idfollowed, 'type' => PDO::PARAM_INT)
+    );
+    $relationships = get_values_light($fields, $table, $where);
     foreach ($relationships as $relationship)
     {
-        $other_id = $relationship['idfollowed1'] == $idfollowed ?
-            $relationship['idfollowed2'] : $relationship['idfollowed1'];
-        $table .= "<tr><td>" .
-            "<a href=\"followed?id=$other_id\">$other_id</a>" . "</td><td>" .
-            ucfirst($relationship['relation_type']) . "</td><td>" .
-            $relationship['begin'] . "</td><td>" .
-            $relationship['end'] . "</td></tr>\n";
+        $redundant_id = $relationship['idfollowed1'] == $idfollowed ?
+            'idfollowed1' : 'idfollowed2';
+        unset($relationship[$redundant_id]);
     }
+
+    $table = edi_table($relationships, 'edit_relation');
     return($table);
 }
 
 // Getting information
-
 $fields = <<<FLD
 binomial_name, common_name, gender, birth, health, death,
 Followed.pic_path AS pic_path, Facility.name AS fa_name
@@ -73,15 +83,6 @@ $where['valtype'] = array(
 );
 $search_res = get_values_light($fields, $table, $where)[0];
 
-// Getting relationship information
-$fields = 'idfollowed1, idfollowed2, type_relation, begin, end';
-$table = 'Relation';
-$where['str'] = 'idFollowed1=? OR idFollowed2=?';
-$where['valtype'] = array(
-    array('value' => $idfollowed, 'type' => PDO::PARAM_INT),
-    array('value' => $idfollowed, 'type' => PDO::PARAM_INT)
-);
-$relationships = get_values_light($fields, $table, $where);
 
 // Getting last known location
 $fields = "latitude, longitude";
@@ -115,6 +116,12 @@ include 'nav.php';
             '" class = "img-responsive">';
         ?>
     </div>
+    <form action="upload_pic.php" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" readonly value="<?php echo $idfollowed ?>">
+    <input type="hidden" name="table" readonly value="Followed">
+    <input type="file" name="userpic">
+    <button type="submit" class="btn btn-default">Upload pic</button>
+    </form>
 </div>
 
 <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
@@ -188,17 +195,11 @@ BTN;
                 </tr>
             </thead>
             <tbody>
-                <?php echo relation_table($relationship); ?>
+                <?php echo relation_table($idfollowed); ?>
             </tbody>
         </table>
     </div>
 </div>
-<form action="upload_pic.php" method="post" enctype="multipart/form-data">
-<input type="hidden" name="id" readonly value="<?php echo $idfollowed ?>">
-<input type="hidden" name="table" readonly value="Followed">
-<input type="file" name="userpic">
-<button type="submit" class="btn btn-default">Upload pic</button>
-</form>
 </body>
 
 <?php
