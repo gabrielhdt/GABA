@@ -257,7 +257,7 @@ function coord2cookies(position)
 function write_geoloc(idfoll, idstaff)
 {
     $.post(
-        'script/add_geoloc.php',
+        'script/scriptAjax.php',
         {idfollowed: idfoll, geoloc: document.cookie, idstaff: idstaff}
     );
 }
