@@ -73,3 +73,19 @@ $('a[href^="index.php#"]').click(function() {
     }, 'slow');
     return false;
 });
+
+/*******************************
+fonctions de followed.php
+*******************************/
+
+function addMeasure(id_Followed, id_Staff) {
+    // permet l'ajout de measure par le staff idStaff sur le folloxed idfollowed
+    $.post(
+        'script/addStaff_script.php', {
+            idFollowed: id_Followed,
+            idStaff: id_Staff,
+            type: $("input[name=type]").val(),
+            value: $("input[name=value]").val(),
+            unit: $("input[name=unit]").val()
+        });
+}
