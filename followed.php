@@ -26,7 +26,7 @@ function edi_table($lines, $js_func, $edit_arg='')
         $edit = $line['type'];
         $table .= <<<GLPH
 <span title="Add a new entry" class="glyphicon glyphicon-plus"
-onclick="$js_func($idfollowed, $edit)"></span>
+data-toggle="modal" data-target="#addModal"></span>
 GLPH;
         $table .= '</td>';
         $table .= '</tr>';
@@ -220,9 +220,9 @@ BTN;
       </div>
       <div class="modal-body">
           <form>
-              <input type="text" class="form-control" name="type" placeholder="Type de mesure (Ex : taille)">
-              <input type="number" step="0.01" class="form-control" name="value" placeholder="Valeur (Ex : 1,64)">
-              <input type="text" class="form-control" name="unit" placeholder="Unité (Ex : cm)">
+              <input type="text" class="form-control" name="type" placeholder="Type de mesure (Ex : taille)" required>
+              <input type="number" step="0.01" class="form-control" name="value" placeholder="Valeur (Ex : 1,64)" required>
+              <input type="text" class="form-control" name="unit" placeholder="Unité (Ex : cm)" required>
           </form>
       </div>
       <div class="modal-footer">
