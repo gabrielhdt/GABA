@@ -90,11 +90,11 @@
                 <h1>Nous contacter</h1>
                 <p>Vous voulez communiquer avec un de nos chercheurs ? Lui poser des questions sur ses recherches et données ? Vous n'avez qu'à communiquer vos contacts et nous vous mettrons en relation rapidemment.</p>
                 <p>N'hésitez pas non plus à faire part de vos remarques et suggestions dans le but d'améliorer l'utilisation du site.</p>
+                <p>(* champs obligatoires)</p>
                 <form>
                     <input type="text" name="name" placeholder="Votre nom*">
                     <input type="email" name="email" placeholder="Votre e-mail*">
                     <textarea name="msg" rows="8" cols="80" placeholder="Votre message*"></textarea>
-                    <!-- <input type="submit" onclick="addMsg()" class="btn btn-success" name="submit_contact" value="Envoyer le message"> -->
                 </form>
                 <button onclick="addMsg()" class="btn btn-success" name="submit_contact">Envoyer le message</button>
                 <div id='res_msg'>
@@ -102,8 +102,8 @@
                 </div>
             </div>
         </div>
-
-        <?php include 'footer.php'; ?>
+    </div>
+    <?php include 'footer.php'; ?>
 </body>
 
 </html>
