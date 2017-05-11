@@ -227,8 +227,9 @@ BTN;
         <h2 class="modal-title">Modifier la description du <?php echo ucfirst($search_res['binomial_name']); ?> </h2>
       </div>
       <div class="modal-body">
+          <h5>Votre commantaire:</h5>
           <form>
-              <textarea name="annotation" style="width:100%;" rows="50" placeholder="<?php echo $search_res['annotation'] ? "" : "Votre commentaire"; ?>">
+              <textarea name="annotation" style="width:100%;" rows="50">
               <?php echo $search_res['annotation'] ? echo $search_res['annotation'] : ""; ?></textarea>
           </form>
       </div>
