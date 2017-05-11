@@ -31,6 +31,15 @@ $nfoll = get_values_light(
         )
     )
 )[0]['nfoll'];
+
+// Getting a random picture
+$where['str'] = 'idSpecies=?';
+$where['valtype'] = array(array('value' => $idspecies,
+    'type' => PDO::PARAM_INT));
+$pic_paths_qu = get_values_light('pic_path', 'Followed', $where);
+function g($ppassoc) { return($ppassoc['pic_path']); }
+$pic_paths = array_map("g", $pic_paths_qu);
+$pic_path = $pic_paths[rand(0, count($pic_paths) - 1)];
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +56,7 @@ include 'nav.php';
 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
     <div class="pic">
         <?php
-        echo '<img src="'.$search_res['pic_path'].
+        echo '<img src="'.$pic_path.
             '" class = "img-responsive">';
         ?>
     </div>
