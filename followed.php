@@ -155,7 +155,7 @@ BTN;
             <?php echo $search_res['annotation'] ?
             $search_res['annotation'] : 'Write something about this animal!'; ?>
         </p>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addModal">Modifier la description</button>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#annotationModal">Modifier la description</button>
         <h1>Data:</h1>
         <table>
             <thead>
