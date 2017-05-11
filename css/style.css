@@ -843,6 +843,10 @@ menus photos
 #addModal input {
     margin: 20px 0;
 }
+#annotationModal textarea {
+    width: 100%;
+    height: auto;
+}
 .annotation {
     padding-left: 20px;
     border-left: 4px solid black;
