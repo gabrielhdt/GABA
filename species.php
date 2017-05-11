@@ -40,8 +40,8 @@ $pic_paths_qu = get_values_light('pic_path', 'Followed', $where);
 function g($ppassoc) { return($ppassoc['pic_path']); }
 $pic_paths_null = array_map("g", $pic_paths_qu);
 function h($ppnull) { return($ppnull && true); } // ppnull seems false?
-$pic_paths = array_filter("h", $pic_paths_null);
-$pic_path = $pic_paths[rand(0, count($pic_paths)-1)];
+$pic_paths = array_filter($pic_paths_null, "h");
+$pic_path = $pic_paths[array_rand($pic_paths)];
 
 ?>
 
