@@ -220,9 +220,9 @@ BTN;
       </div>
       <div class="modal-body">
           <form>
-              <input type="text" class="form-control" name="type" placeholder="Type de mesure">
-              <input type="number" step="0.01" class="form-control" name="value" placeholder="Valeur">
-              <input type="text" class="form-control" name="unit" placeholder="Unité">
+              <input type="text" class="form-control" name="type" placeholder="Type de mesure (Ex : taille)">
+              <input type="number" step="0.01" class="form-control" name="value" placeholder="Valeur (Ex : 1,64)">
+              <input type="text" class="form-control" name="unit" placeholder="Unité (Ex : cm)">
           </form>
       </div>
       <div class="modal-footer">
