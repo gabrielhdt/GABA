@@ -145,7 +145,7 @@ BTN;
                     <th>Unit</th>
                     <th>Date</th>
                     <th>Author</th>
-                    <th>
+                    <th class="edit">
                         Edit<span class="glyphicon glyphicon-pencil"
                         onclick="add_measure()"></span>
                     </th>
