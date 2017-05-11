@@ -145,7 +145,7 @@ include 'nav.php';
             $loc_str = 'Last known location:';
             $loc_str .= $loc['latitude'] . 'W ' . $loc['longitude'] . 'N';
             echo $search_res['fa_name'] == 'gaia' ?
-                $loc_str : 'At ' . $search_res['fa_name']; 
+                $loc_str : 'At ' . $search_res['fa_name'];
             if ($edit)
             {
                 echo <<<BTN
@@ -174,7 +174,7 @@ BTN;
                     <th class="edit">
                         <span title="Add measure"
                             class="glyphicon glyphicon-plus"
-                            onclick="add_measure()"></span>
+                            data-toggle="modal" data-target="#addModal"></span>
                     </th>
                 </tr>
             </thead>
@@ -206,7 +206,27 @@ BTN;
     </div>
 </div>
 </div>
-</body>
+
+
+<div id="addModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <?php
 include 'footer.php';
