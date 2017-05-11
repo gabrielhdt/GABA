@@ -6,21 +6,34 @@ $edit = isset($_SESSION['login']) && $_SESSION['login'] != 'admin';
 $idstaff = $_SESSION['idstaff'];
 $idfollowed = $_GET['id'];
 
+function edi_table($lines, $edit_arg)
+{
+    $table = '';
+    foreach ($lines as $line)
+    {
+        $table .= '<tr>';
+        foreach ($line as $value)
+        {
+            $table .= '<td>';
+            $table .= ucfirst($value);
+            $table .= '</td>';
+        }
+        $table .= '<td class="edit">';
+        $edit = $line['type'];
+        $table .= <<<GLPH
+<span title="Add a new entry" class="glyphicon glyphicon-plus"
+onclick="add_measure($idfollowed, $edit)"></span>
+GLPH;
+        $table .= '</td>';
+        $table .= '</tr>';
+    }
+    return($table);
+}
+
 function meas_table($idfollowed)
 {
     $measures = latest_meas_of($idfollowed);
-    foreach ($measures as $measure)
-    {
-        $meas_type = $measure['type'];
-        $glyphadd = <<<GLPH
-<span title="Add a new $meas_type" class="glyphicon glyphicon-plus"
-onclick="add_measure($idfollowed, $meas_type)"></span>
-GLPH;
-        $table .= "<tr><td>" . ucfirst($measure['type']) . "</td><td>" .
-            $measure['value'] . "</td><td>" . $measure['unit'] .
-            $measure['time'] . "</td>" .
-            "<td class=\"edit\">$glyphadd</td></tr>\n";
-    }
+    $table = edi_table($measures, 'type');
     return($table);
 }
 
