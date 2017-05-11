@@ -13,7 +13,7 @@ function meas_table($idfollowed)
     {
         $meas_type = $measure['type'];
         $glyphadd = <<<GLPH
-<span title="Add a new $meas_type class="glyphicon glyphicon-plus"
+<span title="Add a new $meas_type" class="glyphicon glyphicon-plus"
 onclick="add_measure($idfollowed, $meas_type)"></span>
 GLPH;
         $table .= "<tr><td>" . ucfirst($measure['type']) . "</td><td>" .
