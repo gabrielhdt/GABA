@@ -560,16 +560,13 @@ recherche.php
     background-size: cover;
 }
 #chercheur{
-    background: linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../data/pics/unordered/vet_tigre.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
+    background: linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)),
+                url('../data/pics/unordered/vet_tigre.jpg'), no-repeat, center;
     background-size: cover;
 }
 #chercheur:hover {
-    background: url('../data/pics/unordered/vet_tigre.jpg');
-    /*background-repeat: no-repeat;
-    background-position: center;*/
-    /*background-size: cover;*/
+    background: url('../data/pics/unordered/vet_tigre.jpg'), no-repeat, center;
+    background-size: cover;
 }
 .photo_menu {
     height: 650px;
