@@ -228,7 +228,7 @@ BTN;
       </div>
       <div class="modal-body">
           <form>
-              <textarea name="annotation" rows="8" cols="80" value='toto'></textarea>
+              <textarea name="annotation" style="width:100%;" value='toto'></textarea>
           </form>
       </div>
       <div class="modal-footer">
