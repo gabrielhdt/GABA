@@ -166,8 +166,6 @@ echo "<table id='table'
     data-toggle='table'
     data-search='true'
     data-pagination='true'
-    data-detail-view='true'
-    data-detail-formatter='detail_formatter'
     data-page-list='[10, 25, 50, 100, ALL]'
     data-pagination='true'>";
 echo '<thead>';
@@ -181,36 +179,4 @@ echo '</table>';
 ?>
 <?php include "footer.php"; ?>
 </body>
-<script>
-var $table = $('#table');
-function detail_formatter(index, row) {
-    var html = [];
-    var picpath = '';
-    $.ajax({url: 'script/search_script.php',
-        type: 'post',
-        data: {
-            id: row['idFollowed'],
-            table: 'Followed'
-        },
-        success: function(output) {
-            if (output) {
-                html.push('<img src="'+output+'" class="img-responsive>');
-            }
-        },
-    });
-    $.ajax({url: 'script/search_script.php',
-        type: 'post',
-        data: { id: row['idFollowed'],
-            action: 'location'
-        },
-        success: function(output)
-        {
-            /* output ought to be geolocation data
-             */
-            html.push('Yet to come...');
-        },
-    });
-    return html.join('');
-}
-</script>
 </html>
