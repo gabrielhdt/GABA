@@ -164,11 +164,6 @@ BTN;
                     <th>Unit</th>
                     <th>Date</th>
                     <th>Author</th>
-                    <th class="edit">
-                        <span title="Add measure"
-                            class="glyphicon glyphicon-plus"
-                            data-toggle="modal" data-target="#addModal"></span>
-                    </th>
                 </tr>
             </thead>
             <tbody>
