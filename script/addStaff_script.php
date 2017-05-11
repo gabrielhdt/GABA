@@ -35,6 +35,6 @@ elseif (isset($_POST['idFollowed'], $_POST['annotation'])) {
     $change = array('annotation' => $_POST['annotation']);
     $where = array(array("field" => "idFollowed", "value" => $_POST['idFollowed'], "binrel" => "=", PDO::PARAM_INT));
     update_line('Followed', $change, $where);
-    echo "script ok";
+    echo $_POST['annotation'];
 }
 ?>
