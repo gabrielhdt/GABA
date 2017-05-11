@@ -31,4 +31,9 @@ elseif (isset($_POST['idFollowed'], $_POST['idStaff'], $_POST['type'], $_POST['u
                                'value' => $_POST['value'], 'unit' => $_POST['unit']);
     add_line('MiscQuantity', $infosMiscQuantity);
 }
+elseif (isset($_POST['idFollowed'], $_POST['annotation'])) {
+    $change = array('annotation' => $_POST['annotation']);
+    $where = array(array("field" => "idFollowed", "value" => $_POST['idFollowed'], "binrel" => "=", PDO::PARAM_INT));
+    update_line('Followed', $change, $where);
+}
 ?>
