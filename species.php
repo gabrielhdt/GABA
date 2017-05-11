@@ -38,8 +38,11 @@ $where['valtype'] = array(array('value' => $idspecies,
     'type' => PDO::PARAM_INT));
 $pic_paths_qu = get_values_light('pic_path', 'Followed', $where);
 function g($ppassoc) { return($ppassoc['pic_path']); }
-$pic_paths = array_map("g", $pic_paths_qu);
-$pic_path = $pic_paths[rand(0, count($pic_paths) - 1)];
+$pic_paths_null = array_map("g", $pic_paths_qu);
+function h($ppnull) { return($ppnull && true); } // ppnull seems false?
+$pic_paths = array_filter("h", $pic_paths_null);
+$pic_path = $pic_paths[rand(0, count($pic_paths)-1)];
+
 ?>
 
 <!DOCTYPE html>
