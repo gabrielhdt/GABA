@@ -215,18 +215,18 @@ BTN;
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h2 class="modal-title">Ajoutez une nouvelle mesure</h2>
+        <h2 class="modal-title">Ajouter une nouvelle mesure</h2>
         <p>(Id individu <?php echo $idfollowed; ?>: , Id Staff: <?php echo $idstaff; ?>)</p>
       </div>
       <div class="modal-body">
           <form>
               <input type="text" class="form-control" name="type" placeholder="Type de mesure">
-              <input type="text" class="form-control" name="value" placeholder="Valeur">
+              <input type="number" step="0.01" class="form-control" name="value" placeholder="Valeur">
               <input type="text" class="form-control" name="unit" placeholder="Unité">
           </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" onclick="addMeasure(<?php echo $idfollowed.', '.$idstaff; ?>)" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" onclick="addMeasure(<?php echo $idfollowed.', '.$idstaff; ?>)" data-dismiss="modal">Valider</button>
       </div>
     </div>
 
