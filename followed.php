@@ -216,7 +216,7 @@ BTN;
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h2 class="modal-title">Ajoutez une nouvelle mesure</h2>
-        <p>(Id individu <?php echo $idfollowed; ?>: , Id Staff: <?php echo $idstaff; ?></p>
+        <p>(Id individu <?php echo $idfollowed; ?>: , Id Staff: <?php echo $idstaff; ?>)</p>
       </div>
       <div class="modal-body">
           <form>
@@ -224,10 +224,9 @@ BTN;
               <input type="text" class="form-control" name="value">
               <input type="text" class="form-control" name="unit">
           </form>
-
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" onclick="addMeasure('"<?php echo $idfollowed; ?>"')" data-dismiss="modal">Close</button>
       </div>
     </div>
 
