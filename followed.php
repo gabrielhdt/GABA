@@ -11,9 +11,15 @@ function meas_table($idfollowed)
     $measures = latest_meas_of($idfollowed);
     foreach ($measures as $measure)
     {
+        $meas_type = $measure['type'];
+        $glyphadd = <<<GLPH
+<span title="Add a new $meas_type class="glyphicon glyphicon-plus"
+onclick="add_measure($idfollowed, $meas_type)"></span>
+GLPH;
         $table .= "<tr><td>" . ucfirst($measure['type']) . "</td><td>" .
             $measure['value'] . "</td><td>" . $measure['unit'] .
-            $measure['time'] . "</td></tr>\n";
+            $measure['time'] . "</td>" .
+            "<td class=\"edit\">$glyphadd</td></tr>\n";
     }
     return($table);
 }
@@ -146,8 +152,9 @@ BTN;
                     <th>Date</th>
                     <th>Author</th>
                     <th class="edit">
-                        Edit<span class="glyphicon glyphicon-pencil"
-                        onclick="add_measure()"></span>
+                        <span title="Add measure"
+                            class="glyphicon glyphicon-plus"
+                            onclick="add_measure()"></span>
                     </th>
                 </tr>
             </thead>
