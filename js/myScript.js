@@ -87,5 +87,11 @@ function addMeasure(id_Followed, id_Staff) {
             type: $("input[name=type]").val(),
             value: $("input[name=value]").val(),
             unit: $("input[name=unit]").val()
+        },
+        function(data) {
+                $("input[name=type]").val('');
+                $("input[name=unit]").val('');
+                $("input[name=value]").val('');
+
         });
 }
