@@ -155,6 +155,7 @@ BTN;
             <?php echo $search_res['annotation'] ?
             $search_res['annotation'] : 'Write something about this animal!'; ?>
         </p>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addModal">Modifier la description</button>
         <h1>Data:</h1>
         <table>
             <thead>
@@ -173,7 +174,6 @@ BTN;
 
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addModal">Ajouter une mesure</button>
 
-        <p>Last update Misc by Johnny on Tomorrow (Useless?)</p>
         <h1>Relationships</h1>
         <table>
             <thead>
@@ -212,6 +212,27 @@ BTN;
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" onclick="addMeasure(<?php echo $idfollowed.', '.$idstaff; ?>)" data-dismiss="modal">Valider</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div id="annotationModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="modal-title">Modifier la description du <?php echo ucfirst($search_res['binomial_name']); ?> </h2>
+      </div>
+      <div class="modal-body">
+          <form>
+              <textarea name="annotation" rows="8" cols="80" value='toto'></textarea>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" onclick="modifyAnnotation(<?php echo $idfollowed ?>)" data-dismiss="modal">Valider</button>
       </div>
     </div>
 
