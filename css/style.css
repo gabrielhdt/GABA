@@ -843,3 +843,7 @@ menus photos
 #addModal input {
     margin: 20px 0;
 }
+.annotation {
+    padding-left: 20px;
+    border-left: 5px solid black;
+}
