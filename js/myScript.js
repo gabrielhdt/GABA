@@ -5,7 +5,8 @@ fonctions de admin_index.php
 function myAdd() {
     // fonction ajout de staff par admin, et affichage d'un msg d'information
     $.post(
-        'script/addStaff_script.php', {
+        'script/addStaff_script.php',
+        {
             nom: $("input[name=nom]").val(),
             prenom: $("input[name=prenom]").val(),
             typeStaff: $("input[name=typeStaff]").val(),
@@ -38,7 +39,8 @@ function myAdd() {
 function myDelete(id_msg) {
     // fonction qui efface les messages par l'admin
     $.post(
-        'script/addStaff_script.php', {
+        'script/addStaff_script.php',
+        {
             id: id_msg
         }
     );
@@ -49,7 +51,8 @@ fonctions de index.php
 function addMsg() {
     // ajout d'un msg dans la bbd
     $.post(
-        'script/addStaff_script.php', {
+        'script/addStaff_script.php',
+        {
             nom: $("input[name=name]").val(),
             email: $("input[name=email]").val(),
             msg: $("textarea[name=msg]").val()
@@ -81,7 +84,8 @@ fonctions de followed.php
 function addMeasure(id_Followed, id_Staff) {
     // permet l'ajout de measure par le staff idStaff sur le folloxed idfollowed
     $.post(
-        'script/addStaff_script.php', {
+        'script/addStaff_script.php',
+        {
             idFollowed: id_Followed,
             idStaff: id_Staff,
             type: $("input[name=type]").val(),
@@ -89,9 +93,20 @@ function addMeasure(id_Followed, id_Staff) {
             unit: $("input[name=unit]").val()
         },
         function(data) {
-                $("input[name=type]").val('');
-                $("input[name=unit]").val('');
-                $("input[name=value]").val('');
+            $("input[name=type]").val('');
+            $("input[name=unit]").val('');
+            $("input[name=value]").val('');
+        }
+    );
+}
 
-        });
+function modifyAnnotation(id_Followed) {
+    // permet l'ajout de measure par le staff idStaff sur le folloxed idfollowed
+    $.post(
+        'script/addStaff_script.php',
+        {
+            idFollowed: id_Followed,
+            annotation: $("textarea[name=annotation]").val()
+        }
+    );
 }
