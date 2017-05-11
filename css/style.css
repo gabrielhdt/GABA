@@ -582,6 +582,35 @@ recherche.php
     background: url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
 }
 
+#addspecies {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+                url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
+}
+#addspecies:hover {
+    background: url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
+}
+#addfollowed {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+                url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
+}
+#addfollowed:hover {
+    background: url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
+}
+#addfacility {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+                url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
+}
+#addfacility:hover {
+    background: url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
+}
+#perso {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+                url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
+}
+#perso:hover {
+    background: url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
+}
+
 .photo_menu {
     height: 650px;
     margin: 0;
@@ -592,76 +621,6 @@ recherche.php
     height: 650px;
     margin: 0;
 }
-
-
-/*#espece{
-    height: 650px;
-    background: linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../data/pics/unordered/horde_pingouins.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    margin: 0;
-    font-weight: bold;
-}
-#espece:hover {
-    height: 650px;
-    background: url('../data/pics/unordered/horde_pingouins.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    margin: 0;
-}
-#individu{
-    height: 650px;
-    background: linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../data/pics/unordered/bambi.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    margin: 0;
-    font-weight: bold;
-}
-#individu:hover {
-    height: 650px;
-    background: url('../data/pics/unordered/bambi.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    margin: 0;
-}
-#batiment{
-    height: 650px;
-    background: linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../data/pics/unordered/zoo.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    margin: 0;
-    font-weight: bold;
-}
-#batiment:hover {
-    height: 650px;
-    background: url('../data/pics/unordered/zoo.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    margin: 0;
-}
-#chercheur{
-    height: 650px;
-    background: linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../data/pics/unordered/vet_tigre.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    margin: 0;
-    font-weight: bold;
-}
-#chercheur:hover {
-    height: 650px;
-    background: url('../data/pics/unordered/vet_tigre.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    margin: 0;
-}*/
 
 .container-fluid a {
     text-align: center;
