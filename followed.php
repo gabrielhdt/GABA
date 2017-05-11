@@ -61,7 +61,7 @@ function relation_table($idfollowed)
 $fields = <<<FLD
 binomial_name, common_name, gender, birth, health, death,
 Followed.pic_path AS pic_path, Facility.name AS fa_name,
-annotation
+Followed.annotation
 FLD;
 $table = <<<TAB
 Followed, Species, Facility
