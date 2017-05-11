@@ -844,3 +844,7 @@ menus photos
     border: 0;
     width: 10px;
 }
+
+#addModal inout {
+    margin: 20px 0;
+}
