@@ -11,20 +11,6 @@ foreach ($lines as $line)
 {
     $id_faname[$line['idFacility']] = $line['name'];
 }
-?>
-<body>
-<?php include "nav.php"; ?>
-<form action="search_species.php" method="post" accept-charset="utf-8"
-    enctype="multipart/form-data">
-    <div class="form-group">
-        <label for="low_nfoll">Having more followed individuals than:
-        <input type="number" name="low_nfoll" class="form-control" id="low_nfoll">
-        <label for="up_nfoll">Having fewer followed individuals than:
-        <input type="number" name="up_nfoll" class="form-control" id="up_nfoll">
-    </div>
-    <button type="submit" class="btn btn-default">Rechercher animal</button>
-</form>
-<?php
 $colsp = array('idSpecies', 'binomial_name', 'nfoll');
 $labels = array('Identifier', 'Binomial name', 'Number of followed individuals');
 $fields = array('Species.idSpecies', 'binomial_name', 'idFollowed');
@@ -68,6 +54,20 @@ $search_res = get_values(
     $having
 );
 echo !$search_res ? "Error while querying" : null;
+?>
+<body>
+<?php include "nav.php"; ?>
+<form action="search_species.php" method="post" accept-charset="utf-8"
+    enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="low_nfoll">Having more followed individuals than:
+        <input type="number" name="low_nfoll" class="form-control" id="low_nfoll">
+        <label for="up_nfoll">Having fewer followed individuals than:
+        <input type="number" name="up_nfoll" class="form-control" id="up_nfoll">
+    </div>
+    <button type="submit" class="btn btn-default">Rechercher animal</button>
+</form>
+<?php
 echo <<<TH
 <table id='table'
 class='table'
@@ -82,7 +82,7 @@ echo '<thead>';
 create_tablehead($colsp, $labels);
 echo '</thead>';
 echo '<tbody>';
-create_tablebody($colsp, $search_res);
+create_tablebody($colsp, $search_res, 'species.php', 'idSpecies');
 echo'</tbody>';
 echo '</table>';
 ?>
