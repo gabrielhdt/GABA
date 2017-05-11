@@ -192,6 +192,11 @@ BTN;
                     <th>Rel. type</th>
                     <th>Begin</th>
                     <th>End</th>
+                    <th class="edit">
+                        <span title="Add relationship"
+                            class="glyphicon glyphicon-plus"
+                            onclick="add_relation()"></span>
+                    </th>
                 </tr>
             </thead>
             <tbody>
