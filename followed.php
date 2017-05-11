@@ -253,16 +253,5 @@ function write_geoloc(idfoll, idstaff)
         {idfollowed: idfoll, geoloc: document.cookie, idstaff: idstaff}
     );
 }
-
-function addMeasure(id_Followed, id_Staff) {
-    $.post(
-        'script/addStaff_script.php', {
-            idFollowed: id_Followed,
-            idStaff: id_Staff,
-            type: $("input[name=type]").val(),
-            value: $("input[name=value]").val(),
-            unit: $("input[name=unit]").val()
-        });
-}
 </script>
 </html>
