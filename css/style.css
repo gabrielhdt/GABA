@@ -366,6 +366,9 @@ contact
     outline-style: none;
 }
 
+#contact button {
+    margin-bottom: 25px;
+}
 
 /******************************************************************************
 footer
