@@ -24,4 +24,11 @@ elseif (isset($_POST['nom'], $_POST['email'], $_POST['msg'])) {
         ));
     echo 1;
 }
+elseif (isset($_POST['idFollowed'], $_POST['idStaff'], $_POST['type'], $_POST['unit'], $_POST['value'])) {
+    $infosMeasure = array('idFollowed' => $_POST['idFollowed'], 'idStaff' => $_POST['idStaff']);
+    $idMeasure = add_line('Measure', $infosMeasure);
+    $infosMiscQuantity = array('idMeasure' => $idMeasure, 'type' => $_POST['type'],
+                               'value' => $_POST['value'], 'unit' => $_POST['unit']);
+    add_line('MiscQuantity', $infosMiscQuantity);
+}
 ?>
