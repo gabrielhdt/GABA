@@ -43,7 +43,7 @@ head(ucfirst($search_res['binomial_name']));
 <?php
 include 'nav.php';
 ?>
-
+<div class="row">
 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
     <div class="pic">
         <?php
@@ -72,6 +72,7 @@ include 'nav.php';
             $search_res['annotation'] : 'Write something about this species!'; ?>
         </p>
     </div>
+</div>
 </div>
 <?php
 include 'footer.php';

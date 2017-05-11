@@ -22,13 +22,6 @@ function edi_table($lines, $js_func, $edit_arg='')
             $table .= ucfirst($value);
             $table .= '</td>';
         }
-        $table .= '<td class="edit">';
-        $edit = $line['type'];
-        $table .= <<<GLPH
-<span title="Add a new entry" class="glyphicon glyphicon-plus"
-onclick="$js_func($idfollowed, $edit)"></span>
-GLPH;
-        $table .= '</td>';
         $table .= '</tr>';
     }
     return($table);
@@ -67,7 +60,8 @@ function relation_table($idfollowed)
 // Getting information
 $fields = <<<FLD
 binomial_name, common_name, gender, birth, health, death,
-Followed.pic_path AS pic_path, Facility.name AS fa_name
+Followed.pic_path AS pic_path, Facility.name AS fa_name,
+Followed.annotation
 FLD;
 $table = <<<TAB
 Followed, Species, Facility
@@ -158,10 +152,11 @@ BTN;
             }
             ?>
         </p>
-        <p>
+        <p class="annotation">
             <?php echo $search_res['annotation'] ?
             $search_res['annotation'] : 'Write something about this animal!'; ?>
         </p>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#annotationModal">Modifier la description</button>
         <h1>Data:</h1>
         <table>
             <thead>
@@ -171,11 +166,6 @@ BTN;
                     <th>Unit</th>
                     <th>Date</th>
                     <th>Author</th>
-                    <th class="edit">
-                        <span title="Add measure"
-                            class="glyphicon glyphicon-plus"
-                            data-toggle="modal" data-target="#addModal"></span>
-                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -183,7 +173,8 @@ BTN;
             </tbody>
         </table>
 
-        <p>Last update Misc by Johnny on Tomorrow (Useless?)</p>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addModal">Ajouter une mesure</button>
+
         <h1>Relationships</h1>
         <table>
             <thead>
@@ -192,11 +183,6 @@ BTN;
                     <th>Rel. type</th>
                     <th>Begin</th>
                     <th>End</th>
-                    <th class="edit">
-                        <span title="Add relationship"
-                            class="glyphicon glyphicon-plus"
-                            onclick="add_relation()"></span>
-                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -215,13 +201,40 @@ BTN;
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h2 class="modal-title">Ajouter une nouvelle mesure</h2>
+        <p>(Id individu <?php echo $idfollowed; ?>: , Id Staff: <?php echo $idstaff; ?>)</p>
       </div>
       <div class="modal-body">
-        <p>Some text in the modal.</p>
+          <form>
+              <input type="text" class="form-control" name="type" placeholder="Type de mesure (Ex : taille)" required>
+              <input type="number" step="0.01" class="form-control" name="value" placeholder="Valeur (Ex : 1,64)" required>
+              <input type="text" class="form-control" name="unit" placeholder="Unité (Ex : cm)" required>
+          </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" onclick="addMeasure(<?php echo $idfollowed.', '.$idstaff; ?>)" data-dismiss="modal">Valider</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div id="annotationModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="modal-title">Modifier la description du <?php echo ucfirst($search_res['binomial_name']); ?> </h2>
+      </div>
+      <div class="modal-body">
+          <h5>Votre commantaire:</h5>
+          <form>
+              <textarea name="annotation"><?php echo ($search_res['annotation'] ? $search_res['annotation'] : ""); ?></textarea>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" onclick="modifyAnnotation(<?php echo $idfollowed ?>)" data-dismiss="modal">Valider</button>
       </div>
     </div>
 
@@ -244,7 +257,7 @@ function coord2cookies(position)
 function write_geoloc(idfoll, idstaff)
 {
     $.post(
-        'script/add_geoloc.php',
+        'script/scriptAjax.php',
         {idfollowed: idfoll, geoloc: document.cookie, idstaff: idstaff}
     );
 }
