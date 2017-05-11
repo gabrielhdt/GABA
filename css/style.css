@@ -181,11 +181,6 @@ description
     text-align: center;
 }
 
-.inner {
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .description h1 {
     font-family: 'Linux Biolinum';
     color: rgb(94, 94, 94);
