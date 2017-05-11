@@ -22,13 +22,6 @@ function edi_table($lines, $js_func, $edit_arg='')
             $table .= ucfirst($value);
             $table .= '</td>';
         }
-        $table .= '<td class="edit">';
-        $edit = $line['type'];
-        $table .= <<<GLPH
-<span title="Add a new entry" class="glyphicon glyphicon-plus"
-data-toggle="modal" data-target="#addModal"></span>
-GLPH;
-        $table .= '</td>';
         $table .= '</tr>';
     }
     return($table);
@@ -183,6 +176,8 @@ BTN;
             </tbody>
         </table>
 
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addModal">Ajouter une mesure</button>
+
         <p>Last update Misc by Johnny on Tomorrow (Useless?)</p>
         <h1>Relationships</h1>
         <table>
@@ -192,11 +187,6 @@ BTN;
                     <th>Rel. type</th>
                     <th>Begin</th>
                     <th>End</th>
-                    <th class="edit">
-                        <span title="Add relationship"
-                            class="glyphicon glyphicon-plus"
-                            onclick="add_relation()"></span>
-                    </th>
                 </tr>
             </thead>
             <tbody>
