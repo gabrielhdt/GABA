@@ -13,13 +13,12 @@
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-7 col-md-offset-7 col-sm-offset-5">
             <div class="description">
                 <div class="middle">
-                    <div class="inner">
+                    <!-- <div class="inner"> -->
                         <h1>A propos de nous ...</h1>
                         <p>Le laboratoire science exchange a pour mission de regrouper les informations de multiples laboratoires de recherche animale et de mettre à disposition les données sur nottre plateforme. <br>L'objectif est de faciliter le travail
                             des chercheurs mais le site permet aussi d'assouvir votre curiosité de manière ludique ! </p>
                         <a href="nous.php" type="button" class="btn btn-success">En savoir plus</a>
-
-                    </div>
+                    <!-- </div> -->
                 </div>
 
             </div>
