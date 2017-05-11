@@ -5,33 +5,6 @@
     head('Recherche');
     include 'nav.php';
     ?>
-    <style>
-    #espece{
-        background: linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../data/pics/unordered/horde_pingouins.jpg');
-    }
-    #espece:hover {
-        background: url('../data/pics/unordered/horde_pingouins.jpg');
-    }
-    #individu{
-        background: linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../data/pics/unordered/bambi.jpg');
-    }
-    #individu:hover {
-        background: url('../data/pics/unordered/bambi.jpg');
-    }
-    #batiment{
-        background: linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../data/pics/unordered/zoo.jpg');
-    }
-    #batiment:hover {
-        background: url('../data/pics/unordered/zoo.jpg');
-    }
-    #chercheur{
-        background: linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../data/pics/unordered/vet_tigre.jpg');
-    }
-    #chercheur:hover {
-        background: url('../data/pics/unordered/vet_tigre.jpg');
-    }
-    </style>
-
     <body>
         <div class="container-fluid">
             <div class="row">
