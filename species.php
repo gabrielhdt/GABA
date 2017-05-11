@@ -73,8 +73,6 @@ include 'nav.php';
         </p>
     </div>
 </div>
-</body>
-
 <?php
 include 'footer.php';
 ?>
