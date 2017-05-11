@@ -60,7 +60,8 @@ function relation_table($idfollowed)
 // Getting information
 $fields = <<<FLD
 binomial_name, common_name, gender, birth, health, death,
-Followed.pic_path AS pic_path, Facility.name AS fa_name
+Followed.pic_path AS pic_path, Facility.name AS fa_name,
+annotation
 FLD;
 $table = <<<TAB
 Followed, Species, Facility
