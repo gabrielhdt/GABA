@@ -22,7 +22,7 @@ $where['valtype'] = array(
 );
 $search_res = get_values_light($fields, $table, $where)[0];
 $nfoll = get_values_light(
-    'COUNT(idFollowed)',
+    'COUNT(idFollowed) AS nfoll',
     'Followed',
     array(
         'str' => 'idSpecies=?',
@@ -30,7 +30,7 @@ $nfoll = get_values_light(
             array('value' => $idspecies, 'type' => PDO::PARAM_INT)
         )
     )
-)[0];
+)[0]['nfoll'];
 ?>
 
 <!DOCTYPE html>
