@@ -228,7 +228,8 @@ BTN;
       </div>
       <div class="modal-body">
           <form>
-              <textarea name="annotation" style="width:100%;" value='toto'></textarea>
+              <textarea name="annotation" style="width:100%;" rows="50">
+              <?php echo $search_res['annotation']; ?></textarea>
           </form>
       </div>
       <div class="modal-footer">
