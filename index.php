@@ -94,8 +94,7 @@
                     <input type="text" name="name" placeholder="Votre nom*">
                     <input type="email" name="email" placeholder="Votre e-mail*">
                     <textarea name="msg" rows="8" cols="80" placeholder="Votre message*"></textarea>
-                    <!-- <input type="sumbit" onclick="addMsg()" class="btn btn-success" name="submit_contact" value="Envoyer le message"> -->
-                    <button onclick="addMsg()" class="btn btn-success" name="submit_contact">Envoyer le message</button>
+                    <input type="submit" onclick="addMsg()" class="btn btn-success" name="submit_contact" value="Envoyer le message">
                 </form>
                 <div id='res_msg'>
                     <!--message envoi de msg-->
