@@ -523,23 +523,6 @@ Form styles
 recherche.php
 ******************************************************************************/
 
-.photo_menu {
-    height: 650px;
-    /*background: linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../data/pics/unordered/horde_pingouins.jpg');*/
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    margin: 0;
-    font-weight: bold;
-}
-.photo_menu:hover {
-    height: 650px;
-    /*background: url('../data/pics/unordered/horde_pingouins.jpg');*/
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    margin: 0;
-}
 #espece{
     background: linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../data/pics/unordered/horde_pingouins.jpg');
 }
@@ -563,6 +546,23 @@ recherche.php
 }
 #chercheur:hover {
     background: url('../data/pics/unordered/vet_tigre.jpg');
+}
+.photo_menu {
+    height: 650px;
+    /*background: linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../data/pics/unordered/horde_pingouins.jpg');*/
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 0;
+    font-weight: bold;
+}
+.photo_menu:hover {
+    height: 650px;
+    /*background: url('../data/pics/unordered/horde_pingouins.jpg');*/
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 0;
 }
 
 /*#espece{
