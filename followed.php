@@ -230,8 +230,7 @@ BTN;
       <div class="modal-body">
           <h5>Votre commantaire:</h5>
           <form>
-              <textarea name="annotation">
-              <?php echo ($search_res['annotation'] ? $search_res['annotation'] : ""); ?></textarea>
+              <textarea name="annotation"><?php echo ($search_res['annotation'] ? $search_res['annotation'] : ""); ?></textarea>
           </form>
       </div>
       <div class="modal-footer">
