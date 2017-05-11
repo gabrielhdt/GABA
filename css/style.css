@@ -844,3 +844,24 @@ menus photos
     border: 0;
     width: 10px;
 }
+
+
+/*******************************************
+MODAL pour les cvs des webmasters
+*******************************************/
+.modal-body{
+    text-indent: 0.5cm;
+    text-align: justify;
+    font-family: 'Linux Libertine';
+    font-size: 1.25em;
+}
+
+.modal-body h1 {
+    font-family: 'Linux Biolinum';
+    margin-bottom: 20px;
+}
+
+.modal-content h4{
+    font-family: 'Linux Biolinum';
+    font-size: 1.5em;
+}
