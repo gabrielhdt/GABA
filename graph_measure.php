@@ -2,7 +2,7 @@
 
 include 'db.php';
 
-function table_type($idFollowed, $type){
+function graph_type($idFollowed, $type, $idCanevas) {
     $result = get_values(
         array('DISTINCT MiscQuantity.value, MiscQuantity.unit, Measure.date_measure'),
         'MiscQuantity INNER JOIN Measure ON MiscQuantity.idMeasure = Measure.idMeasure',
@@ -18,7 +18,7 @@ function table_type($idFollowed, $type){
     }
     $chart = "
     <script>
-    var ctx = document.getElementById('myChart');
+    var ctx = document.getElementById('$idCanevas');
     var scatterChart = new Chart(ctx, {
         type: 'line',
         data: {datasets: [
@@ -40,7 +40,6 @@ function table_type($idFollowed, $type){
         });
         </script>";
     echo $chart;
-
 }
 ?>
 
@@ -53,7 +52,7 @@ function table_type($idFollowed, $type){
     </head>
     <body>
     <canvas id="myChart" width="800" height="800"></canvas>
-    <?php table_type(1, 'weight'); ?>
+    <?php table_type(1, 'weight', 'myChart'); ?>
 
     </body>
 </html>
