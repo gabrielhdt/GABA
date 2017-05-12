@@ -37,7 +37,7 @@ elseif (isset($_POST['idFollowed'], $_POST['idStaff'], $_POST['relation_type'],
     $info_relationship = array(
         'idFollowed1' => $_POST['idFollowed'],
         'idFollowed2' => $_POST['other_followed'],
-        'relation_type' => $_POST['type']
+        'relation_type' => $_POST['relation_type']
     );
     if (isset($_POST['begin']))
     {
