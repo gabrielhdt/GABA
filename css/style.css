@@ -211,9 +211,7 @@ JUMBOTRON : là où on écrit nos textes
     margin: 0 10px;
 }
 
-#webmaster p{
-    display: inline-block;
-}
+
 .flotte_g {
     float : left;
 }
@@ -766,9 +764,18 @@ margin: 10px 0;
 
 #webmaster p, #webmaster iframe{
     margin: 10px 0;
+    display: inline-block;
 }
 
+#webmaster{
+    position: absolute;
+    top: -520px;
+    /*top: -300px;*/
+}
 
+#fincvs {
+    display: inline-block;
+}
 /******************************************************************************
 admin_index.php
 ******************************************************************************/
