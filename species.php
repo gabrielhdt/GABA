@@ -48,7 +48,7 @@ $url .= 'action=query&prop=extracts&exintro=&';
 $url .= 'format=json&formatversion=2&titles=Bobcat';
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_USERAGENT, "Owl/0.1, GABA");
-curl_setopt($ch, CURLOPT_RETURNTRANSFER);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $wikiresp = curl_exec($ch);
 $curl_close($ch);
 echo wikiresp ? null : 'Error curling';
