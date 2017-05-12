@@ -121,13 +121,13 @@ function addRelationship(id_followed, id_staff)
         {
             idFollowed: id_followed,
             idStaff: id_staff,
-            relation_type: $("input[name=rel_type]").val(),
+            type_relation: $("input[name=type_rel]").val(),
             other_followed: $("input[name=other_followed]").val(),
             begin: $("input[name=begin]").val()
         },
         function(data)
         {
-            $("input[name=rel_type]").val('');
+            $("input[name=type_rel]").val('');
             $("input[name=other_followed]").val('');
             $("input[name=begin]").val('');
         }

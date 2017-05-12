@@ -31,13 +31,13 @@ elseif (isset($_POST['idFollowed'], $_POST['idStaff'], $_POST['type'], $_POST['u
                                'value' => $_POST['value'], 'unit' => $_POST['unit']);
     add_line('MiscQuantity', $infosMiscQuantity);
 }
-elseif (isset($_POST['idFollowed'], $_POST['idStaff'], $_POST['relation_type'],
+elseif (isset($_POST['idFollowed'], $_POST['idStaff'], $_POST['type_relation'],
     $_POST['other_followed']))
 {
     $info_relationship = array(
         'idFollowed1' => $_POST['idFollowed'],
         'idFollowed2' => $_POST['other_followed'],
-        'relation_type' => $_POST['relation_type']
+        'type_relation' => $_POST['type_relation']
     );
     if (isset($_POST['begin']) && !empty($_POST['begin']))
     {
