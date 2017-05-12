@@ -864,6 +864,11 @@ tr:nth-child(even) {
     border-left: 4px solid black;
 }
 
+.edit {
+    border: 0px;
+    width: 10px;
+}
+
 
 /*******************************************
 MODAL pour les cvs des webmasters
