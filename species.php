@@ -87,7 +87,7 @@ include 'nav.php';
             <tr><td>Genus</td><td><?php echo ucfirst($search_res['genus'])?></td></tr>
         </table>
         We currently have <?php echo $nfoll ?> individuals.
-        <p>
+        <p id="wikintro">
             Data from wikipedia soon
         </p>
     </div>
@@ -97,4 +97,8 @@ include 'nav.php';
 include 'footer.php';
 ?>
 </body>
+<script>
+var page = Object.values(wikintro('lynx_rufus'))[0].extract
+document.getElementById('wikintro').innerHTML = page
+</script>
 </html>
