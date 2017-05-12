@@ -31,7 +31,7 @@ elseif (isset($_POST['idFollowed'], $_POST['idStaff'], $_POST['type'], $_POST['u
                                'value' => $_POST['value'], 'unit' => $_POST['unit']);
     add_line('MiscQuantity', $infosMiscQuantity);
 }
-elseif (isset($_POST['idFollowed'], $_POST['idStaff'], $_POST['type'],
+elseif (isset($_POST['idFollowed'], $_POST['idStaff'], $_POST['relation_type'],
     $_POST['other_followed']))
 {
     $info_relationship = array(
@@ -39,6 +39,10 @@ elseif (isset($_POST['idFollowed'], $_POST['idStaff'], $_POST['type'],
         'idFollowed2' => $_POST['other_followed'],
         'relation_type' => $_POST['type']
     );
+    if (isset($_POST['begin']))
+    {
+        $info_relationship['begin'] = $_POST['begin'];
+    }
     add_line('Relation', $info_relationship);
     return(true);
 }
