@@ -120,7 +120,7 @@ function wikintro(title)
 {
     $.ajax( {
         url: 'https://en.wikipedia.org/w/api.php',
-        data: 'prop=extracts&exintro=&format=json&action=query&titles='+title,
+        data: 'prop=extracts&exintro=&formatversion=2&format=json&action=query&titles='+title,
         dataType: 'json',
         type: 'POST',
         success: function(data)
