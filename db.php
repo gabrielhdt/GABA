@@ -672,34 +672,49 @@ function delete_msg($id)
     $conn = null;
 }
 
-function latest_meas_of($idfollowed)
-{
+// function latest_meas_of($idfollowed)
+// {
     /* Returns all latest measures (of each type) of followed idfollowed
      * each line contains: type of measure, unit, value and date
      * it should return the last value
      */
-    global $servername, $username, $dbname, $password, $charset;
-    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
-            $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $query = <<<QRY
-SELECT type, value, unit, MAX(date_measure)
-FROM MiscQuantity INNER JOIN Measure ON MiscQuantity.idMeasure=Measure.idMeasure
-WHERE idFollowed=?
-GROUP BY type;
-QRY;
-        $stmt = $conn->prepare($query);
-        $stmt->bindValue(1, filter_var($idfollowed, FILTER_VALIDATE_INT));
-        $stmt->execute();
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        $rslt = $stmt->fetchAll();
-    } catch (PDOException $e) {
-        echo 'Something went wrong (latest_meas_of): ' . $e->getMessage();
-        $conn = null;
-        return(false);
-    }
-    $conn = null;
-    return $rslt;
+//     global $servername, $username, $dbname, $password, $charset;
+//     try {
+//         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+//             $username, $password);
+//         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//         $query = <<<QRY
+// SELECT type, value, unit, MAX(date_measure)
+// FROM MiscQuantity INNER JOIN Measure ON MiscQuantity.idMeasure=Measure.idMeasure
+// WHERE idFollowed=?
+// GROUP BY type;
+// QRY;
+//         $stmt = $conn->prepare($query);
+//         $stmt->bindValue(1, filter_var($idfollowed, FILTER_VALIDATE_INT));
+//         $stmt->execute();
+//         $stmt->setFetchMode(PDO::FETCH_ASSOC);
+//         $rslt = $stmt->fetchAll();
+//     } catch (PDOException $e) {
+//         echo 'Something went wrong (latest_meas_of): ' . $e->getMessage();
+//         $conn = null;
+//         return(false);
+//     }
+//     $conn = null;
+//     return $rslt;
+// }
+
+function latest_meas_of($idfollowed) {
+    $select = "MAX(date_measure) AS last_date";
+    $tables = "MiscQuantity INNER JOIN Measure ON MiscQuantity.idMeasure=Measure.idMeasure";
+    $where = array('str' => "idFollowed=?", 'valtype' => array(
+                array('value' => $idfollowed, 'type' => PDO::PARAM_INT)));
+    $date_last_measure = get_values_light($select, $tables, $where);
+    // $select = "type, value, unit, date_measure";
+    // $where = array('str' => "idFollowed=? AND date_measure=?", 'valtype' => array(
+    //             array('value' => $idfollowed, 'type' => PDO::PARAM_INT),
+    //             array('value' => $date_last_measure["last_date"], 'type' => PDO::PARAM_INT)));
+    // $rslt = $date_last_measure = get_values_light($select, $tables, $where);
+    return $date_last_measure[0]["last_date"];
 }
+print_r(latest_meas_of(14));
 ?>
