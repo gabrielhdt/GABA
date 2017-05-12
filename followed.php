@@ -156,7 +156,9 @@ BTN;
             <?php echo $search_res['annotation'] ?
             $search_res['annotation'] : 'Write something about this animal!'; ?>
         </p>
+<?php if ($edit) { ?>
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#annotationModal">Modifier la description</button>
+<?php } ?>
         <h1>Data:</h1>
         <table>
             <thead>
@@ -172,8 +174,9 @@ BTN;
                 <?php echo meas_table($idfollowed); ?>
             </tbody>
         </table>
-
+<?php if ($edit) { ?>
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addModal">Ajouter une mesure</button>
+<?php } ?>
 
         <h1>Relationships</h1>
         <table>
@@ -189,6 +192,10 @@ BTN;
                 <?php echo relation_table($idfollowed); ?>
             </tbody>
         </table>
+<?php if ($edit) { ?>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+            data-target="#addRelationModal">Add a relationship</button>
+<?php } ?>
     </div>
 </div>
 </div>
@@ -215,7 +222,38 @@ BTN;
         <button type="button" class="btn btn-default" onclick="addMeasure(<?php echo $idfollowed.', '.$idstaff; ?>)" data-dismiss="modal">Valider</button>
       </div>
     </div>
-
+  </div>
+</div>
+<div id="addRelationModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="modal-title">Add a new relationship</h2>
+        <p>(Id individu <?php echo $idfollowed; ?>: , Id Staff: <?php echo $idstaff; ?>)</p>
+      </div>
+      <div class="modal-body">
+          <form>
+            <div class='input-group'>
+            <label>Relation type</label>
+            <input type="text" class="form-control" name="type"
+                placeholder="Pack, flamboyance, pride, ..." required>
+            <label>With followed identified by</label>
+            <input type="number" class="form-control" name="other_followed"
+                placeholder="1, 12, ..." required>
+            <label>Relation began on the
+            <input type="date" class="form-control" name="begin"
+                placeholder="yyyy-mm-dd">
+            </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default"
+            onclick="addRelationship(<?php echo $idfollowed.', '.$idstaff; ?>)"
+            data-dismiss="modal">Valider</button>
+      </div>
+    </div>
   </div>
 </div>
 <div id="annotationModal" class="modal fade" role="dialog">

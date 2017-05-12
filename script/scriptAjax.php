@@ -31,6 +31,17 @@ elseif (isset($_POST['idFollowed'], $_POST['idStaff'], $_POST['type'], $_POST['u
                                'value' => $_POST['value'], 'unit' => $_POST['unit']);
     add_line('MiscQuantity', $infosMiscQuantity);
 }
+elseif (isset($_POST['idFollowed'], $_POST['idStaff'], $_POST['type'],
+    $_POST['other_followed']))
+{
+    $info_relationship = array(
+        'idFollowed1' => $_POST['idFollowed'],
+        'idFollowed2' => $_POST['other_followed'],
+        'relation_type' => $_POST['type']
+    );
+    add_line('Relation', info_relationship);
+    return(true);
+}
 elseif (isset($_POST['idFollowed'], $_POST['annotation'])) {
     $change = array('annotation' => $_POST['annotation']);
     $where = array(array("field" => "idFollowed", "value" => $_POST['idFollowed'], "binrel" => "=", PDO::PARAM_INT));
