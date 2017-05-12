@@ -39,7 +39,7 @@ elseif (isset($_POST['idFollowed'], $_POST['idStaff'], $_POST['relation_type'],
         'idFollowed2' => $_POST['other_followed'],
         'relation_type' => $_POST['relation_type']
     );
-    if (isset($_POST['begin']))
+    if (isset($_POST['begin']) && !empty($_POST['begin']))
     {
         $info_relationship['begin'] = $_POST['begin'];
     }

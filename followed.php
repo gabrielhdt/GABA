@@ -237,7 +237,7 @@ BTN;
           <form>
             <div class='input-group'>
             <label>Relation type</label>
-            <input type="text" class="form-control" name="type"
+            <input type="text" class="form-control" name="rel_type"
                 placeholder="Pack, flamboyance, pride, ..." required>
             <label>With followed identified by</label>
             <input type="number" class="form-control" name="other_followed"
