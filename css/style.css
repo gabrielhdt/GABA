@@ -607,7 +607,7 @@ recherche.php
     background: url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
 }
 
-.photo_menu {
+.photo_menu, .photo_menu:hover {
     height: 650px;
     margin: 0;
     font-weight: bold;
@@ -619,7 +619,7 @@ recherche.php
     text-align: center;
 }
 
-.photo_menu:hover {
+/*.photo_menu:hover {
     height: 650px;
     margin: 0;
     padding: 200px 0;
@@ -627,15 +627,6 @@ recherche.php
     font-family: 'Linux Biolinum sc';
     color: rgba(115, 226, 131, 0.75);
     text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
-    text-decoration: none;
-}
-
-/*.container-fluid a{
-    text-align: center;
-    font-size: 20px;
-    color: white;
-}
-.container-fluid a:hover{
     text-decoration: none;
 }*/
 
