@@ -43,6 +43,19 @@ function h($ppnull) { return($ppnull && true); } // ppnull seems false?
 $pic_paths = array_filter($pic_paths_null, "h");
 $pic_path = $pic_paths[array_rand($pic_paths)];
 
+// Getting wikipedia intro
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'https://en.wikipedia.org/w/api.php');
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_USERAGENT, 'Owl/0.1 GABA');
+curl_setopt($ch, CURLOPT_POSTFIELDS,
+    'action=query&prop=extracts&exintro=&format=json&formatversion=2&titles=Bobcat'
+);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+$wikijson = curl_exec($ch);
+$wikiarr = json_decode($wikijson, TRUE);
+print_r($wikiarr);
+$wikintro = $wikiarr['query']['pages'][0]['extract'];
 ?>
 
 <!DOCTYPE html>
@@ -89,6 +102,7 @@ include 'nav.php';
         We currently have <?php echo $nfoll ?> individuals.
         <p id="wikintro">
             Data from wikipedia soon
+            <?php echo $wikintro?>
         </p>
     </div>
 </div>
@@ -97,10 +111,4 @@ include 'nav.php';
 include 'footer.php';
 ?>
 </body>
-<script>
-var pageobj = wikintro('Bobcat');
-var pageid = Object.keys(pageobj);
-var page = pageobj.pageid.extract;
-document.getElementById('wikintro').innerHTML = page;
-</script>
 </html>
