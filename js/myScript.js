@@ -116,15 +116,15 @@ function modifyAnnotation(id_Followed) {
 function wikintro(title)
 {
     $.ajax( {
-        url: 'https//en.wikipedia.org/w/api.php',
+        url: 'https://en.wikipedia.org/w/api.php',
         data: {'prop': 'extracts', 'format': 'json',
             'action': 'query', 'exintro': true, 'titles': title},
         dataType: 'json',
         type: 'POST',
-        headers: { 'Api-User-Agent': 'GABA Owl/0.1' }
+        headers: { 'Api-User-Agent': 'GABA Owl/0.1' },
         success: function(data)
         {
-            return(data.query.pages);
+            return(JSON.parse(data).query.pages);
         }
     } );
 }
