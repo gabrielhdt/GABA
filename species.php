@@ -43,6 +43,13 @@ function h($ppnull) { return($ppnull && true); } // ppnull seems false?
 $pic_paths = array_filter($pic_paths_null, "h");
 $pic_path = $pic_paths[array_rand($pic_paths)];
 
+$url = 'https://en.wikipedia.org/w/api.php?';
+$url .= 'action=query&prop=extracts&exintro=&';
+$url .= 'format=json&formatversion=2&titles=Bobcat';
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_USERAGENT, "Owl/0.1, GABA");
+$wikiresp = curl_exec($ch);
+$wikidata = json_decode($wikiresp)['query']['extract'];
 ?>
 
 <!DOCTYPE html>
@@ -89,6 +96,7 @@ include 'nav.php';
         We currently have <?php echo $nfoll ?> individuals.
         <p id="wikintro">
             Data from wikipedia soon
+            <?php echo $wikidata?>
         </p>
     </div>
 </div>
