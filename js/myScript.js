@@ -116,12 +116,11 @@ function modifyAnnotation(id_Followed) {
 function wikintro(title)
 {
     $.ajax( {
-        url: 'https//en.wikipedia.org/w/api.php',
-        data: {'prop': 'extracts', 'format': 'json',
-            'action': 'query', 'exintro': true, 'titles': title},
+        url: 'https://en.wikipedia.org/w/api.php',
+        data: 'prop=extracts&exintro=&format=json&action=query&titles='+title,
         dataType: 'json',
         type: 'POST',
-        headers: { 'Api-User-Agent': 'GABA Owl/0.1' }
+        headers: { 'Api-User-Agent': 'GABA Owl/0.1' },
         success: function(data)
         {
             return(data.query.pages);

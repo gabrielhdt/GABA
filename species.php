@@ -98,7 +98,9 @@ include 'footer.php';
 ?>
 </body>
 <script>
-var page = Object.values(wikintro('lynx_rufus'))[0].extract
-document.getElementById('wikintro').innerHTML = page
+var pageobj = wikintro('Bobcat');
+var pageid = Object.keys(pageobj);
+var page = pageobj.pageid.extract;
+document.getElementById('wikintro').innerHTML = page;
 </script>
 </html>
