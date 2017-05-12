@@ -713,7 +713,7 @@ function latest_meas_of($idfollowed) {
     $where = array('str' => "idFollowed=? AND date_measure=?", 'valtype' => array(
                 array('value' => $idfollowed, 'type' => PDO::PARAM_INT),
                 array('value' => $date_last_measure, 'type' => PDO::PARAM_INT)));
-    $rslt = $date_last_measure = get_values_light($select, $tables, $where)[0];
+    $rslt = $date_last_measure = get_values_light($select, $tables, $where);
     return $rslt;
 }
 ?>
