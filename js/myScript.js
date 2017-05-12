@@ -123,7 +123,6 @@ function wikintro(title)
         data: 'prop=extracts&exintro=&format=json&action=query&titles='+title,
         dataType: 'json',
         type: 'POST',
-        /*headers: { 'Api-User-Agent': 'GABA Owl/0.1' },*/
         success: function(data)
         {
             return(data.query.pages);
