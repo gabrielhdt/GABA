@@ -693,12 +693,13 @@ function latest_meas_type($idfollowed, $type) {
     Donne la dernière mesure de type $type pour un followed donné
     */
     $select = "MAX(date_measure) AS last_date";
-    $tables = "MiscQuantity INNER JOIN Measure ON MiscQuantity.idMeasure=Measure.idMeasure";
+    $tables = "MiscQuantity INNER JOIN Measure ON MiscQuantity.idMeasure=Measure.idMeasure
+               INNER JOIN Staff ON Staff.idStaff=Measure.idStaff";
     $where = array('str' => "idFollowed=? AND MiscQuantity.type=?", 'valtype' => array(
                 array('value' => $idfollowed, 'type' => PDO::PARAM_INT),
                 array('value' => $type, 'type' => PDO::PARAM_STR)));
     $date_last_measure = get_values_light($select, $tables, $where);
-    $select = "type, value, unit, date_measure, idStaff";
+    $select = "type, value, unit, date_measure, login";
     $where = array('str' => "idFollowed=? AND MiscQuantity.type=? AND date_measure=?",
                    'valtype' => array(
                 array('value' => $idfollowed, 'type' => PDO::PARAM_INT),
