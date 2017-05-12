@@ -111,10 +111,4 @@ include 'nav.php';
 include 'footer.php';
 ?>
 </body>
-<script>
-var pageobj = wikintro('Bobcat');
-var pageid = Object.keys(pageobj);
-var page = pageobj.pageid.extract;
-document.getElementById('wikintro').innerHTML = page;
-</script>
 </html>
