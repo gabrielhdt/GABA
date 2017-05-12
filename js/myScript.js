@@ -126,7 +126,7 @@ function wikintro(title)
         headers: { 'Api-User-Agent': 'GABA Owl/0.1' },
         success: function(data)
         {
-            return(JSON.parse(data).query.pages);
+            return(data.query.pages);
         }
     } );
 }
