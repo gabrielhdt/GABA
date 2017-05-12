@@ -672,21 +672,40 @@ function delete_msg($id)
     $conn = null;
 }
 
-function latest_meas_of($idfollowed) {
+function latest_meas_of ($idFollowed){
     /* Returns all latest measures (of each type) of followed idfollowed
      * each line contains: type of measure, unit, value and date
      * it should return the last value
      */
+    $distinct_type = get_values(
+        array('DISTINCT MiscQuantity.type'),
+        'MiscQuantity INNER JOIN Measure ON MiscQuantity.idMeasure = Measure.idMeasure',
+        $where=array(array('binrel' => '=', 'field' => 'Measure.idFollowed', 'value' =>  $idFollowed, 'type' => PDO::PARAM_STR)));
+    $rslt = array();
+    foreach ($distinct_type as $key) {
+        $rslt[$key['type']] = latest_meas_type($idFollowed, $key['type']);
+    }
+    return $rslt;
+}
+
+function latest_meas_type($idfollowed, $type) {
+    /*
+    Donne la dernière mesure de type $type pour un followed donné
+    */
     $select = "MAX(date_measure) AS last_date";
     $tables = "MiscQuantity INNER JOIN Measure ON MiscQuantity.idMeasure=Measure.idMeasure";
-    $where = array('str' => "idFollowed=?", 'valtype' => array(
-                array('value' => $idfollowed, 'type' => PDO::PARAM_INT)));
-    $date_last_measure = get_values_light($select, $tables, $where)[0]["last_date"];
-    $select = "type, value, unit, date_measure";
-    $where = array('str' => "idFollowed=? AND date_measure=?", 'valtype' => array(
+    $where = array('str' => "idFollowed=? AND MiscQuantity.type=?", 'valtype' => array(
                 array('value' => $idfollowed, 'type' => PDO::PARAM_INT),
-                array('value' => $date_last_measure, 'type' => PDO::PARAM_INT)));
+                array('value' => $type, 'type' => PDO::PARAM_STR)));
+    $date_last_measure = get_values_light($select, $tables, $where);
+    $select = "value, unit, date_measure";
+    $where = array('str' => "idFollowed=? AND MiscQuantity.type=? AND date_measure=?",
+                   'valtype' => array(
+                array('value' => $idfollowed, 'type' => PDO::PARAM_INT),
+                array('value' => $type, 'type' => PDO::PARAM_STR),
+                array('value' => $date_last_measure[0]["last_date"],
+                'type' => PDO::PARAM_INT)));
     $rslt = $date_last_measure = get_values_light($select, $tables, $where);
-    return $rslt;
+    return $rslt[0];
 }
 ?>
