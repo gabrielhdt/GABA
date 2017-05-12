@@ -43,16 +43,19 @@ function h($ppnull) { return($ppnull && true); } // ppnull seems false?
 $pic_paths = array_filter($pic_paths_null, "h");
 $pic_path = $pic_paths[array_rand($pic_paths)];
 
-$url = 'https://en.wikipedia.org/w/api.php?';
-$url .= 'action=query&prop=extracts&exintro=&';
-$url .= 'format=json&formatversion=2&titles=Bobcat';
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_USERAGENT, "Owl/0.1, GABA");
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-$wikiresp = curl_exec($ch);
-curl_close($ch);
-echo wikiresp ? null : 'Error curling';
-$wikidata = json_decode($wikiresp)['query']['extract'];
+// Getting wikipedia intro
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'https://en.wikipedia.org/w/api.php');
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_USERAGENT, 'Owl/0.1 GABA');
+curl_setopt($ch, CURLOPT_POSTFIELDS,
+    'action=query&prop=extracts&exintro=&format=json&formatversion=2&titles=Bobcat'
+);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+$wikijson = curl_exec($ch);
+$wikiarr = json_decode($wikijson, TRUE);
+print_r($wikiarr);
+$wikintro = $wikiarr['query']['pages'][0]['extract'];
 ?>
 
 <!DOCTYPE html>
@@ -99,7 +102,7 @@ include 'nav.php';
         We currently have <?php echo $nfoll ?> individuals.
         <p id="wikintro">
             Data from wikipedia soon
-            <?php echo $wikidata?>
+            <?php echo $wikintro?>
         </p>
     </div>
 </div>
