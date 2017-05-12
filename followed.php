@@ -6,11 +6,9 @@ $edit = isset($_SESSION['login']) && $_SESSION['login'] != 'admin';
 $idstaff = $_SESSION['idstaff'];
 $idfollowed = $_GET['id'];
 
-function edi_table($lines, $js_func, $edit_arg='')
+function simple_table($lines)
 {
-    /* js_func the javascript function called for editing,
-     * edit_arg, key of line (in lines) passed to js_func, in addition to
-     * the idfollowed
+    /* Makes a simple table body
      */
     $table = '';
     foreach ($lines as $line)
@@ -27,10 +25,38 @@ function edi_table($lines, $js_func, $edit_arg='')
     return($table);
 }
 
+function edi_table($lines, $modal, $arg_edit)
+{
+    /* js_func the javascript function called for editing,
+     * edit_arg, key of line (in lines) passed to js_func, in addition to
+     * the idfollowed
+     */
+    $table = '';
+    foreach ($lines as $line)
+    {
+        $table .= '<tr>';
+        foreach ($line as $value)
+        {
+            $table .= '<td>';
+            $table .= ucfirst($value);
+            $table .= '</td>';
+        }
+        $table .= '</tr>';
+        $table .= '<td class="edit">';
+        $edit = $line['type'];
+        $table .= <<<GLPH
+<span title="Add a new entry" class="glyphicon glyphicon-plus"
+data-toggle="modal" data-target="#$modal"></span>
+GLPH;
+        $table .= '</td>';
+    }
+    return($table);
+}
+
 function meas_table($idfollowed)
 {
     $measures = latest_meas_of($idfollowed);
-    $table = edi_table($measures, 'add_measure', 'type');
+    $table = simple_table($measures);
     return($table);
 }
 
@@ -54,7 +80,7 @@ function relation_table($idfollowed)
         unset($relationship[$redundant_id]);
         array_push($relships_noself, $relationship);
     }
-    $table = edi_table($relships_noself, 'edit_relation');
+    $table = edi_table($relships_noself, 'edit_relship');
     return($table);
 }
 
