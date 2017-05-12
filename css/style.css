@@ -616,6 +616,8 @@ recherche.php
     font-family: 'Linux Biolinum sc';
     color: rgba(115, 226, 131, 0.75);
     text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    text-align: center;
+    font-size: 20px;
 }
 
 .photo_menu:hover {
@@ -626,16 +628,17 @@ recherche.php
     font-family: 'Linux Biolinum sc';
     color: rgba(115, 226, 131, 0.75);
     text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    text-decoration: none;
 }
 
-.container-fluid a{
+/*.container-fluid a{
     text-align: center;
     font-size: 20px;
     color: white;
 }
 .container-fluid a:hover{
     text-decoration: none;
-}
+}*/
 
 .container3 {
     background-image: url('../data/pics/unordered/mada.jpg');
