@@ -699,7 +699,7 @@ function latest_meas_type($idfollowed, $type) {
                 array('value' => $idfollowed, 'type' => PDO::PARAM_INT),
                 array('value' => $type, 'type' => PDO::PARAM_STR)));
     $date_last_measure = get_values_light($select, $tables, $where);
-    $select = "type, value, unit, date_measure, login";
+    $select = "MiscQuantity.type, value, unit, date_measure, login";
     $where = array('str' => "idFollowed=? AND MiscQuantity.type=? AND date_measure=?",
                    'valtype' => array(
                 array('value' => $idfollowed, 'type' => PDO::PARAM_INT),
