@@ -683,7 +683,7 @@ function latest_meas_of ($idFollowed){
         $where=array(array('binrel' => '=', 'field' => 'Measure.idFollowed', 'value' =>  $idFollowed, 'type' => PDO::PARAM_STR)));
     $rslt = array();
     foreach ($distinct_type as $key) {
-        $rslt[$key['type']] = latest_meas_type($idFollowed, $key['type']);
+        $rslt[] = latest_meas_type($idFollowed, $key['type']);
     }
     return $rslt;
 }
@@ -698,7 +698,7 @@ function latest_meas_type($idfollowed, $type) {
                 array('value' => $idfollowed, 'type' => PDO::PARAM_INT),
                 array('value' => $type, 'type' => PDO::PARAM_STR)));
     $date_last_measure = get_values_light($select, $tables, $where);
-    $select = "value, unit, date_measure";
+    $select = "type, value, unit, date_measure";
     $where = array('str' => "idFollowed=? AND MiscQuantity.type=? AND date_measure=?",
                    'valtype' => array(
                 array('value' => $idfollowed, 'type' => PDO::PARAM_INT),
