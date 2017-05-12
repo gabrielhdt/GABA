@@ -46,14 +46,15 @@ function relation_table($idfollowed)
         array('value' => $idfollowed, 'type' => PDO::PARAM_INT)
     );
     $relationships = get_values_light($fields, $table, $where);
+    $relships_noself = array();
     foreach ($relationships as $relationship)
     {
         $redundant_id = $relationship['idfollowed1'] == $idfollowed ?
             'idfollowed1' : 'idfollowed2';
         unset($relationship[$redundant_id]);
+        array_push($relships_noself, $relationship);
     }
-
-    $table = edi_table($relationships, 'edit_relation');
+    $table = edi_table($relships_noself, 'edit_relation');
     return($table);
 }
 
