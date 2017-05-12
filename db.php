@@ -708,13 +708,12 @@ function latest_meas_of($idfollowed) {
     $tables = "MiscQuantity INNER JOIN Measure ON MiscQuantity.idMeasure=Measure.idMeasure";
     $where = array('str' => "idFollowed=?", 'valtype' => array(
                 array('value' => $idfollowed, 'type' => PDO::PARAM_INT)));
-    $date_last_measure = get_values_light($select, $tables, $where);
-    // $select = "type, value, unit, date_measure";
-    // $where = array('str' => "idFollowed=? AND date_measure=?", 'valtype' => array(
-    //             array('value' => $idfollowed, 'type' => PDO::PARAM_INT),
-    //             array('value' => $date_last_measure["last_date"], 'type' => PDO::PARAM_INT)));
-    // $rslt = $date_last_measure = get_values_light($select, $tables, $where);
-    return $date_last_measure[0]["last_date"];
+    $date_last_measure = get_values_light($select, $tables, $where)[0]["last_date"];
+    $select = "type, value, unit, date_measure";
+    $where = array('str' => "idFollowed=? AND date_measure=?", 'valtype' => array(
+                array('value' => $idfollowed, 'type' => PDO::PARAM_INT),
+                array('value' => $date_last_measure, 'type' => PDO::PARAM_INT)));
+    $rslt = $date_last_measure = get_values_light($select, $tables, $where)[0];
+    return $rslt;
 }
-print_r(latest_meas_of(14));
 ?>
