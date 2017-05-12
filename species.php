@@ -3,7 +3,7 @@ include 'db.php';
 session_start();
 // Autoriastion de l'edition pour un membre mais pas l'admin
 $edit = isset($_SESSION['login']) && $_SESSION['login'] != 'admin';
-$idstaff = $_SESSION['idstaff'];
+$idstaff = isset($_SESSION['idstaff']) ? $_SESSION['idstaff'] : null;
 $idspecies = $_GET['id'];
 
 // Getting information
@@ -31,6 +31,18 @@ $nfoll = get_values_light(
         )
     )
 )[0]['nfoll'];
+
+// Getting a random picture
+$where['str'] = 'idSpecies=?';
+$where['valtype'] = array(array('value' => $idspecies,
+    'type' => PDO::PARAM_INT));
+$pic_paths_qu = get_values_light('pic_path', 'Followed', $where);
+function g($ppassoc) { return($ppassoc['pic_path']); }
+$pic_paths_null = array_map("g", $pic_paths_qu);
+function h($ppnull) { return($ppnull && true); } // ppnull seems false?
+$pic_paths = array_filter($pic_paths_null, "h");
+$pic_path = $pic_paths[array_rand($pic_paths)];
+
 ?>
 
 <!DOCTYPE html>
@@ -43,11 +55,11 @@ head(ucfirst($search_res['binomial_name']));
 <?php
 include 'nav.php';
 ?>
-
+<div class="row">
 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
     <div class="pic">
         <?php
-        echo '<img src="'.$search_res['pic_path'].
+        echo '<img src="'.$pic_path.
             '" class = "img-responsive">';
         ?>
     </div>
@@ -66,15 +78,27 @@ include 'nav.php';
             echo '<h1>'.ucfirst($search_res['binomial_name']).'</h1>';
         }
         ?>
+        <table>
+            <tr><td>Kingdom</td><td><?php echo ucfirst($search_res['kingdom'])?></td></tr>
+            <tr><td>Phylum</td><td><?php echo ucfirst($search_res['phylum'])?></td></tr>
+            <tr><td>Class</td><td><?php echo ucfirst($search_res['class'])?></td></tr>
+            <tr><td>Order</td><td><?php echo ucfirst($search_res['order_s'])?></td></tr>
+            <tr><td>Family</td><td><?php echo ucfirst($search_res['family'])?></td></tr>
+            <tr><td>Genus</td><td><?php echo ucfirst($search_res['genus'])?></td></tr>
+        </table>
         We currently have <?php echo $nfoll ?> individuals.
-        <p>
-            <?php echo $search_res['annotation'] ?
-            $search_res['annotation'] : 'Write something about this species!'; ?>
+        <p id="wikintro">
+            Data from wikipedia soon
         </p>
     </div>
+</div>
 </div>
 <?php
 include 'footer.php';
 ?>
 </body>
+<script>
+var page = Object.values(wikintro('lynx_rufus'))[0].extract
+document.getElementById('wikintro').innerHTML = page
+</script>
 </html>

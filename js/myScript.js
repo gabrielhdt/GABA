@@ -110,3 +110,21 @@ function modifyAnnotation(id_Followed) {
         }
     );
 }
+/******************************************************************************
+ * For species.php
+ *****************************************************************************/
+function wikintro(title)
+{
+    $.ajax( {
+        url: 'https//en.wikipedia.org/w/api.php',
+        data: {'prop': 'extracts', 'format': 'json',
+            'action': 'query', 'exintro': true, 'titles': title},
+        dataType: 'json',
+        type: 'POST',
+        headers: { 'Api-User-Agent': 'GABA Owl/0.1' }
+        success: function(data)
+        {
+            return(data.query.pages);
+        }
+    } );
+}

@@ -1,38 +1,31 @@
 /******************************************************************************
  * FONTS
  *****************************************************************************/
-
 @font-face {
     font-family: "Linux Libertine";
     src: url("../data/fonts/LinLibertine_R.woff") format('woff');
 }
-
 @font-face {
     font-family: "Linux Libertine";
     src: url("../data/fonts/LinLibertine_R.woff") format('woff');
     font-variant: historical-ligatures;
 }
-
 @font-face {
     font-family: "Linux Libertine";
     src: url("../data/fonts/LinLibertine_RI.woff") format('woff');
     font-style: italic;
 }
-
 @font-face {
     font-family: "Linux Libertine";
     src: url("../data/fonts/LinLibertine_RZ.woff") format('woff');
-    font-weight: 600;
-    /* Semi bold */
+    font-weight: 600; /* Semi bold */
 }
-
 @font-face {
     font-family: "Linux Libertine";
     src: url("../data/fonts/LinLibertine_RZI.woff") format('woff');
     font-style: italic;
     font-weight: 600;
 }
-
 @font-face {
     font-family: "Linux Libertine";
     src: url("../data/fonts/LinLibertine_RB.woff") format('woff');
@@ -40,43 +33,36 @@
     font-variant: normal;
     font-weight: bold;
 }
-
 @font-face {
     font-family: "Linux Libertine sc";
     src: url("../data/fonts/LinLibertine_aS.woff") format('woff');
     font-style: normal;
     font-variant: small-caps;
 }
-
 @font-face {
     font-family: "Linux Biolinum";
     src: url("../data/fonts/LinBiolinum_R.woff") format('woff');
     font-style: normal;
     font-variant: normal;
 }
-
 @font-face {
     font-family: "Linux Biolinum";
     src: url("../data/fonts/LinBiolinum_RI.woff") format('woff');
     font-style: italic;
     font-variant: normal;
 }
-
 @font-face {
     font-family: "Linux Biolinum";
     src: url("../data/fonts/LinBiolinum_RB.woff") format('woff');
     font-style: normal;
     font-weight: bold;
 }
-
 @font-face {
     font-family: "Linux Biolinum sc";
     src: url("../data/fonts/LinBiolinum_aS.woff") format('woff');
     font-style: normal;
     font-variant: small-caps;
 }
-
-
 /******************************************************************************
 logo
 ******************************************************************************/
@@ -105,7 +91,8 @@ NAVBAR
     color: black;
 }
 
-.navbar li a, .nav .active ul li a {
+.navbar li a,
+.nav .active ul li a {
     color: black;
     padding-left: 0;
     padding-right: 0;
@@ -114,12 +101,12 @@ NAVBAR
     border: 0;
 }
 
-.navbar li a:hover, .nav .active a, .nav .active ul li a:hover {
+.navbar li a:hover, .nav .active a,
+.nav .active ul li a:hover {
     background-color: white;
     border-top: 2px solid black;
     margin-top: -2px;
 }
-
 
 /******************************************************************************
 2eme niveau dropdown
@@ -150,16 +137,17 @@ nav ul ul li {
     padding: 10px 0;
 }
 
-.rechercher a {
+.rechercher a{
     text-transform: capitalize;
 }
+
+
 
 .glyphicon-chevron-down {
     border: 1.5px solid black;
     padding: 5px;
     border-radius: 3px;
 }
-
 
 /******************************************************************************
 description
@@ -181,6 +169,11 @@ description
     text-align: center;
 }
 
+.inner {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .description h1 {
     font-family: 'Linux Biolinum';
     color: rgb(94, 94, 94);
@@ -194,12 +187,12 @@ description
     margin: 20px 20px;
 }
 
-
 /******************************************************************************
 JUMBOTRON : là où on écrit nos textes
 ******************************************************************************/
 
-.jumbotron h1 {
+
+.jumbotron h1{
     font-family: 'Linux Biolinum';
     color: rgb(94, 94, 94);
     margin: 0;
@@ -213,28 +206,25 @@ JUMBOTRON : là où on écrit nos textes
     display: table-cell;
 }
 
-#verbotron p {
+#verbotron p{
     display: inline-block;
     margin: 0 10px;
 }
 
-#webmaster p {
+#webmaster p{
     display: inline-block;
 }
-
 .flotte_g {
-    float: left;
+    float : left;
 }
-
 .flotte_d {
-    float: right;
+    float : right;
 }
 
 
 /******************************************************************************
 a propos de nous
 ******************************************************************************/
-
 .container {
     background-image: url('../data/pics/unordered/owl3.jpg');
     width: 100%;
@@ -243,7 +233,6 @@ a propos de nous
     background-position: center;
     background-size: cover;
 }
-
 
 /******************************************************************************
 Carousel Styling
@@ -302,7 +291,6 @@ Carousel Styling
     padding-bottom: 15px;
 }
 
-
 /******************************************************************************
 Aide
 ******************************************************************************/
@@ -336,7 +324,6 @@ Aide
     padding-bottom: 20px;
 }
 
-
 /******************************************************************************
 contact
 ******************************************************************************/
@@ -365,38 +352,30 @@ contact
     border-bottom: 1px solid rgb(51, 51, 51);
     outline-style: none;
 }
-
-#contact button {
-    margin-bottom: 25px;
-}
-
 /******************************************************************************
 footer
 ******************************************************************************/
 
-footer {
+footer{
     font-family: 'Linux Biolinum';
     text-align: center;
-    background-color: rgb(174, 174, 174);
+    background-color:rgb(174, 174, 174);
     padding: 50px 0;
 }
-
 footer li {
     list-style-type: none;
     display: inline-block;
     margin: auto;
     padding: 0 10px;
 }
-
 footer a {
     color: rgb(77, 142, 54);
 }
 
-footer a:hover {
+footer a:hover{
     text-decoration: none;
     color: rgb(10, 105, 8);
 }
-
 .footer-up {
     float: right;
     border: 2px;
@@ -404,20 +383,17 @@ footer a:hover {
     font-size: 25px;
     color: inherit;
 }
-
-
 /******************************************************************************
 bouton go up
 ******************************************************************************/
 
-#goTop {
-    color: inherit;
-    padding: 5px;
-    position: fixed;
-    bottom: -100px;
-    right: 10px;
+#goTop{
+color: inherit;
+padding:5px;
+position:fixed;
+bottom:-100px;
+right:10px;
 }
-
 
 /******************************************************************************
 login.php
@@ -427,8 +403,7 @@ login.php
     max-width: 350px;
     padding: 40px 40px;
 }
-
-.mybg {
+.mybg{
     background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
     padding: 150px 0;
 }
@@ -441,7 +416,6 @@ login.php
     user-select: none;
     cursor: default;
 }
-
 
 /******************************************************************************
 Card component
@@ -472,7 +446,6 @@ Card component
     border-radius: 0%;
 }
 
-
 /******************************************************************************
 Form styles
 ******************************************************************************/
@@ -484,18 +457,20 @@ Form styles
     margin: 10px 0 0;
     min-height: 1em;
 }
-
-.form-signin {
+.form-signin{
     text-align: center;
 }
-
-.form-signin #inputEmail, .form-signin #inputPassword {
+.form-signin #inputEmail,
+.form-signin #inputPassword {
     direction: ltr;
     height: 44px;
     font-size: 16px;
 }
 
-.form-signin input[type=email], .form-signin input[type=password], .form-signin input[type=text], .form-signin button {
+.form-signin input[type=email],
+.form-signin input[type=password],
+.form-signin input[type=text],
+.form-signin button {
     width: 100%;
     display: block;
     margin-bottom: 10px;
@@ -509,8 +484,8 @@ Form styles
 .form-signin .form-control:focus {
     border-color: rgb(104, 145, 162);
     outline: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgb(104, 145, 162);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgb(104, 145, 162);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
 }
 
 .btn.btn-signin {
@@ -531,117 +506,97 @@ Form styles
     transition: all 0.218s;
 }
 
-.btn.btn-signin:hover, .btn.btn-signin:active, .btn.btn-signin:focus {
+.btn.btn-signin:hover,
+.btn.btn-signin:active,
+.btn.btn-signin:focus {
     background-color: rgb(12, 97, 33);
 }
 
-.forgot-password:hover, .forgot-password:active, .forgot-password:focus {
+
+.forgot-password:hover,
+.forgot-password:active,
+.forgot-password:focus{
     color: rgb(12, 97, 33);
 }
-
 
 /******************************************************************************
 recherche.php
 ******************************************************************************/
 
-#espece {
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
-                url('../data/pics/unordered/horde_pingouins.jpg') center/cover no-repeat;
-}
-
-#espece:hover {
-    background: url('../data/pics/unordered/horde_pingouins.jpg') center/cover no-repeat;
-}
-
-#individu {
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
-                url('../data/pics/unordered/bambi.jpg') center/cover no-repeat;
-}
-
-#individu:hover {
-    background: url('../data/pics/unordered/bambi.jpg') center/cover no-repeat;
-}
-
-#batiment {
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
-                url('../data/pics/unordered/zoo.jpg') center/cover no-repeat;
-}
-
-#batiment:hover {
-    background: url('../data/pics/unordered/zoo.jpg') center/cover no-repeat;
-}
-
-#chercheur {
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
-                url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
-}
-
-#chercheur:hover {
-    background: url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
-}
-
-#addspecies {
-    /* TODO: mettre les liens des bonnes images */
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
-                url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
-}
-
-#addspecies:hover {
-    /* TODO: mettre les liens des bonnes images */
-    background: url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
-}
-
-#addfollowed {
-    /* TODO: mettre les liens des bonnes images */
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
-                url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
-}
-
-#addfollowed:hover {
-    /* TODO: mettre les liens des bonnes images */
-    background: url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
-}
-
-#addfacility {
-    /* TODO: mettre les liens des bonnes images */
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
-                url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
-}
-
-#addfacility:hover {
-    /* TODO: mettre les liens des bonnes images */
-    background: url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
-}
-
-#perso {
-    /* TODO: mettre les liens des bonnes images */
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
-                url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
-}
-
-#perso:hover {
-    /* TODO: mettre les liens des bonnes images */
-    background: url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
-}
-
-.photo_menu {
+#espece{
     height: 650px;
+    background: linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../data/pics/unordered/horde_pingouins.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     margin: 0;
     font-weight: bold;
 }
-
-.photo_menu:hover {
+#espece:hover {
     height: 650px;
+    background: url('../data/pics/unordered/horde_pingouins.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     margin: 0;
 }
-
-.container-fluid a {
+#individu{
+    height: 650px;
+    background: linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../data/pics/unordered/bambi.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 0;
+    font-weight: bold;
+}
+#individu:hover {
+    height: 650px;
+    background: url('../data/pics/unordered/bambi.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 0;
+}
+#batiment{
+    height: 650px;
+    background: linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../data/pics/unordered/zoo.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 0;
+    font-weight: bold;
+}
+#batiment:hover {
+    height: 650px;
+    background: url('../data/pics/unordered/zoo.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 0;
+}
+#chercheur{
+    height: 650px;
+    background: linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('../data/pics/unordered/vet_tigre.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 0;
+    font-weight: bold;
+}
+#chercheur:hover {
+    height: 650px;
+    background: url('../data/pics/unordered/vet_tigre.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 0;
+}
+.container-fluid a{
     text-align: center;
     font-size: 20px;
     color: white;
 }
-
-.container-fluid a:hover {
+.container-fluid a:hover{
     text-decoration: none;
 }
 
@@ -751,6 +706,8 @@ recherche.php
 }
 
 
+
+
 /**********************************************************************
 HELP
 **********************************************************************
@@ -763,30 +720,32 @@ HELP
     background-size: cover;
     text-align: center;
 */
+#cv img{
+position: relative;
+margin: 10px 0;
 
-#cv img {
-    position: relative;
-    margin: 10px 0;
 }
-
-#adrien a, #gabriel a, #benoit a, #aurelie a {
+#adrien a, #gabriel a, #benoit a, #aurelie a{
     visibility: hidden;
     position: absolute;
-    right: 2em;
-    top: 2em;
+    right: 5em;
+    top: 13em;
     z-index: 10;
 }
 
-#adrien img:hover+a, #aurelie img:hover+a, #benoit img:hover+a, #gabriel img:hover+a {
+#adrien img:hover + a, #aurelie img:hover + a,#benoit img:hover + a,#gabriel img:hover + a {
+    visibility: visible;
+}
+#adrien a:hover, #aurelie a:hover, #benoit a:hover, #gabriel a:hover{
     visibility: visible;
 }
 
-#adrien a:hover, #aurelie a:hover, #benoit a:hover, #gabriel a:hover {
-    visibility: visible;
-}
-
-#video p {
+#video p{
     display: block;
+}
+
+#webmaster p, #webmaster iframe{
+    margin: 10px 0;
 }
 
 
@@ -800,47 +759,43 @@ admin_index.php
     border-radius: 10px;
     margin: 15px;
 }
-
 #msg span {
     float: right;
 }
-
 #messages {
     /*border-left: 2px solid black;*/
     /*border-top: 1px solid rgb(150, 150, 150);*/
     height: 750px;
     overflow: scroll;
 }
-
 #messages h1 {
     text-align: center;
 }
-
 #add_staff {
     text-align: center;
     padding: 20px 0;
     /*border-top: 1px solid rgb(150, 150, 150);*/
 }
-
-#add_staff input[name='nom'], #add_staff input[name='prenom'], #add_staff input[name='pwd1'], #add_staff input[name='pwd2'], #add_staff input[name='submit_contact'] {
+#add_staff input[name='nom'],
+#add_staff input[name='prenom'],
+#add_staff input[name='pwd1'],
+#add_staff input[name='pwd2'],
+#add_staff input[name='submit_contact'] {
     margin: 15px 0;
 }
-
-#add_staff h1 {
+#add_staff h1{
     padding-bottom: 35px;
 }
-
 #add_staff {
     padding: 0 15px;
 }
-
-#add_staff form button {
+#add_staff form button{
     margin: 15px 0;
 }
-
 #add_staff p {
-    color: red;
+    color : red;
 }
+
 
 .pic p {
     text-align: right;
@@ -856,6 +811,7 @@ admin_index.php
     font-style: italic;
     font-size: 18px;
 }
+
 
 table {
     font-family: 'Linux Libertine';
@@ -876,8 +832,8 @@ tr:nth-child(even) {
 /******************************************************************************
 menus photos
 ******************************************************************************/
-
-#espece, #individu, #batiment, #chercheur, #addspecies, #addfollowed, #addfacility, #perso {
+#espece, #individu, #batiment, #chercheur,
+#addspecies, #addfollowed, #addfacility, #perso {
     padding: 200px 0;
     font-size: 5em;
     font-family: 'Linux Biolinum sc';
@@ -885,21 +841,31 @@ menus photos
     text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
-
 /*****************************************************************************
  * FOLLOWED TABLE
  ****************************************************************************/
-
-#addModal input {
-    margin: 20px 0;
+.edit {
+    border: 0;
+    width: 10px;
 }
 
-#annotationModal textarea {
-    width: 100%;
-    height: auto;
+
+/*******************************************
+MODAL pour les cvs des webmasters
+*******************************************/
+.modal-body{
+    text-indent: 0.5cm;
+    text-align: justify;
+    font-family: 'Linux Libertine';
+    font-size: 1.25em;
 }
 
-.annotation {
-    padding-left: 20px;
-    border-left: 4px solid black;
+.modal-body h1 {
+    font-family: 'Linux Biolinum';
+    margin-bottom: 20px;
+}
+
+.modal-content h4{
+    font-family: 'Linux Biolinum';
+    font-size: 1.5em;
 }
