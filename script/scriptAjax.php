@@ -35,7 +35,7 @@ elseif (isset($_POST['idFollowed'], $_POST['annotation'])) {
     $change = array('annotation' => $_POST['annotation']);
     $where = array(array("field" => "idFollowed", "value" => $_POST['idFollowed'], "binrel" => "=", PDO::PARAM_INT));
     update_line('Followed', $change, $where);
-    echo "<p class='annotation'>".$_POST['annotation']."</p>";
+    echo $_POST['annotation'];
 }
 elseif (isset($_POST['geoloc'], $_POST['idfollowed'], $_POST['idstaff']))
 {
