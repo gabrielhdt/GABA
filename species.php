@@ -78,6 +78,14 @@ include 'nav.php';
             echo '<h1>'.ucfirst($search_res['binomial_name']).'</h1>';
         }
         ?>
+        <table>
+            <tr><td>Kingdom</td><td><?php echo $search_res['kingdom']?></td></tr>
+            <tr><td>Phylum</td><td><?php echo $search_res['phylum']?></td></tr>
+            <tr><td>Class</td><td><?php echo $search_res['class']?></td></tr>
+            <tr><td>Order</td><td><?php echo $search_res['order_s']?></td></tr>
+            <tr><td>Family</td><td><?php echo $search_res['family']?></td></tr>
+            <tr><td>Genus</td><td><?php echo $search_res['genus']?></td></tr>
+        </table>
         We currently have <?php echo $nfoll ?> individuals.
         <p>
             Data from wikipedia soon
