@@ -41,7 +41,6 @@ function edi_table($lines, $modal, $arg_edit)
             $table .= ucfirst($value);
             $table .= '</td>';
         }
-        $table .= '</tr>';
         $table .= '<td class="edit">';
         $edit = $line['type'];
         $table .= <<<GLPH
@@ -49,6 +48,7 @@ function edi_table($lines, $modal, $arg_edit)
 data-toggle="modal" data-target="#$modal"></span>
 GLPH;
         $table .= '</td>';
+        $table .= '</tr>';
     }
     return($table);
 }
