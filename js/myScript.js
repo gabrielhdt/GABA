@@ -123,7 +123,7 @@ function addRelationship(id_followed, id_staff)
             idStaff: id_staff,
             type: $('input[name=type]').val(),
             other_followed :$('input[name=other_followed]').val()
-        }
+        },
         function(data)
         {
             $('input[name=type]').val('');
