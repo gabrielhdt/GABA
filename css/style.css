@@ -617,18 +617,8 @@ recherche.php
     color: rgba(115, 226, 131, 0.75);
     text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
     text-align: center;
-}
-
-/*.photo_menu:hover {
-    height: 650px;
-    margin: 0;
-    padding: 200px 0;
-    font-size: 5em;
-    font-family: 'Linux Biolinum sc';
-    color: rgba(115, 226, 131, 0.75);
-    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
     text-decoration: none;
-}*/
+}
 
 .container3 {
     background-image: url('../data/pics/unordered/mada.jpg');
