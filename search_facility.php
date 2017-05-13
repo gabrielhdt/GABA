@@ -22,7 +22,7 @@ if (isset($_POST['idspecies']))
 {
     $len = count($_POST['idspecies']);
     $fields = <<<FLD
-Facility.idFacility, name AS fa_name, gnss_coord
+Facility.idFacility, name AS fa_name, gnss_coord, Followed.idSpecies
 FLD;
     $table = <<<TBL
 Facility INNER JOIN Followed ON Facility.idFacility=Followed.idFacility
