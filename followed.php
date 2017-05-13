@@ -124,6 +124,7 @@ $loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
 <!DOCTYPE html>
 <html lang="fr">
 <?php
+include 'graph_measure.php';
 include 'head.php';
 head(ucfirst($search_res['binomial_name']));
 echo $edit ? '<body onload="get_coords()">' : '<body>';
@@ -351,7 +352,7 @@ BTN;
 </div>
 
 <canvas id="myChart" width="800" height="800"></canvas>
-<?php table_type(1, 'weight', 'myChart'); ?>
+<?php graph_type(1, 'weight', 'myChart'); ?>
 
 <?php
 include 'footer.php';
