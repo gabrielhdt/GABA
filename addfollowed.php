@@ -31,7 +31,7 @@ foreach ($lines as $line)
     $id_faname[$line['idFacility']] = $line['name'];
 }
 ?>
-<div class="container" style="background-image: url('../data/pics/unordered/mada.jpg');">
+<div class="container" style="background-image: url('data/pics/unordered/mada.jpg');">
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-7 col-md-offset-7 col-sm-offset-5">
         <div class="formulaire">
             <div class="middle">
