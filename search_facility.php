@@ -42,7 +42,7 @@ WHR;
     }
     $groupby = 'Facility.idFacility';
 }
-if (isset($_POST['low_nfoll']))
+if (isset($_POST['low_nfoll']) && !empty($_POST['low_nfoll']))
 {
     $fields = <<<FLD
 Facility.idFacility, name AS fa_name, gnss_coord, Followed.idSpecies
