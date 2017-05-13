@@ -181,6 +181,10 @@ description
     border-radius: 5px;
 }
 
+.formulaire input {
+    margin: 10px 0;
+}
+
 .middle {
     display: table-cell;
     vertical-align: middle;
