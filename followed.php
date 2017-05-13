@@ -187,6 +187,7 @@ include 'nav.php';
 
 <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
     <div class="intel">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="foll_data">
         <?php
         if ($search_res['common_name'])
         {
@@ -237,6 +238,10 @@ BTN;
             Modifier la description
         </button>
 <?php } ?>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="map-container">
+        <div id="followed_map"></div>
+    </div>
         <h1>Data:</h1>
         <table>
             <thead>
@@ -428,5 +433,15 @@ function write_geoloc(idfoll, idstaff)
         {idfollowed: idfoll, geoloc: document.cookie, idstaff: idstaff}
     );
 }
+
+var contwidth = $('#map-container').width();
+var contheight = $('#foll_data').height();
+document.getElementById('followed_map').style.width = contwidth;
+document.getElementById('followed_map').style.height = contheight;
+var followed_map = L.map('followed_map').setView([0, 0], 2);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+subdomain: ['a', 'b', 'c']
+}).addTo(followed_map);
 </script>
 </html>
