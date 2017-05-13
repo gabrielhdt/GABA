@@ -41,11 +41,11 @@ include 'nav.php';
         enctype="multipart/form-data">
         <div class="input-group">
             <label for="old_pw">Enter current password</label>
-            <input type="text" name="old_pw" id="old_pw">
+            <input type="password" name="old_pw" id="old_pw">
             <label for="old_pw">Enter new password</label>
-            <input type="text" name="new_pw" id="new_pw">
+            <input type="password" name="new_pw" id="new_pw">
             <label for="old_pw">Confirm password</label>
-            <input type="text" name="conf_pw" id="conf_pw">
+            <input type="password" name="conf_pw" id="conf_pw">
         </div>
         <button type="submit" class="btn btn-default">Confirm</button>
     </form>
