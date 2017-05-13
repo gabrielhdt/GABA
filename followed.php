@@ -159,6 +159,9 @@ $having = array(
     'str' => 'date_measure=MAX(date_measure)'
 );
 $loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
+$loc_str = $search_res['fa_name'] == 'gaia' ?
+    "Last known location: " . $search_res['latitude'] .'W ' .
+    $search_res['longitude'] .'N' : 'At ' . $search_res['fa_name'];
 ?>
 
 <!DOCTYPE html>
@@ -203,11 +206,7 @@ include 'nav.php';
             <?php echo $search_res['gender'] == 'm' ? 'Male' : 'Female'; ?>
             born on <?php echo date_format(date_create($search_res['birth']), 'jS F, Y') ?>
         <p>
-            <?php
-            $loc_str = 'Last known location:';
-            $loc_str .= $loc['latitude'] . 'W ' . $loc['longitude'] . 'N';
-            echo $search_res['fa_name'] == 'gaia' ?
-                $loc_str : 'At ' . $search_res['fa_name'];
+            <?php echo $loc_str;
             if ($edit)
             {
                 echo <<<BTN
