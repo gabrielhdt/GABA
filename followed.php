@@ -37,7 +37,7 @@ function graph_type($idFollowed, $type, $idCanevas) {
     $chart = rtrim($chart, ', ');
     $chart .=  "]}]},
         options: {
-            responsive: true,
+            responsive: false,
             responsiveAnimationDuration: 500,
             scales: {xAxes: [{type: 'time'}]}
         }
@@ -394,8 +394,8 @@ BTN;
   </div>
 </div>
 
-<canvas id="myChart" width="800" height="800"></canvas>
-<?php graph_type(14, 'weight', 'myChart'); ?>
+<canvas id="myChart" width="400" height="400"></canvas>
+<?php graph_type($idfollowed, 'weight', 'myChart'); ?>
 
 <?php
 include 'footer.php';
