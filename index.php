@@ -9,7 +9,7 @@
 
 <body>
     <?php include 'nav.php'; ?>
-    <div class="container">
+    <div class="container" style="background-image: url('data/pics/unordered/owl3.jpg');">
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-7 col-md-offset-7 col-sm-offset-5">
             <div class="description">
                 <div class="middle">
@@ -71,7 +71,7 @@
             <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
     </div>
-    <div class="container2">
+    <div class="container" style="background-image: url('data/pics/unordered/livre.jpg');">
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
             <div class="description">
                 <div class="middle">
