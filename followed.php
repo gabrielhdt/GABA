@@ -170,11 +170,19 @@ include 'nav.php';
             if ($edit)
             {
                 echo <<<BTN
-<button class="btn btn-default btn-xs" type="button"
-onclick="write_geoloc($idfollowed, $idstaff)"
-aria-label="Update with current position">
-    <span class="glyphicon glyphicon-map-marker"></span>Update
-</button>
+<div class="btn-group btn-group-xs" role="group"
+    aria-label="Update last known location">
+    <button class="btn btn-default" type="button"
+    onclick="write_geoloc($idfollowed, $idstaff)"
+    aria-label="Update with current position">
+        <span class="glyphicon glyphicon-map-marker"></span>
+    </button>
+    <button class="btn btn-default" type="button"
+        aria-label="Input new position" data-toggle="modal"
+        data-target="#geolocModal">
+        <span class="glyphicon glyphicon-pencil"></span>
+    </button>
+</div>
 BTN;
             }
             ?>
@@ -184,7 +192,10 @@ BTN;
             $search_res['annotation'] : 'Write something about this animal!'; ?>
         </p>
 <?php if ($edit) { ?>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#annotationModal">Modifier la description</button>
+        <button type="button" class="btn btn-info btn-lg"
+            data-toggle="modal" data-target="#annotationModal">
+            Modifier la description
+        </button>
 <?php } ?>
         <h1>Data:</h1>
         <table>
@@ -202,7 +213,10 @@ BTN;
             </tbody>
         </table>
 <?php if ($edit) { ?>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addModal">Ajouter une mesure</button>
+        <button type="button" class="btn btn-info btn-lg"
+            data-toggle="modal" data-target="#addModal">
+            Ajouter une mesure
+        </button>
 <?php } ?>
 
         <h1>Relationships</h1>
@@ -293,7 +307,7 @@ BTN;
         <h2 class="modal-title">Modifier la description du <?php echo ucfirst($search_res['binomial_name']); ?> </h2>
       </div>
       <div class="modal-body">
-          <h5>Votre commantaire:</h5>
+          <h5>Votre commentaire:</h5>
           <form>
               <textarea name="annotation"><?php echo ($search_res['annotation'] ? $search_res['annotation'] : ""); ?></textarea>
           </form>
@@ -303,6 +317,36 @@ BTN;
       </div>
     </div>
 
+  </div>
+</div>
+<div id="geolocModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="modal-title">Add a location for <?php echo ucfirst($search_res['binomial_name']); ?> </h2>
+      </div>
+      <div class="modal-body">
+          <h5>Location</h5>
+          <form>
+            <div class="input-group">
+              <label for="mod_latitude">Latitude</label>
+              <input type="number" step="0.0000000001" name="mod_latitude"
+                placeholder="41.02938" required id="mod_latitude">
+              <label for="mod_longitude">Longitude</label>
+              <input type="number" step="0.0000000001" name="mod_longitude"
+                placeholder="0.651098" required id="mod_longitude">
+            </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default"
+            onclick="write_geoloc_fromodal(<?php echo $idfollowed.','.$idstaff ?>)"
+            data-dismiss="modal">Update
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -318,6 +362,21 @@ function get_coords()
 function coord2cookies(position)
 {
     document.cookie = 'geoloc='+position.coords.latitude+','+position.coords.longitude;
+}
+function write_geoloc_fromodal(idfoll, idstaff)
+{
+    var latitude = $("input[name=mod_latitude]").val();
+    var longitude = $("input[name=mod_longitude]").val();
+    var geoloc = latitude + ',' + longitude;
+    $.post(
+        'script/scriptAjax.php',
+    {idfollowed: idfoll, geoloc: geoloc, idstaff: idstaff},
+    function(data)
+    {
+        $("input[name=mod_latitude]").val('');
+        $("input[name=mod_longitude]").val('');
+    }
+    );
 }
 function write_geoloc(idfoll, idstaff)
 {
