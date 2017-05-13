@@ -22,7 +22,7 @@ if (isset($_POST['old_pw'], $_POST['new_pw'], $_POST['conf_pw']))
         $where = array(
             array(
                 'field' => 'idStaff', 'value' => $_SESSION['idstaff'],
-                'binrel' => '=', 'type' => PDO::PARAM_STR
+                'binrel' => '=', 'type' => PDO::PARAM_INT
             )
         );
         update_line('Staff', array('pwhash' => $pwhash), $where);
@@ -37,7 +37,8 @@ include 'nav.php';
 <body>
 <?php echo isset($err) ? $err : null ?>
 <div class="row">
-    <form action="membre_index.php" method="post">
+    <form action="membre_index.php" method="post" accept-charset="utf-8"
+        enctype="multipart/form-data">
         <div class="input-group">
             <label for="old_pw">Enter current password</label>
             <input type="text" name="old_pw" id="old_pw">
