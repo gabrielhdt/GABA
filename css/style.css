@@ -181,7 +181,11 @@ description
     border-radius: 5px;
 }
 
-.formulaire input {
+.formulaire input,
+.formulaire select,
+.formulaire label,
+.formulaire textarea
+ {
     margin: 10px 0;
 }
 
