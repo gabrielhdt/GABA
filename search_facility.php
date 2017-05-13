@@ -24,7 +24,7 @@ if (isset($_POST['idspecies']))
     $fields = <<<FLD
 Facility.idFacility, name AS fa_name, gnss_coord, Followed.idSpecies
 FLD;
-    $table = <<<TBL
+    $tables = <<<TBL
 Facility INNER JOIN Followed ON Facility.idFacility=Followed.idFacility
 INNER JOIN Species ON Followed.idSpecies=Species.idSpecies
 TBL;
