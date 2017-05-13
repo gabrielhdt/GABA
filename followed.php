@@ -395,7 +395,7 @@ BTN;
   </div>
 </div>
 
-<canvas id="myChart" width="50%" height="200"></canvas>
+<canvas id="myChart" width="50%"></canvas>
 <?php graph_type(14, 'weight', 'myChart'); ?>
 
 <?php
