@@ -163,6 +163,17 @@ description
     border-radius: 5px;
 }
 
+.formulaire {
+    margin: 0;
+    padding: 20px;
+    display: table;
+    position: absolute;
+    height: 600px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.63);
+    border-radius: 5px;
+}
+
 .middle {
     display: table-cell;
     vertical-align: middle;
@@ -224,7 +235,6 @@ JUMBOTRON : là où on écrit nos textes
 a propos de nous
 ******************************************************************************/
 .container {
-    background-image: url('../data/pics/unordered/owl3.jpg');
     width: 100%;
     height: 600px;
     background-repeat: no-repeat;
