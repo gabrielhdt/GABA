@@ -554,7 +554,7 @@ function verify_login($login, $pwd){
         } elseif ($authok) {
             $id = 'staff';
         } else {
-            $id = 'inconnu';
+            $id = FALSE;
         }
 
     } catch (PDOException $e) {
