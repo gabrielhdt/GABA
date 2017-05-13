@@ -398,7 +398,8 @@ function write_geoloc(idfoll, idstaff)
 var contwidth = $('#map-container').width();
 var contheight = $('#foll_data').height();
 document.getElementById('followed_map').style.width = contwidth;
-document.getElementById('followed_map').style.height = contheight;
+document.getElementById('followed_map').style.setAttribute("style",
+    "height:" + contheight + "px");
 var followed_map = L.map('followed_map').setView([0, 0], 2);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
