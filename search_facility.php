@@ -17,6 +17,7 @@ FLD;
 $tables = 'Facility';
 $where = array();
 $groupby = array();
+$having = array();
 
 if (isset($_POST['idspecies']))
 {
@@ -41,8 +42,24 @@ WHR;
     }
     $groupby = 'Facility.idFacility';
 }
+if (isset($_POST['low_nfoll']))
+{
+    $fields = <<<FLD
+Facility.idFacility, name AS fa_name, gnss_coord, Followed.idSpecies
+FLD;
+    $tables = <<<TBL
+Facility INNER JOIN Followed ON Facility.idFacility=Followed.idFacility
+INNER JOIN Species ON Followed.idSpecies=Species.idSpecies
+TBL;
+    $groupby = 'Facility.idFacility';
+    $having = array();
+    $having['str'] = 'COUNT(Followed.idFollowed)>?';
+    $having['valtype'] = array(
+        'value' => $_POST['low_nfoll'], 'type' => PDO::PARAM_INT
+    );
 
-$facspecs = get_values_light($fields, $tables, $where, $groupby);
+}
+$facspecs = get_values_light($fields, $tables, $where, $groupby, $having);
 echo !$facspecs ? "Error while querying" : null;
 ?>
 
@@ -66,6 +83,9 @@ echo !$facspecs ? "Error while querying" : null;
                     <select name="idspecies[]" id="sel_species" class="form-control" multiple>
                     <?php create_choice_list($id_biname); ?>
                     </select>
+                    <label for=low_nfoll">Having more followed individuals than:</label>
+                    <input type="number" name="low_nfoll" id="low_nfoll"
+                        placeholder="5, 17, ...">
                 </div>
                 <button type="submit" class="btn btn-default">Search facility</button>
             </form>
