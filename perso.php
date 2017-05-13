@@ -37,7 +37,7 @@ include 'nav.php';
 <body>
 <?php echo isset($err) ? $err : null ?>
 <div class="row">
-    <form action="membre_index.php" method="post" accept-charset="utf-8"
+    <form action="perso.php" method="post" accept-charset="utf-8"
         enctype="multipart/form-data">
         <div class="input-group">
             <label for="old_pw">Enter current password</label>
