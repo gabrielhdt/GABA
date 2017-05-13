@@ -160,10 +160,10 @@ $having = array(
 );
 $loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
 $loc_str = $search_res['fa_name'] == 'gaia' ?
-    "Last known location: " . $search_res['latitude'] .'W ' .
-    $search_res['longitude'] .'N' : 'At ' . $search_res['fa_name'];
+    "Last known location: " . $loc['latitude'] .'W ' .
+    $loc['longitude'] .'N' : 'At ' . $search_res['fa_name'];
 $loc4js = $search_res['fa_name'] == 'gaia' ?
-    $search_res['latitude'] . ',' . $search_res['longitude'] :
+    $loc['latitude'] . ',' . $loc['longitude'] :
     $search_res['fa_gnss_coord'];
 ?>
 
