@@ -120,7 +120,7 @@ function relation_table($idfollowed)
         unset($relationship[$redundant_id]);
         array_push($relships_noself, $relationship);
     }
-    $table = edi_table($relships_noself, 'edit_relship');
+    $table = edi_table($relships_noself, 'edit_relship', $idfollowed);
     return($table);
 }
 
