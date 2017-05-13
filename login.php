@@ -16,7 +16,7 @@ if (isset($_POST['connexion']) && $_POST['connexion'] == 'Connexion') {
             $_SESSION['login'] = $_POST['login'];
             header('Location: admin_index.php'); // redirection vers la 'page index de session'
             exit();
-        } elseif ($test_conn == 'inconnu') {
+        } elseif (!$test_conn) {
             $erreur = 'Login ou mot de passe incorrect';
         }
     }
