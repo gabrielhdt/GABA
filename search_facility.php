@@ -24,10 +24,11 @@ if (isset($_POST['idspecies']))
     $fields = <<<FLD
 Facility.idFacility, name AS fa_name, gnss_coord
 FLD;
-    $tables = 'Facility, Followed, Species';
+    $table = <<<TBL
+Facility INNER JOIN Followed ON Facility.idFacility=Followed.idFacility
+INNER JOIN Species ON Followed.idSpecies=Species.idSpecies
+TBL;
     $where['str'] = <<<WHR
-Followed.idFacility = Facility.idFacility AND
-Species.idSpecies = Followed.idSpecies AND
 Followed.idSpecies IN
 WHR;
     $where['str'] .= ' ('.implode(', ', array_fill(0, $len, '?')).')';
