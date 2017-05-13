@@ -107,6 +107,8 @@ foreach ($lines as $line)
                         <br>
                         <input type="date" name="birth" class="form-control" placeholder="Date de naissance*">
                         <input type="text" name="health" class="form-control" placeholder="Etat de santé*">
+                        <textarea class="form-control" name="annotation" rows="8" cols="80"
+                                  placeholder="Commentaire sur L'individu"></textarea>
                     </div>
                     <button class="btn btn-success" id="submitbtn" type="submit" name="add_followed">Enregistrer</button>
                 </form>
