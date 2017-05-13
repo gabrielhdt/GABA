@@ -13,6 +13,7 @@ function head($title) {
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
 integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
 crossorigin=""/>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js"></script>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/nav_size.css">
 <link rel="icon" href="image/icon.svg">
