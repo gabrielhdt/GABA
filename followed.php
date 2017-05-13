@@ -396,7 +396,7 @@ BTN;
 </div>
 
 <canvas id="myChart" width="800" height="800"></canvas>
-<?php graph_type(1, 'weight', 'myChart'); ?>
+<?php graph_type(14, 'weight', 'myChart'); ?>
 
 <?php
 include 'footer.php';
