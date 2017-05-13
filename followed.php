@@ -128,7 +128,7 @@ function relation_table($idfollowed)
 $fields = <<<FLD
 binomial_name, common_name, gender, birth, health, death,
 Followed.pic_path AS pic_path, Facility.name AS fa_name,
-Followed.annotation
+Followed.annotation, Facility.gnss_coord AS fa_gnss_coord
 FLD;
 $table = <<<TAB
 Followed, Species, Facility
@@ -162,6 +162,9 @@ $loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
 $loc_str = $search_res['fa_name'] == 'gaia' ?
     "Last known location: " . $search_res['latitude'] .'W ' .
     $search_res['longitude'] .'N' : 'At ' . $search_res['fa_name'];
+$loc4js = $search_res['fa_name'] == 'gaia' ?
+    $search_res['latitude'] . ',' . $search_res['longitude'] :
+    $search_res['fa_gnss_coord'];
 ?>
 
 <!DOCTYPE html>
@@ -438,7 +441,8 @@ var contheight = $('#foll_data').height();
 document.getElementById('followed_map').style.width = contwidth;
 document.getElementById('followed_map').setAttribute("style",
     "height:" + contheight + "px");
-var followed_map = L.map('followed_map').setView([0, 0], 2);
+var followed_map = L.map('followed_map').setView(
+    [<?php echo $loc4js ?>], 4);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 subdomain: ['a', 'b', 'c']
