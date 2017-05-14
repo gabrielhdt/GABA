@@ -751,24 +751,15 @@ margin: 10px 0;
     visibility: visible;
 }
 
-#video p{
-    display: block;
-}
 
-#webmaster p, #webmaster iframe{
+
+#webmaster p{
     margin: 10px 0;
     display: inline-block;
 }
 
-#webmaster{
-    position: absolute;
-    top: -520px;
-    /*top: -300px;*/
-}
 
-#fincvs {
-    display: inline-block;
-}
+
 /******************************************************************************
 admin_index.php
 ******************************************************************************/
