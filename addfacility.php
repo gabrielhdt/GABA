@@ -11,7 +11,7 @@ head("Ajouter un bâtiment");
 
 <?php include "nav.php" ?>
 
-<div class="container5">
+<!-- <div class="container5">
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
         <div class="description">
             <div class="form">
@@ -30,6 +30,27 @@ head("Ajouter un bâtiment");
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
+</div> -->
+<div class="container" style="background-image: url('data/pics/unordered/facility2.jpg');">
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
+        <div class="formulaire">
+            <div class="middle">
+                <h1>Ajouter un centre</h1>
+                <p>Remplissez le formulaire ci-dessous pour compléter notre base de donnée.</p>
+                <p>Chaque contribution nous permet de vous offrir un service de meilleur qualité.</p>
+                <form action="addfacility.php" method="post">
+                    <div class="input-goup">
+                        <input class="form-control" type="text" name="fname" placeholder="Nom du centre*">
+                        <input class="form-control" type="text" name="type" placeholder="Type">
+                        <input class="form-control" type="number" name="latitude" step="0.00000000000000001" placeholder="Latitude">
+                        <input class="form-control" type="number" name="longitude" step="0.00000000000000001" placeholder="Longitude">
+                    </div>
+                    <button class="btn btn-success" type="submit" name="submit_contact">Enregistrer</button>
+                </form>
+            </div>
+
         </div>
     </div>
 </div>
