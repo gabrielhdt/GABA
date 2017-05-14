@@ -386,8 +386,7 @@ BTN;
   </div>
 </div>
 
-<canvas id="myChart" width="400" height="400"></canvas>
-<?php graph_type($idfollowed, 'weight', 'myChart', 'rgba(255, 0, 0, 1)', 'rgba(255, 0, 0, 0.5)'); ?>
+<?php draw_graphs($idfollowed); ?>
 
 <?php
 include 'footer.php';

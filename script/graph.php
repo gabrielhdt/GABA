@@ -1,5 +1,13 @@
 <?php
-function graph_type($idFollowed, $type, $idCanevas, $col1, $col2) {
+
+function draw_graphs($idFollowed) {
+    $types_measures = distinct_measure($idFollowed);
+    foreach ($distinct_type as $key) {
+        graph_type($idFollowed, $key['type'], 'rgba(255, 0, 0, 1)', 'rgba(255, 0, 0, 0.5)');
+    }
+}
+
+function graph_type($idFollowed, $type, $col1, $col2) {
     // col1 : couleur du trait
     // col 2 : couleur de l'aire sous la courbe
     $result = get_values(
@@ -16,8 +24,11 @@ function graph_type($idFollowed, $type, $idCanevas, $col1, $col2) {
         $date_measure[] = $value["date_measure"];
     }
     $chart = "
+    <div class='col-lg-6'>
+    <canvas id='$type' width='400' height='400'></canvas>
+    </div>
     <script>
-    var ctx = document.getElementById('$idCanevas');
+    var ctx = document.getElementById('$type');
     var scatterChart = new Chart(ctx, {
         type: 'line',
         data: {datasets: [
