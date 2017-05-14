@@ -347,9 +347,12 @@ BTN;
       <div class="modal-body">
           <h5>Votre commentaire:</h5>
           <form>
-              <input type="text" class="form-control" name="birth" placeholder="Date de naissance">
-              <input type="text" class="form-control" name="death" placeholder="Date de décès">
-              <input type="text" class="form-control" name="health" placeholder="État de santé">
+              <input type="text" class="form-control" name="birth" placeholder="Date de naissance"
+                     value="<?php echo ($search_res['birth'] ? $search_res['birth'] : ""); ?>">
+              <input type="text" class="form-control" name="death" placeholder="Date de décès"
+                     value="<?php echo ($search_res['death'] ? $search_res['death'] : ""); ?>">
+              <input type="text" class="form-control" name="health" placeholder="État de santé"
+                     value="<?php echo ($search_res['health'] ? $search_res['health'] : ""); ?>">
               <textarea name="annotation"><?php echo ($search_res['annotation'] ? $search_res['annotation'] : ""); ?></textarea>
           </form>
       </div>
