@@ -9,6 +9,7 @@ function draw_graphs($idFollowed) {
     $i = 0;
     foreach ($types_measures as $key) {
         graph_type($idFollowed, $key['type'], $colors[$i % 6], $colors[($i + 1) % 6]);
+        $i += 2;
     }
     echo "</div>";
 }
