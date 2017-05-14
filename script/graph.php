@@ -2,7 +2,7 @@
 
 function draw_graphs($idFollowed) {
     $types_measures = distinct_measure($idFollowed);
-    foreach ($distinct_type as $key) {
+    foreach ($types_measures as $key) {
         graph_type($idFollowed, $key['type'], 'rgba(255, 0, 0, 1)', 'rgba(255, 0, 0, 0.5)');
     }
 }
