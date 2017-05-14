@@ -46,11 +46,12 @@ elseif (isset($_POST['idFollowed'], $_POST['idStaff'], $_POST['type_relation'],
     add_line('Relation', $info_relationship);
     return(true);
 }
-elseif (isset($_POST['idFollowed'], $_POST['annotation'])) {
-    $change = array('annotation' => $_POST['annotation']);
+elseif (isset($_POST['idFollowed'], $_POST['annotation'], $_POST['death'],
+              $_POST['birth'], $_POST['health'])) {
+    $change = array('annotation' => $_POST['annotation'], "birth" => $_POST['birth'],
+                    'death' => $_POST['death'], 'health' => $_POST['health']);
     $where = array(array("field" => "idFollowed", "value" => $_POST['idFollowed'], "binrel" => "=", PDO::PARAM_INT));
     update_line('Followed', $change, $where);
-    echo $_POST['annotation'];
 }
 elseif (isset($_POST['geoloc'], $_POST['idfollowed'], $_POST['idstaff']))
 {

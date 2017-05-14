@@ -100,16 +100,16 @@ function addMeasure(id_Followed, id_Staff) {
     );
 }
 
-function modifyAnnotation(id_Followed) {
+function modifyInfos(id_Followed) {
     // permet l'ajout de measure par le staff idStaff sur le folloxed idfollowed
     $.post(
         'script/scriptAjax.php',
         {
             idFollowed: id_Followed,
+            birth : $("input[name=birth]").val(),
+            death : $("input[name=death]").val(),
+            health : $("input[name=health]").val(),
             annotation: $("textarea[name=annotation]").val()
-        },
-        function(data) {
-            $(".annotation").html(data);
         }
     );
 }

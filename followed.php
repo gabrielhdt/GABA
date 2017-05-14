@@ -335,9 +335,9 @@ BTN;
     </div>
   </div>
 </div>
+
 <div id="annotationModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
@@ -347,11 +347,14 @@ BTN;
       <div class="modal-body">
           <h5>Votre commentaire:</h5>
           <form>
+              <input type="text" class="form-control" name="birth" placeholder="Date de naissance">
+              <input type="text" class="form-control" name="death" placeholder="Date de décès">
+              <input type="text" class="form-control" name="health" placeholder="État de santé">
               <textarea name="annotation"><?php echo ($search_res['annotation'] ? $search_res['annotation'] : ""); ?></textarea>
           </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" onclick="modifyAnnotation(<?php echo $idfollowed ?>)" data-dismiss="modal">Valider</button>
+        <button type="button" class="btn btn-default" onclick="modifyInfos(<?php echo $idfollowed ?>)" data-dismiss="modal">Valider</button>
       </div>
     </div>
 
