@@ -116,8 +116,12 @@ include 'nav.php';
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h2 class="modal-title">Modify <?php echo ucfirst($search_res['binomial_name']); ?> data</h2>
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+        <h2 class="modal-title">
+          Modify <?php echo ucfirst($search_res['binomial_name']); ?> data
+        </h2>
       </div>
       <div class="modal-body">
           <form>
@@ -125,10 +129,35 @@ include 'nav.php';
               <label for="iMod_commoname">Common name</label>
               <input type="text" name="common_name" id="iMod_commoname"
                 class="form-control"
-                value="<?php echo $search_res['common_name'] ?>">
+                value="<?php echo ucfirst($search_res['common_name']) ?>">
+              <label for=iMod_biname">Binomial name</label>
               <input type="text" name="binomial_name" id="iMod_biname"
                 class="form-control"
-                value="<?php echo $search_res['binomial_name'] ?>">
+                value="<?php echo ucfirst($search_res['binomial_name']) ?>">
+              <label for="iMod_kingdom">Kingdom</label>
+              <input type="text" name="kingdom" id="iMod_kingdom"
+                class="form-control"
+                value="<?php echo ucfirst($search_res['kingdom']) ?>">
+              <label for="iMod_phylum">Phylum</label>
+              <input type="text" name="phylum" id="iMod_phylum"
+                class="form-control"
+                value="<?php echo ucfirst($search_res['phylum']) ?>">
+              <label for="iMod_class">Class</label>
+              <input type="text" name="class" id="iMod_class"
+                class="form-control"
+                value="<?php echo ucfirst($search_res['class']) ?>">
+              <label for="iMod_order">Order</label>
+              <input type="text" name="order_s" id="iMod_order"
+                class="form-control"
+                value="<?php echo ucfirst($search_res['order_s']) ?>">
+              <label for="iMod_family">Family</label>
+              <input type="text" name="family" id="iMod_family"
+                class="form-control"
+                value="<?php echo ucfirst($search_res['family']) ?>">
+              <label for="iMod_genus">Genus</label>
+              <input type="text" name="genus" id="iMod_genus"
+                class="form-control"
+                value="<?php echo ucfirst($search_res['genus']) ?>">
             </div>
           </form>
       </div>

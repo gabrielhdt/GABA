@@ -46,8 +46,18 @@ elseif (isset($_POST['idFollowed'], $_POST['idStaff'], $_POST['type_relation'],
     add_line('Relation', $info_relationship);
     return(true);
 }
-elseif (isset($_POST['idSpecies'], $_POST['common_name'],
-    $_POST['binomial_name']))
+elseif (
+    isset(
+        $_POST['idSpecies'], $_POST['common_name'],
+        $_POST['binomial_name'],
+        $_POST['kingdom'],
+        $_POST['phylum'],
+        $_POST['class_s'],
+        $_POST['order_s'],
+        $_POST['family'],
+        $_POST['genus']
+    )
+)
 {
     $where = array(
         array(
@@ -57,7 +67,13 @@ elseif (isset($_POST['idSpecies'], $_POST['common_name'],
     );
     $change = array(
         'common_name' => $_POST['common_name'],
-        'binomial_name' => $_POST['binomial_name']
+        'binomial_name' => $_POST['binomial_name'],
+        'kingdom' => $_POST['kingdom'],
+        'phylum' => $_POST['phylum'],
+        'class' => $_POST['class_s'],
+        'order_s' => $_POST['order_s'],
+        'family' => $_POST['family'],
+        'genus' => $_POST['genus']
     );
     update_line('Species', $change, $where);
 }

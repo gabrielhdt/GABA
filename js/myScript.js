@@ -116,12 +116,21 @@ function modifyInfos(id_Followed) {
 
 function editSpecies(id_species)
 {
+    /* class_s because class is a reserved word
+     * function called by modal of species.php
+     */
     $.post(
         'script/scriptAjax.php',
         {
             idSpecies: id_species,
             common_name: $("input[name=common_name]").val(),
-            binomial_name: $("input[name=binomial_name]").val()
+            binomial_name: $("input[name=binomial_name]").val(),
+            kingdom: $("input[name=kingdom]").val(),
+            phylum: $("input[name=phylum]").val(),
+            class_s: $("input[name=class]").val(),
+            order_s: $("input[name=order_s]").val(),
+            family: $("input[name=family]").val(),
+            genus: $("input[name=genus]").val()
         }
     );
 }
