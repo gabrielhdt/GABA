@@ -24,14 +24,14 @@ head("Ajouter une espèce");
 if (isset($_POST['species']))
 {
     $added_id = add_line('Species',
-        array('binomial_name' => $_POST['species'],
-        'kingdom' => $_POST['kingdom'],
-        'phylum' => $_POST['phylum'],
-        'class' => $_POST['class'],
-        'order_s' => $_POST['order'],
-        'family' => $_POST['family'],
-        'genus' => $_POST['genus'],
-        'conservation_status' => $_POST['status'])
+        array('binomial_name' => mb_strtolower($_POST['species']),
+        'kingdom' => mb_strtolower($_POST['kingdom']),
+        'phylum' => mb_strtolower($_POST['phylum']),
+        'class' => mb_strtolower($_POST['class']),
+        'order_s' => mb_strtolower($_POST['order']),
+        'family' => mb_strtolower($_POST['family']),
+        'genus' => mb_strtolower($_POST['genus']),
+        'conservation_status' => mb_strtolower($_POST['status']))
     );
     if ($added_id) {
         add_line('SpeciesEdition',
