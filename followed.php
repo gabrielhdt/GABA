@@ -1,61 +1,12 @@
 <?php
 include 'db.php';
 include 'form_func.php';
+include 'script/graph.php';
 session_start();
 // Autoriastion de l'edition pour un membre mais pas l'admin
 $edit = isset($_SESSION['login']) && $_SESSION['login'] != 'admin';
 $idstaff = $_SESSION['idstaff'];
 $idfollowed = $_GET['id'];
-
-function graph_type($idFollowed, $type, $idCanevas) {
-    $result = get_values(
-        array('DISTINCT MiscQuantity.value, MiscQuantity.unit, Measure.date_measure'),
-        'MiscQuantity INNER JOIN Measure ON MiscQuantity.idMeasure = Measure.idMeasure',
-        $where = array(
-            array(
-                'binrel' => '=',
-                'field' => 'Measure.idFollowed', 'value' =>  "$idFollowed",
-                'type' => PDO::PARAM_STR
-            ),
-            array(
-                'binrel' => '=', 'field' => 'MiscQuantity.type',
-                'value' =>  "$type", 'type' => PDO::PARAM_STR
-            )
-        )
-    ); // + and id =, order by date_measure
-    $val = array();
-    $unit = array();
-    $date_measure = array();
-    foreach ($result as $key => $value) {
-        $val[] = $value["value"];
-        $unit[] = $value["unit"];
-        $date_measure[] = $value["date_measure"];
-    }
-    $chart = "
-    <script>
-    var ctx = document.getElementById('$idCanevas');
-    var scatterChart = new Chart(ctx, {
-        type: 'line',
-        data: {datasets: [
-            {borderColor: 'rgba(19, 179, 9, 0.8)',
-             backgroundColor: 'rgba(19, 179, 9, 0.3)',
-             fill: true,
-             label: '$type ($unit[0])',
-             data: [";
-    for ($i = 0; $i < count($val); $i++){
-        $chart .= "{x: '$date_measure[$i]', y: $val[$i]}, ";
-    }
-    $chart = rtrim($chart, ', ');
-    $chart .=  "]}]},
-        options: {
-            responsive: false,
-            responsiveAnimationDuration: 500,
-            scales: {xAxes: [{type: 'time'}]}
-        }
-        });
-        </script>";
-    echo $chart;
-}
 
 function simple_table($lines)
 {
@@ -436,7 +387,7 @@ BTN;
 </div>
 
 <canvas id="myChart" width="400" height="400"></canvas>
-<?php graph_type($idfollowed, 'weight', 'myChart'); ?>
+<?php graph_type($idfollowed, 'weight', 'myChart', 'rgba(255, 0, 0, 1)', 'rgba(255, 0, 0, 0.5)'); ?>
 
 <?php
 include 'footer.php';
