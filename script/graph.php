@@ -2,7 +2,7 @@
 
 function draw_graphs($idFollowed) {
     $types_measures = distinct_measure($idFollowed);
-    echo "<div class='row'>";
+    echo "<div class='row' style='height: 500px;'>";
     foreach ($types_measures as $key) {
         graph_type($idFollowed, $key['type'], 'rgba(255, 0, 0, 1)', 'rgba(255, 0, 0, 0.5)');
     }
@@ -26,7 +26,7 @@ function graph_type($idFollowed, $type, $col1, $col2) {
         $date_measure[] = $value["date_measure"];
     }
     $chart = "
-    <div class='col-lg-6'>
+    <div class='col-lg-4 col-md-6 col-sm-6 col-xs-12'>
     <canvas id='$type' width='400' height='400'></canvas>
     </div>
     <script>
