@@ -155,13 +155,14 @@ function add_line_smart($table, $values)
             $qumarkcounter++;
         }
         $stmt->execute();
+        $id_addition = $conn->lastInsertId();
     } catch (PDOException $e) {
         echo "Something went wrong (add_line_smart): " . $e->getMessage();
         $conn = null;
         return($false);
     }
     $conn = null;
-    return(true);
+    return($id_addition);
 }
 
 function add_staff($password, $type, $first_name, $last_name)
