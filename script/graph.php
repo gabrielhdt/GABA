@@ -25,6 +25,9 @@ function graph_type($idFollowed, $type, $col1, $col2) {
         $unit[] = $value["unit"];
         $date_measure[] = $value["date_measure"];
     }
+    if (count($val) < 3) {
+        return;
+    }
     $chart = "
     <div class='col-lg-4 col-md-6 col-sm-6 col-xs-12'>
     <canvas id='$type' width='100%' height='100%'></canvas>
