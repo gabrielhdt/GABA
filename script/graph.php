@@ -6,7 +6,7 @@ function draw_graphs($idFollowed) {
                     'rgba(0, 0, 255, 1)', 'rgba(0, 0, 255, 0.5)');
     $types_measures = distinct_measure($idFollowed);
     echo "
-    <div class="container-fluid">
+    <div class='container-fluid'>
     <div class='row' style='height: 500px;'>";
     $i = 0;
     foreach ($types_measures as $key) {
