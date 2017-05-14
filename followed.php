@@ -342,7 +342,7 @@ BTN;
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h2 class="modal-title">Modifier la description du <?php echo ucfirst($search_res['binomial_name']); ?> </h2>
+        <h2 class="modal-title">Modifier les informations du <?php echo ucfirst($search_res['binomial_name']); ?> </h2>
       </div>
       <div class="modal-body">
           <h5>Votre commentaire:</h5>
