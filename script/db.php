@@ -146,6 +146,7 @@ function add_line_smart($table, $values)
     $query .= '(' . implode(', ', $columns) . ')';
     $query .= ' VALUES ';
     $query .= '(' . implode(', ', array_fill(0, $num_adds, '?')) . ')';
+    $query .= ';';
     global $servername, $username, $dbname, $password, $charset;
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
@@ -154,8 +155,8 @@ function add_line_smart($table, $values)
         $qumarkcounter = 1;
         foreach ($columns as $col)
         {
-            bindValue($qumarkcounter, mb_strtolower($values[$col]['value']),
-                $values[$col]['type']);
+            $stmt->bindValue($qumarkcounter,
+                mb_strtolower($values[$col]['value']), $values[$col]['type']);
             $qumarkcounter++;
         }
         $stmt->execute();
