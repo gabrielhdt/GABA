@@ -83,6 +83,7 @@ if (isset($_POST['species']))
         'gender' => mb_strtolower($_POST['gender']),
         'birth' => $_POST['birth'],
         'health' => mb_strtolower($_POST['health']),
+        'annotation' => mb_strtolower($_POST['annotation']),
         'idFacility' => $_POST['facility'])
     );
     if ($added_id) {
