@@ -530,15 +530,6 @@ recherche.php
     background: url('../data/pics/unordered/zoo.jpg') center/cover no-repeat;
 }
 
-#chercheur {
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
-                url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
-}
-
-#chercheur:hover {
-    background: url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
-}
-
 #addspecies {
     /* TODO: mettre les liens des bonnes images */
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
