@@ -53,7 +53,7 @@ INNER JOIN Species ON Followed.idSpecies=Species.idSpecies
 TBL;
     $groupby = 'Facility.idFacility';
     $having = array();
-    $having['str'] = 'COUNT(Followed.idFollowed)>?';
+    $having['str'] = 'COUNT(Followed.idFollowed)>=?';
     $having['valtype'] = array(
         array(
             'value' => $_POST['low_nfoll'], 'type' => PDO::PARAM_INT
