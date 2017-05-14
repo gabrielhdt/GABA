@@ -1,5 +1,6 @@
 <?php
 include 'db.php';
+include 'form_func.php';
 session_start();
 // Autoriastion de l'edition pour un membre mais pas l'admin
 $edit = isset($_SESSION['login']) && $_SESSION['login'] != 'admin';
@@ -175,7 +176,15 @@ $loc_str = $search_res['fa_name'] == 'gaia' ?
 $loc4js = $search_res['fa_name'] == 'gaia' ?
     $loc['latitude'] . ',' . $loc['longitude'] :
     $search_res['fa_gnss_coord'];
+
+// Getting types of measur
+$meas_gen = get_values_light('DISTINCT type, unit', 'MiscQuantity');
+function f($line) { return($line['type']); }
+function g($line) { return($line['unit']); }
+$meas_types = array_map('f', $meas_gen);
+$meas_units = array_map('g', $meas_gen);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -311,13 +320,25 @@ BTN;
       </div>
       <div class="modal-body">
           <form>
-              <input type="text" class="form-control" name="type" placeholder="Type de mesure (Ex : taille)" required>
-              <input type="number" step="0.01" class="form-control" name="value" placeholder="Valeur (Ex : 1,64)" required>
-              <input type="text" class="form-control" name="unit" placeholder="Unité (Ex : cm)" required>
+              <input type="text" class="form-control" name="type"
+                placeholder="Type de mesure (Ex : taille)" list="meas_sugg"
+                required>
+              <datalist id="meas_sugg">
+                <?php create_autocplt_list($meas_types) ?>
+              </datalist>
+              <input type="number" step="0.01" class="form-control"
+                name="value" placeholder="Valeur (Ex : 1,64)" required>
+              <input type="text" class="form-control" name="unit"
+                placeholder="Unité (Ex : cm)" list="unit_sugg" required>
+              <datalist id="unit_sugg">
+                <?php create_autocplt_list($meas_units) ?>
+              </datalist>
           </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" onclick="addMeasure(<?php echo $idfollowed.', '.$idstaff; ?>)" data-dismiss="modal">Valider</button>
+        <button type="button" class="btn btn-default"
+            onclick="addMeasure(<?php echo $idfollowed.', '.$idstaff; ?>)"
+            data-dismiss="modal">Valider</button>
       </div>
     </div>
   </div>
