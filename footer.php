@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="row">
+<div class="row">
 <footer>
     <ul>
         <li class="active"><a href="#">Accueil</a></li>|

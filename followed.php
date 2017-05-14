@@ -152,6 +152,7 @@ head(ucfirst($search_res['binomial_name']));
 echo $edit ? '<body onload="get_coords()">' : '<body>';
 include 'nav.php';
 ?>
+<div class="container-fluid">
 <div class="row">
 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
     <div class="pic">
@@ -262,6 +263,7 @@ BTN;
             data-target="#addRelationModal">Add a relationship</button>
 <?php } ?>
     </div>
+</div>
 </div>
 </div>
 
