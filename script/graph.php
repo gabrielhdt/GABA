@@ -5,13 +5,15 @@ function draw_graphs($idFollowed) {
                     'rgba(0, 255, 0, 1)', 'rgba(0, 255, 0, 0.5)',
                     'rgba(0, 0, 255, 1)', 'rgba(0, 0, 255, 0.5)');
     $types_measures = distinct_measure($idFollowed);
-    echo "<div class='row' style='height: 500px;'>";
+    echo "
+    <div class="container-fluid">
+    <div class='row' style='height: 500px;'>";
     $i = 0;
     foreach ($types_measures as $key) {
         graph_type($idFollowed, $key['type'], $colors[$i % 6], $colors[($i + 1) % 6]);
         $i += 2;
     }
-    echo "</div>";
+    echo "</div></div>";
 }
 
 function graph_type($idFollowed, $type, $col1, $col2) {

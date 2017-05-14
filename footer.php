@@ -1,3 +1,5 @@
+<div class="container-fluid">
+    <div class="row">
 <footer>
     <ul>
         <li class="active"><a href="#">Accueil</a></li>|
@@ -11,6 +13,8 @@
     &copy; All rights reserved GABA
     <a id="goTop"><span class="glyphicon glyphicon-chevron-up"></span></a>
 </footer>
+</div>
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
