@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
-<?php include "db.php";
-include "form_func.php";
+<?php include "script/db.php";
+include "script/form_func.php";
 include "head.php";
 head('Recherche individu');
 

@@ -1,5 +1,5 @@
-<?php include "db.php";
-include "form_func.php";
+<?php include "script/db.php";
+include "script/form_func.php";
 include "head.php";
 $id_biname = array();
 $lines = get_values(array('idSpecies', 'binomial_name'), 'Species');

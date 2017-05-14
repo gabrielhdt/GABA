@@ -9,8 +9,8 @@ if (!isset($_SESSION['login'], $_SESSION['idstaff']) || $_SESSION['login'] == 'a
 <!DOCTYPE html>
 <html lang="fr">
 <?php
-include "db.php";
-include "form_func.php";
+include "script/db.php";
+include "script/form_func.php";
 include "head.php";
 head("Ajouter un individu");
 include "script/add_script.php";

@@ -1,6 +1,6 @@
 <?php
-include 'db.php';
-include 'form_func.php';
+include 'script/db.php';
+include 'script/form_func.php';
 include 'script/graph.php';
 session_start();
 // Autoriastion de l'edition pour un membre mais pas l'admin

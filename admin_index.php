@@ -10,7 +10,7 @@ if (!isset($_SESSION['login']) && $_SESSION['login'] != "admin") { // test si l'
 
 <?php
 include 'head.php';
-include 'db.php';
+include 'script/db.php';
 head("Administrateur");
 ?>
 <body>
