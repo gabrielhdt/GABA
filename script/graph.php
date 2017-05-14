@@ -27,7 +27,7 @@ function graph_type($idFollowed, $type, $col1, $col2) {
     }
     $chart = "
     <div class='col-lg-4 col-md-6 col-sm-6 col-xs-12'>
-    <canvas id='$type' width='400' height='400'></canvas>
+    <canvas id='$type' width='100%' height='100%'></canvas>
     </div>
     <script>
     var ctx = document.getElementById('$type');
@@ -45,7 +45,7 @@ function graph_type($idFollowed, $type, $col1, $col2) {
     $chart = rtrim($chart, ', ');
     $chart .=  "]}]},
         options: {
-            responsive: true,
+            responsive: false,
             responsiveAnimationDuration: 500,
             scales: {xAxes: [{type: 'time'}]}
         }
