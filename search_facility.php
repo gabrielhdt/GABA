@@ -55,7 +55,9 @@ TBL;
     $having = array();
     $having['str'] = 'COUNT(Followed.idFollowed)>?';
     $having['valtype'] = array(
-        'value' => $_POST['low_nfoll'], 'type' => PDO::PARAM_INT
+        array(
+            'value' => $_POST['low_nfoll'], 'type' => PDO::PARAM_INT
+        )
     );
 
 }
