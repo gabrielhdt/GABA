@@ -157,19 +157,26 @@ $search_res = get_values_light($fields, $table, $where)[0];
 
 
 // Getting last known location
-$fields = "latitude, longitude";
-$table = "Location INNER JOIN Measure ON Location.idMeasure=Measure.idMeasure";
-$wherestr = "Measure.idFollowed=?";
-$where = array();
-$where['str'] = 'Measure.idFollowed=?';
+$tables = <<<TBL
+Location INNER JOIN Measure ON Measure.idMeasure=Location.idMeasure
+TBL;
+$where['str'] = 'idFollowed=?';
 $where['valtype'] = array(
     array('value' => $idfollowed, 'type' => PDO::PARAM_INT)
 );
-$groupby = 'date_measure';
-$having = array(
-    'str' => 'date_measure=MAX(date_measure)'
+$last_meas_date = get_values_light(
+    'MAX(date_measure) AS last_meas', $tables, $where
+)[0]['last_meas'];
+
+$fields = "latitude, longitude, date_measure";
+$table = "Location INNER JOIN Measure ON Location.idMeasure=Measure.idMeasure";
+$where = array();
+$where['str'] = 'Measure.idFollowed=? AND date_measure=?';
+$where['valtype'] = array(
+    array('value' => $idfollowed, 'type' => PDO::PARAM_INT),
+    array('value' => $last_meas_date, 'type' => PDO::PARAM_STR)
 );
-$loc = get_values_light($fields, $table, $where, $groupby, $having)[0];
+$loc = get_values_light($fields, $table, $where)[0];
 $loc_str = $search_res['fa_name'] == 'gaia' ?
     "Last known location: " . $loc['latitude'] .'W ' .
     $loc['longitude'] .'N' : 'At ' . $search_res['fa_name'];
