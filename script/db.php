@@ -159,7 +159,7 @@ function add_line_smart($table, $values)
     } catch (PDOException $e) {
         echo "Something went wrong (add_line_smart): " . $e->getMessage();
         $conn = null;
-        return($false);
+        return(false);
     }
     $conn = null;
     return($id_addition);
@@ -523,6 +523,50 @@ function update_line($table, $change, $where)
     } catch (PDOException $e) {
         echo 'Something went wrong (update_line): ' . $e->getMessage();
         return(true);
+    }
+    $conn = null;
+    return(true);
+}
+
+function update_line_smart($table, $updates, $where)
+{
+    /* table a string,
+     * updates and where are the same type of array, i.e.
+     * where['str'] is the sql string with '?' instead of values
+     * where['valtype'] is array of
+     * array('value' => the value, 'type' => PDO type)
+     * order of elements in valtype arrays MUST match the order of '?' in
+     * the string
+     */
+    $num_adds = count($values);
+    $query = 'UPDATE ' . $table . ' SET ';
+    $columns = array_keys($values);  // Keys are ordered here
+    $query .= $updates['str'];
+    $query .= ' WHERE ';
+    $query .= $where['str'];
+    global $servername, $username, $dbname, $password, $charset;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
+        $stmt = $conn->prepare($query);
+        $qumarkcounter = 1;
+        foreach ($updates['valtype'] as $upvt)
+        {
+            bindValue($qumarkcounter,
+                mb_strtolower($upvt['value']), $upvt['type']);
+            $qumarkcounter++;
+        }
+        foreach ($where['valtype'] as $wh)
+        {
+            bindValue($qumarkcounter, $wh['value'], $wh['type']);
+            $qumarkcounter++;
+        }
+        $query .= ';';
+        $stmt->execute();
+    } catch (PDOException $e) {
+        echo "Something went wrong (update_line_smart): " . $e->getMessage();
+        $conn = null;
+        return(false);
     }
     $conn = null;
     return(true);
