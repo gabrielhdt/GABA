@@ -33,13 +33,13 @@ if (isset($_POST['species']))
         'genus' => $_POST['genus'],
         'conservation_status' => $_POST['status'])
     );
-}
     if ($added_id) {
         add_line('SpeciesEdition',
             array('idStaff' => $_SESSION['idstaff'],
             'idSpecies' => $added_id,
             'type' => 'addition')
         );
+    }
 }
 
 // Getting info for form
