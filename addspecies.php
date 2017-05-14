@@ -1,6 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['login'], $_SESSION['idstaff']) || $_SESSION['login'] == 'admin') { // test si l'utilisateur est bien passé par le formulaire
+if (!isset($_SESSION['login'], $_SESSION['idstaff']) ||
+    $_SESSION['login'] == 'admin') { // utilisateur passé par le formulaire?
     header ('Location: login.php'); // sinon retour page login
     exit();
 }
@@ -19,7 +20,29 @@ head("Ajouter une espèce");
 <?php include "nav.php" ?>
 
 <?php
+// If called after search fill database
+if (isset($_POST['species']))
+{
+    $added_id = add_line('Species',
+        array('binomial_name' => $_POST['species'],
+        'kingdom' => $_POST['kingdom'],
+        'phylum' => $_POST['phylum'],
+        'class' => $_POST['class'],
+        'order_s' => $_POST['order'],
+        'family' => $_POST['family'],
+        'genus' => $_POST['genus'],
+        'conservation_status' => $_POST['status'])
+    );
+}
+    if ($added_id) {
+        add_line('SpeciesEdition',
+            array('idStaff' => $_SESSION['idstaff'],
+            'idSpecies' => $added_id,
+            'type' => 'addition')
+        );
+}
 
+// Getting info for form
 $lines = get_values_light("DISTINCT kingdom", "Species");
 $kingdoms = array();
 foreach ($lines as $line)
@@ -98,31 +121,6 @@ foreach ($lines as $line)
         </div>
     </div>
 </div>
-
-<?php
-if (isset($_POST['species']))
-{
-    $added_id = add_line('Species',
-        array('binomial_name' => $_POST['species'],
-        'kingdom' => $_POST['kingdom'],
-        'phylum' => $_POST['phylum'],
-        'class' => $_POST['class'],
-        'order_s' => $_POST['order'],
-        'family' => $_POST['family'],
-        'genus' => $_POST['genus'],
-        'conservation_status' => $_POST['status'])
-    );
-}
-    if ($added_id) {
-        add_line('SpeciesEdition',
-            array('idStaff' => $_SESSION['idstaff'],
-            'idSpecies' => $added_id,
-            'type' => 'addition')
-        );
-}
-?>
-
 <?php include "footer.php" ?>
-
 </body>
 </html>
