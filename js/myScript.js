@@ -133,3 +133,19 @@ function addRelationship(id_followed, id_staff)
         }
     );
 }
+
+function write_geoloc_fromodal(idfoll, idstaff)
+{
+    var latitude = $("input[name=mod_latitude]").val();
+    var longitude = $("input[name=mod_longitude]").val();
+    var geoloc = latitude + ',' + longitude;
+    $.post(
+        'script/scriptAjax.php',
+    {idfollowed: idfoll, geoloc: geoloc, idstaff: idstaff},
+    function(data)
+    {
+        $("input[name=mod_latitude]").val('');
+        $("input[name=mod_longitude]").val('');
+    }
+    );
+}

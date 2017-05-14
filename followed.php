@@ -10,8 +10,18 @@ function graph_type($idFollowed, $type, $idCanevas) {
     $result = get_values(
         array('DISTINCT MiscQuantity.value, MiscQuantity.unit, Measure.date_measure'),
         'MiscQuantity INNER JOIN Measure ON MiscQuantity.idMeasure = Measure.idMeasure',
-        $where=array(array('binrel' => '=', 'field' => 'Measure.idFollowed', 'value' =>  "$idFollowed", 'type' => PDO::PARAM_STR),
-                     array('binrel' => '=', 'field' => 'MiscQuantity.type', 'value' =>  "$type", 'type' => PDO::PARAM_STR))); // + and id =, order by date_measure
+        $where = array(
+            array(
+                'binrel' => '=',
+                'field' => 'Measure.idFollowed', 'value' =>  "$idFollowed",
+                'type' => PDO::PARAM_STR
+            ),
+            array(
+                'binrel' => '=', 'field' => 'MiscQuantity.type',
+                'value' =>  "$type", 'type' => PDO::PARAM_STR
+            )
+        )
+    ); // + and id =, order by date_measure
     $val = array();
     $unit = array();
     $date_measure = array();
@@ -405,28 +415,15 @@ include 'footer.php';
 ?>
 </body>
 <script>
+// Getting and setting coordinates in cookie
 function get_coords()
 {
     navigator.geolocation.getCurrentPosition(coord2cookies);
 }
 function coord2cookies(position)
 {
-    document.cookie = 'geoloc='+position.coords.latitude+','+position.coords.longitude;
-}
-function write_geoloc_fromodal(idfoll, idstaff)
-{
-    var latitude = $("input[name=mod_latitude]").val();
-    var longitude = $("input[name=mod_longitude]").val();
-    var geoloc = latitude + ',' + longitude;
-    $.post(
-        'script/scriptAjax.php',
-    {idfollowed: idfoll, geoloc: geoloc, idstaff: idstaff},
-    function(data)
-    {
-        $("input[name=mod_latitude]").val('');
-        $("input[name=mod_longitude]").val('');
-    }
-    );
+    document.cookie = 'geoloc=' + position.coords.latitude + ',' +
+        position.coords.longitude;
 }
 function write_geoloc(idfoll, idstaff)
 {
@@ -436,6 +433,7 @@ function write_geoloc(idfoll, idstaff)
     );
 }
 
+// Map management
 var contwidth = $('#map-container').width();
 var contheight = $('#foll_data').height();
 document.getElementById('followed_map').style.width = contwidth;
