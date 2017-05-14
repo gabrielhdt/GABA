@@ -46,11 +46,31 @@ elseif (isset($_POST['idFollowed'], $_POST['idStaff'], $_POST['type_relation'],
     add_line('Relation', $info_relationship);
     return(true);
 }
+elseif (isset($_POST['idSpecies'], $_POST['common_name'],
+    $_POST['binomial_name']))
+{
+    $where = array(
+        array(
+            'field' => 'idSpecies', 'value' => $_POST['idSpecies'],
+            'binrel' => '=', 'type' => PDO::PARAM_INT
+        )
+    );
+    $change = array(
+        'common_name' => $_POST['common_name'],
+        'binomial_name' => $_POST['binomial_name']
+    );
+    update_line('Species', $change, $where);
+}
 elseif (isset($_POST['idFollowed'], $_POST['annotation'], $_POST['death'],
               $_POST['birth'], $_POST['health'])) {
     $change = array('annotation' => $_POST['annotation'], "birth" => $_POST['birth'],
                     'death' => $_POST['death'], 'health' => $_POST['health']);
-    $where = array(array("field" => "idFollowed", "value" => $_POST['idFollowed'], "binrel" => "=", PDO::PARAM_INT));
+    $where = array(
+        array(
+            "field" => "idFollowed", "value" => $_POST['idFollowed'],
+            "binrel" => "=", 'type' => PDO::PARAM_INT
+        )
+    );
     update_line('Followed', $change, $where);
 }
 elseif (isset($_POST['geoloc'], $_POST['idfollowed'], $_POST['idstaff']))

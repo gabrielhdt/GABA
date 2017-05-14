@@ -114,6 +114,18 @@ function modifyInfos(id_Followed) {
     );
 }
 
+function editSpecies(id_species)
+{
+    $.post(
+        'script/scriptAjax.php',
+        {
+            idSpecies: id_species,
+            common_name: $("input[name=common_name]").val(),
+            binomial_name: $("input[name=binomial_name]").val()
+        }
+    );
+}
+
 function addRelationship(id_followed, id_staff)
 {
     $.post(
