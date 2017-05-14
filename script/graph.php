@@ -3,7 +3,7 @@
 function draw_graphs($idFollowed) {
     $colors = array('rgba(255, 0, 0, 1)', 'rgba(255, 0, 0, 0.5)',
                     'rgba(0, 255, 0, 1)', 'rgba(0, 255, 0, 0.5)',
-                    'rgba(0, 0, 255, 1)', 'rgba(0, 0, 255, 0.5)',)
+                    'rgba(0, 0, 255, 1)', 'rgba(0, 0, 255, 0.5)');
     $types_measures = distinct_measure($idFollowed);
     echo "<div class='row' style='height: 500px;'>";
     $i = 0;
