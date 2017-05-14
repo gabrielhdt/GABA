@@ -45,7 +45,7 @@ function graph_type($idFollowed, $type, $col1, $col2) {
     $chart = rtrim($chart, ', ');
     $chart .=  "]}]},
         options: {
-            responsive: false,
+            responsive: true,
             responsiveAnimationDuration: 500,
             scales: {xAxes: [{type: 'time'}]}
         }
