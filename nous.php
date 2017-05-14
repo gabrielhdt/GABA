@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include 'script/db.php';
 include 'head.php';
 head('Notre Labo');
 ?>

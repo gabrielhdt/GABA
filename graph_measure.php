@@ -1,6 +1,6 @@
 <?php
 
-include 'db.php';
+include 'script/db.php';
 
 function graph_type($idFollowed, $type, $idCanevas) {
     $result = get_values(

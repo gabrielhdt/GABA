@@ -1,5 +1,5 @@
 <?php
-include('db.php');
+include('script/db.php');
 if (isset($_POST['connexion']) && $_POST['connexion'] == 'Connexion') {
     if ((isset($_POST['login']) && !empty($_POST['login'])) && (isset($_POST['password']) && !empty($_POST['password']))) {
 

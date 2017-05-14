@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include 'script/db.php';
 /* POST must contain 'table', which specifies what is the image about
  * (e.g. followed or species) and 'id' of the thing; fields which won't be
  * entered by the user, and therefore parameters must be passed via hidden

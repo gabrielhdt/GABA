@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html>
-<?php include "db.php";
+<?php include "script/db.php";
 include "form_func.php";
 include "head.php";
 head('Recherche espèce');

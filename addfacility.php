@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-<?php include 'db.php';
+<?php include 'script/db.php';
 include 'form_func.php';
 include "head.php";
 head("Ajouter un bâtiment");

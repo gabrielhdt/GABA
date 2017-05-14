@@ -9,7 +9,7 @@ if (!isset($_SESSION['login'], $_SESSION['idstaff']) || $_SESSION['login'] == 'a
 <!DOCTYPE html>
 <html lang="fr">
 <?php
-include "db.php";
+include "script/db.php";
 include "form_func.php";
 include "head.php";
 head("Ajouter un individu");

@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include 'script/db.php';
 
 function type_measure ($idFollowed) {
     $result = get_values(

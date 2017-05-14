@@ -5,7 +5,7 @@ if (!isset($_SESSION['login'])) { // test si l'utilisateur est bien passé par l
     exit();
 }
 include 'head.php';
-include 'db.php';
+include 'script/db.php';
 if (isset($_POST['old_pw'], $_POST['new_pw'], $_POST['conf_pw']))
 {
     if ($_POST['new_pw'] != $_POST['conf_pw'])
