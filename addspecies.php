@@ -23,21 +23,47 @@ head("Ajouter une espèce");
 // If called after search fill database
 if (isset($_POST['species']))
 {
-    $added_id = add_line('Species',
-        array('binomial_name' => mb_strtolower($_POST['species']),
-        'kingdom' => mb_strtolower($_POST['kingdom']),
-        'phylum' => mb_strtolower($_POST['phylum']),
-        'class' => mb_strtolower($_POST['class']),
-        'order_s' => mb_strtolower($_POST['order']),
-        'family' => mb_strtolower($_POST['family']),
-        'genus' => mb_strtolower($_POST['genus']),
-        'conservation_status' => mb_strtolower($_POST['status']))
+    $added_id = add_line_smart('Species',
+        array(
+            'binomial_name' => array(
+                'value' => $_POST['species'], 'type' => PDO::PARAM_STR
+            ),
+            'kingdom' => array(
+                'value' => $_POST['kingdom'], 'type' => PDO::PARAM_STR
+            ),
+            'phylum' => array(
+                'value' => $_POST['phylum'], 'type' => PDO::PARAM_STR
+            ),
+            'class' => array(
+                'value' => $_POST['class'], 'type' => PDO::PARAM_STR
+            ),
+            'order_s' => array(
+                'value' => $_POST['order'], 'type' => PDO::PARAM_STR
+            ),
+            'family' => array(
+                'value' => $_POST['family'], 'type' => PDO::PARAM_STR
+            ),
+            'genus' => array(
+                'value' => $_POST['genus'], 'type' => PDO::PARAM_STR
+            ),
+            'conservation_status' => array(
+                'value' => $_POST['status'], 'type' => PDO::PARAM_STR
+            )
+        )
     );
     if ($added_id) {
-        add_line('SpeciesEdition',
-            array('idStaff' => $_SESSION['idstaff'],
-            'idSpecies' => $added_id,
-            'type' => 'addition')
+        add_line_smart('SpeciesEdition',
+            array(
+                'idStaff' => array(
+                    'value' => $_SESSION['idstaff'], 'type' => PDO::PARAM_INT
+                ),
+                'idSpecies' => array(
+                    'value' => $added_id, 'type' => PDO::PARAM_INT
+                ),
+                'type' => array(
+                    'value' => 'addition', 'type' => PDO::PARAM_STR
+                )
+            )
         );
     }
 }
