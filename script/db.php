@@ -135,6 +135,10 @@ function add_line_smart($table, $values)
 {
     /* table a string, values an associtive array:
      * 'column name' => array('value' => mixed, 'type' => PDO type)
+     * will result in
+     * INSERT INTO (colname1, ...) VALUES ('value1', ...)
+     * not exactly same args as other functions, due to the keyword
+     * VALUES in the middle. Might be changed.
      */
     $query = 'INSERT INTO ' . $table . ' ';
     $columns = array_keys($values);  // Keys are ordered here
