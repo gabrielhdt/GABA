@@ -131,6 +131,39 @@ function add_line($table, $valarr)
     return($id_addition);
 }
 
+function add_line_smart($table, $values)
+{
+    /* table a string, values an associtive array:
+     * 'column name' => array('value' => mixed, 'type' => PDO type)
+     */
+    $query = 'INSERT INTO ' . $table . ' ';
+    $columns = array_keys($values);  // Keys are ordered here
+    $num_adds = count($values);
+    $query .= '(' . implode(', ', $columns) . ')';
+    $query .= ' VALUES ';
+    $query .= '(' . implode(', ', array_fill(0, $num_adds, '?')) . ')';
+    global $servername, $username, $dbname, $password, $charset;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username, $password);
+        $stmt = $conn->prepare($query);
+        $qumarkcounter = 1;
+        foreach ($columns as $col)
+        {
+            bindValue($qumarkcounter, mb_strtolower($values[$col]['value']),
+                $values[$col]['type']);
+            $qumarkcounter++;
+        }
+        $stmt->execute();
+    } catch (PDOException $e) {
+        echo "Something went wrong (add_line_smart): " . $e->getMessage();
+        $conn = null;
+        return($false);
+    }
+    $conn = null;
+    return(true);
+}
+
 function add_staff($password, $type, $first_name, $last_name)
 {
     // Verify inputs with regexes
