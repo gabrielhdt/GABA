@@ -349,9 +349,9 @@ BTN;
           <h6>(Format date : YYYY-MM-DD)</h6>
           <form>
               <input type="text" class="form-control" name="birth" placeholder="Date de naissance"
-                     value="<?php echo ($search_res['birth'] ? $search_res['birth'] : ""); ?>">
+                     value="<?php echo ($search_res['birth'] ? $search_res['birth'] : "YYYY-MM-DD"); ?>">
               <input type="text" class="form-control" name="death" placeholder="Date de décès"
-                     value="<?php echo ($search_res['death'] ? $search_res['death'] : ""); ?>">
+                     value="<?php echo ($search_res['death'] ? $search_res['death'] : "YYYY-MM-DD"); ?>">
               <input type="text" class="form-control" name="health" placeholder="État de santé"
                      value="<?php echo ($search_res['health'] ? $search_res['health'] : ""); ?>">
               <textarea class="form-control" name="annotation"><?php echo ($search_res['annotation'] ? $search_res['annotation'] : ""); ?></textarea>
