@@ -346,7 +346,7 @@ BTN;
       </div>
       <div class="modal-body">
           <h5>Votre commentaire:</h5>
-          <p>(Format date : YYYY-MM-DD)</p>
+          <h6>(Format date : YYYY-MM-DD)</h6>
           <form>
               <input type="text" class="form-control" name="birth" placeholder="Date de naissance"
                      value="<?php echo ($search_res['birth'] ? $search_res['birth'] : ""); ?>">
