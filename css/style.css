@@ -600,7 +600,7 @@ HELP
     background-size: cover;
     text-align: center;
 */
-#cv img{
+/*#cv img{
 position: relative;
 margin: 10px 0;
 
@@ -611,10 +611,15 @@ margin: 10px 0;
     right: 5em;
     top: 13em;
     z-index: 10;
-}
+}*/
 
 .photo_cv {
+    height: 400px;
+}
+
+.photo_cv:hover {
     visibility: visible;
+
 }
 
 /*#adrien img:hover + a, #aurelie img:hover + a,#benoit img:hover + a,#gabriel img:hover + a {
