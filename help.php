@@ -155,6 +155,9 @@
                     </div>
                 </div>
             </div>
+        <div class="clearfix">
+
+        </div>
         <!-- </div> -->
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="jumbotron" id='webmaster'>
