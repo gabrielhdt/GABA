@@ -575,6 +575,7 @@ recherche.php
 }
 
 .photo_menu, .photo_menu:hover {
+    /* TODO: changer la couleur de la police */
     height: 650px;
     margin: 0;
     font-weight: bold;
@@ -612,14 +613,28 @@ margin: 10px 0;
     z-index: 10;
 }
 
-#adrien img:hover + a, #aurelie img:hover + a,#benoit img:hover + a,#gabriel img:hover + a {
+.photo_cv {
     visibility: visible;
+}
+
+/*#adrien img:hover + a, #aurelie img:hover + a,#benoit img:hover + a,#gabriel img:hover + a {
 }
 #adrien a:hover, #aurelie a:hover, #benoit a:hover, #gabriel a:hover{
     visibility: visible;
+}*/
+
+#gabriel {
+    background-image: url("../data/pics/unordered/Au.jpg");
 }
-
-
+#aurelie {
+    background-image: url("../data/pics/unordered/Au.jpg");
+}
+#adrien {
+    background-image: url("../data/pics/unordered/Au.jpg");
+}
+#benoit {
+    background-image: url("../data/pics/unordered/Au.jpg");
+}
 
 #webmaster p{
     margin: 10px 0;
@@ -741,3 +756,8 @@ MODAL pour les cvs des webmasters
     font-family: 'Linux Biolinum';
     font-size: 1.5em;
 }
+
+
+/*******************************************
+4 photos pour nos cv
+*******************************************/
