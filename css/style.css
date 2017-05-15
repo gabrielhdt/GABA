@@ -612,6 +612,18 @@ margin: 10px 0;
     top: 13em;
     z-index: 10;
 }*/
+#gabriel {
+    background-image: url("../data/pics/unordered/Au.jpg")center/cover no-repeat;
+}
+#aurelie {
+    background-image: url("../data/pics/unordered/Au.jpg")center/cover no-repeat;
+}
+#adrien {
+    background-image: url("../data/pics/unordered/Au.jpg")center/cover no-repeat;
+}
+#benoit {
+    background-image: url("../data/pics/unordered/Au.jpg")center/cover no-repeat;
+}
 
 .photo_cv {
     height: 400px;
@@ -629,18 +641,6 @@ margin: 10px 0;
     visibility: visible;
 }*/
 
-#gabriel {
-    background-image: url("../data/pics/unordered/Au.jpg")center/cover no-repeat;
-}
-#aurelie {
-    background-image: url("../data/pics/unordered/Au.jpg")center/cover no-repeat;
-}
-#adrien {
-    background-image: url("../data/pics/unordered/Au.jpg")center/cover no-repeat;
-}
-#benoit {
-    background-image: url("../data/pics/unordered/Au.jpg")center/cover no-repeat;
-}
 
 #webmaster p{
     margin: 10px 0;
