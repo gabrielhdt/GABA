@@ -615,11 +615,11 @@ margin: 10px 0;
 
 .photo_cv {
     height: 400px;
-    visibility: hidden;
+    /*visibility: hidden;*/
 }
 
 .photo_cv:hover {
-    visibility: visible;
+    /*visibility: visible;*/
 
 }
 
