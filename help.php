@@ -117,13 +117,6 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="jumbotron">
-                    <iframe src="https://www.youtube.com/embed/EreZNkWzBAw" frameborder="0" allowfullscreen></iframe>
-                </div>
-
-
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="jumbotron">
 
                     <p>
                         &emsp;Vous trouverez dans la vidéo ci-contre un aperçu des fonctionnalités citées précedemment et comment les utiliser au mieux.
@@ -131,6 +124,14 @@
 
 
                 </div>
+            </div>
+            
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="jumbotron">
+                    <iframe src="https://www.youtube.com/embed/EreZNkWzBAw" frameborder="0" allowfullscreen></iframe>
+                </div>
+
+
             </div>
 
 
