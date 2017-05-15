@@ -113,7 +113,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <!-- <div class="row"> -->
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="jumbotron">
@@ -125,7 +125,7 @@
 
                 </div>
             </div>
-            
+
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="jumbotron">
                     <iframe src="https://www.youtube.com/embed/EreZNkWzBAw" frameborder="0" allowfullscreen></iframe>
@@ -174,7 +174,7 @@
             </div>
         </div>
 
-        </div>
+        <!-- </div> -->
 
         <!-- Modal -->
         <div id="modalGabriel" class="modal fade" role="dialog">
