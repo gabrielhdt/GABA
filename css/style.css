@@ -615,6 +615,7 @@ margin: 10px 0;
 
 .photo_cv {
     height: 400px;
+    visibility: hidden;
 }
 
 .photo_cv:hover {
@@ -629,16 +630,16 @@ margin: 10px 0;
 }*/
 
 #gabriel {
-    background-image: url("../data/pics/unordered/Au.jpg");
+    background-image: url("../data/pics/unordered/Au.jpg")center/cover no-repeat;
 }
 #aurelie {
-    background-image: url("../data/pics/unordered/Au.jpg");
+    background-image: url("../data/pics/unordered/Au.jpg")center/cover no-repeat;
 }
 #adrien {
-    background-image: url("../data/pics/unordered/Au.jpg");
+    background-image: url("../data/pics/unordered/Au.jpg")center/cover no-repeat;
 }
 #benoit {
-    background-image: url("../data/pics/unordered/Au.jpg");
+    background-image: url("../data/pics/unordered/Au.jpg")center/cover no-repeat;
 }
 
 #webmaster p{
