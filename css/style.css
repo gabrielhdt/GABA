@@ -613,16 +613,16 @@ margin: 10px 0;
     z-index: 10;
 }*/
 #gabriel {
-    background-image: url("../data/pics/unordered/Au.jpg")center/cover no-repeat;
+    background-image: url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
 }
 #aurelie {
-    background-image: url("../data/pics/unordered/Au.jpg")center/cover no-repeat;
+    background-image: url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
 }
 #adrien {
-    background-image: url("../data/pics/unordered/Au.jpg")center/cover no-repeat;
+    background-image: url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
 }
 #benoit {
-    background-image: url("../data/pics/unordered/Au.jpg")center/cover no-repeat;
+    background-image: url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
 }
 
 .photo_cv {
