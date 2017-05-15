@@ -111,7 +111,7 @@
                     <img src="data/pics/unordered/owl3.jpg" class="img-responsive" alt="Nous contacter" />
                 </div>
             </div>
-        </div>
+        <!-- </div> -->
 
         <!-- <div class="row"> -->
 
@@ -174,7 +174,7 @@
             </div>
         </div>
 
-        <!-- </div> -->
+        </div>
 
         <!-- Modal -->
         <div id="modalGabriel" class="modal fade" role="dialog">
