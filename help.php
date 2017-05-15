@@ -135,27 +135,6 @@
 
 
 
-
-            <div class="clearfix">
-
-            </div>
-
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="jumbotron" id='webmaster'>
-                    <h1>Webmaster</h1>
-                    <p id="citation">
-                        <i>"Rome ne s’est pas faite en un jour."</i>
-                    </p>
-                    <p>
-                        &emsp;Passez votre souris sur les têtes de nos Webmasters pour voir apparaître leur prénoms et cliquez dessus afin d'en apprendre plus sur les personnes ayant participer à la création de ce site !
-                    </p>
-
-                    <p>
-                        &emsp;Notre équipe vous souhaite de passer un agréable moment sur notre site et espère réveiller l'animal qui est en vous !
-                    </p>
-                </div>
-            </div>
-
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="jumbotron" id='cv'>
                     <div class="row">
@@ -177,6 +156,21 @@
                 </div>
             </div>
         <!-- </div> -->
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="jumbotron" id='webmaster'>
+                <h1>Webmaster</h1>
+                <p id="citation">
+                    <i>"Rome ne s’est pas faite en un jour."</i>
+                </p>
+                <p>
+                    &emsp;Passez votre souris sur les têtes de nos Webmasters pour voir apparaître leur prénoms et cliquez dessus afin d'en apprendre plus sur les personnes ayant participer à la création de ce site !
+                </p>
+
+                <p>
+                    &emsp;Notre équipe vous souhaite de passer un agréable moment sur notre site et espère réveiller l'animal qui est en vous !
+                </p>
+            </div>
+        </div>
 
 
         <!-- Modal -->
