@@ -146,14 +146,14 @@
                     <div class="row">
                         <a href="#" data-toggle="modal" data-target="#modalGabriel"
                            class="photo_cv col-lg-6 col-md-6 col-sm-6 col-xs-12"
-                           style="background-image: url('data/pics/unordered/Au.jpg') center/cover no-repeat;">Gabriel</a>
+                           style="background: url('data/pics/unordered/Au.jpg') center/cover no-repeat;">Gabriel</a>
                         <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id='gabriel'>
                             <img src="data/pics/unordered/Au.jpg" class="img-responsive" alt="Gabriel" />
                             <a href="#" data-toggle="modal" data-target="#modalGabriel">Gabriel</a>
                         </div> -->
                         <a href="#" data-toggle="modal" data-target="#modalAdrien"
                            class="photo_cv col-lg-6 col-md-6 col-sm-6 col-xs-12"
-                           style="background-image: url('data/pics/unordered/Au.jpg') center/cover no-repeat;">Adrien</a>
+                           style="background: url('data/pics/unordered/Au.jpg') center/cover no-repeat;">Adrien</a>
                         <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id='adrien'>
                             <img src="data/pics/unordered/Au.jpg" class="img-responsive" alt="Adrien" />
                             <a href="#" data-toggle="modal" data-target="#modalAdrien">Adrien</a>
@@ -162,14 +162,14 @@
                     <div class="row">
                         <a href="#" data-toggle="modal" data-target="#modalBenoit"
                            class="photo_cv col-lg-6 col-md-6 col-sm-6 col-xs-12"
-                           style="background-image: url('data/pics/unordered/Au.jpg') center/cover no-repeat;">Benoit</a>
+                           style="background: url('data/pics/unordered/Au.jpg') center/cover no-repeat;">Benoit</a>
                         <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id='benoit'>
                             <img src="data/pics/unordered/Au.jpg" class="img-responsive" alt="Benoit" />
                             <a href="#" data-toggle="modal" data-target="#modalBenoit">Benoît</a>
                         </div> -->
                         <a href="#" data-toggle="modal" data-target="#modalAurelie"
                            class="photo_cv col-lg-6 col-md-6 col-sm-6 col-xs-12"
-                           style="background-image: url('data/pics/unordered/Au.jpg') center/cover no-repeat;">Aurélie</a>
+                           style="background: url('data/pics/unordered/Au.jpg') center/cover no-repeat;">Aurélie</a>
                         <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" id='aurelie'>
                             <img src="data/pics/unordered/Au.jpg" class="img-responsive" alt="Aurelie" />
                             <a href="#" data-toggle="modal" data-target="#modalAurelie">Aurélie</a>
