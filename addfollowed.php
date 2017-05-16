@@ -49,7 +49,10 @@ if (isset($_POST['species']))
         ),
         'idFacility' => array(
             'value' => $_POST['facility'], 'type' => PDO::PARAM_INT
-        )
+        ),
+        'idSpecies' => array(
+            'value' => $_POST['species'], 'type' => PDO::PARAM_INT
+        ),
     );
     $added_id = add_line_smart('Followed', $values);
     if ($added_id) {
