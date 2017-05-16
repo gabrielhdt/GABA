@@ -1,6 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['login'], $_SESSION['idstaff']) || $_SESSION['login'] == 'admin') { // test si l'utilisateur est bien passé par le formulaire
+if (!isset($_SESSION['login'], $_SESSION['idstaff']) ||
+    $_SESSION['login'] == 'admin') { // Get through login?
     header ('Location: login.php'); // sinon retour page login
     exit();
 }
@@ -19,7 +20,7 @@ include "script/add_script.php";
 <?php include "nav.php" ?>
 <?php
 $id_biname = array();
-$lines = get_values(array('idSpecies', 'binomial_name'), 'Species');
+$lines = get_values_light('idSpecies, binomial_name', 'Species');
 foreach ($lines as $line)
 {
     $id_biname[$line['idSpecies']] = $line['binomial_name'];
