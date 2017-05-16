@@ -30,6 +30,71 @@ foreach ($lines as $line)
 {
     $id_faname[$line['idFacility']] = $line['name'];
 }
+
+// If form info, fill database
+if (isset($_POST['species']))
+{
+    $values = array(
+        'gender' => array(
+            'value' => $_POST['gender'], 'type' => PDO::PARAM_STR
+        ),
+        'birth' => array(
+            'value' => $_POST['birth'], 'type' => PDO::PARAM_STR
+        ),
+        'health' => array(
+            'value' => $_POST['health'], 'type' => PDO::PARAM_STR
+        ),
+        'annotation' => array(
+            'value' => $_POST['annotation'], 'type' => PDO::PARAM_STR
+        ),
+        'idFacility' => array(
+            'value' => $_POST['facility'], 'type' => PDO::PARAM_INT
+        )
+    );
+    $added_id = add_line_smart('Followed', $values);
+    if ($added_id) {
+        add_line_smart('FollowedEdition',
+            array(
+                'idStaff' => array(
+                    'value' => $_SESSION['idstaff'], 'type' => PDO::PARAM_INT
+                ),
+                'idFollowed' => array(
+                    'value' => $added_id, 'type' => PDO::PARAM_INT
+                ),
+                'type' => array(
+                    'value' => 'addition', 'type' => PDO::PARAM_STR
+                )
+            )
+        );
+        if (isset($_POST['use_geoloc']) && $_POST['use_geoloc'] == 'on')
+        {
+            $idmeasure = add_line_smart('Measure',
+                array(
+                    'idFollowed' => array(
+                        'value' => $added_id, 'type' => PDO::PARAM_INT
+                    ),
+                    'idStaff' => array(
+                        'value' => $_SESSION['idstaff'], 'type' => PDO::PARAM_INT
+                    )
+                )
+            );
+            $coords = explode(',', $_COOKIE['geoloc']);
+            add_line_smart('Location',
+                array(
+                    'latitude' => array(
+                        'value' => (float) $coords[0], 'type' => PDO::PARAM_STR
+                    ),
+                    'longitude' => array(
+                        'value' => (float) $coords[1], 'type' => PDO::PARAM_STR
+                    ),
+                    'idMeasure' => array(
+                        'value' => $idmeasure, 'type' => PDO::PARAM_INT
+                    )
+                )
+            );
+        }
+    }
+}
 ?>
 <div class="container" style="background-image: url('data/pics/unordered/mada.jpg');">
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-7 col-md-offset-7 col-sm-offset-5">
@@ -74,45 +139,6 @@ foreach ($lines as $line)
         </div>
     </div>
 </div>
-
-<?php
-if (isset($_POST['species']))
-{
-    $added_id = add_line('Followed',
-        array('idSpecies' => $_POST['species'],
-        'gender' => mb_strtolower($_POST['gender']),
-        'birth' => $_POST['birth'],
-        'health' => mb_strtolower($_POST['health']),
-        'annotation' => mb_strtolower($_POST['annotation']),
-        'idFacility' => $_POST['facility'])
-    );
-    if ($added_id) {
-        add_line('FollowedEdition',
-            array('idStaff' => $_SESSION['idstaff'],
-            'idFollowed' => $added_id,
-            'type' => 'addition')
-        );
-        if (isset($_POST['use_geoloc']) && $_POST['use_geoloc'] == 'on')
-        {
-            $idmeasure = add_line('Measure',
-                array(
-                    'idFollowed' => $added_id,
-                    'idStaff' => $_SESSION['idstaff']
-                )
-            );
-            $coords = explode(',', $_COOKIE['geoloc']);
-            add_line('Location',
-                array(
-                    'latitude' => (float) $coords[0],
-                    'longitude' => (float) $coords[1],
-                    'idMeasure' => $idmeasure
-                )
-            );
-        }
-    }
-}
-
-?>
 <?php include "footer.php" ?>
 </body>
 <script>
