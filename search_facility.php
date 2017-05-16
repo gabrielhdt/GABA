@@ -45,7 +45,7 @@ WHR;
 if (isset($_POST['low_nfoll']) && !empty($_POST['low_nfoll']))
 {
     $fields = <<<FLD
-Facility.idFacility, name AS fa_name, gnss_coord, Followed.idSpecies
+Facility.idFacility, name AS fa_name, gnss_coord, Followed.idSpecies, type
 FLD;
     $tables = <<<TBL
 Facility INNER JOIN Followed ON Facility.idFacility=Followed.idFacility
