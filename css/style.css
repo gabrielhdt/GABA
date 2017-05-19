@@ -774,3 +774,17 @@ MODAL pour les cvs des webmasters
 /*******************************************
 4 photos pour nos cv
 *******************************************/
+
+
+
+
+
+/*******************************************
+mise en page des champs de recherche
+search_species.php et search_folloxed.php
+*******************************************/
+
+.research {
+    text-align: center;
+    margin: 20px;
+}

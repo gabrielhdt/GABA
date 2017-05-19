@@ -57,18 +57,18 @@ echo !$search_res ? "Error while querying" : null;
 ?>
 <body>
 <?php include "nav.php"; ?>
-<form action="search_species.php" method="post" accept-charset="utf-8"
-    enctype="multipart/form-data">
-    <div class="form-group">
-        <!-- <label for="low_nfoll">Having more followed individuals than: -->
-        <input type="number" name="low_nfoll" class="form-control"
-               id="low_nfoll" placeholder="Nombre d'individu suivi min">
-        <!-- <label for="up_nfoll">Having fewer followed individuals than: -->
-        <input type="number" name="up_nfoll" class="form-control"
-        id="up_nfoll" placeholder="Nombre d'individu suivi max">
-    </div>
-    <button type="submit" class="btn btn-default">Rechercher animal</button>
-</form>
+<div class="research">
+    <form action="search_species.php" method="post" accept-charset="utf-8"
+        class="form-inline" enctype="multipart/form-data">
+        <div class="form-group">
+            <input type="number" name="low_nfoll" class="form-control"
+                   id="low_nfoll" placeholder="Nombre d'individu suivi min">
+            <input type="number" name="up_nfoll" class="form-control"
+            id="up_nfoll" placeholder="Nombre d'individu suivi max">
+        </div>
+        <button type="submit" class="btn btn-default">Rechercher animal</button>
+    </form>
+</div>
 <?php
 echo <<<TH
 <table id='table'
