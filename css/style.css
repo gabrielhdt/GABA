@@ -709,11 +709,11 @@ admin_index.php
     font-style: italic;
 }
 
-.intel {
+#intel {
     font-family: 'Linux Libertine';
 }
 
-.intel h2 {
+#intel h2 {
     font-style: italic;
     font-size: 18px;
 }
