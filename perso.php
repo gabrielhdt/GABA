@@ -41,12 +41,12 @@ include 'nav.php';
     <form action="perso.php" method="post" accept-charset="utf-8"
         enctype="multipart/form-data">
         <div class="input-group">
-            <label for="old_pw">Enter current password</label>
-            <input class="form-control" type="password" name="old_pw" id="old_pw">
-            <label for="old_pw">Enter new password</label>
-            <input class="form-control" type="password" name="new_pw" id="new_pw">
-            <label for="old_pw">Confirm password</label>
-            <input class="form-control" type="password" name="conf_pw" id="conf_pw">
+            <input class="form-control" type="password" name="old_pw"
+                   id="old_pw" placeholder="Mot de passe actuel">
+            <input class="form-control" type="password" name="new_pw"
+                   id="new_pw" placeholder="Nouveau mot de passe">
+            <input class="form-control" type="password" name="conf_pw"
+                   id="conf_pw" placeholder="Confirmation du mot de passe">
         </div>
         <button type="submit" class="btn btn-default">Confirm</button>
     </form>
