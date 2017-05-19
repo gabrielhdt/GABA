@@ -8,17 +8,125 @@ head('Recherche individu');
 $dateregex = "\d{4}[-.\/][01]?\d[-.\/][0-3]?\d";
 
 $id_biname = array();
-$lines = get_values(array('idSpecies', 'binomial_name'), 'Species');
+$lines = get_values_light('idSpecies, binomial_name', 'Species');
 foreach ($lines as $line)
 {
     $id_biname[$line['idSpecies']] = $line['binomial_name'];
 }
-$lines = get_values(array('idFacility', 'name'), 'Facility');
+$lines = get_values_light('idFacility, name', 'Facility');
 $id_faname = array();
 foreach ($lines as $line)
 {
     $id_faname[$line['idFacility']] = $line['name'];
 }
+
+$where = array();
+$wherestrfrags = array();
+$where['valtype'] = array();
+if (isset($_POST['lowbirth']) & !empty($_POST['lowbirth']))
+{
+    if (preg_match("/$dateregex/", $_POST['lowbirth']))
+    {
+        array_push($wherestrfrags, 'birth>=?');
+        array_push($where['valtype'], array(
+                'value' => $_POST['lowbirth'], 'type' => PDO::PARAM_STR
+            )
+        );
+    }
+}
+if (isset($_POST['upbirth']) && !empty($_POST['upbirth']))
+{
+    if (preg_match("/$dateregex/", $_POST['upbirth']))
+    {
+        array_push($wherestrfrags, 'birth<=?');
+        array_push($where['valtype'],
+            array(
+                'value' => $_POST['upbirth'], 'type' => PDO::PARAM_STR
+            )
+        );
+    }
+}
+if (isset($_POST['lowdeath']) & !empty($_POST['lowdeath']))
+{
+    if (preg_match("/$dateregex/", $_POST['lowdeath']))
+    {
+        array_push($wherestrfrags, 'death>=?');
+        array_push($where['valtype'],
+            array(
+                'value' => $_POST['lowdeath'], 'type' => PDO::PARAM_STR
+            )
+        );
+    }
+}
+if (isset($_POST['updeath']) && !empty($_POST['updeath']))
+{
+    if (preg_match("/$dateregex/", $_POST['updeath']))
+    {
+        array_push($wherestrfrags, 'updeath<=?');
+        array_push($where['valtype'],
+            array(
+                'value' => $_POST['updeath'], 'type' => PDO::PARAM_STR
+            )
+        );
+    }
+}
+if (isset($_POST['gender']) && !empty($_POST['gender']))
+{
+    array_push($wherestrfrags, 'gender=?');
+    array_push($where['valtype'],
+        array(
+            'value' => $_POST['gender'], 'type' => PDO::PARAM_STR
+        )
+    );
+}
+if (isset($_POST['idspecies']) && !empty($_POST['idspecies']))
+{
+    $numsp = count($_POST['idspecies']);
+    $in_str = '(' . implode(', ', array_fill(0, $numsp, '?')) . ')';
+    array_push($wherestrfrags, 'Followed.idSpecies IN ' . $in_str);
+    foreach ($_POST['idspecies'] as $idsp)
+    {
+        array_push($where['valtype'],
+            array(
+                'value' => $idsp, 'type' => PDO::PARAM_INT
+            )
+        );
+    }
+}
+if (isset($_POST['idfacility']) && !empty($_POST['idfacility']))
+{
+    $numfa = count($_POST['idfacility']);
+    $in_str = '(' . implode(', ', array_fill(0, $numfa, '?')) . ')';
+    array_push($wherestrfrags, 'Followed.idFacility IN ' . $in_str);
+    foreach ($_POST['idfacility'] as $idfa)
+    {
+        array_push($where['valtype'],
+            array(
+                'value' => $idfa, 'type' => PDO::PARAM_INT
+            )
+        );
+    }
+}
+if ($wherestrfrags)
+{
+    $where['str'] = implode(' AND ', $wherestrfrags);
+}
+if (!isset($where['str']))
+{
+    unset($where);
+}
+$tables = <<<TBL
+Followed INNER JOIN Species ON Followed.idSpecies=Species.idSpecies
+INNER JOIN Facility ON Followed.idFacility=Facility.idFacility
+TBL;
+$colfoll = array('idFollowed', 'idSpecies', 'idFacility', 'gender', 'birth',
+    'death', 'health');
+$labels = array('Identifier', 'Species', 'Facility', 'Gender', 'Birth',
+    'Death', 'Health');
+$fields = <<<FLD
+idFollowed, binomial_name, name, gender, birth, death, health
+FLD;
+$search_res = get_values_light($fields, $tables, $where);
 ?>
 <body>
 <?php include "nav.php"; ?>
@@ -55,112 +163,6 @@ foreach ($lines as $line)
     <button type="submit" class="btn btn-default">Rechercher animal</button>
 </form>
 <?php
-$where = array();
-if (isset($_POST['lowbirth']) & !empty($_POST['lowbirth']))
-{
-    if (preg_match("/$dateregex/", $_POST['lowbirth']))
-    {
-        array_push($where,
-            array(
-                'binrel' => '>=',
-                'field' => 'birth',
-                'value' => $_POST['lowbirth'],
-                'type' => PDO::PARAM_STR
-            )
-        );
-    }
-}
-if (isset($_POST['upbirth']) && !empty($_POST['upbirth']))
-{
-    if (preg_match("/$dateregex/", $_POST['upbirth']))
-    {
-        array_push($where,
-            array(
-                'binrel' => '<=',
-                'field' => 'birth',
-                'value' => $_POST['upbirth'],
-                'type' => PDO::PARAM_STR
-            )
-        );
-    }
-}
-if (isset($_POST['lowdeath']) & !empty($_POST['lowdeath']))
-{
-    if (preg_match("/$dateregex/", $_POST['lowdeath']))
-    {
-        array_push($where,
-            array(
-                'binrel' => '>=',
-                'field' => 'death',
-                'value' => $_POST['lowdeath'],
-                'type' => PDO::PARAM_STR
-            )
-        );
-    }
-}
-if (isset($_POST['updeath']) && !empty($_POST['updeath']))
-{
-    if (preg_match("/$dateregex/", $_POST['updeath']))
-    {
-        array_push($where,
-            array(
-                'binrel' => '<=',
-                'field' => 'death',
-                'value' => $_POST['updeath'],
-                'type' => PDO::PARAM_STR
-            )
-        );
-    }
-}
-if (isset($_POST['gender']) && !empty($_POST['gender']))
-{
-    array_push($where,
-        array(
-            'binrel' => '=',
-            'field' => 'gender',
-            'value' => $_POST['gender'],
-            'type' => PDO::PARAM_STR
-        )
-    );
-}
-if (isset($_POST['idspecies']) && !empty($_POST['idspecies']))
-{
-    array_push($where,
-        array(
-            'binrel' => 'IN',
-            'field' => 'Followed.idSpecies',
-            'value' => $_POST['idspecies'],
-            'type' => PDO::PARAM_INT
-        )
-    );
-}
-if (isset($_POST['idfacility']) && !empty($_POST['idfacility']))
-{
-    array_push($where,
-        array(
-            'binrel' => 'IN',
-            'field' => 'Followed.idFacility',
-            'value' => $_POST['idfacility'],
-            'type' => PDO::PARAM_INT
-        )
-    );
-}
-$tables = array('Followed', 'Species', 'Facility');
-$constraints = array(
-    'Followed.idSpecies' => 'Species.idSpecies',
-    'Followed.idFacility' => 'Facility.idFacility'
-);
-$colfoll = array('idFollowed', 'idSpecies', 'idFacility', 'gender', 'birth',
-    'death', 'health');
-$labels = array('Identifier', 'Species', 'Facility', 'Gender', 'Birth',
-    'Death', 'Health');
-$fields = array(
-    'idFollowed',
-    'binomial_name',
-    'name',
-    'gender',
-    'birth', 'death', 'health'
-);
 echo "<table id='table'
     class='table'
     data-toggle='table'
@@ -172,8 +174,9 @@ echo '<thead>';
 create_tablehead($colfoll, $labels);
 echo '</thead>';
 echo '<tbody>';
-$search_res = get_values($fields, $tables, $where, $constraints);
-create_tablebody($fields, $search_res, 'followed.php', 'idFollowed');
+create_tablebody(
+    explode(', ', $fields), $search_res, 'followed.php', 'idFollowed'
+);
 echo '</tbody>';
 echo '</table>';
 ?>
