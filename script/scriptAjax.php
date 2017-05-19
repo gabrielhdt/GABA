@@ -1,10 +1,28 @@
 <?php
 include 'db.php';
 
-if( isset($_POST['nom'], $_POST['prenom'] ,$_POST['pwd1'] ,$_POST['pwd2'] ,$_POST['typeStaff'])){
-    if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['pwd1']) && !empty($_POST['pwd2']) && !empty($_POST['typeStaff'])) {
+// script pour l'ajout d'un nouveau staff par l'admin
+if (
+    isset(
+        $_POST['nom'],
+        $_POST['prenom'],
+        $_POST['pwd1'],
+        $_POST['pwd2'],
+        $_POST['typeStaff']
+    )
+) {
+
+    if (
+        !empty($_POST['nom']) &&
+        !empty($_POST['prenom']) &&
+        !empty($_POST['pwd1']) &&
+        !empty($_POST['pwd2']) &&
+        !empty($_POST['typeStaff']
+    )
+) {
         if ($_POST['pwd1'] == $_POST['pwd2']) {
-            add_staff($_POST['pwd1'], $_POST['typeStaff'], $_POST['prenom'], $_POST['nom']);
+            add_staff($_POST['pwd1'], $_POST['typeStaff'],
+                      $_POST['prenom'], $_POST['nom']);
             echo 1;
         } else {
             echo 0;
@@ -13,10 +31,18 @@ if( isset($_POST['nom'], $_POST['prenom'] ,$_POST['pwd1'] ,$_POST['pwd2'] ,$_POS
         echo -1;
     }
 }
+// script pour la suppression de msg
 elseif (isset($_POST['id'])) {
     delete_msg($_POST['id']);
 }
-elseif (isset($_POST['nom'], $_POST['email'], $_POST['msg'])) {
+// script pour l'ajout d'un msg
+elseif (
+    isset(
+        $_POST['nom'],
+        $_POST['email'],
+        $_POST['msg']
+    )
+) {
     add_line('messages',
         array(
             'name' => $_POST['nom'], 'email' => $_POST['email'],
@@ -24,16 +50,35 @@ elseif (isset($_POST['nom'], $_POST['email'], $_POST['msg'])) {
         ));
     echo 1;
 }
-elseif (isset($_POST['idFollowed'], $_POST['idStaff'], $_POST['type'], $_POST['unit'], $_POST['value'])) {
-    $infosMeasure = array('idFollowed' => $_POST['idFollowed'], 'idStaff' => $_POST['idStaff']);
+// script pour l'ajout une mesure
+elseif (
+    isset(
+        $_POST['idFollowed'],
+        $_POST['idStaff'],
+        $_POST['type'],
+        $_POST['unit'],
+        $_POST['value']
+    )
+) {
+    $infosMeasure = array('idFollowed' => $_POST['idFollowed'],
+                          'idStaff' => $_POST['idStaff']);
     $idMeasure = add_line('Measure', $infosMeasure);
-    $infosMiscQuantity = array('idMeasure' => $idMeasure, 'type' => $_POST['type'],
-                               'value' => $_POST['value'], 'unit' => $_POST['unit']);
+    $infosMiscQuantity = array('idMeasure' => $idMeasure,
+                               'type' => $_POST['type'],
+                               'value' => $_POST['value'],
+                               'unit' => $_POST['unit']
+                              );
     add_line('MiscQuantity', $infosMiscQuantity);
 }
-elseif (isset($_POST['idFollowed'], $_POST['idStaff'], $_POST['type_relation'],
-    $_POST['other_followed']))
-{
+// script pour l'ajout d'une relation entre 2 followeds
+elseif (
+    isset(
+        $_POST['idFollowed'],
+        $_POST['idStaff'],
+        $_POST['type_relation'],
+        $_POST['other_followed']
+    )
+) {
     $info_relationship = array(
         'idFollowed1' => $_POST['idFollowed'],
         'idFollowed2' => $_POST['other_followed'],
@@ -46,6 +91,7 @@ elseif (isset($_POST['idFollowed'], $_POST['idStaff'], $_POST['type_relation'],
     add_line('Relation', $info_relationship);
     return(true);
 }
+// script pour la modifiction des caractèristqiues d'une espèce
 elseif (
     isset(
         $_POST['idSpecies'], $_POST['common_name'],
@@ -77,9 +123,18 @@ elseif (
     );
     update_line('Species', $change, $where);
 }
-elseif (isset($_POST['idFollowed'], $_POST['annotation'], $_POST['death'],
-              $_POST['birth'], $_POST['health'])) {
-    $change = array('annotation' => $_POST['annotation'], "birth" => $_POST['birth'],
+// script de mise a jour des informations d'un followed
+elseif (
+    isset(
+        $_POST['idFollowed'],
+        $_POST['annotation'],
+        $_POST['death'],
+        $_POST['birth'],
+        $_POST['health']
+    )
+) {
+    $change = array('annotation' => $_POST['annotation'],
+                    'birth' => $_POST['birth'],
                     'death' => $_POST['death'], 'health' => $_POST['health']);
     $where = array(
         array(
@@ -89,8 +144,14 @@ elseif (isset($_POST['idFollowed'], $_POST['annotation'], $_POST['death'],
     );
     update_line('Followed', $change, $where);
 }
-elseif (isset($_POST['geoloc'], $_POST['idfollowed'], $_POST['idstaff']))
-{
+// script de mise a jour de la localisation
+elseif (
+    isset(
+        $_POST['geoloc'],
+        $_POST['idfollowed'],
+        $_POST['idstaff']
+    )
+) {
     $coords = explode(',', $_POST['geoloc']);
     if (count($coords) < 2)
     {
