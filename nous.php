@@ -37,7 +37,8 @@ head('Notre Labo');
                 qu'offre notre site et profitez au maximum de votre expérience
                 grâce à la section aide !
             </p>
-                <a href="help.php" type="button" class="btn btn-success">Help !</a>
+                <a href="help.php" type="button" class="btn btn-success"
+                style="text-align:center;">Help !</a>
             </div>
         </div>
     </div>
