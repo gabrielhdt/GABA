@@ -81,23 +81,33 @@ if (isset($_POST['gender']) && !empty($_POST['gender']))
 }
 if (isset($_POST['idspecies']) && !empty($_POST['idspecies']))
 {
-    array_push($wherestrfrags, 'idSpecies=?');
-    array_push($where['valtype'],
-        array(
-            'value' => $_POST['idspecies'], 'type' => PDO::PARAM_INT
-        )
-    );
+    $numsp = count($_POST['idspecies']);
+    $in_str = '(' . implode(', ', array_fill(0, $numdp, '?')) . ')';
+    array_push($wherestrfrags, 'Followed.idSpecies IN ' . $in_str);
+    foreach ($_POST['idspecies'] as $idsp)
+    {
+        array_push($where['valtype'],
+            array(
+                'value' => $idsp, 'type' => PDO::PARAM_INT
+            )
+        );
+    }
 }
 if (isset($_POST['idfacility']) && !empty($_POST['idfacility']))
 {
-    array_push($wherestrfrags, 'idFacility=?');
-    array_push($where['valtype'],
-        array(
-            'value' => $_POST['idfacility'], 'type' => PDO::PARAM_INT
-        )
-    );
+    $numfa = count($_POST['idfacility']);
+    $in_str = '(' . implode(', ', array_fill(0, $numfa, '?')) . ')';
+    array_push($wherestrfrags, 'Followed.idFacility IN ' . $in_str);
+    foreach ($_POST['idfacility'] as $idfa)
+    {
+        array_push($where['valtype'],
+            array(
+                'value' => $idfa, 'type' => PDO::PARAM_INT
+            )
+        );
+    }
 }
-$where['str'] = implode(' AND ', $wherestrfrags);
+$where['str'] = $wherestrfrags ? implode(' AND ', $wherestrfrags) : null;
 $tables = <<<TBL
 Followed INNER JOIN Species ON Followed.idSpecies=Species.idSpecies
 INNER JOIN Facility ON Followed.idFacility=Facility.idFacility
