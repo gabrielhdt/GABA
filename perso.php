@@ -37,19 +37,26 @@ include 'nav.php';
 ?>
 <body>
 <?php echo isset($err) ? $err : null ?>
-<div class="container">
-    <form action="perso.php" method="post" accept-charset="utf-8"
-        enctype="multipart/form-data">
-        <div class="input-group">
-            <input class="form-control" type="password" name="old_pw"
-                   id="old_pw" placeholder="Mot de passe actuel">
-            <input class="form-control" type="password" name="new_pw"
-                   id="new_pw" placeholder="Nouveau mot de passe">
-            <input class="form-control" type="password" name="conf_pw"
-                   id="conf_pw" placeholder="Confirmation du mot de passe">
+<div class="container" style="background-color:rgb(65, 217, 104);">
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
+        <div class="description">
+            <div class="middle">
+                <form action="perso.php" method="post" accept-charset="utf-8"
+                    enctype="multipart/form-data">
+                    <div class="input-group">
+                        <input class="form-control" type="password" name="old_pw"
+                               id="old_pw" placeholder="Mot de passe actuel">
+                        <input class="form-control" type="password" name="new_pw"
+                               id="new_pw" placeholder="Nouveau mot de passe">
+                        <input class="form-control" type="password" name="conf_pw"
+                               id="conf_pw" placeholder="Confirmation du mot de passe">
+                    </div>
+                    <button type="submit" class="btn btn-default">Confirm</button>
+                </form>
+            </div>
+
         </div>
-        <button type="submit" class="btn btn-default">Confirm</button>
-    </form>
+    </div>
 </div>
 <?php include 'footer.php' ?>
 </body>
