@@ -3,7 +3,6 @@
 ?>
 
 <?php
-session_start();
 
 function current_nav() {
     /************************
@@ -31,7 +30,7 @@ function current_nav() {
             $nav .= "<li ".($cond ? "class='active'" : "")."> <a href='$links[2]'>$text[2]</a>
 <ul class='dropdown-menu'>\n";
 
-            for ($j=4; $j < 8; $j++) {
+            for ($j=4; $j < 7; $j++) {
                 $nav .= sprintf($format, "", $links[$j], "", $text[$j]);
             }
             $nav .= "</ul>

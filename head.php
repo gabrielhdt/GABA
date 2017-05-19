@@ -2,6 +2,10 @@
 <?php
 
 function head($title) {
+    /*
+    * Fonction qui adapte le titre de la page, a la page en cours
+    */
+
     $head = <<<EOD
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">

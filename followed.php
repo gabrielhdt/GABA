@@ -2,7 +2,6 @@
 include 'script/db.php';
 include 'script/form_func.php';
 include 'script/graph.php';
-session_start();
 // Autoriastion de l'edition pour un membre mais pas l'admin
 $edit = isset($_SESSION['login']) && $_SESSION['login'] != 'admin';
 $idstaff = $_SESSION['idstaff'];

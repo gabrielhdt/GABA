@@ -1,5 +1,4 @@
 <?php
-session_start();
 if (!isset($_SESSION['login'], $_SESSION['idstaff']) ||
     $_SESSION['login'] == 'admin') { // Get through login?
     header ('Location: login.php'); // sinon retour page login

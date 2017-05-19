@@ -1,5 +1,4 @@
 <?php
-session_start();
 if (!isset($_SESSION['login'], $_SESSION['idstaff']) ||
     $_SESSION['login'] == 'admin') { // utilisateur passé par le formulaire?
     header ('Location: login.php'); // sinon retour page login
