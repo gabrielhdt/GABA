@@ -65,7 +65,7 @@ function create_tablebody($fields, $search_res, $pagelink=null, $linkarg=null)
                 '</a>' : '';
             echo '</td>';
         }
-        echo '</tr>';
+        echo "</tr>\n";
     }
 }
 ?>

@@ -65,7 +65,7 @@ echo !$search_res ? "Error while querying" : null;
                    id="low_nfoll" placeholder="Nombre d'individu suivi min">
             <input type="number" name="up_nfoll" class="form-control"
             id="up_nfoll" placeholder="Nombre d'individu suivi max">
-        </div>
+        </div><br>
         <button type="submit" class="btn btn-default">Rechercher animal</button>
     </form>
 </div>
