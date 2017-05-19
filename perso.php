@@ -39,7 +39,7 @@ include 'nav.php';
 <?php echo isset($err) ? $err : null ?>
 <!-- <div class="row"> -->
     <form action="perso.php" method="post" accept-charset="utf-8"
-        enctype="multipart/form-data" style="margin: auto;">
+        enctype="multipart/form-data" style="margin: 0 auto;">
         <div class="input-group">
             <input class="form-control" type="password" name="old_pw"
                    id="old_pw" placeholder="Mot de passe actuel">
