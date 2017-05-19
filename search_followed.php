@@ -111,6 +111,10 @@ if ($wherestrfrags)
 {
     $where['str'] = implode(' AND ', $wherestrfrags);
 }
+if (!isset($where['str']))
+{
+    unset($where);
+}
 $tables = <<<TBL
 Followed INNER JOIN Species ON Followed.idSpecies=Species.idSpecies
 INNER JOIN Facility ON Followed.idFacility=Facility.idFacility
