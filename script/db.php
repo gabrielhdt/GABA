@@ -434,8 +434,7 @@ function get_values_light($select,
 
 function get_columns($table)
 {
-    /* outputs array of colummns of $table
-     */
+    // outputs array of colummns of $table
     global $servername, $username, $dbname, $password, $charset;
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
@@ -707,9 +706,13 @@ function id_from_login($login)
 }
 
 function format_msg($id, $date, $name, $email, $msg){
+    /* fonction qui formate l'affichge d'un message pour l'affichge sur la page
+     * de l'admin
+     */
     echo <<<FMT
 <div class='alert alert-info alert-dismissable'>
-<a href='#' onclick="myDelete('$id')" class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+<a href='#' onclick="myDelete('$id')" class='close' data-dismiss='alert'
+aria-label='close'>&times;</a>
 Date : $date
 <hr>
 Nom : $name
@@ -725,7 +728,8 @@ function list_msg(){
     // recuperation et affichages des messages pour l'administrateur
     global $servername, $username, $dbname, $password, $charset;
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname",
+                        $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $reponse = $conn->query('SELECT * FROM messages ORDER BY date desc');
         while ($donnees = $reponse->fetch())  {
@@ -740,6 +744,7 @@ function list_msg(){
 
 function delete_msg($id)
 {
+    // fonction qui sumprime le message $id de la base de données par l'admin
     global $servername, $username, $dbname, $password, $charset;
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
@@ -754,10 +759,21 @@ function delete_msg($id)
 }
 
 function distinct_measure($idFollowed) {
+    /* fonction qui renvoie un tableau de tout les types de mesures connues pour
+     * pour le followed $idFollowed
+     */
     $distinct_type = get_values(
         array('DISTINCT MiscQuantity.type'),
         'MiscQuantity INNER JOIN Measure ON MiscQuantity.idMeasure = Measure.idMeasure',
-        $where=array(array('binrel' => '=', 'field' => 'Measure.idFollowed', 'value' =>  $idFollowed, 'type' => PDO::PARAM_STR)));
+        $where = array(
+                    array(
+                        'binrel' => '=',
+                        'field' => 'Measure.idFollowed',
+                        'value' =>  $idFollowed,
+                        'type' => PDO::PARAM_STR
+                    )
+                )
+        );
         return $distinct_type;
     }
 
@@ -775,9 +791,7 @@ function latest_meas_of ($idFollowed){
 }
 
 function latest_meas_type($idfollowed, $type) {
-    /*
-    Donne la dernière mesure de type $type pour un followed donné
-    */
+    // Donne la dernière mesure de type $type pour un followed donné
     $select = "MAX(date_measure) AS last_date";
     $tables = "MiscQuantity INNER JOIN Measure ON MiscQuantity.idMeasure=Measure.idMeasure
                INNER JOIN Staff ON Staff.idStaff=Measure.idStaff";
