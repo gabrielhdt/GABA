@@ -1,3 +1,5 @@
+// TODO: ajouter des comments pour les fonctions : write_geoloc_fromodal, addRelationship
+
 /*******************************
 fonctions de admin_index.php
 *******************************/
