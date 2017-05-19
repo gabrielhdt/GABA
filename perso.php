@@ -37,9 +37,9 @@ include 'nav.php';
 ?>
 <body>
 <?php echo isset($err) ? $err : null ?>
-<div class="row">
+<!-- <div class="row"> -->
     <form action="perso.php" method="post" accept-charset="utf-8"
-        enctype="multipart/form-data">
+        enctype="multipart/form-data" style="margin: auto;">
         <div class="input-group">
             <input class="form-control" type="password" name="old_pw"
                    id="old_pw" placeholder="Mot de passe actuel">
@@ -50,7 +50,7 @@ include 'nav.php';
         </div>
         <button type="submit" class="btn btn-default">Confirm</button>
     </form>
-</div>
+<!-- </div> -->
 <?php include 'footer.php' ?>
 </body>
 </html>
