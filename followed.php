@@ -1,4 +1,5 @@
 <?php
+session_start ();
 include 'script/db.php';
 include 'script/form_func.php';
 include 'script/graph.php';

@@ -3,6 +3,7 @@
 ?>
 
 <?php
+session_start ();
 
 function current_nav() {
     /************************

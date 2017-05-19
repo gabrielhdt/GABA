@@ -1,4 +1,5 @@
 <?php
+session_start ();
 include 'script/db.php';
 // Autoriastion de l'edition pour un membre mais pas l'admin
 $edit = isset($_SESSION['login']) && $_SESSION['login'] != 'admin';

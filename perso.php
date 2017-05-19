@@ -1,5 +1,6 @@
 <?php // TODO javascript to check identicity if pw client side (disable button)
 
+session_start ();
 if (!isset($_SESSION['login'])) { // test si l'utilisateur est bien passé par le formulaire
     header ('Location: login.php'); // sinon retour page login
     exit();
