@@ -3,63 +3,68 @@
  *****************************************************************************/
 @font-face {
     font-family: "Linux Libertine";
-    src: url("../data/fonts/LinLibertine_R.woff") format('woff');
+    src: url("http://linuxlibertine.sourceforge.net/fonts/LinLibertine_R.woff")
+    format('woff');
 }
 @font-face {
     font-family: "Linux Libertine";
-    src: url("../data/fonts/LinLibertine_R.woff") format('woff');
-    font-variant: historical-ligatures;
-}
-@font-face {
-    font-family: "Linux Libertine";
-    src: url("../data/fonts/LinLibertine_RI.woff") format('woff');
+    src: url("http://linuxlibertine.sourceforge.net/fonts/LinLibertine_RI.woff")
+    format('woff');
     font-style: italic;
 }
 @font-face {
     font-family: "Linux Libertine";
-    src: url("../data/fonts/LinLibertine_RZ.woff") format('woff');
+    src: url("http://linuxlibertine.sourceforge.net/fonts/LinLibertine_RZ.woff")
+    format('woff');
     font-weight: 600; /* Semi bold */
 }
 @font-face {
     font-family: "Linux Libertine";
-    src: url("../data/fonts/LinLibertine_RZI.woff") format('woff');
+    src: url("http://linuxlibertine.sourceforge.net/fonts/LinLibertine_RZI.woff")
+    format('woff');
     font-style: italic;
     font-weight: 600;
 }
 @font-face {
     font-family: "Linux Libertine";
-    src: url("../data/fonts/LinLibertine_RB.woff") format('woff');
+    src: url("http://linuxlibertine.sourceforge.net/fonts/LinLibertine_RB.woff")
+    format('woff');
     font-style: normal;
     font-variant: normal;
     font-weight: bold;
 }
 @font-face {
     font-family: "Linux Libertine sc";
-    src: url("../data/fonts/LinLibertine_aS.woff") format('woff');
+    src: url("http://linuxlibertine.sourceforge.net/fonts/LinLibertine_aS.woff")
+    format('woff');
     font-style: normal;
     font-variant: small-caps;
 }
 @font-face {
     font-family: "Linux Biolinum";
-    src: url("../data/fonts/LinBiolinum_R.woff") format('woff');
+    src: url("http://linuxlibertine.sourceforge.net/fonts/LinBiolinum_R.woff")
+    format('woff');
     font-style: normal;
     font-variant: normal;
 }
 @font-face {
     font-family: "Linux Biolinum";
-    src: url("../data/fonts/LinBiolinum_RI.woff") format('woff');
+    src: url("http://linuxlibertine.sourceforge.net/fonts/LinBiolinum_RI.woff")
+    format('woff');
     font-style: italic;
     font-variant: normal;
 }
 @font-face {
     font-family: "Linux Biolinum";
-    src: url("../data/fonts/LinBiolinum_RB.woff") format('woff');
+    src: url("http://linuxlibertine.sourceforge.net/fonts/LinBiolinum_RB.woff")
+    format('woff');
     font-style: normal;
     font-weight: bold;
 }
 @font-face {
     font-family: "Linux Biolinum sc";
-    src: url("../data/fonts/LinBiolinum_aS.woff") format('woff');
+    src: url("http://linuxlibertine.sourceforge.net/fonts/LinBiolinum_aS.woff")
+    format('woff');
     font-style: normal;
     font-variant: small-caps;
 }
