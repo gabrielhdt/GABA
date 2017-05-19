@@ -42,7 +42,7 @@ include 'nav.php';
         <div class="description">
             <div class="middle">
                 <form action="perso.php" method="post" accept-charset="utf-8"
-                    enctype="multipart/form-data" style="margin: auto;">
+                    enctype="multipart/form-data" style="margin: auto; width: 400px;">
                     <div class="input-group">
                         <input class="form-control" type="password" name="old_pw"
                                id="old_pw" placeholder="Mot de passe actuel">
