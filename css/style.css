@@ -374,11 +374,12 @@ bouton go up
 ******************************************************************************/
 
 #goTop{
-color: inherit;
-padding:5px;
-position:fixed;
-bottom:-100px;
-right:10px;
+    color: inherit;
+    padding:5px;
+    position:fixed;
+    bottom:-100px;
+    right:10px;
+    font-size: 25px; 
 }
 
 /******************************************************************************
