@@ -10,7 +10,8 @@ function draw_graphs($idFollowed) {
     <div class='row' style='height: 500px;'>";
     $i = 0;
     foreach ($types_measures as $key) {
-        graph_type($idFollowed, $key['type'], $colors[$i % 6], $colors[($i + 1) % 6]);
+        graph_type($idFollowed, $key['type'], $colors[$i % 6],
+                   $colors[($i + 1) % 6]);
         $i += 2;
     }
     echo "</div></div>";
@@ -20,10 +21,13 @@ function graph_type($idFollowed, $type, $col1, $col2) {
     // col1 : couleur du trait
     // col 2 : couleur de l'aire sous la courbe
     $result = get_values(
-        array('DISTINCT MiscQuantity.value, MiscQuantity.unit, Measure.date_measure'),
+        array('DISTINCT MiscQuantity.value, MiscQuantity.unit,
+               Measure.date_measure'),
         'MiscQuantity INNER JOIN Measure ON MiscQuantity.idMeasure = Measure.idMeasure',
-        $where=array(array('binrel' => '=', 'field' => 'Measure.idFollowed', 'value' =>  "$idFollowed", 'type' => PDO::PARAM_STR),
-                     array('binrel' => '=', 'field' => 'MiscQuantity.type', 'value' =>  "$type", 'type' => PDO::PARAM_STR))); // + and id =, order by date_measure
+        $where=array(array('binrel' => '=', 'field' => 'Measure.idFollowed',
+                           'value' =>  "$idFollowed", 'type' => PDO::PARAM_STR),
+                     array('binrel' => '=', 'field' => 'MiscQuantity.type',
+                           'value' =>  "$type", 'type' => PDO::PARAM_STR))); // + and id =, order by date_measure
     $val = array();
     $unit = array();
     $date_measure = array();
