@@ -82,7 +82,7 @@ if (isset($_POST['gender']) && !empty($_POST['gender']))
 if (isset($_POST['idspecies']) && !empty($_POST['idspecies']))
 {
     $numsp = count($_POST['idspecies']);
-    $in_str = '(' . implode(', ', array_fill(0, $numdp, '?')) . ')';
+    $in_str = '(' . implode(', ', array_fill(0, $numsp, '?')) . ')';
     array_push($wherestrfrags, 'Followed.idSpecies IN ' . $in_str);
     foreach ($_POST['idspecies'] as $idsp)
     {
