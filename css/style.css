@@ -104,6 +104,7 @@ NAVBAR
     margin: 0 20px;
     text-transform: uppercase;
     border: 0;
+    font-size: 17px;
 }
 
 .navbar li a:hover, .nav .active a,
