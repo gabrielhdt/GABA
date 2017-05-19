@@ -37,12 +37,13 @@ include 'nav.php';
 ?>
 <body>
 <?php echo isset($err) ? $err : null ?>
-<div class="container">
+<div class="container" style="background-color:rgba(170, 170, 170, 0.5);">
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
         <div class="description">
-            <div class="middle" style="background-color:rgba(170, 170, 170, 0.5);">
+            <div class="middle">
                 <form action="perso.php" method="post" accept-charset="utf-8"
                     enctype="multipart/form-data" style="margin: auto; width: 400px;">
+                    <h3>Midifiez votre mot de passe:</h3>
                     <div class="input-group">
                         <input class="form-control" type="password" name="old_pw"
                                id="old_pw" placeholder="Mot de passe actuel">
