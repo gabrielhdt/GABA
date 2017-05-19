@@ -1,9 +1,12 @@
 <?php
 
 function draw_graphs($idFollowed) {
+    /* fonction qui dessine su besoin les graphiques du followed $idFollowed,
+     * suivant les différents types de mesures se trouvant dans la bd
+     */
     $colors = array('rgba(255, 0, 0, 1)', 'rgba(255, 0, 0, 0.5)',
                     'rgba(0, 255, 0, 1)', 'rgba(0, 255, 0, 0.5)',
-                    'rgba(0, 0, 255, 1)', 'rgba(0, 0, 255, 0.5)');
+                    'rgba(0, 0, 255, 1)', 'rgba(0, 0, 255, 0.5)'); // 3 couleurs pour les graphes
     $types_measures = distinct_measure($idFollowed);
     echo "
     <div class='container-fluid'>
@@ -36,35 +39,34 @@ function graph_type($idFollowed, $type, $col1, $col2) {
         $unit[] = $value["unit"];
         $date_measure[] = $value["date_measure"];
     }
-    if (count($val) < 3) {
-        return;
-    }
-    $chart = "
-    <div class='col-lg-4 col-md-6 col-sm-6 col-xs-12'>
-    <canvas id='$type' width='100%' height='100%'></canvas>
-    </div>
-    <script>
-    var ctx = document.getElementById('$type');
-    var scatterChart = new Chart(ctx, {
-        type: 'line',
-        data: {datasets: [
-            {borderColor: '$col1',
-             backgroundColor: '$col2',
-             fill: true,
-             label: '$type ($unit[0])',
-             data: [";
-    for ($i = 0; $i < count($val); $i++){
-        $chart .= "{x: '$date_measure[$i]', y: $val[$i]}, ";
-    }
-    $chart = rtrim($chart, ', ');
-    $chart .=  "]}]},
-        options: {
-            responsive: true,
-            responsiveAnimationDuration: 500,
-            scales: {xAxes: [{type: 'time'}]}
+    if (count($val) > 2) { // si il n'y a moins de 3 measure pour le $type, on ne dessine pas le graphe
+        $chart = "
+        <div class='col-lg-4 col-md-6 col-sm-6 col-xs-12'>
+        <canvas id='$type' width='100%' height='100%'></canvas>
+        </div>
+        <script>
+        var ctx = document.getElementById('$type');
+        var scatterChart = new Chart(ctx, {
+            type: 'line',
+            data: {datasets: [
+                {borderColor: '$col1',
+                 backgroundColor: '$col2',
+                 fill: true,
+                 label: '$type ($unit[0])',
+                 data: [";
+        for ($i = 0; $i < count($val); $i++){
+            $chart .= "{x: '$date_measure[$i]', y: $val[$i]}, ";
         }
-        });
-        </script>";
-    echo $chart;
+        $chart = rtrim($chart, ', ');
+        $chart .=  "]}]},
+            options: {
+                responsive: true,
+                responsiveAnimationDuration: 500,
+                scales: {xAxes: [{type: 'time'}]}
+            }
+            });
+            </script>";
+        echo $chart;
+    }
 }
 ?>
