@@ -107,7 +107,10 @@ if (isset($_POST['idfacility']) && !empty($_POST['idfacility']))
         );
     }
 }
-$where['str'] = $wherestrfrags ? implode(' AND ', $wherestrfrags) : null;
+if ($wherestrfrags)
+{
+    $where['str'] = implode(' AND ', $wherestrfrags);
+}
 $tables = <<<TBL
 Followed INNER JOIN Species ON Followed.idSpecies=Species.idSpecies
 INNER JOIN Facility ON Followed.idFacility=Facility.idFacility
