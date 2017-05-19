@@ -39,8 +39,8 @@ include 'nav.php';
 <?php echo isset($err) ? $err : null ?>
 <div class="container">
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
-        <div class="description" style="background-color=rgb(120, 120, 120);">
-            <div class="middle">
+        <div class="description">
+            <div class="middle" style="background-color=rgb(120, 120, 120);">
                 <form action="perso.php" method="post" accept-charset="utf-8"
                     enctype="multipart/form-data" style="margin: auto; width: 400px;">
                     <div class="input-group">
