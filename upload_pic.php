@@ -16,16 +16,15 @@ $uploadfile = $uploaddir . $fname;
 
 if (move_uploaded_file($_FILES['userpic']['tmp_name'], $uploadfile)) {
     echo "Picture is valid, and successfully uploaded.\n";
-    $where = array(
-        array(
-            'field' => 'id' . ucfirst($_POST['table']),
-            'value' => $_POST['id'],
-            'binrel' => '=',
-            'type' => PDO::PARAM_INT
-        )
+    $where['str'] = 'id' . ucfirst($_POST['table']) . '=?';
+    $where['valtype'] = array(
+        array('value' => $_POST['id'], 'type' => PDO::PARAM_INT)
     );
-    update_line($_POST['table'], array('pic_path' => $uploadfile),
-        $where);
+    $update['str'] = 'pic_path=?';
+    $update['valtype'] = array(
+        array('value' => $uploadfile, 'type' => PDO::PARAM_STR)
+    );
+    update_line_smart($_POST['table'], $update, $where);
 }
 else {
     echo "Possible file upload attack.\n";

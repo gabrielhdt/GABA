@@ -20,13 +20,15 @@ if (isset($_POST['old_pw'], $_POST['new_pw'], $_POST['conf_pw']))
     else
     {
         $pwhash = password_hash($_POST['new_pw'], PASSWORD_DEFAULT);
-        $where = array(
-            array(
-                'field' => 'idStaff', 'value' => $_SESSION['idstaff'],
-                'binrel' => '=', 'type' => PDO::PARAM_INT
-            )
+        $where['str'] = 'idStaff=?';
+        $where['valtype'] = array(
+            array('value' => $_SESSION['idstaff'], 'type' => PDO::PARAM_INT)
         );
-        update_line('Staff', array('pwhash' => $pwhash), $where);
+        $update['str'] = 'pwhash=?';
+        $update['valtype'] = array(
+            array('value' => $pwhash, 'type' => PDO::PARAM_STR)
+        );
+        update_line_smart('Staff', $update, $where);
     }
 }
 ?>
