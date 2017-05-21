@@ -58,10 +58,12 @@ $labels = array('Identifier', 'Name', 'Num. of followed individuals');
     <form action="search_species.php" method="post" accept-charset="utf-8"
         class="form-inline" enctype="multipart/form-data">
         <div class="form-group">
+            <label for="low_nfoll">Less followed than</label>
             <input type="number" name="low_nfoll" class="form-control"
-                   id="low_nfoll" placeholder="Nombre d'individu suivi min">
+                   id="low_nfoll" placeholder="1, 3, ...">
+            <label for="up_nfoll">More followed than</label>
             <input type="number" name="up_nfoll" class="form-control"
-            id="up_nfoll" placeholder="Nombre d'individu suivi max">
+            id="up_nfoll" placeholder="15, 54, ...">
         </div><br>
         <button type="submit" class="btn btn-default">Rechercher animal</button>
     </form>
