@@ -377,7 +377,7 @@ function get_values(
 
 function get_values_light($select,
     $tables, $where=array(), $groupby='', $having=array(),
-    $orderby='')
+    $orderby='', $fetch_style=PDO::FETCH_ASSOC)
 {
     /* $select, tables, orderby, groupby: strings, as would appear in the
      * sql query, but without the keywords.
@@ -420,7 +420,7 @@ function get_values_light($select,
             }
         }
         $stmt->execute();
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->setFetchMode($fetch_style);
         $rslt = $stmt->fetchAll();
     } catch (PDOException $e) {
         echo 'Something went wrong (get_values_light): '.$e->getMessage();
