@@ -12,7 +12,7 @@ foreach ($lines as $line)
     $id_faname[$line['idFacility']] = $line['name'];
 }
 
-$fields = 'Species.Species.idSpecies, binomial_name, common_name';
+$fields = 'Species.idSpecies, binomial_name, common_name';
 $species = get_values_light($fields, 'Species');
 $fields = 'Species.idSpecies, COUNT(idFollowed) as nfoll';
 $tables = 'Species INNER JOIN Followed ON Species.idSpecies=Followed.idSpecies';
