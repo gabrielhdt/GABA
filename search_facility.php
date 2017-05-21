@@ -2,7 +2,7 @@
 include "script/form_func.php";
 include "head.php";
 $id_biname = array();
-$lines = get_values(array('idSpecies', 'binomial_name'), 'Species');
+$lines = get_values_light('idSpecies, binomial_name', 'Species');
 foreach ($lines as $line)
 {
     $id_biname[$line['idSpecies']] = $line['binomial_name'];
