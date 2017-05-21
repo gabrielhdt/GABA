@@ -665,22 +665,20 @@ function distinct_measure($idFollowed) {
     /* fonction qui renvoie un tableau de tout les types de mesures connues pour
      * pour le followed $idFollowed
      */
-    $distinct_type = get_values(
-        array('DISTINCT MiscQuantity.type'),
-        'MiscQuantity INNER JOIN Measure ON MiscQuantity.idMeasure = Measure.idMeasure',
-        $where = array(
-                    array(
-                        'binrel' => '=',
-                        'field' => 'Measure.idFollowed',
-                        'value' =>  $idFollowed,
-                        'type' => PDO::PARAM_STR
-                    )
-                )
-        );
-        return $distinct_type;
+    $where['str'] = 'Measure.idFollowed=?';
+    $where['valtype'] = array(
+        array('value' => $idFollowed, 'type' => PDO::PARAM_STR)
+    );
+    $tables = <<<TBL
+MiscQuantity INNER JOIN Measure ON MiscQuantity.idMeasure=Measure.idMeasure
+TBL;
+    $distinct_type = get_values_light('DISTINCT MiscQuantity.type',
+        $tables, $where
+    );
+    return $distinct_type;
     }
 
-function latest_meas_of ($idFollowed){
+function latest_meas_of($idFollowed) {
     /* Returns all latest measures (of each type) of followed idfollowed
      * each line contains: type of measure, unit, value and date
      * it should return the last value
