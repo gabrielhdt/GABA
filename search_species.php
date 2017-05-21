@@ -51,6 +51,7 @@ if (isset($_POST['up_nfoll']) && !empty($_POST['up_nfoll']))
     }
     $species = array_values($species);  //Resets indexes
 }
+// colsp are column fields used by tables (columns in array)
 $colsp = array('idSpecies', 'binomial_name', 'nfoll');
 $labels = array('Identifier', 'Name', 'Num. of followed individuals');
 ?>
