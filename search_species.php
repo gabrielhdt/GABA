@@ -11,49 +11,47 @@ foreach ($lines as $line)
 {
     $id_faname[$line['idFacility']] = $line['name'];
 }
-$colsp = array('idSpecies', 'binomial_name', 'nfoll');
-$labels = array('Identifier', 'Binomial name', 'Number of followed individuals');
-$fields = array('Species.idSpecies', 'binomial_name', 'idFollowed');
-$tables = array('Species', 'Followed');
-$where = array();
-$constraints = array('Species.idSpecies' => 'Followed.idSpecies');
-$groupby = 'Species.idSpecies';
-$sqlfuncs = array(2 => 'COUNT');
-$having = array();
-$alias = array(2 => 'nfoll');
+
+$fields = 'idSpecies, binomial_name, common_name';
+$species = get_values_light($fields, 'Species');
+$fields = 'idSpecies, COUNT(idFollowed) as nfoll';
+$tables = 'Species INNER JOIN Followed ON Species.idSpecies=Followed.idSpecies';
+// FETCH_KEY_PAIR -> array(idSpecies1 => nfoll1, idSpecies2 => nfoll2, ...)
+$spfollcount = get_values_light($fields, $tables, array(), 'Species.idSpecies',
+    array(), '', PDO::FETCH_KEY_PAIR
+);
+foreach ($species as &$spline)
+{
+    if (isset($spfollcount[$spline['idSpecies']]))
+    {
+        $spline['nfoll'] = $spfollcount[$spline['idSpecies']];
+    }
+    else
+    {
+        $spline['nfoll'] = 0;
+    }
+}
 if (isset($_POST['low_nfoll']) && !empty($_POST['low_nfoll']))
 {
-    array_push($having,
-        array(
-            'binrel' => '>=',
-            'field' => 'nfoll',
-            'value' => $_POST['low_nfoll'],
-            'type' => PDO::PARAM_INT
-        )
-    );
+    for ($i = 0 ; $i < count($species) ; $i++) {
+        if ($species[$i]['nfoll'] < $_POST['low_nfoll']) {
+            unset($species[$i]);
+        }
+    }
+    $species = array_values($species);  //Resets indexes
 }
 if (isset($_POST['up_nfoll']) && !empty($_POST['up_nfoll']))
 {
-    array_push($having,
-        array(
-            'binrel' => '<=',
-            'field' => 'nfoll',
-            'value' => $_POST['up_nfoll'],
-            'type' => PDO::PARAM_INT
-        )
-    );
+    for ($i = 0 ; $i < count($species) ; $i++) {
+        if ($species[$i]['nfoll'] > $_POST['low_nfoll']) {
+            unset($species[$i]);
+        }
+    }
+    $species = array_values($species);  //Resets indexes
 }
-$search_res = get_values(
-    $fields,
-    $tables,
-    $where,
-    $constraints,
-    $groupby,
-    $sqlfuncs,
-    $alias,
-    $having
-);
 echo !$search_res ? "Error while querying" : null;
+$colsp = array('idSpecies', 'binomial_name', 'nfoll');
+$labels = array('Identifier', 'Name', 'Num. of followed individuals');
 ?>
 <body>
 <?php include "nav.php"; ?>
@@ -84,7 +82,7 @@ echo '<thead>';
 create_tablehead($colsp, $labels);
 echo '</thead>';
 echo '<tbody>';
-create_tablebody($colsp, $search_res, 'species.php', 'idSpecies');
+create_tablebody($colsp, $species, 'species.php', 'idSpecies');
 echo'</tbody>';
 echo '</table>';
 ?>
