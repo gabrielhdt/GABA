@@ -38,13 +38,16 @@ $table = 'Facility';
 $add = array();
 if (isset($_POST['latitude'], $_POST['longitude']))
 {
-    $add['gnss_coord'] = $_POST['latitude'] . ',' . $_POST['longitude'];
+    $add['gnss_coord'] = array(
+        'value' => $_POST['latitude'] . ',' . $_POST['longitude'],
+        'type' => PDO::PARAM_STR
+    );
 }
 if (isset($_POST['fname']))
 {
-    $add['name'] = $_POST['fname'];
-    $add['type'] = $_POST['type'];
-    add_line($table, $add);
+    $add['name'] = array('value' => $_POST['fname'], 'type' => PDO::PARAM_STR);
+    $add['type'] = array('value' => $_POST['type'], 'type' => PDO::PARAM_STR);
+    add_line_smart($table, $add);
 }
 ?>
 <?php include "footer.php" ?>
