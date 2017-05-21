@@ -742,6 +742,7 @@ tr:nth-child(even) {
 .annotation {
     padding-left: 20px;
     border-left: 4px solid black;
+    text-align: justify;
 }
 
 .edit {
