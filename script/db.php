@@ -40,21 +40,6 @@ function build_where($where)
     return($query);
 }
 
-function build_constraints($constraints)
-{
-    /* Used to join two table,
-     * constraints array (field a => field b) for
-     * table_a.field_a = table_b.field_b
-     */
-    $query = '';
-    $consqueries = array();
-    foreach ($constraints as $f1 => $f2)
-    {
-        array_push($consqueries, "$f1=$f2");
-    }
-    return(implode($consqueries, ' AND '));
-}
-
 function array_map_keys($callback, $array)
 {
     /* like map but callback accepts two parameters:
@@ -291,88 +276,6 @@ function verify_args($where, $having)
         }
     }
     return($all_right);
-}
-
-function get_values(
-    $select, $table, $where=array(), $constraints=array(),
-    $groupby=null, $sqlfuncs=array(), $alias=array(), $having=array()
-)
-{
-    /* select: array of selected fields
-     * table: explicit
-     * where: array of arrays, with
-     * where[i] = array('binrel' => R, 'field' => field, 'value' =>  value,
-     *  'type' => pdotype)
-     * which results in the query
-     * SELECT $select FROM $table WHERE
-     * $where[i]['field'] $where[i]['binrel'] $where[i]['value']
-     * In addition, $where[i]['value'] can be an array of values,
-     * e.g. for WHERE field IN (v0, v1, ...)
-     * constraints: array of constraintes between tables columns, for joining
-     * alias and sqlfuncs work the same way
-     * TODO: verify each variables (regexp?)
-     */
-    if (!verify_args($where, $having))
-    {
-        return(false);
-    }
-    global $servername, $username, $dbname, $password, $charset;
-    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
-            $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $select_func =
-            is_array($select) ?
-            detail_select($select, $sqlfuncs, "apply_sqlfunc") : null;
-        $select_full =
-            is_array($select) ?
-            detail_select($select_func, $alias, "apply_alias") : null;
-
-        $query = 'SELECT ';
-        $query .= is_array($select) ? implode(', ', $select_full) : $select;
-        $query .= ' FROM ';
-        $query .= is_array($table) ? implode($table, ', ') : $table;
-        $query .= $where || $constraints ? ' WHERE ' : null;
-        $query .= $where ? build_where($where) : null;
-        $query .= $where && $constraints ? ' AND ' : null;
-        $query .= $constraints ? build_constraints($constraints) : null;
-        $query .= $groupby ? " GROUP BY $groupby" : null;
-        $query .= $having ? " HAVING ".build_where($having) : null;
-        $query .= ';';
-
-        $stmt = $conn->prepare($query);
-        $qumarkcounter = 1;  // ? indexed from 1
-        foreach ($where as $wh)
-        {
-            if (is_array($wh['value']))
-            {
-                $len = count($wh['value']);
-                foreach($wh['value'] as $whelt)
-                {
-                    $stmt->bindValue($qumarkcounter, $whelt, $wh['type']);
-                    $qumarkcounter++;
-                }
-            }
-            else
-            {
-                $stmt->bindValue($qumarkcounter, $wh['value'], $wh['type']);
-                $qumarkcounter++;
-            }
-        }
-        foreach($having as $hv)
-        {
-            $stmt->bindValue($qumarkcounter, $hv['value'], $hv['type']);
-            $qumarkcounter++;
-        }
-        $stmt->execute();
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        $rslt = $stmt->fetchAll();
-    } catch (PDOException $e) {
-        echo 'Something went wrong (get_values): ' . $e->getMessage();
-        return(false);
-    }
-    $conn = null;
-    return $rslt;
 }
 
 function get_values_light($select,
