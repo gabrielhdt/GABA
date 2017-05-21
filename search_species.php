@@ -12,9 +12,9 @@ foreach ($lines as $line)
     $id_faname[$line['idFacility']] = $line['name'];
 }
 
-$fields = 'idSpecies, binomial_name, common_name';
+$fields = 'Species.Species.idSpecies, binomial_name, common_name';
 $species = get_values_light($fields, 'Species');
-$fields = 'idSpecies, COUNT(idFollowed) as nfoll';
+$fields = 'Species.idSpecies, COUNT(idFollowed) as nfoll';
 $tables = 'Species INNER JOIN Followed ON Species.idSpecies=Followed.idSpecies';
 // FETCH_KEY_PAIR -> array(idSpecies1 => nfoll1, idSpecies2 => nfoll2, ...)
 $spfollcount = get_values_light($fields, $tables, array(), 'Species.idSpecies',
@@ -49,7 +49,6 @@ if (isset($_POST['up_nfoll']) && !empty($_POST['up_nfoll']))
     }
     $species = array_values($species);  //Resets indexes
 }
-echo !$search_res ? "Error while querying" : null;
 $colsp = array('idSpecies', 'binomial_name', 'nfoll');
 $labels = array('Identifier', 'Name', 'Num. of followed individuals');
 ?>
