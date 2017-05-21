@@ -33,7 +33,8 @@ foreach ($species as &$spline)
 }
 if (isset($_POST['low_nfoll']) && !empty($_POST['low_nfoll']))
 {
-    for ($i = 0 ; $i < count($species) ; $i++) {
+    $len = count($species);
+    for ($i = 0 ; $i < $len ; $i++) {
         if ($species[$i]['nfoll'] < $_POST['low_nfoll']) {
             unset($species[$i]);
         }
@@ -42,7 +43,8 @@ if (isset($_POST['low_nfoll']) && !empty($_POST['low_nfoll']))
 }
 if (isset($_POST['up_nfoll']) && !empty($_POST['up_nfoll']))
 {
-    for ($i = 0 ; $i < count($species) ; $i++) {
+    $len = count($species);
+    for ($i = 0 ; $i < $len ; $i++) {
         if ($species[$i]['nfoll'] > $_POST['up_nfoll']) {
             unset($species[$i]);
         }
