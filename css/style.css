@@ -68,6 +68,14 @@
     font-style: normal;
     font-variant: small-caps;
 }
+
+body {
+    font-family: "Linux Biolinum";
+}
+
+p {
+    font-family: "Linux Libertine";
+}
 /******************************************************************************
 logo
 ******************************************************************************/
