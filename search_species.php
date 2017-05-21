@@ -5,7 +5,7 @@ include "script/form_func.php";
 include "head.php";
 head('Recherche espèce');
 
-$lines = get_values(array('idFacility', 'name'), 'Facility');
+$lines = get_values_light('idFacility, name', 'Facility');
 $id_faname = array();
 foreach ($lines as $line)
 {
