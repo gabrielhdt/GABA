@@ -55,7 +55,7 @@ head('Notre Labo');
     subdomain: ['a', 'b', 'c']
     }).addTo(labmap);
 <?php
-$facspecs = get_values(array('name', 'gnss_coord', 'type'), 'Facility');
+$facspecs = get_values_light('name, gnss_coord, type', 'Facility');
 foreach ($facspecs as $facility) {
     if ($facility['gnss_coord'] != null)
     {
