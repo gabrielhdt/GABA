@@ -43,11 +43,19 @@ elseif (
         $_POST['msg']
     )
 ) {
-    add_line('messages',
+    add_line_smart('messages',
         array(
-            'name' => $_POST['nom'], 'email' => $_POST['email'],
-            'message' => $_POST['msg']
-        ));
+            'name' => array(
+                'value' => $_POST['nom'], 'type' => PDO::PARAM_STR
+            ),
+            'email' => array(
+                'value' => $_POST['email'], 'type' => PDO::PARAM_STR
+            ),
+            'message' => array(
+                'value' => $_POST['msg'], 'type' => PDO::PARAM_STR
+            )
+        )
+    );
     echo 1;
 }
 // script pour l'ajout une mesure
@@ -60,15 +68,34 @@ elseif (
         $_POST['value']
     )
 ) {
-    $infosMeasure = array('idFollowed' => $_POST['idFollowed'],
-                          'idStaff' => $_POST['idStaff']);
-    $idMeasure = add_line('Measure', $infosMeasure);
-    $infosMiscQuantity = array('idMeasure' => $idMeasure,
-                               'type' => $_POST['type'],
-                               'value' => $_POST['value'],
-                               'unit' => $_POST['unit']
-                              );
-    add_line('MiscQuantity', $infosMiscQuantity);
+    $infosMeasure = array(
+        'idFollowed' => array(
+            'value' => $_POST['idFollowed'], 'type' => PDO::PARAM_INT
+        ),
+        'idStaff' => array(
+            'value' => $_POST['idStaff'], 'type' => PDO::PARAM_INT
+        )
+    );
+    $idMeasure = add_line_smart('Measure', $infosMeasure);
+    $infosMiscQuantity = array(
+        'idMeasure' => array(
+            'value' => $idMeasure,
+            'type' => PDO::PARAM_INT
+        ),
+        'type' => array(
+            'value' => $_POST['type'],
+            'type' => PDO::PARAM_STR
+        ),
+        'value' => array(
+            'value' => $_POST['value'],
+            'type' => PDO::PARAM_STR
+        ),
+        'unit' => array(
+            'value' => $_POST['unit'],
+            'type' => PDO::PARAM_STR
+        )
+    );
+    add_line_smart('MiscQuantity', $infosMiscQuantity);
 }
 // script pour l'ajout d'une relation entre 2 followeds
 elseif (
@@ -80,15 +107,24 @@ elseif (
     )
 ) {
     $info_relationship = array(
-        'idFollowed1' => $_POST['idFollowed'],
-        'idFollowed2' => $_POST['other_followed'],
-        'type_relation' => $_POST['type_relation']
+        'idFollowed1' => array(
+            'value' => $_POST['idFollowed'],
+            'type' => PDO::PARAM_INT
+        ),
+        'idFollowed2' => array(
+            'value' => $_POST['other_followed'],
+            'type' => PDO::PARAM_INT
+        ),
+        'type_relation' => array(
+            'value' => $_POST['type_relation'],
+            'type' => PDO::PARAM_STR
+        )
     );
     if (isset($_POST['begin']) && !empty($_POST['begin']))
     {
         $info_relationship['begin'] = $_POST['begin'];
     }
-    add_line('Relation', $info_relationship);
+    add_line_smart('Relation', $info_relationship);
     return(true);
 }
 // script pour la modifiction des caractèristqiues d'une espèce
@@ -159,17 +195,32 @@ elseif (
     }
     else
     {
-        $idmeasure = add_line('Measure',
+        $idmeasure = add_line_smart('Measure',
             array(
-                'idFollowed' => $_POST['idfollowed'],
-                'idStaff' => $_POST['idstaff']
+                'idFollowed' => array(
+                    'value' => $_POST['idfollowed'],
+                    'type' => PDO::PARAM_INT
+                ),
+                'idStaff' => array(
+                    'value' => $_POST['idstaff'],
+                    'type' => PDO::PARAM_INT
+                )
             )
         );
-        add_line('Location',
+        add_line_smart('Location',
             array(
-                'latitude' => (float) $coords[0],
-                'longitude' => (float) $coords[1],
-                'idMeasure' => $idmeasure
+                'latitude' => array(
+                   'value' => (float) $coords[0],
+                   'type' => PDO::PARAM_STR
+               ),
+               'longitude' => array(
+                   'value' => (float) $coords[1],
+                   'type' => PDO::PARAM_STR
+               ),
+               'idMeasure' => array(
+                   'value' => $idmeasure,
+                   'type' => PDO::PARAM_STR
+               )
             )
         );
     }
