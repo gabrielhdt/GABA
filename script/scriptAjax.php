@@ -141,23 +141,25 @@ elseif (
     )
 )
 {
-    $where = array(
-        array(
-            'field' => 'idSpecies', 'value' => $_POST['idSpecies'],
-            'binrel' => '=', 'type' => PDO::PARAM_INT
-        )
+    $where['str'] = 'idSpecies=?';
+    $where['valtype'] = array(
+        array('value' => $_POST['idSpecies'], 'type' => PDO::PARAM_INT)
     );
-    $change = array(
-        'common_name' => $_POST['common_name'],
-        'binomial_name' => $_POST['binomial_name'],
-        'kingdom' => $_POST['kingdom'],
-        'phylum' => $_POST['phylum'],
-        'class' => $_POST['class_s'],
-        'order_s' => $_POST['order_s'],
-        'family' => $_POST['family'],
-        'genus' => $_POST['genus']
+    $change['str'] = <<<CHG
+common_name=?, binomial_name=?, kingdom=?, phylum=?, class=?, order_s=?,
+family=?, genus=?
+CHG;
+    $change['valtype'] = array(
+        array('value' => $_POST['common_name'], 'type' => PDO::PARAM_STR),
+        array('value' => $_POST['binomial_name'], 'type' => PDO::PARAM_STR),
+        array('value' => $_POST['kingdom'], 'type' => PDO::PARAM_STR),
+        array('value' => $_POST['phylum'], 'type' => PDO::PARAM_STR),
+        array('value' => $_POST['class_s'], 'type' => PDO::PARAM_STR),
+        array('value' => $_POST['order_s'], 'type' => PDO::PARAM_STR),
+        array('value' => $_POST['family'], 'type' => PDO::PARAM_STR),
+        array('value' => $_POST['genus'], 'type' => PDO::PARAM_STR)
     );
-    update_line('Species', $change, $where);
+    update_line_smart('Species', $change, $where);
 }
 // script de mise a jour des informations d'un followed
 elseif (
@@ -169,16 +171,17 @@ elseif (
         $_POST['health']
     )
 ) {
-    $change = array('annotation' => $_POST['annotation'],
-                    'birth' => $_POST['birth'],
-                    'death' => $_POST['death'], 'health' => $_POST['health']);
-    $where = array(
-        array(
-            "field" => "idFollowed", "value" => $_POST['idFollowed'],
-            "binrel" => "=", 'type' => PDO::PARAM_INT
-        )
+    $change['str'] = 'annotation=?, birth=?, death=?';
+    $change['valtype'] = array(
+        array('value' => $_POST['annotation'], 'type' => PDO::PARAM_STR),
+        array('value' => $_POST['birth'], 'type' => PDO::PARAM_STR),
+        array('value' => $_POST['death'], 'type' => PDO::PARAM_STR)
     );
-    update_line('Followed', $change, $where);
+    $where['str'] = 'idFollowed=?';
+    $where['valtype'] = array(
+        array('value' => $_POST['idFollowed'], 'type' => PDO::PARAM_INT)
+    );
+    update_line_smart('Followed', $change, $where);
 }
 // script de mise a jour de la localisation
 elseif (
