@@ -80,34 +80,39 @@ include 'nav.php';
 
 <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
     <div class="intel">
-        <?php
-        if ($search_res['common_name'])
-        {
-            echo '<h1>'.ucfirst($search_res['common_name']).'</h1>';
-            echo '<h2>'.ucfirst($search_res['binomial_name']).'</h2>';
-        }
-        else
-        {
-            echo '<h1>'.ucfirst($search_res['binomial_name']).'</h1>';
-        }
-        ?>
-        <table>
-            <tr><td>Kingdom</td><td><?php echo ucfirst($search_res['kingdom'])?></td></tr>
-            <tr><td>Phylum</td><td><?php echo ucfirst($search_res['phylum'])?></td></tr>
-            <tr><td>Class</td><td><?php echo ucfirst($search_res['class'])?></td></tr>
-            <tr><td>Order</td><td><?php echo ucfirst($search_res['order_s'])?></td></tr>
-            <tr><td>Family</td><td><?php echo ucfirst($search_res['family'])?></td></tr>
-            <tr><td>Genus</td><td><?php echo ucfirst($search_res['genus'])?></td></tr>
-        </table>
-        We currently have <?php echo $nfoll ?> individuals.
-        <p id="wikintro">
-            Data from wikipedia soon
-            <?php echo $wikintro?>
-        </p>
-<?php if ($edit) { ?>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-            data-target="#editSpeciesModal">Edit species informations</button>
-<?php } ?>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="sp_data">
+            <?php
+            if ($search_res['common_name'])
+            {
+                echo '<h1>'.ucfirst($search_res['common_name']).'</h1>';
+                echo '<h2>'.ucfirst($search_res['binomial_name']).'</h2>';
+            }
+            else
+            {
+                echo '<h1>'.ucfirst($search_res['binomial_name']).'</h1>';
+            }
+            ?>
+            <table>
+                <tr><td>Kingdom</td><td><?php echo ucfirst($search_res['kingdom'])?></td></tr>
+                <tr><td>Phylum</td><td><?php echo ucfirst($search_res['phylum'])?></td></tr>
+                <tr><td>Class</td><td><?php echo ucfirst($search_res['class'])?></td></tr>
+                <tr><td>Order</td><td><?php echo ucfirst($search_res['order_s'])?></td></tr>
+                <tr><td>Family</td><td><?php echo ucfirst($search_res['family'])?></td></tr>
+                <tr><td>Genus</td><td><?php echo ucfirst($search_res['genus'])?></td></tr>
+            </table>
+            We currently have <?php echo $nfoll ?> individuals.
+            <p id="wikintro">
+                Data from wikipedia soon
+                <?php echo $wikintro?>
+            </p>
+            <?php if ($edit) { ?>
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                data-target="#editSpeciesModal">Edit species informations</button>
+            <?php } ?>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="map-container">
+            <div id="foll_of_sp_map"></div>
+        </div>
     </div>
 </div>
 </div>
@@ -174,4 +179,18 @@ include 'nav.php';
 include 'footer.php';
 ?>
 </body>
+<script>
+// Map management
+var contwidth = $('#map-container').width();
+var contheight = $('#sp_data').height();
+document.getElementById('foll_of_sp_map').style.width = contwidth;
+document.getElementById('foll_of_sp_map').setAttribute("style",
+    "height:" + contheight + "px");
+var foll_of_sp_map = L.map('foll_of_sp_map').setView(
+    [0, 0], 2);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+subdomain: ['a', 'b', 'c']
+}).addTo(foll_of_sp_map);
+</script>
 </html>
