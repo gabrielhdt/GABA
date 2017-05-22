@@ -82,40 +82,6 @@ QRY;
     return($exists);
 }
 
-function add_line($table, $valarr)
-{
-    /* Values are set to lowercase!
-     * $valarr["column name"] = column_value
-     * returns: id of last inserted row
-     */
-    global $servername, $username, $dbname, $password, $charset;
-    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
-            $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $query = "INSERT INTO $table";
-        $columns = '(';
-        $values = '(';
-        foreach ($valarr as $col => $val)  //Implode not used to keep order
-        {
-            $columns .= $col . ', ';
-            $values .= "'" . mb_strtolower($val) . "', ";
-        }
-        $columns = rtrim($columns, ' ,'); //Removes last ', '
-        $values = rtrim($values, ' ,');
-        $columns .= ')';
-        $values .= ')';
-        $query .= " $columns VALUES $values;";
-        $conn->exec($query);
-        $id_addition = $conn ->lastInsertId();
-    } catch (PDOException $e) {
-        echo 'Insertion failed (add_line): ' . $e->getMessage();
-        return(false);
-    }
-    $conn = null;
-    return($id_addition);
-}
-
 function add_line_smart($table, $values)
 {
     /* table a string, values an associtive array:
@@ -396,45 +362,6 @@ function main_tables_from_keys()
     return $key_table;
 }
 
-
-function update_line($table, $change, $where)
-{
-    /* change : array('col' => 'val')
-     * where: the famous where array containing
-     *  field, value, type, binrel
-     * Updates line satisfying where query
-     */
-    global $servername, $username, $dbname, $password, $charset;
-    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
-            $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $query = "UPDATE $table SET ";
-
-        $uparr = array_map_keys(function($val, $col) {
-            return("$col='$val'");
-        }, $change);
-        $query .= implode($uparr, ', ');
-
-        $query .= ' WHERE ';
-        $query .= build_where($where);
-        $query .= ';';
-        $stmt = $conn->prepare($query);
-        $qumarkcounter = 1;
-        foreach ($where as $wh)
-        {
-            $stmt->bindValue($qumarkcounter, $wh['value'], $wh['type']);
-            $qumarkcounter++;
-        }
-        $stmt->execute();
-    } catch (PDOException $e) {
-        echo 'Something went wrong (update_line): ' . $e->getMessage();
-        return(true);
-    }
-    $conn = null;
-    return(true);
-}
-
 function update_line_smart($table, $updates, $where)
 {
     /* table a string,
@@ -656,7 +583,7 @@ function delete_msg($id)
         $query = "DELETE FROM messages WHERE id=$id";
         $conn->exec($query);
     } catch (PDOException $e) {
-        echo 'Insertion failed (add_line): ' . $e->getMessage();
+        echo 'Insertion failed (delete_msg): ' . $e->getMessage();
     }
     $conn = null;
 }
