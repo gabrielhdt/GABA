@@ -119,8 +119,8 @@ include 'nav.php';
                 </tr>
             </table>
             We currently have <?php echo $nfoll ?> individuals.
-            <form action="search_species.php" method="post">
-                <input type="hidden" name="species[]" readonly
+            <form action="search_followed.php" method="post">
+                <input type="hidden" name="idspecies[]" readonly
                 value="<?php echo $idspecies ?>">
                 <button type="submit" class="btn btn-default btn-xs">See them
                 </button>
