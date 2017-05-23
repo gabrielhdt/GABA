@@ -5,19 +5,11 @@ if (!isset($_SESSION['login'], $_SESSION['idstaff']) ||
     header ('Location: login.php'); // sinon retour page login
     exit();
 }
-?>
 
-<!DOCTYPE html>
-<html lang="fr">
-<?php
 include "script/db.php";
 include "script/form_func.php";
 include "head.php";
-head("Ajouter un individu");
-?>
-<body>
-<?php include "nav.php" ?>
-<?php
+
 $id_biname = array();
 $lines = get_values('idSpecies, binomial_name', 'Species');
 foreach ($lines as $line)
@@ -99,6 +91,23 @@ if (isset($_POST['species']))
     }
 }
 ?>
+<!DOCTYPE html>
+<html lang="fr">
+<?php head("Ajouter un individu") ?>
+<body>
+<?php
+include "nav.php";
+if (isset($added_id) && $added_id) {
+?>
+<div class="alert alert-success" role="alert">
+    You have successfully added a new individual to the database.
+</div>
+<?php }
+elseif (isset($added_id) && !$added_id) { ?>
+<div class="alert alert-danger" role="alert">
+    Something went wrong. Try again adding an individual.
+</div>
+<?php } ?>
 <div class="container" style="background-image: url('data/pics/unordered/mada.jpg');">
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-7 col-md-offset-7 col-sm-offset-5">
         <div class="formulaire">

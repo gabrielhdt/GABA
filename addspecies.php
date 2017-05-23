@@ -113,6 +113,11 @@ if (isset($added_id) && $added_id)
     You have successfully added a new species to the database.
     Would you like to add a new <a href="addfollowed.php">individual</a>?
 </div>
+<?php }
+elseif (isset($added_id) && !$added_id) {?>
+<div class="alert alert-danger" role="alert">
+    Something went wrong. Try again adding a species.
+</div>
 <?php } ?>
 
 <div class="container" style="background-image: url('data/pics/unordered/herd.jpg');">
