@@ -672,10 +672,10 @@ margin: 10px 0;
     display: inline-block;
 }
 
-.row-help {
-    margin: 50px 0;
+.photo-help {
+    height: 400px;
+    width: 400px;
 }
-
 
 /******************************************************************************
 admin_index.php
