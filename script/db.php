@@ -6,80 +6,8 @@ $dbname = 'IENAC_GABA';
 $password = 'abag';
 $charset = 'utf8mb4';
 
-function build_where($where)
-{
-    /* where as defined in get_values
-     * $where is either an array of arrays, each array containing:
-     *  field -> column name,
-     *  value -> the value the column must match
-     *  binrel -> the binary relation between field and value
-     *  type -> the PDO type
-     * or just an array as defined above
-     * returns the part
-     * WHERE $where[i]['field']$where[i]['binrel']$where['value']
-     */
-    $query= '';
-    $wherequeries = array();  // Will contain separate criteria
-    foreach ($where as $wh)
-    {
-        if (is_array($wh['value']))
-        {
-            // Typically, for IN (v1, v2, ...)
-            $len = count($wh['value']);
-            $paramlst = '('.implode(array_fill(0, $len, '?'), ', ').')';
-            // Should contain '(?, ?, ?, ...)'
-            array_push($wherequeries,
-                $wh['field'].' '.$wh['binrel'].' '.$paramlst);
-        }
-        else
-        {
-            array_push($wherequeries, $wh['field'].$wh['binrel'].'?');
-        }
-    }
-    $query .= implode($wherequeries, ' AND ');
-    return($query);
-}
-
-function array_map_keys($callback, $array)
-{
-    /* like map but callback accepts two parameters:
-     * first is value, second is the key
-     * callback: function with two or three args
-     * returns: array containing (f($val1, $key1), ..., f($valn, $keyn))
-     */
-    return(array_map($callback, array_values($array), array_keys($array)));
-}
-
 function arithmetic_mean($real_arr) {
     return array_sum($real_arr)/count($real_arr);
-}
-
-function view_exists($viewname)
-{
-    /* $viewname: string, name of a view
-     * returns: boolean, TRUE if view exists, else FALSE
-     */
-    global $servername, $username, $dbname, $password, $charset;
-    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
-            $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $query = <<<QRY
-SHOW FULL tables WHERE Table_type='VIEW';
-QRY;
-        $stmt = $conn -> query($query);
-        $stmt -> setFetchMode(PDO::FETCH_ASSOC);
-        $views = $stmt -> fetchAll();
-        $exists = false;
-        foreach ($views as $view)
-        {
-            $exists = $exists || $view['Tables_in_IENAC_GABA'] == $viewname;
-        }
-    } catch (PDOException $e) {
-        echo 'Something went wrong (output_views): ' . $e->getMessage();
-    }
-    $conn = null;
-    return($exists);
 }
 
 function add_line($table, $values)
@@ -173,75 +101,6 @@ QRY;
     }
     $conn = null;
     return(true);
-}
-
-function apply_sqlfunc($field, $func)
-{
-    /* Apply the sql function $func to $field.
-     * $func must be either a valid sql func (e.g. COUNT) or null
-     */
-    return($func ? "$func($field)" : $field);
-}
-
-function apply_alias($field, $alias)
-{
-    return($alias ? "$field AS $alias" : $field);
-}
-
-function detail_select($select, $cplmts, $apply_func)
-{
-    /* Applies a chosen function on one field of $select
-     * cplmts: array((int) key => (str) sql func)
-     *  cplmt string which will be added via apply_func
-     * apply_func: function taking two args: the field (basis) and
-     *  the other string
-     */
-    $select_funcs = array_map(
-        $apply_func,
-        $select,
-        array_replace(
-            array_fill(0, count($select) - 1, null),
-            $cplmts
-        )
-    );
-    return($select_funcs);
-}
-
-function verify_args($where, $having)
-{
-    $all_right = true;
-    foreach (array_merge($where, $having) as $input)
-    {
-        if ($input['type'] == PDO::PARAM_INT)
-        {
-            if (is_array($input['value']))
-            {
-                foreach ($input['value'] as $iv)
-                {
-                    $all_right *= preg_match("/^[0-9]+$/", $iv);
-                }
-            }
-            else
-            {
-                $all_right *= preg_match("/^[0-9]+$/", $input['value']);
-            }
-        }
-        elseif ($input['type'] == PDO::PARAM_STR)
-        {
-            if (is_array($input['value']))
-            {
-                foreach ($input['value'] as $iv)
-                {
-                    $all_right *= preg_match("/^(\w|%|_|-)+$/", $iv);
-                }
-            }
-            else
-            {
-                $all_right *= preg_match("/^(\w|%|_|-)+$/", $input['value']);
-            }
-        }
-    }
-    return($all_right);
 }
 
 function get_values($select,
@@ -472,42 +331,6 @@ function verify_login($login, $pwd){
     }
     $conn = null;
     return $id; // qui se connecte ? (admin/staff/invalide)
-}
-
-function update_view($view)
-{
-    global $servername, $username, $dbname, $password, $charset;
-    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
-            $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        if ($view == 'vSearchFoll')
-        {
-            $query = <<<QRY
-CREATE OR REPLACE VIEW vSearchFoll AS
-SELECT Followed.idFollowed, Followed.idSpecies, Followed.idFacility,
-    binomial_name AS sp_binomial_name,
-    common_name AS sp_common_name,
-    Facility.name AS fa_name,
-    gender, birth, death, health
-FROM Followed, Species, Facility
-WHERE Followed.idSpecies = Species.idSpecies AND
-    Followed.idFacility = Facility.idFacility;
-QRY;
-        }
-        else
-        {
-            echo "No view named $view.\n";
-            $conn = null;
-            return(false);
-        }
-    $conn -> exec($query);
-    } catch (PDOException $e) {
-        echo 'Something went wrong (update_view): ' . $e->getMessage();
-        return(false);
-    }
-    $conn = null;
-    return(true);
 }
 
 function id_from_login($login)
