@@ -26,7 +26,6 @@ function add_line($table, $values, $keepcase=FALSE)
     $query .= ' VALUES ';
     $query .= '(' . implode(', ', array_fill(0, $num_adds, '?')) . ')';
     $query .= ';';
-    function managecase($arg) {return($keepcase ? $arg : mb_strtolower($arg));}
     global $servername, $username, $dbname, $password, $charset;
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
@@ -35,8 +34,9 @@ function add_line($table, $values, $keepcase=FALSE)
         $qumarkcounter = 1;
         foreach ($columns as $col)
         {
-            $stmt->bindValue($qumarkcounter,
-                managecase($values[$col]['value']), $values[$col]['type']);
+            $to_bind = $keepcase ? $values[$col]['value'] :
+                mb_strtolower($values[$col]['value']);
+            $stmt->bindValue($qumarkcounter, $to_bind, $values[$col]['type']);
             $qumarkcounter++;
         }
         $stmt->execute();
@@ -237,7 +237,6 @@ function update_line($table, $updates, $where, $keepcase=FALSE)
     $query .= ' WHERE ';
     $query .= $where['str'];
     $query .= ';';
-    function managecase($arg) {return($keepcase ? $arg : mb_strtolower($arg));}
     global $servername, $username, $dbname, $password, $charset;
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
@@ -246,8 +245,9 @@ function update_line($table, $updates, $where, $keepcase=FALSE)
         $qumarkcounter = 1;
         foreach ($updates['valtype'] as $upvt)
         {
-            $stmt->bindValue($qumarkcounter,
-                managecase($upvt['value']), $upvt['type']);
+            $to_bind = $keepcase ? $upvt['value'] :
+                mb_strtolower($upvt['value']);
+            $stmt->bindValue($qumarkcounter, $to_bind, $upvt['type']);
             $qumarkcounter++;
         }
         foreach ($where['valtype'] as $wh)
