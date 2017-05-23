@@ -20,8 +20,8 @@ WH;
 $where['valtype'] = array(
     array('value' => $idspecies, 'type' => PDO::PARAM_INT)
 );
-$search_res = get_values_light($fields, $table, $where)[0];
-$nfoll = get_values_light(
+$search_res = get_values($fields, $table, $where)[0];
+$nfoll = get_values(
     'COUNT(idFollowed) AS nfoll',
     'Followed',
     array(
@@ -36,7 +36,7 @@ $nfoll = get_values_light(
 $where['str'] = 'idSpecies=?';
 $where['valtype'] = array(array('value' => $idspecies,
     'type' => PDO::PARAM_INT));
-$pic_paths_qu = get_values_light('pic_path', 'Followed', $where);
+$pic_paths_qu = get_values('pic_path', 'Followed', $where);
 function g($ppassoc) { return($ppassoc['pic_path']); }
 $pic_paths_null = array_map("g", $pic_paths_qu);
 function h($ppnull) { return($ppnull && true); } // ppnull seems false?

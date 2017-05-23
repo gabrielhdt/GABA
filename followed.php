@@ -29,7 +29,7 @@ WH;
 $where['valtype'] = array(
     array('value' => $idfollowed, 'type' => PDO::PARAM_STR)
 );
-$search_res = get_values_light($fields, $table, $where)[0];
+$search_res = get_values($fields, $table, $where)[0];
 
 
 // Getting last known location
@@ -40,7 +40,7 @@ $where['str'] = 'idFollowed=?';
 $where['valtype'] = array(
     array('value' => $idfollowed, 'type' => PDO::PARAM_INT)
 );
-$last_meas_date = get_values_light(
+$last_meas_date = get_values(
     'MAX(date_measure) AS last_meas', $tables, $where
 )[0]['last_meas'];
 
@@ -52,7 +52,7 @@ $where['valtype'] = array(
     array('value' => $idfollowed, 'type' => PDO::PARAM_INT),
     array('value' => $last_meas_date, 'type' => PDO::PARAM_STR)
 );
-$loc = get_values_light($fields, $table, $where)[0];
+$loc = get_values($fields, $table, $where)[0];
 $loc_str = $search_res['fa_name'] == 'gaia' ?
     "Last known location: " . $loc['latitude'] .'W ' .
     $loc['longitude'] .'N' : 'At ' . $search_res['fa_name'];
@@ -61,7 +61,7 @@ $loc4js = $search_res['fa_name'] == 'gaia' ?
     $search_res['fa_gnss_coord'];
 
 // Getting types of measur
-$meas_gen = get_values_light('DISTINCT type, unit', 'MiscQuantity');
+$meas_gen = get_values('DISTINCT type, unit', 'MiscQuantity');
 function f($line) { return($line['type']); }
 function g($line) { return($line['unit']); }
 $meas_types = array_map('f', $meas_gen);

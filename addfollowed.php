@@ -19,12 +19,12 @@ head("Ajouter un individu");
 <?php include "nav.php" ?>
 <?php
 $id_biname = array();
-$lines = get_values_light('idSpecies, binomial_name', 'Species');
+$lines = get_values('idSpecies, binomial_name', 'Species');
 foreach ($lines as $line)
 {
     $id_biname[$line['idSpecies']] = $line['binomial_name'];
 }
-$lines = get_values_light('idFacility, name', 'Facility');
+$lines = get_values('idFacility, name', 'Facility');
 $id_faname = array();
 foreach ($lines as $line)
 {

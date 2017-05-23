@@ -244,7 +244,7 @@ function verify_args($where, $having)
     return($all_right);
 }
 
-function get_values_light($select,
+function get_values($select,
     $tables, $where=array(), $groupby='', $having=array(),
     $orderby='', $fetch_style=PDO::FETCH_ASSOC)
 {
@@ -292,7 +292,7 @@ function get_values_light($select,
         $stmt->setFetchMode($fetch_style);
         $rslt = $stmt->fetchAll();
     } catch (PDOException $e) {
-        echo 'Something went wrong (get_values_light): '.$e->getMessage();
+        echo 'Something went wrong (get_values): '.$e->getMessage();
         $conn = null;
         return(false);
     }
@@ -599,7 +599,7 @@ function distinct_measure($idFollowed) {
     $tables = <<<TBL
 MiscQuantity INNER JOIN Measure ON MiscQuantity.idMeasure=Measure.idMeasure
 TBL;
-    $distinct_type = get_values_light('DISTINCT MiscQuantity.type',
+    $distinct_type = get_values('DISTINCT MiscQuantity.type',
         $tables, $where
     );
     return $distinct_type;
@@ -626,7 +626,7 @@ function latest_meas_type($idfollowed, $type) {
     $where = array('str' => "idFollowed=? AND MiscQuantity.type=?", 'valtype' => array(
                 array('value' => $idfollowed, 'type' => PDO::PARAM_INT),
                 array('value' => $type, 'type' => PDO::PARAM_STR)));
-    $date_last_measure = get_values_light($select, $tables, $where);
+    $date_last_measure = get_values($select, $tables, $where);
     $select = "MiscQuantity.type, value, unit, date_measure, login";
     $where = array('str' => "idFollowed=? AND MiscQuantity.type=? AND date_measure=?",
                    'valtype' => array(
@@ -634,7 +634,7 @@ function latest_meas_type($idfollowed, $type) {
                 array('value' => $type, 'type' => PDO::PARAM_STR),
                 array('value' => $date_last_measure[0]["last_date"],
                 'type' => PDO::PARAM_INT)));
-    $rslt = $date_last_measure = get_values_light($select, $tables, $where);
+    $rslt = $date_last_measure = get_values($select, $tables, $where);
     return $rslt[0];
 }
 ?>

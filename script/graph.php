@@ -31,7 +31,7 @@ function graph_type($idFollowed, $type, $col1, $col2) {
     $tables = <<<TBL
 MiscQuantity INNER JOIN Measure ON MiscQuantity.idMeasure=Measure.idMeasure
 TBL;
-    $result = get_values_light(
+    $result = get_values(
         'DISTINCT MiscQuantity.value, MiscQuantity.unit,Measure.date_measure',
         $tables, $where
     );

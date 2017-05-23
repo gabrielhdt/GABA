@@ -69,37 +69,37 @@ if (isset($_POST['species']))
 }
 
 // Getting info for form
-$lines = get_values_light("DISTINCT kingdom", "Species");
+$lines = get_values("DISTINCT kingdom", "Species");
 $kingdoms = array();
 foreach ($lines as $line)
 {
     array_push($kingdoms, ucfirst($line['kingdom']));
 }
-$lines = get_values_light("DISTINCT phylum", "Species");
+$lines = get_values("DISTINCT phylum", "Species");
 $phylae = array();
 foreach ($lines as $line)
 {
     array_push($phylae, ucfirst($line['phylum']));
 }
-$lines = get_values_light("DISTINCT class", "Species");
+$lines = get_values("DISTINCT class", "Species");
 $classes = array();
 foreach ($lines as $line)
 {
     array_push($classes, ucfirst($line['class']));
 }
-$lines = get_values_light("DISTINCT order_s", "Species");
+$lines = get_values("DISTINCT order_s", "Species");
 $orders = array();
 foreach ($lines as $line)
 {
     array_push($orders, ucfirst($line['order_s']));
 }
-$lines = get_values_light("DISTINCT family", "Species");
+$lines = get_values("DISTINCT family", "Species");
 $families = array();
 foreach ($lines as $line)
 {
     array_push($families, ucfirst($line['family']));
 }
-$lines = get_values_light("DISTINCT genus", "Species");
+$lines = get_values("DISTINCT genus", "Species");
 $genuses = array();
 foreach ($lines as $line)
 {

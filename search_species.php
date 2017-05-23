@@ -5,7 +5,7 @@ include "script/form_func.php";
 include "head.php";
 head('Recherche espèce');
 
-$lines = get_values_light('idFacility, name', 'Facility');
+$lines = get_values('idFacility, name', 'Facility');
 $id_faname = array();
 foreach ($lines as $line)
 {
@@ -13,11 +13,11 @@ foreach ($lines as $line)
 }
 
 $fields = 'Species.idSpecies, binomial_name, common_name';
-$species = get_values_light($fields, 'Species');
+$species = get_values($fields, 'Species');
 $fields = 'Species.idSpecies, COUNT(idFollowed) as nfoll';
 $tables = 'Species INNER JOIN Followed ON Species.idSpecies=Followed.idSpecies';
 // FETCH_KEY_PAIR -> array(idSpecies1 => nfoll1, idSpecies2 => nfoll2, ...)
-$spfollcount = get_values_light($fields, $tables, array(), 'Species.idSpecies',
+$spfollcount = get_values($fields, $tables, array(), 'Species.idSpecies',
     array(), '', PDO::FETCH_KEY_PAIR
 );
 foreach ($species as &$spline)

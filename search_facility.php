@@ -2,7 +2,7 @@
 include "script/form_func.php";
 include "head.php";
 $id_biname = array();
-$lines = get_values_light('idSpecies, binomial_name', 'Species');
+$lines = get_values('idSpecies, binomial_name', 'Species');
 foreach ($lines as $line)
 {
     $id_biname[$line['idSpecies']] = $line['binomial_name'];
@@ -61,7 +61,7 @@ TBL;
     );
 
 }
-$facspecs = get_values_light($fields, $tables, $where, $groupby, $having);
+$facspecs = get_values($fields, $tables, $where, $groupby, $having);
 echo !$facspecs ? "Error while querying" : null;
 ?>
 
