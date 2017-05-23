@@ -13,7 +13,7 @@ We are here to provide them the silver bullet tool to ease the exchange of
 data and to make those data accessible easily in the most efficient way
 via an elaborate and thought GUI. Only identified researchers can add, delete
 or edit data, but anyone can access it. You may, for instance, see all
-individuals of the species <a href='species.php?id=15>Caracal</a>, or discover
+individuals of the species <a href='species.php?id=15'>Caracal</a>, or discover
 that the mean weight of our lions is 203kg.
 </p>
 <p>
