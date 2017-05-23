@@ -34,7 +34,7 @@ setcookie('lang', $lang, time() + $expire);
     <?php include 'nav.php'; ?>
     <div class="container" style="background-image: url('data/pics/unordered/owl3.jpg');">
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-7 col-md-offset-7 col-sm-offset-5">
-            <div class="description">
+            <div class="description outer">
                 <div class="middle">
                     <h1>A propos de nous ...</h1>
                     <p>Le laboratoire science exchange a pour mission de regrouper les informations de multiples laboratoires de recherche animale et de mettre à disposition les données sur nottre plateforme. <br>L'objectif est de faciliter le travail
@@ -96,7 +96,7 @@ setcookie('lang', $lang, time() + $expire);
     </div>
     <div class="container" style="background-image: url('data/pics/unordered/livre.jpg');">
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
-            <div class="description">
+            <div class="description outer">
                 <div class="middle">
                     <h1>Besoin d'aide ?</h1>
                     <p>Afin de vous faire profiter pleinement de toutes les possibilités qu'offre notre site, nous avons créer un manuel d'utilisation pour vous permettre de découvrir et de manipuler avec plus d'aisance toutes les fonctionnalités mises
