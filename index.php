@@ -18,7 +18,7 @@ if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le f
 $expire = 365*24*3600;
 
 //enregistrement du cookie au nom de lang
-setcookie('lang', $lang, time() + $expire);
+setcookie('lang', $lang, time() + $expire, "/");
 ?>
 
 <!DOCTYPE html>
