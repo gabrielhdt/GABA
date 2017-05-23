@@ -82,7 +82,7 @@ QRY;
     return($exists);
 }
 
-function add_line_smart($table, $values)
+function add_line($table, $values)
 {
     /* table a string, values an associtive array:
      * 'column name' => array('value' => mixed, 'type' => PDO type)
@@ -113,7 +113,7 @@ function add_line_smart($table, $values)
         $stmt->execute();
         $id_addition = $conn->lastInsertId();
     } catch (PDOException $e) {
-        echo "Something went wrong (add_line_smart): " . $e->getMessage();
+        echo "Something went wrong (add_line): " . $e->getMessage();
         $conn = null;
         return(false);
     }

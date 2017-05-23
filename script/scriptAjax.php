@@ -43,7 +43,7 @@ elseif (
         $_POST['msg']
     )
 ) {
-    add_line_smart('messages',
+    add_line('messages',
         array(
             'name' => array(
                 'value' => $_POST['nom'], 'type' => PDO::PARAM_STR
@@ -76,7 +76,7 @@ elseif (
             'value' => $_POST['idStaff'], 'type' => PDO::PARAM_INT
         )
     );
-    $idMeasure = add_line_smart('Measure', $infosMeasure);
+    $idMeasure = add_line('Measure', $infosMeasure);
     $infosMiscQuantity = array(
         'idMeasure' => array(
             'value' => $idMeasure,
@@ -95,7 +95,7 @@ elseif (
             'type' => PDO::PARAM_STR
         )
     );
-    add_line_smart('MiscQuantity', $infosMiscQuantity);
+    add_line('MiscQuantity', $infosMiscQuantity);
 }
 // script pour l'ajout d'une relation entre 2 followeds
 elseif (
@@ -124,7 +124,7 @@ elseif (
     {
         $info_relationship['begin'] = $_POST['begin'];
     }
-    add_line_smart('Relation', $info_relationship);
+    add_line('Relation', $info_relationship);
     return(true);
 }
 // script pour la modifiction des caractèristqiues d'une espèce
@@ -198,7 +198,7 @@ elseif (
     }
     else
     {
-        $idmeasure = add_line_smart('Measure',
+        $idmeasure = add_line('Measure',
             array(
                 'idFollowed' => array(
                     'value' => $_POST['idfollowed'],
@@ -210,7 +210,7 @@ elseif (
                 )
             )
         );
-        add_line_smart('Location',
+        add_line('Location',
             array(
                 'latitude' => array(
                    'value' => (float) $coords[0],

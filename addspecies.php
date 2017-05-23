@@ -23,7 +23,7 @@ head("Ajouter une espèce");
 // If called after search fill database
 if (isset($_POST['species']))
 {
-    $added_id = add_line_smart('Species',
+    $added_id = add_line('Species',
         array(
             'binomial_name' => array(
                 'value' => $_POST['species'], 'type' => PDO::PARAM_STR
@@ -52,7 +52,7 @@ if (isset($_POST['species']))
         )
     );
     if ($added_id) {
-        add_line_smart('SpeciesEdition',
+        add_line('SpeciesEdition',
             array(
                 'idStaff' => array(
                     'value' => $_SESSION['idstaff'], 'type' => PDO::PARAM_INT

@@ -54,9 +54,9 @@ if (isset($_POST['species']))
             'value' => $_POST['species'], 'type' => PDO::PARAM_INT
         ),
     );
-    $added_id = add_line_smart('Followed', $values);
+    $added_id = add_line('Followed', $values);
     if ($added_id) {
-        add_line_smart('FollowedEdition',
+        add_line('FollowedEdition',
             array(
                 'idStaff' => array(
                     'value' => $_SESSION['idstaff'], 'type' => PDO::PARAM_INT
@@ -71,7 +71,7 @@ if (isset($_POST['species']))
         );
         if (isset($_POST['use_geoloc']) && $_POST['use_geoloc'] == 'on')
         {
-            $idmeasure = add_line_smart('Measure',
+            $idmeasure = add_line('Measure',
                 array(
                     'idFollowed' => array(
                         'value' => $added_id, 'type' => PDO::PARAM_INT
@@ -82,7 +82,7 @@ if (isset($_POST['species']))
                 )
             );
             $coords = explode(',', $_COOKIE['geoloc']);
-            add_line_smart('Location',
+            add_line('Location',
                 array(
                     'latitude' => array(
                         'value' => (float) $coords[0], 'type' => PDO::PARAM_STR

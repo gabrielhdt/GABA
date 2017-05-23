@@ -47,7 +47,7 @@ if (isset($_POST['fname']))
 {
     $add['name'] = array('value' => $_POST['fname'], 'type' => PDO::PARAM_STR);
     $add['type'] = array('value' => $_POST['type'], 'type' => PDO::PARAM_STR);
-    add_line_smart($table, $add);
+    add_line($table, $add);
 }
 ?>
 <?php include "footer.php" ?>
