@@ -10,7 +10,7 @@ function arithmetic_mean($real_arr) {
     return array_sum($real_arr)/count($real_arr);
 }
 
-function add_line($table, $values)
+function add_line($table, $values, $keepcase=FALSE)
 {
     /* table a string, values an associtive array:
      * 'column name' => array('value' => mixed, 'type' => PDO type)
@@ -26,6 +26,7 @@ function add_line($table, $values)
     $query .= ' VALUES ';
     $query .= '(' . implode(', ', array_fill(0, $num_adds, '?')) . ')';
     $query .= ';';
+    function managecase($arg) {return($keepcase ? $arg : mb_strtolower($arg));}
     global $servername, $username, $dbname, $password, $charset;
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
@@ -35,7 +36,7 @@ function add_line($table, $values)
         foreach ($columns as $col)
         {
             $stmt->bindValue($qumarkcounter,
-                mb_strtolower($values[$col]['value']), $values[$col]['type']);
+                managecase($values[$col]['value']), $values[$col]['type']);
             $qumarkcounter++;
         }
         $stmt->execute();
@@ -221,7 +222,7 @@ function main_tables_from_keys()
     return $key_table;
 }
 
-function update_line($table, $updates, $where)
+function update_line($table, $updates, $where, $keepcase=FALSE)
 {
     /* table a string,
      * updates and where are the same type of array, i.e.
@@ -236,6 +237,7 @@ function update_line($table, $updates, $where)
     $query .= ' WHERE ';
     $query .= $where['str'];
     $query .= ';';
+    function managecase($arg) {return($keepcase ? $arg : mb_strtolower($arg));}
     global $servername, $username, $dbname, $password, $charset;
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
@@ -245,7 +247,7 @@ function update_line($table, $updates, $where)
         foreach ($updates['valtype'] as $upvt)
         {
             $stmt->bindValue($qumarkcounter,
-                mb_strtolower($upvt['value']), $upvt['type']);
+                managecase($upvt['value']), $upvt['type']);
             $qumarkcounter++;
         }
         foreach ($where['valtype'] as $wh)
