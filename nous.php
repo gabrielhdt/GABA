@@ -7,9 +7,9 @@ if(isset($_COOKIE['lang'])) {
 }
 
 if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier index_fr_FR.php
-    include('i18n/fr_FR/index_fr_FR.php');
+    include('i18n/fr_FR/aboutus_fr_FR.php');
 } elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier index_en_GB.php
-    include('i18n/en_UK/index_en_UK.php');
+    include('i18n/en_UK/aboutus_en_UK.php');
 }
 
 include 'script/db.php';
