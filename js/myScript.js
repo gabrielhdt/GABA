@@ -179,7 +179,7 @@ gestion du choix des langues
 
 function lang(language) {
     $.post(
-        'script/choice_lang.php',
+        'script/scriptAjax.php',
     {
         lang: language
     }
