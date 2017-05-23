@@ -117,6 +117,7 @@ if (isset($added_id) && $added_id)
 <?php }
 elseif (isset($added_id) && !$added_id) {?>
 <div class="alert alert-danger" role="alert">
+    <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
     Something went wrong. Try again adding a species.
 </div>
 <?php } ?>
