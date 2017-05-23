@@ -54,7 +54,6 @@ curl_setopt($ch, CURLOPT_POSTFIELDS,
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 $wikijson = curl_exec($ch);
 $wikiarr = json_decode($wikijson, TRUE);
-print_r($wikiarr);
 $wikintro = $wikiarr['query']['pages'][0]['extract'];
 ?>
 
