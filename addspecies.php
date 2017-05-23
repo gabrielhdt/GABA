@@ -6,18 +6,12 @@ if (!isset($_SESSION['login'], $_SESSION['idstaff']) ||
     exit();
 }
 ?>
-<!DOCTYPE html>
-<html lang="fr">
 
 <?php include 'script/db.php';
 include 'script/form_func.php';
 include "head.php";
-head("Ajouter une espèce");
 ?>
 
-<body>
-
-<?php include "nav.php" ?>
 
 <?php
 // If called after search fill database
@@ -52,7 +46,7 @@ if (isset($_POST['species']))
         )
     );
     if ($added_id) {
-        add_line('SpeciesEdition',
+        $added_id = add_line('SpeciesEdition',
             array(
                 'idStaff' => array(
                     'value' => $_SESSION['idstaff'], 'type' => PDO::PARAM_INT
@@ -106,6 +100,21 @@ foreach ($lines as $line)
     array_push($genuses, ucfirst($line['genus']));
 }
 ?>
+<!DOCTYPE html>
+<html lang="fr">
+<body>
+<?php
+head("Ajouter une espèce");
+include "nav.php";
+if (isset($added_id) && $added_id)
+{ //TODO: pre fill followed.php page
+?>
+<div class="alert alert-success" role="alert">
+    You have successfully added a new species to the database.
+    Would you like to add a new <a href="addfollowed.php">individual</a>?
+</div>
+<?php } ?>
+
 <div class="container" style="background-image: url('data/pics/unordered/herd.jpg');">
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
         <div class="formulaire">
