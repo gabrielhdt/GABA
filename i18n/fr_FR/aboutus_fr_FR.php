@@ -1,5 +1,5 @@
 <?php
-$about_us_title = "<h1>A propos de nous</h1>"
+$about_us_title = "<h1>A propos de nous</h1>";
 $about_us = <<<AUS
 <p>&emsp; Le laboratoire science exchange étudie les animaux depuis
 1987 et se situe au ... Nos chercheurs avaient l'habitude
