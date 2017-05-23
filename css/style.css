@@ -252,7 +252,7 @@ JUMBOTRON : là où on écrit nos textes
     text-align: justify;
     font-family: 'Linux Libertine';
     margin: 0 20px;
-    display: table-cell;
+    /*display: table-cell;*/
 }
 
 #verbotron p{
