@@ -26,15 +26,15 @@ include 'nav.php';
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <div class="outer row">
+                <div class="middle col-lg-8 col-md-8 col-sm-12 col-xs-12">
                     <p>
                         &emsp;Notre site a donc un aspect pratique mais aussi un côté ludique pour les personnes qui ne sont pas chercheurs, mais simplement curieuses et qui souhaitent en savoir plus sur les animaux étudiés ! Ces personnes là, même si elles ne peuvent pas la
                         modifier, ont elles aussi accès à la base de données de nos centres animaliers et peuvent rechercher des données d'une espèce, d'un individus, des batiments ou encore des informations sur nos chercheurs grâce à l'onglet
                         <a href="recherche.php">Recherche</a>. Si vous ne savez pas execatement quelles informations regarder, laissez vous happer par les activités proposées au fil des pages !
                     </p>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="middle col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <img src="data/pics/unordered/owl3.jpg" class="img-responsive" alt="Espace Recherche" />
                 </div>
 
