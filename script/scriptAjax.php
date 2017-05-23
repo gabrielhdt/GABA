@@ -181,7 +181,7 @@ elseif (
     $where['valtype'] = array(
         array('value' => $_POST['idFollowed'], 'type' => PDO::PARAM_INT)
     );
-    update_line('Followed', $change, $where);
+    update_line('Followed', $change, $where, TRUE);
 }
 // script de mise a jour de la localisation
 elseif (
