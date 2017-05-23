@@ -36,9 +36,9 @@ setcookie('lang', $lang, time() + $expire);
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-7 col-md-offset-7 col-sm-offset-5">
             <div class="description outer">
                 <div class="middle">
-                    <h1>A propos de nous ...</h1>
-                    <?php echo $about_us ?>
-                    <a href="nous.php" type="button" class="btn btn-success">En savoir plus</a>
+                    <?php echo $about_us_title; ?>
+                    <?php echo $about_us; ?>
+                    <a href="nous.php" type="button" class="btn btn-success"><?php echo $know_more; ?></a>
                 </div>
 
             </div>
@@ -97,11 +97,9 @@ setcookie('lang', $lang, time() + $expire);
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
             <div class="description outer">
                 <div class="middle">
-                    <h1>Besoin d'aide ?</h1>
-                    <p>Afin de vous faire profiter pleinement de toutes les possibilités qu'offre notre site, nous avons créer un manuel d'utilisation pour vous permettre de découvrir et de manipuler avec plus d'aisance toutes les fonctionnalités mises
-                        en ligne.</p>
-                    <p>C'est aussi ici que vous trouverez la page Webmaster, donnant de plus amples informations sur les constructeurs du site.</p>
-                    <a href="help.php" type="button" class="btn btn-success">En savoir plus</a>
+                    <?php echo $needhelp_title; ?>
+                    <?php echo $needhelp; ?>
+                    <a href="help.php" type="button" class="btn btn-success"><?php echo $know_more; ?></a>
                 </div>
             </div>
         </div>
@@ -109,10 +107,8 @@ setcookie('lang', $lang, time() + $expire);
     <div class="container-fluid">
         <div class='row'>
             <div id="contact" class="col-lg-10 col-md-10 col-sm-10 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
-                <h1>Nous contacter</h1>
-                <p>Vous voulez communiquer avec un de nos chercheurs ? Lui poser des questions sur ses recherches et données ? Vous n'avez qu'à communiquer vos contacts et nous vous mettrons en relation rapidemment.</p>
-                <p>N'hésitez pas non plus à faire part de vos remarques et suggestions dans le but d'améliorer l'utilisation du site.</p>
-                <p>(* champs obligatoires)</p>
+                <?php echo $contactus_tilte; ?>
+                <?php echo $contactus; ?>
                 <form>
                     <input type="text" name="name" placeholder="Votre nom*">
                     <input type="email" name="email" placeholder="Votre e-mail*">
