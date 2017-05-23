@@ -1,3 +1,26 @@
+<?php
+if(isset($_COOKIE['lang'])) {
+    $lang = $_COOKIE['lang'];
+} else {
+    // si aucune langue n'est déclaré, la langue par default est l'anglais
+    $lang = 'en';
+}
+
+//script d'origine
+if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier index_fr_FR.php
+    include('i18n/fr_FR/index_fr_FR.php');
+} elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier index_en_GB.php
+    include('i18n/enUK/index_en_GB.php');
+}
+//fin du script d'origine
+
+//définition de la durée du cookie (1 an)
+$expire = 365*24*3600;
+
+//enregistrement du cookie au nom de lang
+setcookie('lang', $lang, time() + $expire);
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
