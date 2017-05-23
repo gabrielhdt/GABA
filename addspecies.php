@@ -110,6 +110,7 @@ if (isset($added_id) && $added_id)
 { //TODO: pre fill followed.php page
 ?>
 <div class="alert alert-success" role="alert">
+    <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
     You have successfully added a new species to the database.
     Would you like to add a new <a href="addfollowed.php">individual</a>?
 </div>
