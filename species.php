@@ -49,7 +49,8 @@ curl_setopt($ch, CURLOPT_URL, 'https://en.wikipedia.org/w/api.php');
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_USERAGENT, 'Owl/0.1 GABA');
 curl_setopt($ch, CURLOPT_POSTFIELDS,
-    'action=query&prop=extracts&exintro=&format=json&formatversion=2&titles=Bobcat'
+    'action=query&prop=extracts&exintro=&format=json&formatversion=2&titles=' .
+    ucwords($search_res['common_name'])
 );
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 $wikijson = curl_exec($ch);
