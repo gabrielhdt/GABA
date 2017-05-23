@@ -1,5 +1,5 @@
 <?php
-$about_us_title = "<h1>About Us</h1>"
+$about_us_title = "<h1>About Us</h1>";
 $about_us = <<<AUS
 <p>
 &emsp;
