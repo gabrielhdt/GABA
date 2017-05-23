@@ -1,5 +1,5 @@
 <?php
-$about_us_title = "A propos de nous ...";
+$about_us_title = "<h1>A propos de nous ...</h1>";
 $about_us = <<<ABU
 <p>Le laboratoire science exchange a pour mission de regrouper les informations
 de multiples laboratoires de recherche animale et de mettre à disposition les
