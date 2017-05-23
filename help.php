@@ -70,7 +70,7 @@ include 'nav.php';
         </div>
     </div>
     <div class="container-fluid">
-        <div class="row">
+        <!-- <div class="row"> -->
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="jumbotron">
@@ -132,7 +132,7 @@ include 'nav.php';
         </div>
     </div>
 
-        </div>
+        <!-- </div> -->
 
         <!-- Nos modals de présentations -->
 
