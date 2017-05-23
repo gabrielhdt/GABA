@@ -93,14 +93,38 @@ include 'nav.php';
             }
             ?>
             <table>
-                <tr><td>Kingdom</td><td><?php echo ucfirst($search_res['kingdom'])?></td></tr>
-                <tr><td>Phylum</td><td><?php echo ucfirst($search_res['phylum'])?></td></tr>
-                <tr><td>Class</td><td><?php echo ucfirst($search_res['class'])?></td></tr>
-                <tr><td>Order</td><td><?php echo ucfirst($search_res['order_s'])?></td></tr>
-                <tr><td>Family</td><td><?php echo ucfirst($search_res['family'])?></td></tr>
-                <tr><td>Genus</td><td><?php echo ucfirst($search_res['genus'])?></td></tr>
+                <tr>
+                    <td>Kingdom</td>
+                    <td><?php echo ucfirst($search_res['kingdom'])?></td>
+                </tr>
+                <tr>
+                    <td>Phylum</td>
+                    <td><?php echo ucfirst($search_res['phylum'])?></td>
+                </tr>
+                <tr>
+                    <td>Class</td>
+                    <td><?php echo ucfirst($search_res['class'])?></td>
+                </tr>
+                <tr>
+                    <td>Order</td>
+                    <td><?php echo ucfirst($search_res['order_s'])?></td>
+                </tr>
+                <tr>
+                    <td>Family</td>
+                    <td><?php echo ucfirst($search_res['family'])?></td>
+                </tr>
+                <tr>
+                    <td>Genus</td>
+                    <td><?php echo ucfirst($search_res['genus'])?></td>
+                </tr>
             </table>
             We currently have <?php echo $nfoll ?> individuals.
+            <form action="search_species.php" method="post">
+                <input type="hidden" name="species[]" readonly
+                value="<?php echo $idspecies ?>">
+                <button type="submit" class="btn btn-default btn-xs">See them
+                </button>
+            </form>
             <p id="wikintro">
                 Data from wikipedia soon
                 <?php echo $wikintro?>
