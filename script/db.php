@@ -362,7 +362,7 @@ function main_tables_from_keys()
     return $key_table;
 }
 
-function update_line_smart($table, $updates, $where)
+function update_line($table, $updates, $where)
 {
     /* table a string,
      * updates and where are the same type of array, i.e.
@@ -396,7 +396,7 @@ function update_line_smart($table, $updates, $where)
         }
         $stmt->execute();
     } catch (PDOException $e) {
-        echo "Something went wrong (update_line_smart): " . $e->getMessage();
+        echo "Something went wrong (update_line): " . $e->getMessage();
         $conn = null;
         return(false);
     }

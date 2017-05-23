@@ -159,7 +159,7 @@ CHG;
         array('value' => $_POST['family'], 'type' => PDO::PARAM_STR),
         array('value' => $_POST['genus'], 'type' => PDO::PARAM_STR)
     );
-    update_line_smart('Species', $change, $where);
+    update_line('Species', $change, $where);
 }
 // script de mise a jour des informations d'un followed
 elseif (
@@ -181,7 +181,7 @@ elseif (
     $where['valtype'] = array(
         array('value' => $_POST['idFollowed'], 'type' => PDO::PARAM_INT)
     );
-    update_line_smart('Followed', $change, $where);
+    update_line('Followed', $change, $where);
 }
 // script de mise a jour de la localisation
 elseif (

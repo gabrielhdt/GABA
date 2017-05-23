@@ -28,7 +28,7 @@ if (isset($_POST['old_pw'], $_POST['new_pw'], $_POST['conf_pw']))
         $update['valtype'] = array(
             array('value' => $pwhash, 'type' => PDO::PARAM_STR)
         );
-        update_line_smart('Staff', $update, $where);
+        update_line('Staff', $update, $where);
     }
 }
 ?>
