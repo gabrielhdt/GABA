@@ -15,7 +15,7 @@ include 'nav.php';
                     <hr>
                 </div>
             </div>
-            <div class="row" style="border: 1px solid red;">
+            <div class="outer row" style="border: 1px solid red;">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
                     <img src="data/pics/unordered/owl3.jpg" class="img-responsive" alt="Espace login" />
                 </div>
