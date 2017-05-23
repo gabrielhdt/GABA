@@ -191,7 +191,7 @@ description
 
 .outer {
     display: table;
-    position: absolute;
+    /*position: absolute;*/
 }
 
 .formulaire {
