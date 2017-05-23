@@ -12,4 +12,21 @@ $carousel_1 = <<<CRS1
 any species you choose are born during any time lap.
 </p>
 CRS1;
+$needhelp = <<<NHLP
+<p>
+To make sure you enjoy fully the website, we have written for you a notice
+which will enable you to discover and manipulate seemlessly all the features
+available.
+</p>
+NHLP;
+$contactus = <<<CCU
+<p>
+Do you want to have a chat with one of our researchers, ask him or her some
+questions on his or her researches or data? You only have to give us
+some information and we will arrange that quickly.
+</p>
+<p>
+Don't hesitate to give us some feedbacks to improve the site.
+</p>
+CCU;
 ?>
