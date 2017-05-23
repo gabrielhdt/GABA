@@ -19,7 +19,7 @@ include 'nav.php';
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
                     <img src="data/pics/unordered/owl3.jpg" class="img-responsive" alt="Espace login" />
                 </div>
-                <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12 col-lg-offset-1">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                         <p>&emsp;Ce site a été conçu dans l'espoir d'aider les chercheurs de laboratoires animaliers à partager les données des individus dont ils s'occupent. Seuls les chercheurs de nos laboratoires sont acrédités à saisir les informations sur
                             une espèce ou un individu en particulier, ou bien des informations sur les lieux où peuvent se rencontrer ces animaux, dans la base de données. Pour cela, ils doivent rentrer leur identifiant et mot de passe sur la page <a href="login.php">Login</a>.
                         </p>
@@ -27,7 +27,7 @@ include 'nav.php';
             </div>
 
             <div class="row row-help">
-                <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12 col-lg-offset-1">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                     <p>
                         &emsp;Notre site a donc un aspect pratique mais aussi un côté ludique pour les personnes qui ne sont pas chercheurs, mais simplement curieuses et qui souhaitent en savoir plus sur les animaux étudiés ! Ces personnes là, même si elles ne peuvent pas la
                         modifier, ont elles aussi accès à la base de données de nos centres animaliers et peuvent rechercher des données d'une espèce, d'un individus, des batiments ou encore des informations sur nos chercheurs grâce à l'onglet
@@ -44,7 +44,7 @@ include 'nav.php';
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <img src="data/pics/unordered/owl3.jpg" class="img-responsive" alt="Carousel" />
                 </div>
-                <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12 col-lg-offset-1">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                     <p>
                         &emsp;Par exemple, notre site permet de visualiser les statistiques sur tous les individus et chaque espèce enregistrée. Ainsi, vous pouvez découvrir des statistiques sur le nombre d'individus d'une espèce nés au cours d'une certaine période, ou encore
                         le poids moyen des individus d'une espèce etudiée dans nos laboratoires. Cette activité est directement proposée sur chaque page dédiée à l'espèce ou à l'individu. N'hésitez pas à tester cette fonction en cliquant sur les exemples
@@ -56,7 +56,7 @@ include 'nav.php';
             </div>
 
             <div class="row row-help">
-                <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12 col-lg-offset-1">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                     <p>
                         &emsp;Enfin, n'hésitez pas à laissez des commentaires sur vos impressions grâce à la section <a href="contact">Contact</a> de la page d'accueil, ou à demander à prendre contact avec certains de nos chercheurs afin d'en apprendre
                         plus sur ses recherches ou sur le metier lui même. Vos coordonnées leur seront transmis par l'intermédiaire du gérant du site pour qu'il puisse vous joindre personnelllement. Cette section commentaire vous permet aussi de nous
