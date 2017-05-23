@@ -1,11 +1,26 @@
 <?php
+if(isset($_COOKIE['lang'])) {
+    $lang = $_COOKIE['lang'];
+} else {
+    // si aucune langue n'est déclaré, la langue par default est l'anglais
+    $lang = 'en';
+}
+
+if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier index_fr_FR.php
+    include('i18n/fr_FR/index_fr_FR.php');
+} elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier index_en_GB.php
+    include('i18n/en_UK/index_en_UK.php');
+}
+
 include 'script/db.php';
 include 'head.php';
 head('Notre Labo');
 ?>
 
 <body>
+
 <?php include 'nav.php'; ?>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id='map-container'>
@@ -13,36 +28,16 @@ head('Notre Labo');
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="jumbotron" id='verbotron'>
-                <h1>A propos de nous</h1>
+                <?php echo $about_us_title; ?>
                 <hr>
-            <p>&emsp; Le laboratoire science exchange étudie les animaux depuis
-                1987 et se situe au ... Nos chercheurs avaient l'habitude
-                d'échanger leur données avec des confrères d'autres laboratoires
-                mais aussi de zoos ou autres complexe animaliers. Ceci impliquait
-                un travail fastidieux, le format des données n'étant pas
-                forcément adapté aux échanges par mail par exemple.
-            </p>
-            <p>&emsp;Ils ont alors fait appel à notre équipe de webmasters pour
-                leur construire un site capable de faciliter cet échange et de
-                rendre la restitution des données la plus simple possible à
-                travers son interface graphique. Seuls les chercheurs acrédités
-                peuvent rajouter, supprimer ou simplement modifier la base de
-                données. Mais les informations sont accessibles à tous ! Ainsi
-                vous pouvez par exemple chercher tous les individus appartenant
-                à l'espèce singe, ou bien découvrir que le poids moyen
-                d'un lion faisant parti de nos laboratoires est de 203 kilos !
-            </p>
-            <p>
-                &emsp;N'hésitez pas à découvrir toutes les fonctionnalités
-                qu'offre notre site et profitez au maximum de votre expérience
-                grâce à la section aide !
-            </p>
+                <?php echo $about_us; ?>
                 <a href="help.php" type="button" class="btn btn-success"
                 style="text-align:center;">Help !</a>
             </div>
         </div>
     </div>
 </div>
+
 <?php include 'footer.php'; ?>
 <script type="text/javascript" charset="utf-8">
     var contwidth = $('#map-container').width();
