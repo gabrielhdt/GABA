@@ -20,12 +20,10 @@ include 'nav.php';
                     <img src="data/pics/unordered/owl3.jpg" class="img-responsive" alt="Espace login" />
                 </div>
                 <div class="outer col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                    <div class="middle">
-                        <div class="inner">
+                    <div class="middle" style="border: 1px solid red;">
                         <p>&emsp;Ce site a été conçu dans l'espoir d'aider les chercheurs de laboratoires animaliers à partager les données des individus dont ils s'occupent. Seuls les chercheurs de nos laboratoires sont acrédités à saisir les informations sur
                             une espèce ou un individu en particulier, ou bien des informations sur les lieux où peuvent se rencontrer ces animaux, dans la base de données. Pour cela, ils doivent rentrer leur identifiant et mot de passe sur la page <a href="login.php">Login</a>.
                         </p>
-                    </div>
                     </div>
                 </div>
             </div>
