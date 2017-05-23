@@ -26,7 +26,7 @@ which will enable you to discover and manipulate seemlessly all the features
 available.
 </p>
 NHLP;
-$contactus_tilte = "<h1>Contact Us</h1>"
+$contactus_tilte = "<h1>Contact Us</h1>";
 $contactus = <<<CCU
 <p>
 Do you want to have a chat with one of our researchers, ask him or her some
