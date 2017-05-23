@@ -190,8 +190,9 @@ description
 }
 
 .outer {
+    height: auto;
     display: table;
-    position: absolute;
+    /*position: absolute;*/
 }
 
 .formulaire {

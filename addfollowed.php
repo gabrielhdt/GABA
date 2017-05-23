@@ -100,11 +100,13 @@ include "nav.php";
 if (isset($added_id) && $added_id) {
 ?>
 <div class="alert alert-success" role="alert">
+    <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
     You have successfully added a new individual to the database.
 </div>
 <?php }
 elseif (isset($added_id) && !$added_id) { ?>
 <div class="alert alert-danger" role="alert">
+    <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
     Something went wrong. Try again adding an individual.
 </div>
 <?php } ?>
