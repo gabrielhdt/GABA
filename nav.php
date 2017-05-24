@@ -111,7 +111,7 @@ function current_nav() {
 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 <span class="glyphicon glyphicon-chevron-down"></span>
 </button>
-<a class="navbar-brand" href="#"><img id="logo" src="image/logo.png" alt=""></a>
+<a class="navbar-brand" href="index.php"><img id="logo" src="image/EagleIkon.png" alt=""></a>
 </div>
 <div class="collapse navbar-collapse" id="myNavbar">
 <?php echo current_nav(); ?>
