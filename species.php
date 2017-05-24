@@ -253,7 +253,9 @@ subdomain: ['a', 'b', 'c']
 foreach ($last_locs as $follocation) {
     echo 'var marker = L.marker([' . $follocation['latitude'] . ', ' .
         $follocation['longitude'] . ']).addTo(foll_of_sp_map);';
-    echo 'marker.bindPopup("<b>' . $follocation['idFollowed'] . '</b>");';
+    echo 'marker.bindPopup("<b><a href=followed.php?id=' .
+        $follocation['idFollowed'] . '>' .
+        $follocation['idFollowed'] . '</a></b>");';
 }
 ?>
 </script>
