@@ -100,8 +100,11 @@ function current_nav() {
     return $nav;
 }
 ?>
-<a href=<?php echo "$page_name"; ?> onclick="language('fr')"><img class="drapeau" src="image/drapeau_fr.jpg" alt=""></a>
-<a href=<?php echo "$page_name"; ?> onclick="language('en')"><img class="drapeau" src="image/drapeau_gb.jpg" alt=""></a>
+<div id="flags">
+
+</div>
+<a href=<?php echo "$page_name"; ?> onclick="language('fr')"><img class="flag" src="image/drapeau_fr.jpg" alt=""></a>
+<a href=<?php echo "$page_name"; ?> onclick="language('en')"><img class="flag" src="image/drapeau_gb.jpg" alt=""></a>
 
 <nav class="navbar">
 <div class="container-fluid">

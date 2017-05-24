@@ -94,11 +94,12 @@ logos
     height: 75px;
     margin-top: -30px;
 }
-
-.drapeau {
+#flags {
+    right: 10px;
+}
+.flag {
     width: 25px;
     height: 15px;
-    right: 10px;
 }
 
 /******************************************************************************
