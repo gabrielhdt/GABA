@@ -10,13 +10,13 @@ if(isset($_COOKIE['lang'])) {
 
 // TODO: faire la traduction
 
-//script d'origine
-// if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier index_fr_FR.php
-//     include('i18n/fr_FR/index_fr_FR.php');
-// } elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier index_en_GB.php
-//     include('i18n/en_UK/index_en_UK.php');
-// }
-//fin du script d'origine
+// fichier de langue a importer
+if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier (...)_fr_FR.php
+    include('i18n/fr_FR/addfacility_fr_FR.php');
+} elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier (...)_en_GB.php
+    include('i18n/en_UK/addfacility_en_UK.php');
+}
+
 
 include 'script/db.php';
 include 'script/form_func.php';
@@ -31,17 +31,18 @@ head("Ajouter un bâtiment", $lang);
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
         <div class="formulaire">
             <div class="middle">
-                <h1>Ajouter un centre</h1>
-                <p>Remplissez le formulaire ci-dessous pour compléter notre base de donnée.</p>
-                <p>Chaque contribution nous permet de vous offrir un service de meilleur qualité.</p>
+                <?php echo $title_form ?>
+                <?php echo $paragraph_form ?>
                 <form action="addfacility.php" method="post">
                     <div class="input-goup">
-                        <input class="form-control" type="text" name="fname" placeholder="Nom du centre*">
-                        <input class="form-control" type="text" name="type" placeholder="Type">
-                        <input class="form-control" type="number" name="latitude" step="0.00000000000000001" placeholder="Latitude">
-                        <input class="form-control" type="number" name="longitude" step="0.00000000000000001" placeholder="Longitude">
+                        <input class="form-control" type="text" name="fname" placeholder="<?php echo $placeholder_fname ?>">
+                        <input class="form-control" type="text" name="type" placeholder="<?php echo $placeholder_type ?>">
+                        <input class="form-control" type="number" name="latitude"
+                               step="0.00000000000000001" placeholder="?php echo $placeholder_latidude ?>">
+                        <input class="form-control" type="number" name="longitude"
+                               step="0.00000000000000001" placeholder="?php echo $placeholder_longitude ?>">
                     </div>
-                    <button class="btn btn-success" type="submit" name="submit_contact">Enregistrer</button>
+                    <button class="btn btn-success" type="submit" name="submit_contact"><?php echo $submit ?></button>
                 </form>
             </div>
 
