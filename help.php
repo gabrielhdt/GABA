@@ -86,7 +86,7 @@ head("Desoin d'aide ?", $lang);
                 </div>
             </div>
 
-            <div class="row row-help">
+            <div class="row row-help" style="border: 1px solid red">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="jumbotron" id='webmaster'>
                         <h1>Webmaster</h1>
