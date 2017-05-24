@@ -5,6 +5,19 @@
 <?php
 session_start ();
 
+$page_name = substr( $_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '/')+1, strrpos($_SERVER['PHP_SELF'],'.php')-1);
+
+if(isset($_COOKIE['lang'])) {
+    $lang = $_COOKIE['lang'];
+} else {
+    // si aucune langue n'est déclaré, la langue par default est l'anglais
+    $lang = 'en';
+}
+$text_fr = array('Accueil', 'Le projet', 'Recherche', 'Help', 'Espèce', 'Individu', 'Bâtiment', 'Chercheur',
+                'Contact', 'Connexion', 'Espace Perso', 'Déconnexion');
+$text_en = array('Home', 'The Project', 'Research', 'Help', 'Species', 'Followed', 'Facility', 'Chercheur',
+                'Contact', 'LogIn', 'Your Space', 'LogOut');
+
 function current_nav() {
     /************************
     fonction qui gère la les différentes navbar en fonction de la
@@ -14,12 +27,15 @@ function current_nav() {
     $links = array('index.php', 'nous.php', 'recherche.php', 'help.php', 'search_species.php', 'search_followed.php',
                     'search_facility.php', 'chercheur.php', 'index.php#contact', 'login.php', 'membre_index.php',
                     'logout.php', 'admin_index.php');
-    $text = array('Accueil', 'Le projet', 'Recherche', 'Help', 'Espèce', 'Individu', 'Bâtiment', 'Chercheur',
-                    'Contact', 'Connexion', 'Espace Perso', 'Déconnexion');
 
     $format = "<li %s><a href='%s'>%s %s</a></li>\n";
     // on cherche le nom de la page en cours
-    $page_name = substr( $_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '/')+1, strrpos($_SERVER['PHP_SELF'],'.php')-1);
+    global $page_name, $lang, $text_fr, $text_en;
+    if ($lang == 'fr') {
+        $text = $text_fr;
+    } elseif ($lang == 'en') {
+        $text = $text_en;
+    }
     // debut du nav
     $nav = "<ul class='nav navbar-nav'>\n";
 
@@ -83,7 +99,6 @@ function current_nav() {
     }
     return $nav;
 }
-$page_name = substr( $_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '/')+1, strrpos($_SERVER['PHP_SELF'],'.php')-1);
 ?>
 <a href=<?php echo "$page_name"; ?> onclick="language('fr')"><img class="drapeau" src="image/drapeau_fr.jpg" alt=""></a>
 <a href=<?php echo "$page_name"; ?> onclick="language('en')"><img class="drapeau" src="image/drapeau_gb.jpg" alt=""></a>
