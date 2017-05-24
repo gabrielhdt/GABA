@@ -1,7 +1,7 @@
 <?php
 $home = "Home";
 $lab = "The Project";
-$species = "Species"
+$species = "Species";
 $followed = "Followed";
 $facility = "Facility";
 $help = "Help";
