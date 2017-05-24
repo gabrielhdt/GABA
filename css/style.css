@@ -630,7 +630,7 @@ HELP
 }
 #aurelie {
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
-                url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
+                url("../data/pics/unordered/aurelie.jpg") center/cover no-repeat;
 }
 #adrien {
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
@@ -638,19 +638,19 @@ HELP
 }
 #benoit {
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
-                url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
+                url("../data/pics/unordered/benoit.jpg") center/cover no-repeat;
 }
 #gabriel:hover {
     background: url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
 }
 #aurelie:hover {
-    background: url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
+    background: url("../data/pics/unordered/aurelie.jpg") center/cover no-repeat;
 }
 #adrien:hover {
     background: url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
 }
 #benoit:hover {
-    background: url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
+    background: url("../data/pics/unordered/benoit.jpg") center/cover no-repeat;
 }
 
 .photo_cv {
