@@ -1,4 +1,6 @@
 <?php
+session_start ();
+
 if(isset($_COOKIE['lang'])) {
     $lang = $_COOKIE['lang'];
 } else {
