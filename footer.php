@@ -6,28 +6,24 @@ if(isset($_COOKIE['lang'])) {
     $lang = 'en';
 }
 
-// TODO: faire la traduction
-
-//script d'origine
-// if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier index_fr_FR.php
-//     include('i18n/fr_FR/index_fr_FR.php');
-// } elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier index_en_GB.php
-//     include('i18n/en_UK/index_en_UK.php');
-// }
-//fin du script d'origine
+// fichier de langue a importer
+if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier (...)_fr_FR.php
+    include('i18n/fr_FR/footer_fr_FR.php');
+} elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier (...)_en_GB.php
+    include('i18n/en_UK/footer_en_UK.php');
+}
 ?>
 
 <div class="container-fluid">
 <div class="row">
 <footer>
     <ul>
-        <li class="active"><a href="#">Accueil</a></li>|
-        <li><a href="#">Notre labo</a></li>|
-        <li><a href="#">Espèce</a></li>|
-        <li><a href="#">Individu</a></li>|
-        <li><a href="#">Bâtiment</a></li>|
-        <li><a href="#">Chercheur</a></li>|
-        <li><a href="#">Help</a></li>
+        <li class="active"><a href="#"><?php echo $home ?></a></li>|
+        <li><a href="#"><?php echo $lab ?></a></li>|
+        <li><a href="#"><?php echo $species ?></a></li>|
+        <li><a href="#"><?php echo $followed ?></a></li>|
+        <li><a href="#"><?php echo $facility ?></a></li>|
+        <li><a href="#"><?php echo $help ?></a></li>
     </ul>
     &copy; All rights reserved GABA
     <a id="goTop"><span class="glyphicon glyphicon-chevron-up"></span></a>
