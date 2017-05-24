@@ -74,10 +74,10 @@ head("Desoin d'aide ?", $lang);
 
     <div class="container-fluid" style="text-align:center">
 
-            <div class="row row-help" style="border: 1px solid red">
+            <div class="row row-help outer" style="border: 1px solid red">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div class="outer jumbotron">
-                        <p class="middle">
+                    <div class="middle jumbotron">
+                        <p>
                             &emsp;Vous trouverez dans la vidéo ci-contre un aperçu des fonctionnalités citées précedemment
                             et comment les utiliser au mieux.
                         </p>
