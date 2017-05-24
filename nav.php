@@ -96,15 +96,8 @@ function current_nav() {
 }
 ?>
 <div id="flags">
-    <form action="<?php echo $page_name ?>" method="post">
-        <input type="hidden" name="lang" value="fr">
-        <a type="submit"><img class="flag" src="image/drapeau_fr.jpg" alt=""></a>
-    </form>
-    <form action="<?php echo $page_name ?>" method="post">
-        <input type="hidden" name="lang" value="fr">
-        <a type="submit"><img class="flag" src="image/drapeau_gb.jpg" alt=""></a>
-    </form>
-
+    <a href="<?php echo $page_name."?lang=fr"; ?>" onclick="language('fr')"><img class="flag" src="image/drapeau_fr.jpg" alt=""></a>
+    <a href="<?php echo $page_name."?lang=en"; ?>" onclick="language('en')"><img class="flag" src="image/drapeau_gb.jpg" alt=""></a>
 </div>
 
 <nav class="navbar">
