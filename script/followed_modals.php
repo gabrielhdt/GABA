@@ -147,14 +147,14 @@
                       <input type="file" name="userpic" class="custom-file-input" placeholder="Chosoe a file">
                       <span class="custom-file-control"></span>
                     </label>
+                    <br>
                     <button type="submit" class="btn btn-default">Upload pic</button>
                 </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default"
-                onclick="write_geoloc_fromodal(<?php echo $idfollowed.','.$idstaff ?>)"
-                data-dismiss="modal">Update
+                data-dismiss="modal">Close
             </button>
             </div>
         </div>
