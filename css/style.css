@@ -95,7 +95,8 @@ logos
     margin-top: -30px;
 }
 #flags {
-    right: 10px;
+    text-align: right;
+    margin-right: 10px;
 }
 .flag {
     width: 25px;
@@ -109,6 +110,7 @@ NAVBAR
 .navbar {
     border-radius: 0;
     margin: 50px 0;
+    margin-top: 35px;
     font-family: 'Linux Biolinum sc';
     font-size: 20px;
 }
