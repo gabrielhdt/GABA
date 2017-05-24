@@ -74,17 +74,14 @@ head("Desoin d'aide ?", $lang);
 
     <div class="container-fluid" style="text-align:center">
             <div class="row row-help">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-lg-offset-3 col-md-offset-3">
-                    <div class="outer jumbotron">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="jumbotron">
                         <p>
                             &emsp;Vous trouverez dans la vidéo ci-contre un aperçu des fonctionnalités citées précedemment et comment les utiliser au mieux.
                         </p>
                     </div>
                 </div>
-            </div>
-
-            <div class="row row-help">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <iframe height="400px" width="600px" src="https://www.youtube.com/embed/EreZNkWzBAw" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
