@@ -16,9 +16,9 @@ if(isset($_COOKIE['lang'])) {
 
 //script d'origine
 if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier (...)_fr_FR.php
-    include('i18n/fr_FR/index_memebre_fr_FR.php');
+    include('i18n/fr_FR/membre_index_fr_FR.php');
 } elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier (...)_en_GB.php
-    include('i18n/en_UK/index_memebre_en_UK.php');
+    include('i18n/en_UK/membre_index_en_UK.php');
 }
 ?>
 
