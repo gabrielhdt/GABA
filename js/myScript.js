@@ -177,11 +177,13 @@ function write_geoloc_fromodal(idfoll, idstaff)
 gestion du choix des langues
 *******************************/
 
-function lang(language) {
+function language(lg) {
     $.post(
-        'script/choice_lang.php',
+        'script/scriptAjax.php',
     {
-        lang: language
+        lang: lg
+    }, function display(data) {
+        console.log(data);
     }
     );
 }

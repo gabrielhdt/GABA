@@ -85,8 +85,8 @@ function current_nav() {
 }
 ?>
 
-<span onclick="lang('fr')"><img class="drapeau" src="image/drapeau_fr.jpg" alt=""></span>
-<span onclick="lang('gb')"><img class="drapeau" src="image/drapeau_gb.jpg" alt=""></span>
+<a onclick="language('fr')"><img class="drapeau" src="image/drapeau_fr.jpg" alt=""></a>
+<a onclick="language('en')"><img class="drapeau" src="image/drapeau_gb.jpg" alt=""></a>
 
 <nav class="navbar">
 <div class="container-fluid">

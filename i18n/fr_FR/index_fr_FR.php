@@ -1,5 +1,5 @@
 <?php
-$about_us_title = "A propos de nous ...";
+$about_us_title = "<h1>A propos de nous ...</h1>";
 $about_us = <<<ABU
 <p>Le laboratoire science exchange a pour mission de regrouper les informations
 de multiples laboratoires de recherche animale et de mettre à disposition les
@@ -20,7 +20,7 @@ fonctionnalités mises en ligne.</p>
 amples informations sur les constructeurs du site.</p>
 NHLP;
 
-$contactus_tilte = "<h1>Nous contacter</h1>"
+$contactus_tilte = "<h1>Nous contacter</h1>";
 $contactus = <<<CCU
 <p>Vous voulez communiquer avec un de nos chercheurs ? Lui poser des questions
 sur ses recherches et données ? Vous n'avez qu'à communiquer vos contacts et
