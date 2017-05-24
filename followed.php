@@ -108,7 +108,10 @@ include 'nav.php';
                   id="upload_pic" class="inline-form">
                 <input type="hidden" name="id" readonly value="<?php echo $idfollowed ?>">
                 <input type="hidden" name="table" readonly value="Followed">
-                <input type="file" name="userpic">
+                <label class="custom-file">
+                  <input type="file" name="userpic" class="custom-file-input">
+                  <span class="custom-file-control"></span>
+                </label>
                 <button type="submit" class="btn btn-default">Upload pic</button>
             </form>
         <?php } ?>
