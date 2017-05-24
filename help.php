@@ -109,28 +109,22 @@ head("Desoin d'aide ?", $lang);
 
             <div class="row row-help">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="row">
-                            <a href="#" data-toggle="modal" data-target="#modalGabriel"
-                               class="photo_cv col-lg-3 col-md-3 col-sm-6 col-xs-12"
-                               style="background: url('data/pics/unordered/Au.jpg') center/cover no-repeat;">Gabriel</a>
-                            <a href="#" data-toggle="modal" data-target="#modalAdrien"
-                               class="photo_cv col-lg-3 col-md-3 col-sm-6 col-xs-12"
-                               style="background: url('data/pics/unordered/Au.jpg') center/cover no-repeat;">Adrien</a>
-                        <!-- </div> -->
-                        <!-- <div class="row"> -->
-                            <a href="#" data-toggle="modal" data-target="#modalBenoit"
-                               class="photo_cv col-lg-3 col-md-3 col-sm-6 col-xs-12"
-                               style="background: url('data/pics/unordered/Au.jpg') center/cover no-repeat;">Benoit</a>
-                            <a href="#" data-toggle="modal" data-target="#modalAurelie"
-                               class="photo_cv col-lg-3 col-md-3 col-sm-6 col-xs-12"
-                               style="background: url('data/pics/unordered/Au.jpg') center/cover no-repeat;">Aurélie</a>
-                        <!-- </div> -->
+                    <div class="row">
+                        <a href="#" data-toggle="modal" data-target="#modalGabriel"
+                           class="photo_cv col-lg-3 col-md-3 col-sm-6 col-xs-12" id="gabriel">Gabriel</a>
+
+                        <a href="#" data-toggle="modal" data-target="#modalAdrien"
+                           class="photo_cv col-lg-3 col-md-3 col-sm-6 col-xs-12" id="adrien">Adrien</a>
+
+                        <a href="#" data-toggle="modal" data-target="#modalBenoit"
+                           class="photo_cv col-lg-3 col-md-3 col-sm-6 col-xs-12" id="benoit">Benoit</a>
+
+                        <a href="#" data-toggle="modal" data-target="#modalAurelie"
+                           class="photo_cv col-lg-3 col-md-3 col-sm-6 col-xs-12" id="aurelie">Aurélie</a>
                     </div>
                 </div>
             </div>
-
-
-    </div>
+        </div>
     </div>
 
         <!-- </div> -->

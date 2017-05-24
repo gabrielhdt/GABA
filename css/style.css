@@ -645,18 +645,34 @@ margin: 10px 0;
     top: 13em;
     z-index: 10;
 }*/
-/*#gabriel {
-    background-image: url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
+#gabriel {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+                url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
 }
 #aurelie {
-    background-image: url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+                url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
 }
 #adrien {
-    background-image: url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+                url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
 }
 #benoit {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+                url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
+}
+#gabriel:hover {
     background-image: url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
-}*/
+}
+#aurelie:hover {
+    background-image: url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
+}
+#adrien:hover {
+    background-image: url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
+}
+#benoit:hover {
+    background-image: url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
+}
 
 .photo_cv {
     height: 300px;
