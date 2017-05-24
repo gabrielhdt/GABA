@@ -626,7 +626,7 @@ HELP
 **********************************************************************/
 #gabriel {
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
-                url("../data/pics/unordered/aurelie.jpg") center/cover no-repeat;
+                url("../data/pics/unordered/gabriel.jpg") center/cover no-repeat;
 }
 #aurelie {
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
@@ -641,7 +641,7 @@ HELP
                 url("../data/pics/unordered/benoit.jpg") center/cover no-repeat;
 }
 #gabriel:hover {
-    background: url("../data/pics/unordered/aurelie.jpg") center/cover no-repeat;
+    background: url("../data/pics/unordered/gabriel.jpg") center/cover no-repeat;
 }
 #aurelie:hover {
     background: url("../data/pics/unordered/aurelie.jpg") center/cover no-repeat;

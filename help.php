@@ -76,7 +76,7 @@ head("Desoin d'aide ?", $lang);
 
             <div class="row row-help">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div class="jumbotron" style="margin-top: 150px;">
+                    <div class="jumbotron" style="margin-top: 100px;">
                         <p>
                             &emsp;Vous trouverez dans la vidéo ci-contre un aperçu des fonctionnalités citées précedemment
                             et comment les utiliser au mieux.
@@ -137,7 +137,7 @@ head("Desoin d'aide ?", $lang);
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                            <img src="data/pics/unordered/owl3.jpg" class="img-responsive" alt="Gabriel" />
+                            <img src="data/pics/unordered/gabriel.jpg" class="img-responsive" alt="Gabriel" />
                         </div>
                         <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6">
                             <h4 class="modal-title">
@@ -212,7 +212,7 @@ head("Desoin d'aide ?", $lang);
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                            <img src="data/pics/unordered/owl3.jpg" class="img-responsive" alt="Adrien" />
+                            <img src="data/pics/unordered/adrien.jpg" class="img-responsive" alt="Adrien" />
                         </div>
                         <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6">
                             <h4 class="modal-title">
@@ -286,7 +286,7 @@ head("Desoin d'aide ?", $lang);
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                            <img src="data/pics/unordered/owl3.jpg" class="img-responsive" alt="Benoit" />
+                            <img src="data/pics/unordered/benoit.jpg" class="img-responsive" alt="Benoit" />
                         </div>
                         <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6">
                             <h4 class="modal-title">
@@ -359,7 +359,7 @@ head("Desoin d'aide ?", $lang);
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                            <img src="data/pics/unordered/Au.jpg" class="img-responsive" alt="Aurélie" />
+                            <img src="data/pics/unordered/aurelie.jpg" class="img-responsive" alt="Aurélie" />
                         </div>
                         <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6">
                             <h4 class="modal-title">
