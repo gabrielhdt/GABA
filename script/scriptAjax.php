@@ -83,7 +83,7 @@ elseif (
             'type' => PDO::PARAM_INT
         ),
         'type' => array(
-            'value' => $_POST['type'],
+            'value' => strtolower($_POST['type']),
             'type' => PDO::PARAM_STR
         ),
         'value' => array(
@@ -91,7 +91,7 @@ elseif (
             'type' => PDO::PARAM_STR
         ),
         'unit' => array(
-            'value' => $_POST['unit'],
+            'value' => strtolower($_POST['unit']),
             'type' => PDO::PARAM_STR
         )
     );
@@ -150,14 +150,14 @@ common_name=?, binomial_name=?, kingdom=?, phylum=?, class=?, order_s=?,
 family=?, genus=?
 CHG;
     $change['valtype'] = array(
-        array('value' => $_POST['common_name'], 'type' => PDO::PARAM_STR),
-        array('value' => $_POST['binomial_name'], 'type' => PDO::PARAM_STR),
-        array('value' => $_POST['kingdom'], 'type' => PDO::PARAM_STR),
-        array('value' => $_POST['phylum'], 'type' => PDO::PARAM_STR),
-        array('value' => $_POST['class_s'], 'type' => PDO::PARAM_STR),
-        array('value' => $_POST['order_s'], 'type' => PDO::PARAM_STR),
-        array('value' => $_POST['family'], 'type' => PDO::PARAM_STR),
-        array('value' => $_POST['genus'], 'type' => PDO::PARAM_STR)
+        array('value' => strtolower($_POST['common_name']), 'type' => PDO::PARAM_STR),
+        array('value' => strtolower($_POST['binomial_name']), 'type' => PDO::PARAM_STR),
+        array('value' => strtolower($_POST['kingdom']), 'type' => PDO::PARAM_STR),
+        array('value' => strtolower($_POST['phylum']), 'type' => PDO::PARAM_STR),
+        array('value' => strtolower($_POST['class_s']), 'type' => PDO::PARAM_STR),
+        array('value' => strtolower($_POST['order_s']), 'type' => PDO::PARAM_STR),
+        array('value' => strtolower($_POST['family']), 'type' => PDO::PARAM_STR),
+        array('value' => strtolower($_POST['genus']), 'type' => PDO::PARAM_STR)
     );
     update_line('Species', $change, $where);
 }
