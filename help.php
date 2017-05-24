@@ -74,19 +74,19 @@ head("Desoin d'aide ?", $lang);
 
     <div class="container-fluid">
 
-        <div class="jumbotron">
             <div class="row row-help">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="jumbotron">
                         <p style="margin-top: 150px;">
                             &emsp;Vous trouverez dans la vidéo ci-contre un aperçu des fonctionnalités citées précedemment
                             et comment les utiliser au mieux.
                         </p>
+                    </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <iframe height="400px" width="600px" src="https://www.youtube.com/embed/EreZNkWzBAw" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
-        </div>
 
         <div class="jumbotron" id="webmaster">
             <div class="row row-help">
@@ -111,16 +111,16 @@ head("Desoin d'aide ?", $lang);
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="row">
                         <a href="#" data-toggle="modal" data-target="#modalGabriel"
-                           class="photo_cv col-lg-3 col-md-3 col-sm-6 col-xs-12" id="gabriel">Gabriel</a>
+                           class="photo_cv col-lg-3 col-md-3 col-sm-6 col-xs-12" id="gabriel"></a>
 
                         <a href="#" data-toggle="modal" data-target="#modalAdrien"
-                           class="photo_cv col-lg-3 col-md-3 col-sm-6 col-xs-12" id="adrien">Adrien</a>
+                           class="photo_cv col-lg-3 col-md-3 col-sm-6 col-xs-12" id="adrien"></a>
 
                         <a href="#" data-toggle="modal" data-target="#modalBenoit"
-                           class="photo_cv col-lg-3 col-md-3 col-sm-6 col-xs-12" id="benoit">Benoit</a>
+                           class="photo_cv col-lg-3 col-md-3 col-sm-6 col-xs-12" id="benoit"></a>
 
                         <a href="#" data-toggle="modal" data-target="#modalAurelie"
-                           class="photo_cv col-lg-3 col-md-3 col-sm-6 col-xs-12" id="aurelie">Aurélie</a>
+                           class="photo_cv col-lg-3 col-md-3 col-sm-6 col-xs-12" id="aurelie"></a>
                     </div>
                 </div>
             </div>
