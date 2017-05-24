@@ -107,8 +107,8 @@ include 'nav.php';
             <form action="upload_pic.php" method="post" enctype="multipart/form-data" id="upload_pic">
                 <input type="hidden" name="id" readonly value="<?php echo $idfollowed ?>">
                 <input type="hidden" name="table" readonly value="Followed">
-                <input class="form-control" type="file" name="userpic">
-                <button type="submit" class="btn btn-default">Upload pic</button>
+                <input type="file" name="userpic">
+                <input type="submit" class="btn btn-default">Upload pic</input>
             </form>
         <?php } ?>
     </div>
