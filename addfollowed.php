@@ -132,7 +132,7 @@ elseif (isset($added_id) && !$added_id) { ?>
                 <?php echo $title_form ?>
                 <?php echo $paragraph_form ?>
                 <form action="addfollowed.php" method="post">
-                    <!-- <div class="form-group"> -->
+                    <div class="form-group">
                         <select name="species" class="form-control">
                             <?php create_choice_list($id_biname); ?>
                         </select>
@@ -150,7 +150,7 @@ elseif (isset($added_id) && !$added_id) { ?>
                         <input type="text" name="health" class="form-control" placeholder="<?php echo $health ?>">
                         <textarea class="form-control" name="annotation" rows="4" cols="80"
                                   placeholder="Commentaire sur L'individu"></textarea>
-                    <!-- </div> -->
+                    </div>
                     <button class="btn btn-success" id="submitbtn" type="submit" name="add_followed"><?php echo $save ?></button>
                 </form>
             </div>
