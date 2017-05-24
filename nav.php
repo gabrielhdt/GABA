@@ -13,7 +13,7 @@ if(isset($_COOKIE['lang'])) {
     // si aucune langue n'est déclaré, la langue par default est l'anglais
     $lang = 'en';
 }
-$text_fr = array('Accueil', 'Le projet', 'Recherche', 'Help', 'Espèce', 'Individu', 'Bâtiment', 'Chercheur',
+$text_fr = array('Accueil', 'Le projet', 'Recherche', 'Aide', 'Espèce', 'Individu', 'Bâtiment', 'Chercheur',
                 'Contact', 'Connexion', 'Espace Perso', 'Déconnexion');
 $text_en = array('Home', 'The Project', 'Research', 'Help', 'Species', 'Followed', 'Facility', 'Chercheur',
                 'Contact', 'LogIn', 'Your Space', 'LogOut');
@@ -101,10 +101,9 @@ function current_nav() {
 }
 ?>
 <div id="flags">
-
+    <a href=<?php echo "$page_name"; ?> onclick="language('fr')"><img class="flag" src="image/drapeau_fr.jpg" alt=""></a>
+    <a href=<?php echo "$page_name"; ?> onclick="language('en')"><img class="flag" src="image/drapeau_gb.jpg" alt=""></a>
 </div>
-<a href=<?php echo "$page_name"; ?> onclick="language('fr')"><img class="flag" src="image/drapeau_fr.jpg" alt=""></a>
-<a href=<?php echo "$page_name"; ?> onclick="language('en')"><img class="flag" src="image/drapeau_gb.jpg" alt=""></a>
 
 <nav class="navbar">
 <div class="container-fluid">
