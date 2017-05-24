@@ -1,10 +1,5 @@
 <?php
 // TODO: penser à mettre à jour les liens des pages
-?>
-
-<?php
-session_start ();
-
 $page_name = substr( $_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '/')+1, strrpos($_SERVER['PHP_SELF'],'.php')-1);
 
 if(isset($_COOKIE['lang'])) {
