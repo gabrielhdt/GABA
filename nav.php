@@ -83,10 +83,10 @@ function current_nav() {
     }
     return $nav;
 }
+$page_name = substr( $_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '/')+1, strrpos($_SERVER['PHP_SELF'],'.php')-1);
 ?>
-
-<a onclick="language('fr')"><img class="drapeau" src="image/drapeau_fr.jpg" alt=""></a>
-<a onclick="language('en')"><img class="drapeau" src="image/drapeau_gb.jpg" alt=""></a>
+<a href=<?php echo "$page_name"; ?> onclick="language('fr')"><img class="drapeau" src="image/drapeau_fr.jpg" alt=""></a>
+<a href=<?php echo "$page_name"; ?> onclick="language('en')"><img class="drapeau" src="image/drapeau_gb.jpg" alt=""></a>
 
 <nav class="navbar">
 <div class="container-fluid">
