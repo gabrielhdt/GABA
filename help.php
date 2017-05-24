@@ -25,14 +25,14 @@ include 'nav.php';
     <div class="container-fluid">
         <div class="jumbotron">
 
-            <div class="row">
+            <div class="row  row-help">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <?php echo $feature_title; ?>
                     <hr>
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row  row-help">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
                     <img src="data/pics/unordered/owl3.jpg" class="img-responsive" alt="Espace login" />
                 </div>
@@ -73,8 +73,8 @@ include 'nav.php';
     </div>
 
     <div class="container-fluid" style="text-align:center">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-lg-offset-6 col-md-offset-6">
+            <div class="row row-help">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-lg-offset-3 col-md-offset-3">
                     <div class="outer jumbotron">
                         <p>
                             &emsp;Vous trouverez dans la vidéo ci-contre un aperçu des fonctionnalités citées précedemment et comment les utiliser au mieux.
@@ -83,13 +83,13 @@ include 'nav.php';
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row row-help">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <iframe height="400px" width="600px" src="https://www.youtube.com/embed/EreZNkWzBAw" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row row-help">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="jumbotron" id='webmaster'>
                         <h1>Webmaster</h1>
@@ -107,7 +107,7 @@ include 'nav.php';
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row row-help">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="jumbotron" id='cv'>
                         <div class="row">
