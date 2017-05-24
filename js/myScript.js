@@ -172,15 +172,3 @@ function write_geoloc_fromodal(idfoll, idstaff)
     }
     );
 }
-
-/*******************************
-gestion du choix des langues
-*******************************/
-
-function language(lg) {
-    $.post(
-        'script/scriptAjax.php',
-    {
-        lang: lg
-    });
-}
