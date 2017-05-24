@@ -105,7 +105,8 @@ include 'nav.php';
         </div>
         <?php if ($edit) { ?>
             <form action="upload_pic.php" method="post" enctype="multipart/form-data"
-                  id="upload_pic" class="inline-form">
+                  id="upload_pic">
+                  <div class="form-group">
                 <input type="hidden" name="id" readonly value="<?php echo $idfollowed ?>">
                 <input type="hidden" name="table" readonly value="Followed">
                 <label class="custom-file">
@@ -113,6 +114,7 @@ include 'nav.php';
                   <span class="custom-file-control">Browse</span>
                 </label>
                 <button type="submit" class="btn btn-default">Upload pic</button>
+            </div>
             </form>
         <?php } ?>
     </div>
