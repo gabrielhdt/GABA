@@ -779,7 +779,10 @@ tr:nth-child(even) {
     border: 0px;
     width: 10px;
 }
-
+#upload_pic {
+    display: block;
+    margin: 30px;
+}
 
 /*******************************************
 MODAL pour les cvs des webmasters
