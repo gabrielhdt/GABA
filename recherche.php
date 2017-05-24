@@ -6,15 +6,12 @@ if(isset($_COOKIE['lang'])) {
     $lang = 'en';
 }
 
-// TODO: faire la traduction
-
-//script d'origine
-// if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier index_fr_FR.php
-//     include('i18n/fr_FR/index_fr_FR.php');
-// } elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier index_en_GB.php
-//     include('i18n/en_UK/index_en_UK.php');
-// }
-//fin du script d'origine
+// fichier de langue a importer
+if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier (...)_fr_FR.php
+    include('i18n/fr_FR/research_fr_FR.php');
+} elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier (...)_en_GB.php
+    include('i18n/en_UK/research_en_UK.php');
+}
 ?>
 
 <?php
@@ -26,9 +23,9 @@ head('Recherche', $lang);
     <?php include 'nav.php'; ?>
     <div class="container-fluid">
         <div class="row">
-                <a href="search_species.php" class="photo_menu col-lg-4 col-md-4 col-sm-12 col-xs-12" id="espece">Recherche espèce</a>
-                <a href="search_followed.php" class="photo_menu col-lg-4 col-md-4 col-sm-12 col-xs-12 " id="individu">Recherche individu</a>
-                <a href="search_facility.php" class="photo_menu col-lg-4 col-md-4 col-sm-12 col-xs-12" id="batiment">Recherche bâtiment</a>
+                <a href="search_species.php" class="photo_menu col-lg-4 col-md-4 col-sm-12 col-xs-12" id="espece"><?php echo $species ?></a>
+                <a href="search_followed.php" class="photo_menu col-lg-4 col-md-4 col-sm-12 col-xs-12 " id="individu"><?php echo $followed ?></a>
+                <a href="search_facility.php" class="photo_menu col-lg-4 col-md-4 col-sm-12 col-xs-12" id="batiment"><?php echo $facility ?></a>
         </div>
     </div>
     <?php include 'footer.php'; ?>
