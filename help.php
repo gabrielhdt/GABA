@@ -18,10 +18,10 @@ if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le f
 
 include 'head.php';
 head("Desoin d'aide ?", $lang);
-include 'nav.php';
 ?>
 
 <body>
+    <?php include 'nav.php'; ?>
     <div class="container-fluid">
         <div class="jumbotron">
 
