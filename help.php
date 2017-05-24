@@ -118,7 +118,7 @@ include 'nav.php';
                             <a href="#" data-toggle="modal" data-target="#modalAdrien"
                                class="photo_cv col-lg-3 col-md-3 col-sm-6 col-xs-12"
                                style="background: url('data/pics/unordered/Au.jpg') center/cover no-repeat;">Adrien</a>
-                        </div>
+                        <!-- </div> -->
                         <!-- <div class="row"> -->
                             <a href="#" data-toggle="modal" data-target="#modalBenoit"
                                class="photo_cv col-lg-3 col-md-3 col-sm-6 col-xs-12"
@@ -132,6 +132,7 @@ include 'nav.php';
             </div>
 
 
+    </div>
     </div>
 
         <!-- </div> -->
