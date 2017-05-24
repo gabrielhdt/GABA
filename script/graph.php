@@ -45,7 +45,7 @@ TBL;
     }
     if (count($val) > 2) { // si il n'y a moins de 3 measure pour le $type, on ne dessine pas le graphe
         $chart = "
-        <div class='col-lg-4 col-md-6 col-sm-6 col-xs-12'>
+        <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
         <canvas id='$type' width='100%' height='100%'></canvas>
         </div>
         <script>

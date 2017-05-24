@@ -109,6 +109,8 @@ include 'nav.php';
                 Add a picture
             </button>
         <?php } ?>
+        <!-- insertion des graphiques pour les measures -->
+        <?php draw_graphs($idfollowed); ?>
     </div>
 
 <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
@@ -212,9 +214,6 @@ BTN;
 </div>
 </div>
 </div>
-
-<!-- insertion des graphiques pour les measures -->
-<?php draw_graphs($idfollowed); ?>
 
 <?php $edit ? include 'script/followed_modals.php' : null; ?>
 
