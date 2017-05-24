@@ -76,9 +76,10 @@ head("Desoin d'aide ?", $lang);
 
             <div class="row row-help" style="border: 1px solid red">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div class="jumbotron">
-                        <p>
-                            &emsp;Vous trouverez dans la vidéo ci-contre un aperçu des fonctionnalités citées précedemment et comment les utiliser au mieux.
+                    <div class="outer jumbotron">
+                        <p class="middle">
+                            &emsp;Vous trouverez dans la vidéo ci-contre un aperçu des fonctionnalités citées précedemment
+                            et comment les utiliser au mieux.
                         </p>
                     </div>
                 </div>
@@ -95,11 +96,13 @@ head("Desoin d'aide ?", $lang);
                             <i>"Rome ne s’est pas faite en un jour."</i>
                         </p>
                         <p>
-                            &emsp;Passez votre souris sur les têtes de nos Webmasters pour voir apparaître leur prénoms et cliquez dessus afin d'en apprendre plus sur les personnes ayant participer à la création de ce site !
+                            &emsp;Passez votre souris sur les têtes de nos Webmasters pour voir apparaître leur prénoms et cliquez
+                            dessus afin d'en apprendre plus sur les personnes ayant participer à la création de ce site !
                         </p>
 
                         <p>
-                            &emsp;Notre équipe vous souhaite de passer un agréable moment sur notre site et espère réveiller l'animal qui est en vous !
+                            &emsp;Notre équipe vous souhaite de passer un agréable moment sur notre site et espère réveiller l'animal
+                            qui est en vous !
                         </p>
                     </div>
                 </div>
