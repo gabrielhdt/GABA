@@ -780,7 +780,7 @@ tr:nth-child(even) {
     width: 10px;
 }
 #upload_pic {
-    display: block;
+    display: inline;
     margin: 30px;
 }
 
