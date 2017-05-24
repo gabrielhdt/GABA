@@ -657,9 +657,12 @@ HELP
     height: 300px;
 }
 
+#webmaster {
+    text-align: center;
+}
+
 #webmaster p{
     margin: 10px 0;
-    text-align: center;   
 }
 
 .photo-help {
