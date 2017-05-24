@@ -623,28 +623,7 @@ recherche.php
 
 /**********************************************************************
 HELP
-**********************************************************************
-#adrien{
-    background-image: url('../data/pics/unordered/owl3.jpg');
-    background-repeat: no-repeat;
-    height: 150px;
-    width: 50%;
-    background-position: center;
-    background-size: cover;
-    text-align: center;
-*/
-/*#cv img{
-position: relative;
-margin: 10px 0;
-
-}
-#adrien a, #gabriel a, #benoit a, #aurelie a{
-    visibility: hidden;
-    position: absolute;
-    right: 5em;
-    top: 13em;
-    z-index: 10;
-}*/
+**********************************************************************/
 #gabriel {
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
                 url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
@@ -676,20 +655,7 @@ margin: 10px 0;
 
 .photo_cv {
     height: 300px;
-    /*visibility: hidden;*/
 }
-
-.photo_cv:hover {
-    /*visibility: visible;*/
-
-}
-
-/*#adrien img:hover + a, #aurelie img:hover + a,#benoit img:hover + a,#gabriel img:hover + a {
-}
-#adrien a:hover, #aurelie a:hover, #benoit a:hover, #gabriel a:hover{
-    visibility: visible;
-}*/
-
 
 #webmaster p{
     margin: 10px 0;
