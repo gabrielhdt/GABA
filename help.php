@@ -34,7 +34,7 @@ head("Desoin d'aide ?", $lang);
 
             <div class="row  row-help">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
-                    <img src="data/pics/unordered/owl3.jpg" class="img-responsive" alt="Espace login" />
+                    <img src="data/pics/unordered/login.png" class="img-responsive" alt="Espace login" />
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                     <?php echo $feature_p1; ?>
@@ -46,7 +46,7 @@ head("Desoin d'aide ?", $lang);
                     <?php echo $feature_p2; ?>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <img src="data/pics/unordered/owl3.jpg" class="img-responsive" alt="Espace Recherche" />
+                    <img src="data/pics/unordered/recherche.png" class="img-responsive" alt="Espace Recherche" />
                 </div>
 
             </div>
@@ -65,7 +65,7 @@ head("Desoin d'aide ?", $lang);
                     <?php echo $feature_p4; ?>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <img src="data/pics/unordered/owl3.jpg" class="img-responsive" alt="Nous contacter" />
+                    <img src="data/pics/unordered/contact_us.png" class="img-responsive" alt="Nous contacter" />
                 </div>
             </div>
 
