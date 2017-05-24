@@ -98,14 +98,14 @@ function current_nav() {
 <div id="flags">
     <form action="<?php echo $page_name ?>" method="post">
         <input type="hidden" name="lang" value="fr">
-        <button type="submit" name="submit"><img class="flag" src="image/drapeau_fr.jpg" alt=""></button>
+        <input type="submit" name="submit"><img class="flag" src="image/drapeau_fr.jpg" alt=""></input>
     </form>
     <form action="<?php echo $page_name ?>" method="post">
         <input type="hidden" name="lang" value="fr">
-        <button type="submit" name="submit"><img class="flag" src="image/drapeau_gb.jpg" alt=""></button>
+        <input type="submit" name="submit"><img class="flag" src="image/drapeau_gb.jpg" alt=""></input>
     </form>
 
-    
+
 </div>
 
 <nav class="navbar">
