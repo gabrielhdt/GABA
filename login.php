@@ -58,7 +58,7 @@ head("login", $lang);
             <input type="text" class="form-control" name="login"
                    placeholder=<?php echo "$login"; ?> required autofocus>
             <input type="password" class="form-control" name="password"
-                   placeholder=<?php echo "$pwd"; ?> required>
+                   placeholder="<?php echo $pwd; ?>" required>
             <input type="submit" class="btn btn-lg btn-primary btn-block btn-signin"
                    name="connexion" value=<?php echo "$conn"; ?>>
         </form>
