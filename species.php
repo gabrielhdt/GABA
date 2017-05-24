@@ -56,6 +56,39 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 $wikijson = curl_exec($ch);
 $wikiarr = json_decode($wikijson, TRUE);
 $wikintro = $wikiarr['query']['pages'][0]['extract'];
+
+//Getting last location of followed
+$tables = <<<TBL
+Location INNER JOIN Measure ON Measure.idMeasure=Location.idMeasure
+INNER JOIN Followed ON Measure.idFollowed=Followed.idFollowed
+TBL;
+$where['str'] = 'Followed.idSpecies=?';
+$where['valtype'] = array(
+    array('value' => $idspecies, 'type' => PDO::PARAM_INT)
+);
+$fields = 'idFollowed';
+$folls_located = get_values($fields, $tables, $where, '', array(), $order_by='',
+    PDO::FETCH_COLUMN
+);
+$last_locs = array();
+foreach ($folls_located as $follocated){
+    $fields = 'MAX(date_measure) AS lastm_date';
+    $tables = <<<TBL
+Location INNER JOIN Measure ON Location.idMeasure=Measure.idMeasure
+INNER JOIN Followed ON Followed.idFollowed=Measure.idFollowed
+TBL;
+    $where['str'] = 'Followed.idFollowed=?';
+    $where['valtype'] = array(
+        array('value' => $follocated, 'type' => PDO::PARAM_INT)
+    );
+    $lastm_date = get_values($fields, $tables, $where)[0]['lastm_date'];
+    $fields = 'Followed.idFollowed, latitude, longitude';
+    $where['str'] = 'date_measure=?';
+    $where['valtype'] = array(
+        array('value' => $lastm_date, 'type' => PDO::PARAM_STR)
+    );
+    array_push($last_locs, get_values($fields, $tables, $where)[0]);
+}
 ?>
 
 <!DOCTYPE html>
@@ -216,5 +249,12 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 subdomain: ['a', 'b', 'c']
 }).addTo(foll_of_sp_map);
+<?php
+foreach ($last_locs as $follocation) {
+    echo 'var marker = L.marker([' . $follocation['latitude'] . ', ' .
+        $follocation['longitude'] . ']).addTo(foll_of_sp_map);';
+    echo 'marker.bindPopup("<b>' . $follocation['idFollowed'] . '</b>");';
+}
+?>
 </script>
 </html>
