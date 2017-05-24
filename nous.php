@@ -14,7 +14,7 @@ if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le f
 
 include 'script/db.php';
 include 'head.php';
-head('Notre Labo');
+head('Notre Labo', $lang);
 ?>
 
 <body>
@@ -64,3 +64,4 @@ foreach ($facspecs as $facility) {
 ?>
 </script>
 </body>
+</html>
