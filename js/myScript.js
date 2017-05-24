@@ -164,11 +164,22 @@ function write_geoloc_fromodal(idfoll, idstaff)
     var geoloc = latitude + ',' + longitude;
     $.post(
         'script/scriptAjax.php',
-    {idfollowed: idfoll, geoloc: geoloc, idstaff: idstaff},
-    function(data)
-    {
-        $("input[name=mod_latitude]").val('');
-        $("input[name=mod_longitude]").val('');
-    }
+        {idfollowed: idfoll, geoloc: geoloc, idstaff: idstaff},
+        function(data)
+        {
+            $("input[name=mod_latitude]").val('');
+            $("input[name=mod_longitude]").val('');
+        }
     );
+}
+/*******************************
+gestion du choix des langues
+*******************************/
+
+function language(lg) {
+    $.post(
+        'script/scriptAjax.php',
+    {
+        lang: lg
+    });
 }
