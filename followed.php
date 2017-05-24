@@ -104,11 +104,12 @@ include 'nav.php';
             ?>
         </div>
         <?php if ($edit) { ?>
-            <form action="upload_pic.php" method="post" enctype="multipart/form-data" id="upload_pic">
+            <form action="upload_pic.php" method="post" enctype="multipart/form-data"
+                  id="upload_pic" class="inline-form">
                 <input type="hidden" name="id" readonly value="<?php echo $idfollowed ?>">
                 <input type="hidden" name="table" readonly value="Followed">
                 <input type="file" name="userpic">
-                <input type="submit" class="btn btn-default">Upload pic</input>
+                <button type="submit" class="btn btn-default">Upload pic</button>
             </form>
         <?php } ?>
     </div>
