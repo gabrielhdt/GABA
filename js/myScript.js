@@ -182,8 +182,5 @@ function language(lg) {
         'script/scriptAjax.php',
     {
         lang: lg
-    }, function display(data) {
-        console.log(data);
-    }
-    );
+    });
 }
