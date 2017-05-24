@@ -128,3 +128,35 @@
         </div>
     </div>
 </div>
+
+<div id="addpic" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">Add a picture for <?php echo ucfirst($search_res['binomial_name']); ?> </h2>
+            </div>
+            <div class="modal-body">
+                <h5>Uploead file</h5>
+                <form action="upload_pic.php" method="post" enctype="multipart/form-data"
+                      id="upload_pic">
+                      <div class="form-group">
+                    <input type="hidden" name="id" readonly value="<?php echo $idfollowed ?>">
+                    <input type="hidden" name="table" readonly value="Followed">
+                    <label class="custom-file">
+                      <input type="file" name="userpic" class="custom-file-input" placeholder="Chosoe a file">
+                      <span class="custom-file-control"></span>
+                    </label>
+                    <button type="submit" class="btn btn-default">Upload pic</button>
+                </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                onclick="write_geoloc_fromodal(<?php echo $idfollowed.','.$idstaff ?>)"
+                data-dismiss="modal">Update
+            </button>
+            </div>
+        </div>
+    </div>
+</div>
