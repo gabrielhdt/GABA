@@ -132,18 +132,16 @@ elseif (isset($added_id) && !$added_id) { ?>
                 <?php echo $title_form ?>
                 <?php echo $paragraph_form ?>
                 <form action="addfollowed.php" method="post">
-                    <div class="form-group">
+                    <!-- <div class="form-group"> -->
                         <select name="species" class="form-control">
                             <?php create_choice_list($id_biname); ?>
                         </select>
                         <select name='facility' class='form-control'>
                             <?php create_choice_list($id_faname, $defsel='1'); ?>
                         </select>
-                        <br>
                         <label class="radio-inline"><input type="radio" name="gender" value="m"><?php echo $sex_m ?></label>
                         <label class="radio-inline"><input type="radio" name="gender" value="f"><?php echo $sex_f ?></label>
                         <label class="radio-inline"><input type="radio" name="gender" value="h"><?php echo $sex_h ?></label>
-                        <br>
                         <label class="checkbox-inline">
                             <input type="checkbox" id="use_geoloc" name="use_geoloc" value="on"><?php echo $pos ?>
                         </label>
@@ -152,7 +150,7 @@ elseif (isset($added_id) && !$added_id) { ?>
                         <input type="text" name="health" class="form-control" placeholder="<?php echo $health ?>">
                         <textarea class="form-control" name="annotation" rows="4" cols="80"
                                   placeholder="Commentaire sur L'individu"></textarea>
-                    </div>
+                    <!-- </div> -->
                     <button class="btn btn-success" id="submitbtn" type="submit" name="add_followed"><?php echo $save ?></button>
                 </form>
             </div>
