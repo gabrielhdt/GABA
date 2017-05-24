@@ -10,7 +10,7 @@ function draw_graphs($idFollowed) {
     $types_measures = distinct_measure($idFollowed);
     echo "
     <div class='container-fluid'>
-    <div class='row' style='height: 300px;'>";
+    <div class='row'>";
     $i = 0;
     foreach ($types_measures as $key) {
         graph_type($idFollowed, $key['type'], $colors[$i % 6],
