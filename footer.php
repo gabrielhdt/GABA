@@ -18,12 +18,12 @@ if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le f
 <div class="row">
 <footer>
     <ul>
-        <li class="active"><a href="#"><?php echo $home ?></a></li>|
-        <li><a href="#"><?php echo $lab ?></a></li>|
-        <li><a href="#"><?php echo $species ?></a></li>|
-        <li><a href="#"><?php echo $followed ?></a></li>|
-        <li><a href="#"><?php echo $facility ?></a></li>|
-        <li><a href="#"><?php echo $help ?></a></li>
+        <li><a href="index.php"><?php echo $home ?></a></li>|
+        <li><a href="nous.php"><?php echo $lab ?></a></li>|
+        <li><a href="search_species.php"><?php echo $species ?></a></li>|
+        <li><a href="search_followed.php"><?php echo $followed ?></a></li>|
+        <li><a href="search_facility.php"><?php echo $facility ?></a></li>|
+        <li><a href="help.php"><?php echo $help ?></a></li>
     </ul>
     &copy; All rights reserved GABA
     <a id="goTop"><span class="glyphicon glyphicon-chevron-up"></span></a>
