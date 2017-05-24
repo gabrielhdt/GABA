@@ -139,6 +139,7 @@ elseif (isset($added_id) && !$added_id) { ?>
                         <select name='facility' class='form-control'>
                             <?php create_choice_list($id_faname, $defsel='1'); ?>
                         </select>
+                        <br>
                         <label class="radio-inline"><input type="radio" name="gender" value="m"><?php echo $sex_m ?></label>
                         <label class="radio-inline"><input type="radio" name="gender" value="f"><?php echo $sex_f ?></label>
                         <label class="radio-inline"><input type="radio" name="gender" value="h"><?php echo $sex_h ?></label>
