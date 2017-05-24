@@ -9,11 +9,11 @@ if(isset($_COOKIE['lang'])) {
 // TODO: faire la traduction
 
 //script d'origine
-// if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier index_fr_FR.php
-//     include('i18n/fr_FR/index_fr_FR.php');
-// } elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier index_en_GB.php
-//     include('i18n/en_UK/index_en_UK.php');
-// }
+if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier index_fr_FR.php
+    include('i18n/fr_FR/login_fr_FR.php');
+} elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier index_en_GB.php
+    include('i18n/en_UK/login_en_UK.php');
+}
 //fin du script d'origine
 
 include('script/db.php');
@@ -55,9 +55,12 @@ head("login", $lang);
             <?php //afficher une éventuelle erreur
             if (isset($erreur)) {echo $erreur."<br>";}
             ?>
-            <input type="text" class="form-control" name="login" placeholder="Login" required autofocus>
-            <input type="password" class="form-control" name="password" placeholder="Mot de passe" required>
-            <input type="submit" class="btn btn-lg btn-primary btn-block btn-signin" name="connexion" value="Connexion">
+            <input type="text" class="form-control" name="login"
+                   placeholder=<?php echo "$login"; ?> required autofocus>
+            <input type="password" class="form-control" name="password"
+                   placeholder=<?php echo "pwd"; ?> required>
+            <input type="submit" class="btn btn-lg btn-primary btn-block btn-signin"
+                   name="connexion" value=<?php echo "conn"; ?>>
         </form>
     </div><!-- /card-container -->
 </div>
