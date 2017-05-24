@@ -126,7 +126,7 @@ elseif (isset($added_id) && !$added_id) { ?>
 </div>
 <?php } ?>
 <div class="container" style="background-image: url('data/pics/unordered/mada.jpg');">
-    <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12 col-lg-offset-6 col-md-offset-6 col-sm-offset-5">
+    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 col-lg-offset-6 col-md-offset-6 col-sm-offset-5">
         <div class="formulaire">
             <div class="middle">
                 <?php echo $title_form ?>
