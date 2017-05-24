@@ -143,6 +143,7 @@ elseif (isset($added_id) && !$added_id) { ?>
                         <label class="radio-inline"><input type="radio" name="gender" value="m"><?php echo $sex_m ?></label>
                         <label class="radio-inline"><input type="radio" name="gender" value="f"><?php echo $sex_f ?></label>
                         <label class="radio-inline"><input type="radio" name="gender" value="h"><?php echo $sex_h ?></label>
+                        <br>
                         <label class="checkbox-inline">
                             <input type="checkbox" id="use_geoloc" name="use_geoloc" value="on"><?php echo $pos ?>
                         </label>
