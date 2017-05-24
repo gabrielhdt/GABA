@@ -104,7 +104,7 @@ include 'nav.php';
             ?>
         </div>
         <?php if ($edit) { ?>
-            <button type="button" class="btn btn-info btn-lg"
+            <button type="button" class="data-modif btn btn-info btn-lg"
                 data-toggle="modal" data-target="#addpic">
                 Add a picture
             </button>
@@ -158,7 +158,7 @@ BTN;
             $search_res['annotation'] : 'Write something about this animal!'; ?>
         </p>
 <?php if ($edit) { ?>
-        <button type="button" class="btn btn-info btn-lg"
+        <button type="button" class="data-modif btn btn-info btn-lg"
             data-toggle="modal" data-target="#infoModal">
             Modifier la description
         </button>
@@ -186,7 +186,7 @@ BTN;
             </tbody>
         </table>
 <?php if ($edit) { ?>
-        <button type="button" class="btn btn-info btn-lg"
+        <button type="button" class="data-modif btn btn-info btn-lg"
             data-toggle="modal" data-target="#addModal">
             Ajouter une mesure
         </button>
@@ -207,7 +207,7 @@ BTN;
             </tbody>
         </table>
 <?php if ($edit) { ?>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+        <button type="button" class="data-modif btn btn-info btn-lg" data-toggle="modal"
             data-target="#addRelationModal">Add a relationship</button>
 <?php } ?>
     </div>

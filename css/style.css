@@ -779,8 +779,8 @@ tr:nth-child(even) {
     border: 0px;
     width: 10px;
 }
-#upload_pic {
-    margin: 30px;
+.data-modif {
+    margin: 20px;
 }
 
 /*******************************************
