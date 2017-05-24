@@ -76,8 +76,8 @@ head("Desoin d'aide ?", $lang);
 
             <div class="row row-help">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div class="jumbotron">
-                        <p style="margin-top: 150px;">
+                    <div class="jumbotron" style="margin-top: 150px;">
+                        <p>
                             &emsp;Vous trouverez dans la vidéo ci-contre un aperçu des fonctionnalités citées précedemment
                             et comment les utiliser au mieux.
                         </p>
