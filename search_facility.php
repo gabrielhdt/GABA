@@ -104,7 +104,7 @@ head('Recherche bâtiment', $lang);
                     <select name="idspecies[]" id="sel_species" class="form-control" multiple>
                     <?php create_choice_list($id_biname); ?>
                     </select>
-                    <label for=low_nfoll">Having more followed individuals than:</label>
+                    <label for="low_nfoll">Having more followed individuals than:</label>
                     <input type="number" name="low_nfoll" id="low_nfoll"
                         placeholder="5, 17, ...">
                 </div>
