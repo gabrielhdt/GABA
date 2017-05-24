@@ -662,16 +662,16 @@ margin: 10px 0;
                 url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
 }
 #gabriel:hover {
-    background-image: url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
+    background: url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
 }
 #aurelie:hover {
-    background-image: url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
+    background: url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
 }
 #adrien:hover {
-    background-image: url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
+    background: url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
 }
 #benoit:hover {
-    background-image: url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
+    background: url("../data/pics/unordered/Au.jpg") center/cover no-repeat;
 }
 
 .photo_cv {
