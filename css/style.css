@@ -659,7 +659,7 @@ HELP
 
 #webmaster p{
     margin: 10px 0;
-    display: inline-block;
+    text-align: center;   
 }
 
 .photo-help {

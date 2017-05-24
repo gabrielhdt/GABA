@@ -72,7 +72,7 @@ head("Desoin d'aide ?", $lang);
         </div>
     </div>
 
-    <div class="container-fluid" style="text-align:center">
+    <div class="container-fluid">
 
         <div class="jumbotron">
             <div class="row row-help">
