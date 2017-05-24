@@ -66,10 +66,10 @@ $where['str'] = 'Followed.idSpecies=?';
 $where['valtype'] = array(
     array('value' => $idspecies, 'type' => PDO::PARAM_INT)
 );
-$fields = 'idFollowed';
-$folls_located = get_values($fields, $tables, $where, '', array(), $order_by='',
-    PDO::FETCH_COLUMN
-);
+$fields = 'Followed.idFollowed';
+$folls_located = get_values($fields, $tables, $where);
+function f($line) {return($line['idFollowed']);}
+$folls_located = array_map('f', $folls_located);
 $last_locs = array();
 foreach ($folls_located as $follocated){
     $fields = 'MAX(date_measure) AS lastm_date';
