@@ -5,9 +5,26 @@ if (!isset($_SESSION['login'], $_SESSION['idstaff']) ||
     header ('Location: login.php'); // sinon retour page login
     exit();
 }
-?>
 
-<?php include 'script/db.php';
+if(isset($_COOKIE['lang'])) {
+    $lang = $_COOKIE['lang'];
+} else {
+    // si aucune langue n'est déclaré, la langue par default est l'anglais
+    $lang = 'en';
+}
+
+// TODO: faire la traduction
+
+//script d'origine
+// if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier index_fr_FR.php
+//     include('i18n/fr_FR/index_fr_FR.php');
+// } elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier index_en_GB.php
+//     include('i18n/en_UK/index_en_UK.php');
+// }
+//fin du script d'origine
+
+
+include 'script/db.php';
 include 'script/form_func.php';
 include "head.php";
 ?>
@@ -99,12 +116,12 @@ foreach ($lines as $line)
 {
     array_push($genuses, ucfirst($line['genus']));
 }
+
+head("Ajouter une espèce", $lang);
+
 ?>
-<!DOCTYPE html>
-<html lang="fr">
 <body>
 <?php
-head("Ajouter une espèce");
 include "nav.php";
 if (isset($added_id) && $added_id)
 { //TODO: pre fill followed.php page

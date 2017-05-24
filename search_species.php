@@ -1,9 +1,25 @@
-<!DOCTYPE HTML>
-<html>
-<?php include "script/db.php";
+<?php
+if(isset($_COOKIE['lang'])) {
+    $lang = $_COOKIE['lang'];
+} else {
+    // si aucune langue n'est déclaré, la langue par default est l'anglais
+    $lang = 'en';
+}
+
+// TODO: faire la traduction
+
+//script d'origine
+// if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier index_fr_FR.php
+//     include('i18n/fr_FR/index_fr_FR.php');
+// } elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier index_en_GB.php
+//     include('i18n/en_UK/index_en_UK.php');
+// }
+//fin du script d'origine
+
+include "script/db.php";
 include "script/form_func.php";
 include "head.php";
-head('Recherche espèce');
+head('Recherche espèce', $lang);
 
 $lines = get_values('idFacility, name', 'Facility');
 $id_faname = array();

@@ -13,15 +13,10 @@ if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le f
     include('i18n/en_UK/index_en_UK.php');
 }
 //fin du script d'origine
+
+include 'head.php';
+head("GABA", $lang);
 ?>
-
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <?php include 'head.php';
-    head("GABA");?>
-</head>
 
 
 <body>

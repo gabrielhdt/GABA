@@ -5,6 +5,24 @@ if (!isset($_SESSION['login'])) { // test si l'utilisateur est bien passé par l
     header ('Location: login.php'); // sinon retour page login
     exit();
 }
+
+if(isset($_COOKIE['lang'])) {
+    $lang = $_COOKIE['lang'];
+} else {
+    // si aucune langue n'est déclaré, la langue par default est l'anglais
+    $lang = 'en';
+}
+
+// TODO: faire la traduction
+
+//script d'origine
+// if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier index_fr_FR.php
+//     include('i18n/fr_FR/index_fr_FR.php');
+// } elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier index_en_GB.php
+//     include('i18n/en_UK/index_en_UK.php');
+// }
+//fin du script d'origine
+
 include 'head.php';
 include 'script/db.php';
 if (isset($_POST['old_pw'], $_POST['new_pw'], $_POST['conf_pw']))
@@ -31,14 +49,15 @@ if (isset($_POST['old_pw'], $_POST['new_pw'], $_POST['conf_pw']))
         update_line('Staff', $update, $where);
     }
 }
-?>
-<html>
-<?php
-head('Your account');
-include 'nav.php';
+
+head('Your account', $lang);
+
 ?>
 <body>
-<?php echo isset($err) ? $err : null ?>
+<?php
+include 'nav.php';
+echo isset($err) ? $err : null
+?>
 <div class="container" style="background-color:rgba(170, 170, 170, 0.5);">
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
         <div class="outer description">

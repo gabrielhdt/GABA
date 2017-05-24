@@ -1,5 +1,23 @@
 <?php
 session_start ();
+
+if(isset($_COOKIE['lang'])) {
+    $lang = $_COOKIE['lang'];
+} else {
+    // si aucune langue n'est déclaré, la langue par default est l'anglais
+    $lang = 'en';
+}
+
+// TODO: faire la traduction
+
+//script d'origine
+// if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier index_fr_FR.php
+//     include('i18n/fr_FR/index_fr_FR.php');
+// } elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier index_en_GB.php
+//     include('i18n/en_UK/index_en_UK.php');
+// }
+//fin du script d'origine
+
 include 'script/db.php';
 // Autoriastion de l'edition pour un membre mais pas l'admin
 $edit = isset($_SESSION['login']) && $_SESSION['login'] != 'admin';
@@ -89,18 +107,14 @@ TBL;
     );
     array_push($last_locs, get_values($fields, $tables, $where)[0]);
 }
+
+include 'head.php';
+head(ucfirst($search_res['binomial_name']), $lang);
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
-<?php
-include 'head.php';
-head(ucfirst($search_res['binomial_name']));
-?>
 <body>
-<?php
-include 'nav.php';
-?>
+<?php include 'nav.php'; ?>
+
 <div class="row">
 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
     <div class="pic">
