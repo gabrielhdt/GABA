@@ -17,7 +17,7 @@ if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le f
 //fin du script d'origine
 
 include('script/db.php');
-if (isset($_POST['connexion']) && $_POST['connexion'] == 'Connexion') {
+if (isset($_POST['connexion']) && $_POST['connexion'] == $conn) {
     if ((isset($_POST['login']) && !empty($_POST['login'])) && (isset($_POST['password']) && !empty($_POST['password']))) {
 
         $test_conn = verify_login($_POST['login'], $_POST['password']); // on verfie qui se connecte (admin/staff/invalide)
