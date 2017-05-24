@@ -72,68 +72,66 @@ include 'nav.php';
         </div>
     </div>
     <div class="container-fluid">
-        <div class="row">
-
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="outer jumbotron">
-<div class="middle">
-                    <p>
-                        &emsp;Vous trouverez dans la vidéo ci-contre un aperçu des fonctionnalités citées précedemment et comment les utiliser au mieux.
-                    </p>
-                </div>
-
-
-                </div>
-            </div>
-
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="jumbotron">
-                    <iframe height="400px" width="600px" src="https://www.youtube.com/embed/EreZNkWzBAw" frameborder="0" allowfullscreen></iframe>
-                </div>
-
-
-            </div>
-            </div>
-
-
-            <div class="clearfix visible-lg-block visible-md-block visible-sm-block"></div>
-
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="jumbotron" id='cv'>
-                    <div class="row">
-                        <a href="#" data-toggle="modal" data-target="#modalGabriel"
-                           class="photo_cv col-lg-6 col-md-6 col-sm-6 col-xs-12"
-                           style="background: url('data/pics/unordered/Au.jpg') center/cover no-repeat;">Gabriel</a>
-                        <a href="#" data-toggle="modal" data-target="#modalAdrien"
-                           class="photo_cv col-lg-6 col-md-6 col-sm-6 col-xs-12"
-                           style="background: url('data/pics/unordered/Au.jpg') center/cover no-repeat;">Adrien</a>
-                    </div>
-                    <div class="row">
-                        <a href="#" data-toggle="modal" data-target="#modalBenoit"
-                           class="photo_cv col-lg-6 col-md-6 col-sm-6 col-xs-12"
-                           style="background: url('data/pics/unordered/Au.jpg') center/cover no-repeat;">Benoit</a>
-                        <a href="#" data-toggle="modal" data-target="#modalAurelie"
-                           class="photo_cv col-lg-6 col-md-6 col-sm-6 col-xs-12"
-                           style="background: url('data/pics/unordered/Au.jpg') center/cover no-repeat;">Aurélie</a>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="outer jumbotron">
+                        <p>
+                            &emsp;Vous trouverez dans la vidéo ci-contre un aperçu des fonctionnalités citées précedemment et comment les utiliser au mieux.
+                        </p>
                     </div>
                 </div>
             </div>
 
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="jumbotron" id='webmaster'>
-                <h1>Webmaster</h1>
-                <p id="citation">
-                    <i>"Rome ne s’est pas faite en un jour."</i>
-                </p>
-                <p>
-                    &emsp;Passez votre souris sur les têtes de nos Webmasters pour voir apparaître leur prénoms et cliquez dessus afin d'en apprendre plus sur les personnes ayant participer à la création de ce site !
-                </p>
-
-                <p>
-                    &emsp;Notre équipe vous souhaite de passer un agréable moment sur notre site et espère réveiller l'animal qui est en vous !
-                </p>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="jumbotron" style="text-align:center;">
+                        <iframe height="400px" width="600px" src="https://www.youtube.com/embed/EreZNkWzBAw" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
             </div>
-        </div>
+
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="jumbotron" id='webmaster'>
+                        <h1>Webmaster</h1>
+                        <p id="citation">
+                            <i>"Rome ne s’est pas faite en un jour."</i>
+                        </p>
+                        <p>
+                            &emsp;Passez votre souris sur les têtes de nos Webmasters pour voir apparaître leur prénoms et cliquez dessus afin d'en apprendre plus sur les personnes ayant participer à la création de ce site !
+                        </p>
+
+                        <p>
+                            &emsp;Notre équipe vous souhaite de passer un agréable moment sur notre site et espère réveiller l'animal qui est en vous !
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="jumbotron" id='cv'>
+                        <div class="row">
+                            <a href="#" data-toggle="modal" data-target="#modalGabriel"
+                               class="photo_cv col-lg-3 col-md-3 col-sm-6 col-xs-12"
+                               style="background: url('data/pics/unordered/Au.jpg') center/cover no-repeat;">Gabriel</a>
+                            <a href="#" data-toggle="modal" data-target="#modalAdrien"
+                               class="photo_cv col-lg-3 col-md-3 col-sm-6 col-xs-12"
+                               style="background: url('data/pics/unordered/Au.jpg') center/cover no-repeat;">Adrien</a>
+                        </div>
+                        <!-- <div class="row"> -->
+                            <a href="#" data-toggle="modal" data-target="#modalBenoit"
+                               class="photo_cv col-lg-3 col-md-3 col-sm-6 col-xs-12"
+                               style="background: url('data/pics/unordered/Au.jpg') center/cover no-repeat;">Benoit</a>
+                            <a href="#" data-toggle="modal" data-target="#modalAurelie"
+                               class="photo_cv col-lg-3 col-md-3 col-sm-6 col-xs-12"
+                               style="background: url('data/pics/unordered/Au.jpg') center/cover no-repeat;">Aurélie</a>
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+
+
     </div>
 
         <!-- </div> -->
