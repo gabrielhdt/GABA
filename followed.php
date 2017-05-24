@@ -109,8 +109,8 @@ include 'nav.php';
                 <input type="hidden" name="id" readonly value="<?php echo $idfollowed ?>">
                 <input type="hidden" name="table" readonly value="Followed">
                 <label class="custom-file">
-                  <input type="file" name="userpic" class="custom-file-input">
-                  <span class="custom-file-control"></span>
+                  <input type="file" name="userpic" class="custom-file-input" placeholder="Chosoe a file">
+                  <span class="custom-file-control">Browse</span>
                 </label>
                 <button type="submit" class="btn btn-default">Upload pic</button>
             </form>
