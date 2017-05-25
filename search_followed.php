@@ -149,34 +149,42 @@ $search_res = get_values($fields, $tables, array('where' => $where));
 <div class="research">
 <?php echo $title ?>
 <form action="search_followed.php" method="post" accept-charset="utf-8"
-    enctype="multipart/form-data">
+    enctype="multipart/form-data" class=".form-inline">
     <div class="form-group">
-        <label for="sel_species"><?php echo $species ?></label>
-        <select name="idspecies[]" id="sel_species" class="form-control" multiple>
-        <?php create_choice_list($id_biname); ?>
-        </select>
-        <label for="sel_facility"><?php echo $facility ?></label>
-        <select name="idfacility[]" id="sel_facility" class="form-control" multiple>
-        <?php create_choice_list($id_faname); ?>
-        </select>
-        <br>
-        <label for="lowbirth"><?php echo $birth_a ?></label>
-        <input type="date" name="lowbirth" class="form-control" id="lowbirth"
-            pattern="<?php echo $dateregex; ?>" placeholder="yyyy-mm-dd">
-        <label for="upbirth"><?php echo $birth_b ?></label>
-        <input type="date" name="upbirth" class="form-control" id="upbirth"
-            pattern="<?php echo $dateregex; ?>" placeholder="yyyy-mm-dd">
-        <br>
-        <label for="lowdeath"><?php echo $death_a ?></label>
-        <input type="date" name="lowdeath" class="form-control" id="lowdeath"
-            pattern="<?php echo $dateregex; ?>" placeholder="yyyy-mm-dd">
-        <label for="updeath"><?php echo $death_b ?></label>
-        <input type="date" name="updeath" class="form-control" id="updeath"
-            pattern="<?php echo $dateregex; ?>" placeholder="yyyy-mm-dd">
-        <br>
-        <label class="radio-inline"><input type="radio" name="gender" value="m"><?php echo $m ?></label>
-        <label class="radio-inline"><input type="radio" name="gender" value="f"><?php echo $f ?></label>
-        <label class="radio-inline"><input type="radio" name="gender" value="h"><?php echo $h ?></label><br>
+        <div class="row">
+            <label for="sel_species"><?php echo $species ?></label>
+            <select name="idspecies[]" id="sel_species" class="form-control" multiple>
+            <?php create_choice_list($id_biname); ?>
+            </select>
+            <label for="sel_facility"><?php echo $facility ?></label>
+            <select name="idfacility[]" id="sel_facility" class="form-control" multiple>
+            <?php create_choice_list($id_faname); ?>
+            </select>
+        </div>
+
+        <div class="row">
+            <label for="lowbirth"><?php echo $birth_a ?></label>
+            <input type="date" name="lowbirth" class="form-control" id="lowbirth"
+                pattern="<?php echo $dateregex; ?>" placeholder="yyyy-mm-dd">
+            <label for="upbirth"><?php echo $birth_b ?></label>
+            <input type="date" name="upbirth" class="form-control" id="upbirth"
+                pattern="<?php echo $dateregex; ?>" placeholder="yyyy-mm-dd">
+        </div>
+
+        <div class="row">
+            <label for="lowdeath"><?php echo $death_a ?></label>
+            <input type="date" name="lowdeath" class="form-control" id="lowdeath"
+                pattern="<?php echo $dateregex; ?>" placeholder="yyyy-mm-dd">
+            <label for="updeath"><?php echo $death_b ?></label>
+            <input type="date" name="updeath" class="form-control" id="updeath"
+                pattern="<?php echo $dateregex; ?>" placeholder="yyyy-mm-dd">
+        </div>
+        
+        <div class="row">
+            <label class="radio-inline"><input type="radio" name="gender" value="m"><?php echo $m ?></label>
+            <label class="radio-inline"><input type="radio" name="gender" value="f"><?php echo $f ?></label>
+            <label class="radio-inline"><input type="radio" name="gender" value="h"><?php echo $h ?></label>
+        </div>
     </div>
     <button type="submit" class="btn btn-default"><?php echo $search ?></button>
 </form>

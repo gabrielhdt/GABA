@@ -801,6 +801,9 @@ un peu de css pour les pages de recherches
     text-align: left;
 }
 
+.research input {
+    margin: 20px;
+}
 
 .result-table {
     width: 80% !important;
