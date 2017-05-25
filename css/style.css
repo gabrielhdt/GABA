@@ -187,6 +187,11 @@ description
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    padding: 0;
+}
+
+.add-form {
+    padding: 0;
 }
 
 .description {
