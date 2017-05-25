@@ -135,7 +135,7 @@ function get_values($select, $tables, $params = array())
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $stmt = $conn->prepare($query);
         $qumarkcounter = 1; // ? Indexed from 1
-        if ($where)
+        if (isset($params['where']))
         {
             foreach ($params['where']['valtype'] as $whval)
             {
@@ -143,7 +143,7 @@ function get_values($select, $tables, $params = array())
                 $qumarkcounter++;
             }
         }
-        if ($having && isset($params['having']['valtype']))
+        if (isset($params['having'], $params['having']['valtype']))
         {
             foreach ($params['having']['valtype'] as $hvval)
             {
