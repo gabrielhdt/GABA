@@ -104,9 +104,7 @@ QRY;
     return(true);
 }
 
-function get_values($select,
-    $tables, $where=array(), $groupby='', $having=array(),
-    $orderby='', $fetch_style=PDO::FETCH_ASSOC)
+function get_values($select, $tables, $params = array())
 {
     /* $select, tables, orderby, groupby: strings, as would appear in the
      * sql query, but without the keywords.
@@ -118,14 +116,19 @@ function get_values($select,
      *             )
      *        )
      *    )
+     * in params may appear where, groupby, having, orderby, fetch_style
      */
     global $servername, $username, $dbname, $password, $charset;
     try {
         $query = "SELECT $select FROM $tables";
-        $query .= $where ? ' WHERE '.$where['str'] : null;
-        $query .= $groupby ? ' GROUP BY '.$groupby : null;
-        $query .= $having ? ' HAVING '.$having['str'] : null;
-        $query .= $orderby ? ' ORDER BY '.$orderby : null;
+        $query .= isset($params['where']) ?
+            ' WHERE ' . $params['where']['str'] : null;
+        $query .= isset($params['groupby']) ?
+            ' GROUP BY ' . $params['groupby'] : null;
+        $query .= isset($params['having']) ?
+            ' HAVING ' . $params['having']['str'] : null;
+        $query .= isset($params['orderby']) ?
+            ' ORDER BY ' . $params['orderby'] : null;
         $query .= ';';
         $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
             $username, $password);
