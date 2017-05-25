@@ -13,15 +13,12 @@ if(isset($_COOKIE['lang'])) {
     $lang = 'en';
 }
 
-// TODO: faire la traduction
-
-//script d'origine
-// if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier index_fr_FR.php
-//     include('i18n/fr_FR/index_fr_FR.php');
-// } elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier index_en_GB.php
-//     include('i18n/en_UK/index_en_UK.php');
-// }
-//fin du script d'origine
+// fichier de langue a importer
+if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier (...)_fr_FR.php
+    include('i18n/fr_FR/addspecies_fr_FR.php');
+} elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier (...)_en_GB.php
+    include('i18n/en_UK/addspecies_en_UK.php');
+}
 
 
 include 'script/db.php';
