@@ -182,8 +182,11 @@ $search_res = get_values($fields, $tables, array('where' => $where));
             <label class="radio-inline"><input type="radio" name="gender" value="f"><?php echo $f ?></label>
             <label class="radio-inline"><input type="radio" name="gender" value="h"><?php echo $h ?></label>
         </div>
-    </div><br>
-    <button type="submit" class="btn btn-default"><?php echo $search ?></button>
+        
+        <div class="row">
+            <button type="submit" class="btn btn-default"><?php echo $search ?></button>
+        </div>
+    </div>
 </form>
 </div>
 

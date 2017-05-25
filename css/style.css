@@ -801,7 +801,8 @@ un peu de css pour les pages de recherches
     text-align: left;
 }
 
-.research input {
+.research input,
+.research form button[type=submit] {
     margin: 20px;
 }
 
