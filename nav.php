@@ -1,10 +1,6 @@
 <?php
 // TODO: penser à mettre à jour les liens des pages
-$page_name = substr($_SERVER['ORIG_PATH_INFO'],
-                    strrpos($_SERVER['ORIG_PATH_INFO'], '/') + 1,
-                    strrpos($_SERVER['ORIG_PATH_INFO'],'.php') - 1
-                ); // on récupère l'adresse de la page avec l'eventuel requete $_GET[]
-
+$page_name = substr( $_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '/')+1, strrpos($_SERVER['PHP_SELF'],'.php')-1);
 if(isset($_COOKIE['lang'])) {
     $lang = $_COOKIE['lang'];
 } else {
@@ -99,8 +95,8 @@ function current_nav() {
 }
 ?>
 <div id="flags">
-    <a href="#" onclick="language('fr', '<?php echo $page_name; ?>')"><img class="flag" src="image/drapeau_fr.jpg" alt=""></a>
-    <a href="#" onclick="language('en', '<?php echo $page_name; ?>')"><img class="flag" src="image/drapeau_gb.jpg" alt=""></a>
+    <a href="" onclick="language('fr')"><img class="flag" src="image/drapeau_fr.jpg" alt=""></a>
+    <a href="" onclick="language('en')"><img class="flag" src="image/drapeau_gb.jpg" alt=""></a>
 </div>
 
 <nav class="navbar">
