@@ -89,8 +89,16 @@ head("GABA", $lang);
                 <div class="carousel-caption">
                     <h1>Le saviez-vous ?</h1>
                     <p>Dans nos laboratoires, les manchots mesurent en moyenne 1,30m.</p>
-                    <p class="legende">Notre site vous permet de découvrir la taille moyenne des individus de notre laboratoire de l'espèce de votre choix.</p>
-                    <button type="button" class="btn btn-success">Chercher d'autres statistiques</button>
+                    <p class="legende">
+                        Notre site vous permet de découvrir la
+                        taille moyenne des individus de notre laboratoire de
+                        l'espèce de votre choix.
+                    </p>
+                    <form action="search_followed.php?id=1" method="post">
+                        <button type="submit" class="btn btn-success">
+                            Know more about this bobcat
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
