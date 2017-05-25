@@ -185,7 +185,7 @@ $search_res = get_values($fields, $tables, $where);
 <div class="result-table">
 <?php
 echo "<table id='table'
-    class='result-table table'
+    class='table'
     data-toggle='table'
     data-search='true'
     data-pagination='true'
