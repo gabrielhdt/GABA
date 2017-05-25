@@ -797,6 +797,11 @@ un peu de css pour les pages de recherches
     margin-bottom: 30px;
 }
 
+.research h1 {
+    text-align: left;
+}
+
+
 .result-table {
     width: 80% !important;
     margin: auto;
