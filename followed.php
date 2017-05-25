@@ -99,7 +99,7 @@ include 'nav.php';
         <!-- éventuelle photo du followed -->
         <div class="pic">
             <?php
-            echo '<img src="'.$search_res['pic_path'].
+            echo '<img stype="margin:auto; display:block;" src="'.$search_res['pic_path'].
                 '" class = "img-responsive">';
             ?>
         </div>
