@@ -2,7 +2,7 @@
 
 $feature_title = "<h1>Fonctionnalités du site</h1>";
 
-$feature_p1 = <<< PP1
+$feature_p1 = <<<PP1
 <p>&emsp;
 Ce site a été conçu dans l'espoir d'aider les chercheurs de laboratoires
 animaliers à partager les données des individus dont ils s'occupent. Seuls les
@@ -13,7 +13,7 @@ rentrer leur identifiant et mot de passe sur la page <a href="login.php">Login</
 </p>
 PP1;
 
-$feature_p2 = <<< PP2
+$feature_p2 = <<<PP2
 <p>&emsp;
 Notre site a donc un aspect pratique mais aussi un côté ludique pour les personnes
 qui ne sont pas chercheurs, mais simplement curieuses et qui souhaitent en savoir plus
@@ -26,7 +26,7 @@ activités proposées au fil des pages !
 </p>
 PP2;
 
-$feature_p3 = <<< PP3
+$feature_p3 = <<<PP3
 <p>&emsp;
 Par exemple, notre site permet de visualiser les statistiques sur tous les
 individus et chaque espèce enregistrée. Ainsi, vous pouvez découvrir des statistiques
@@ -42,7 +42,7 @@ l'origine de tout cela sur notre page
 </p>
 PP3;
 
-$feature_p4 = <<< PP4
+$feature_p4 = <<<PP4
 <p>&emsp;
 Enfin, n'hésitez pas à laissez des commentaires sur vos impressions grâce à la
 section <a href="contact">Contact</a> de la page d'accueil, ou à demander à
