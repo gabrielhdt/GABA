@@ -146,6 +146,7 @@ $search_res = get_values($fields, $tables, $where);
 ?>
 <body>
 <?php include "nav.php"; ?>
+<div class="research">
 <?php echo $title ?>
 <form action="search_followed.php" method="post" accept-charset="utf-8"
     enctype="multipart/form-data">
@@ -179,6 +180,7 @@ $search_res = get_values($fields, $tables, $where);
     </div>
     <button type="submit" class="btn btn-default"><?php echo $search ?></button>
 </form>
+</div>
 
 <hr class="rslt">
 <?php echo $result ?>

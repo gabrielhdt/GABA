@@ -72,8 +72,8 @@ $colsp = array('idSpecies', 'binomial_name', 'nfoll');
 ?>
 <body>
 <?php include "nav.php"; ?>
-<?php echo $title ?>
 <div class="research">
+    <?php echo $title ?>
     <form action="search_species.php" method="post" accept-charset="utf-8"
         class="form-inline" enctype="multipart/form-data">
         <div class="form-group">
