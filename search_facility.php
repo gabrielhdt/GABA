@@ -90,14 +90,16 @@ head('Recherche bâtiment', $lang);
         <?php echo $title ?>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id='map-container'>
             <form action="search_facility.php" method="post" accept-charset="utf-8"
-                enctype="multipart/form-data">
+                enctype="multipart/form-data"  class="form-inline">
                 <div class="form-group">
+
                     <label for="sel_species"><?php echo $species ?></label>
                     <select name="idspecies[]" id="sel_species" class="form-control" multiple>
                     <?php create_choice_list($id_biname); ?>
                     </select>
+
                     <label for="low_nfoll"><?php echo $nb_species ?></label>
-                    <input type="number" name="low_nfoll" id="low_nfoll"
+                    <input class="form-control" type="number" name="low_nfoll" id="low_nfoll"
                         placeholder="5, 17, ...">
                 </div>
                 <button type="submit" class="btn btn-default"><?php echo $search ?></button>
