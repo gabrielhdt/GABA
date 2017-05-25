@@ -108,6 +108,41 @@ TBL;
     array_push($last_locs, get_values($fields, $tables, $where)[0]);
 }
 
+//Statistics (mean in a first place)
+$where['str'] = 'idSpecies=?';
+$where['valtype'] = array(
+    array('value' => $idspecies, 'type' => PDO::PARAM_INT)
+);
+$folls = get_values('idFollowed', 'Followed', $where);
+$folls = array_map('f', $folls);
+$foll_mtype = array(); //array(idFollowed => array of measure types)
+function ht($line) {return($line['type']);}
+foreach ($folls as $foll) {
+    $foll_mtype[$foll] = array_map('ht', distinct_measure($foll));
+}
+$mtypes = array();  //All types
+foreach ($foll_mtype as $types_for_foll) {
+    array_merge($mtypes, $types_for_foll);
+}
+$mtypes = array_unique($mtypes);
+$mtypes_count = array();  //array(mtype => number of followed having measure)
+$mtypes_sum = array();
+foreach ($foll_mtype as $idf => $meas_ofoll) {
+    foreach ($meas_ofoll as $fmtype) {
+        if (isset($mtypes_count[$fmtype])) {
+            $mtypes_count[$fmtype]++;
+            $mtypes_sum[$fmtype] += latest_meas_type($idf, $fmtype);
+        } else {
+            $mtypes_count[$fmtype] = 1;
+            $mtypes_sum[$fmtype] = latest_meas_type($idf, $fmtype);
+        }
+    }
+}
+$mean_meas = array();  // array(mtype => mean)
+foreach ($mtypes as $mtype) {
+    $mean_meas['mtype'] = $mtypes_sum[$mtype]/$mtypes_count[$mtype];
+}
+
 include 'head.php';
 head(ucfirst($search_res['binomial_name']), $lang);
 ?>
@@ -123,6 +158,13 @@ head(ucfirst($search_res['binomial_name']), $lang);
             '" class = "img-responsive">';
         ?>
     </div>
+    <table>
+        <?php
+        foreach ($mean_meas as $meas => $mean) {
+            echo '<tr><td>' . $meas . '</td><td>' . $mean . '</td></tr>';
+        }
+        ?>
+    </table>
 </div>
 
 <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
@@ -187,6 +229,7 @@ head(ucfirst($search_res['binomial_name']), $lang);
     </div>
 </div>
 </div>
+<?php if ($edit) { ?>
 <div id="editSpeciesModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
@@ -246,6 +289,7 @@ head(ucfirst($search_res['binomial_name']), $lang);
 
   </div>
 </div>
+<?php } ?>
 <?php
 include 'footer.php';
 ?>
