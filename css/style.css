@@ -773,17 +773,6 @@ MODAL pour les cvs des webmasters
     font-family: 'Linux Biolinum';
     font-size: 1.5em;
 }
-
-/*******************************************
-mise en page des champs de recherche
-search_species.php et search_folloxed.php
-*******************************************/
-
-.research {
-    text-align: center;
-    margin: 20px;
-}
-
 /*******************************************
 change pwd
 *******************************************/
@@ -796,4 +785,43 @@ change pwd
 }
 #change-pwd input {
     margin: 15px 0;
+}
+
+/*******************************************
+un peu de css pour les pages de recherches
+*******************************************/
+.research {
+    width: 80%;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.research h1 {
+    text-align: left;
+}
+
+
+.result-table {
+    width: 80% !important;
+    margin: auto;
+}
+hr.rslt{
+    width: 80%;
+    margin: auto;
+    height: 30px;
+    border-style: solid;
+    border-color: #8c8b8b;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+}
+hr.rslt:before {
+    display: block;
+    content: "";
+    height: 30px;
+    margin-top: -30px;
+    border-style: solid;
+    border-color: #8c8b8b;
+    border-width: 0 0 1px 0;
+    border-radius: 20px;
 }

@@ -8,15 +8,12 @@ if(isset($_COOKIE['lang'])) {
     $lang = 'en';
 }
 
-// TODO: faire la traduction
-
-//script d'origine
-// if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier index_fr_FR.php
-//     include('i18n/fr_FR/index_fr_FR.php');
-// } elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier index_en_GB.php
-//     include('i18n/en_UK/index_en_UK.php');
-// }
-//fin du script d'origine
+// fichier de langue a importer
+if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier (...)_fr_FR.php
+    include('i18n/fr_FR/search_followed_fr_FR.php');
+} elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier (...)_en_GB.php
+    include('i18n/en_UK/search_followed_en_UK.php');
+}
 
 include "script/db.php";
 include "script/form_func.php";
@@ -149,38 +146,45 @@ $search_res = get_values($fields, $tables, array('where' => $where));
 ?>
 <body>
 <?php include "nav.php"; ?>
+<div class="research">
+<?php echo $title ?>
 <form action="search_followed.php" method="post" accept-charset="utf-8"
     enctype="multipart/form-data">
     <div class="form-group">
-        <label for="sel_species">Of species:</label>
+        <label for="sel_species"><?php echo $species ?></label>
         <select name="idspecies[]" id="sel_species" class="form-control" multiple>
         <?php create_choice_list($id_biname); ?>
         </select>
-        <label for="sel_facility">In facilities:</label>
+        <label for="sel_facility"><?php echo $facility ?></label>
         <select name="idfacility[]" id="sel_facility" class="form-control" multiple>
         <?php create_choice_list($id_faname); ?>
         </select>
         <br>
-        <label for="lowbirth">Born after:</label>
+        <label for="lowbirth"><?php echo $birth_a ?></label>
         <input type="date" name="lowbirth" class="form-control" id="lowbirth"
             pattern="<?php echo $dateregex; ?>" placeholder="yyyy-mm-dd">
-        <label for="upbirth">Born before:</label>
+        <label for="upbirth"><?php echo $birth_b ?></label>
         <input type="date" name="upbirth" class="form-control" id="upbirth"
             pattern="<?php echo $dateregex; ?>" placeholder="yyyy-mm-dd">
         <br>
-        <label for="lowdeath">Died after:</label>
+        <label for="lowdeath"><?php echo $death_a ?></label>
         <input type="date" name="lowdeath" class="form-control" id="lowdeath"
             pattern="<?php echo $dateregex; ?>" placeholder="yyyy-mm-dd">
-        <label for="updeath">Died before:</label>
+        <label for="updeath"><?php echo $death_b ?></label>
         <input type="date" name="updeath" class="form-control" id="updeath"
             pattern="<?php echo $dateregex; ?>" placeholder="yyyy-mm-dd">
         <br>
-        <label class="radio-inline"><input type="radio" name="gender" value="m">Male</label>
-        <label class="radio-inline"><input type="radio" name="gender" value="f">Female</label>
-        <label class="radio-inline"><input type="radio" name="gender" value="h">Hermaphrodite</label><br>
+        <label class="radio-inline"><input type="radio" name="gender" value="m"><?php echo $m ?></label>
+        <label class="radio-inline"><input type="radio" name="gender" value="f"><?php echo $f ?></label>
+        <label class="radio-inline"><input type="radio" name="gender" value="h"><?php echo $h ?></label><br>
     </div>
-    <button type="submit" class="btn btn-default">Rechercher animal</button>
+    <button type="submit" class="btn btn-default"><?php echo $search ?></button>
 </form>
+</div>
+
+<hr class="rslt">
+<div class="result-table">
+<?php echo $result ?>
 <?php
 echo "<table id='table'
     class='table'
@@ -199,6 +203,7 @@ create_tablebody(
 echo '</tbody>';
 echo '</table>';
 ?>
+</div>
 <?php include "footer.php"; ?>
 </body>
 </html>

@@ -75,8 +75,8 @@ $colsp = array('idSpecies', 'binomial_name', 'nfoll');
 ?>
 <body>
 <?php include "nav.php"; ?>
-<?php echo $title ?>
 <div class="research">
+    <?php echo $title ?>
     <form action="search_species.php" method="post" accept-charset="utf-8"
         class="form-inline" enctype="multipart/form-data">
         <div class="form-group">
@@ -90,6 +90,9 @@ $colsp = array('idSpecies', 'binomial_name', 'nfoll');
         <button type="submit" class="btn btn-default"><?php echo $research ?></button>
     </form>
 </div>
+<hr class="rslt">
+<div class="result-table">
+<?php echo $result; ?>
 <?php
 echo <<<TH
 <table id='table'
@@ -104,11 +107,12 @@ TH;
 echo '<thead>';
 create_tablehead($colsp, $labels);
 echo '</thead>';
-echo '<tbody>';
+echo "<tbody>";
 create_tablebody($colsp, $species, 'species.php', 'idSpecies');
 echo'</tbody>';
 echo '</table>';
 ?>
+</div>
 <?php include "footer.php"; ?>
 </body>
 </html>
