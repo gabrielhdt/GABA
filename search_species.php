@@ -89,10 +89,11 @@ $colsp = array('idSpecies', 'binomial_name', 'nfoll');
 </div>
 <hr>
 <?php echo $result; ?>
+<div class="result-table">
 <?php
 echo <<<TH
 <table id='table'
-class='result-table table'
+class='table'
 data-toggle='table'
 data-search='true'
 data-pagination='true'
@@ -103,11 +104,12 @@ TH;
 echo '<thead>';
 create_tablehead($colsp, $labels);
 echo '</thead>';
-echo "<tbody class='result-table'>";
+echo "<tbody>";
 create_tablebody($colsp, $species, 'species.php', 'idSpecies');
 echo'</tbody>';
 echo '</table>';
 ?>
+</div>
 <?php include "footer.php"; ?>
 </body>
 </html>
