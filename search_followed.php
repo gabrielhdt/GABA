@@ -180,7 +180,7 @@ $search_res = get_values($fields, $tables, $where);
     <button type="submit" class="btn btn-default"><?php echo $search ?></button>
 </form>
 
-<hr>
+<hr class="rslt">
 <?php echo $result ?>
 <div class="result-table">
 <?php

@@ -87,7 +87,7 @@ $colsp = array('idSpecies', 'binomial_name', 'nfoll');
         <button type="submit" class="btn btn-default"><?php echo $research ?></button>
     </form>
 </div>
-<hr>
+<hr class="rslt">
 <?php echo $result; ?>
 <div class="result-table">
 <?php
