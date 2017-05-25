@@ -94,7 +94,7 @@ head("GABA", $lang);
                         taille moyenne des individus de notre laboratoire de
                         l'espèce de votre choix.
                     </p>
-                    <form action="search_followed.php?id=1" method="post">
+                    <form action="followed.php?id=1" method="post">
                         <button type="submit" class="btn btn-success">
                             Know more about this bobcat
                         </button>
