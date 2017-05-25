@@ -79,7 +79,8 @@ TBL;
     );
 
 }
-$facspecs = get_values($fields, $tables, $where, $groupby, $having);
+$facspecs = get_values($fields, $tables,
+    array('where' => $where, 'groupby' => $groupby, 'having' => $having));
 echo !$facspecs ? "Error while querying" : null;
 
 head('Recherche bâtiment', $lang);

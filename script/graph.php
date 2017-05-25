@@ -33,7 +33,7 @@ MiscQuantity INNER JOIN Measure ON MiscQuantity.idMeasure=Measure.idMeasure
 TBL;
     $result = get_values(
         'DISTINCT MiscQuantity.value, MiscQuantity.unit,Measure.date_measure',
-        $tables, $where
+        $tables, array('where' => $where)
     );
     $val = array();
     $unit = array();

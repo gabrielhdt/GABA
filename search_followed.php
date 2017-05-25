@@ -27,12 +27,12 @@ $dateregex = "\d{4}[-.\/][01]?\d[-.\/][0-3]?\d";
 
 $id_biname = array();
 $lines = get_values('idSpecies, binomial_name', 'Species',
-    $orderby='binomial_name');
+    array('orderby' => 'binomial_name'));
 foreach ($lines as $line)
 {
     $id_biname[$line['idSpecies']] = $line['binomial_name'];
 }
-$lines = get_values('idFacility, name', 'Facility', $orderby='name');
+$lines = get_values('idFacility, name', 'Facility', array('orderby' => 'name'));
 $id_faname = array();
 foreach ($lines as $line)
 {
@@ -145,7 +145,7 @@ $labels = array('Identifier', 'Species', 'Facility', 'Gender', 'Birth',
 $fields = <<<FLD
 idFollowed, binomial_name, name, gender, birth, death, health
 FLD;
-$search_res = get_values($fields, $tables, $where);
+$search_res = get_values($fields, $tables, array('where' => $where));
 ?>
 <body>
 <?php include "nav.php"; ?>

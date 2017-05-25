@@ -428,7 +428,7 @@ function distinct_measure($idFollowed) {
 MiscQuantity INNER JOIN Measure ON MiscQuantity.idMeasure=Measure.idMeasure
 TBL;
     $distinct_type = get_values('DISTINCT MiscQuantity.type',
-        $tables, $where
+        $tables, array('where' => $where)
     );
     return $distinct_type;
     }
@@ -454,7 +454,7 @@ function latest_meas_type($idfollowed, $type) {
     $where = array('str' => "idFollowed=? AND MiscQuantity.type=?", 'valtype' => array(
                 array('value' => $idfollowed, 'type' => PDO::PARAM_INT),
                 array('value' => $type, 'type' => PDO::PARAM_STR)));
-    $date_last_measure = get_values($select, $tables, $where);
+    $date_last_measure = get_values($select, $tables, array('where' => $where));
     $select = "MiscQuantity.type, value, unit, date_measure, login";
     $where = array('str' => "idFollowed=? AND MiscQuantity.type=? AND date_measure=?",
                    'valtype' => array(
@@ -462,7 +462,8 @@ function latest_meas_type($idfollowed, $type) {
                 array('value' => $type, 'type' => PDO::PARAM_STR),
                 array('value' => $date_last_measure[0]["last_date"],
                 'type' => PDO::PARAM_INT)));
-    $rslt = $date_last_measure = get_values($select, $tables, $where);
+    $rslt = $date_last_measure = get_values($select, $tables,
+        array('where' => $where));
     return $rslt[0];
 }
 ?>

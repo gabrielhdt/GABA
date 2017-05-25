@@ -47,7 +47,7 @@ WH;
 $where['valtype'] = array(
     array('value' => $idfollowed, 'type' => PDO::PARAM_STR)
 );
-$search_res = get_values($fields, $table, $where)[0];
+$search_res = get_values($fields, $table, array('where' => $where))[0];
 
 
 // Getting last known location
@@ -59,7 +59,7 @@ $where['valtype'] = array(
     array('value' => $idfollowed, 'type' => PDO::PARAM_INT)
 );
 $last_meas_date = get_values(
-    'MAX(date_measure) AS last_meas', $tables, $where
+    'MAX(date_measure) AS last_meas', $tables, array('where' => $where)
 )[0]['last_meas'];
 
 $fields = "latitude, longitude, date_measure";
@@ -70,7 +70,7 @@ $where['valtype'] = array(
     array('value' => $idfollowed, 'type' => PDO::PARAM_INT),
     array('value' => $last_meas_date, 'type' => PDO::PARAM_STR)
 );
-$loc = get_values($fields, $table, $where)[0];
+$loc = get_values($fields, $table, array('where' => $where))[0];
 $loc_str = $search_res['fa_name'] == 'gaia' ?
     "Last known location: " . $loc['latitude'] .'W ' .
     $loc['longitude'] .'N' : 'At ' . $search_res['fa_name'];
