@@ -182,7 +182,7 @@ function language(lg) {
         {
             lang: lg
         },
-        success : function(data) {
+        success: function(){
             document.location.href='' // on recherge la page actuelle
         }
     );
