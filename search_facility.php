@@ -8,15 +8,13 @@ if(isset($_COOKIE['lang'])) {
     $lang = 'en';
 }
 
-// TODO: faire la traduction
 
-//script d'origine
-// if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier index_fr_FR.php
-//     include('i18n/fr_FR/index_fr_FR.php');
-// } elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier index_en_GB.php
-//     include('i18n/en_UK/index_en_UK.php');
-// }
-//fin du script d'origine
+// fichier de langue a importer
+if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier (...)_fr_FR.php
+    include('i18n/fr_FR/search_facility_fr_FR.php');
+} elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier (...)_en_GB.php
+    include('i18n/en_UK/search_facility_en_UK.php');
+}
 
 include "script/db.php";
 include "script/form_func.php";
@@ -89,6 +87,7 @@ head('Recherche bâtiment', $lang);
 
 <body>
 <?php include "nav.php"; ?>
+<?php echo $title ?>
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id='map-container'>
@@ -100,15 +99,15 @@ head('Recherche bâtiment', $lang);
             <form action="search_facility.php" method="post" accept-charset="utf-8"
                 enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="sel_species">Having species:</label>
+                    <label for="sel_species"><?php echo $species ?></label>
                     <select name="idspecies[]" id="sel_species" class="form-control" multiple>
                     <?php create_choice_list($id_biname); ?>
                     </select>
-                    <label for="low_nfoll">Having more followed individuals than:</label>
+                    <label for="low_nfoll"><?php echo $nb_species ?></label>
                     <input type="number" name="low_nfoll" id="low_nfoll"
                         placeholder="5, 17, ...">
                 </div>
-                <button type="submit" class="btn btn-default">Search facility</button>
+                <button type="submit" class="btn btn-default"><?php echo $search ?></button>
             </form>
         </div>
     </div>
