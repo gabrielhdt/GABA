@@ -181,6 +181,10 @@ $search_res = get_values($fields, $tables, $where);
     </div>
     <button type="submit" class="btn btn-default">Rechercher animal</button>
 </form>
+
+<hr>
+
+<div class="result-table">
 <?php
 echo "<table id='table'
     class='result-table table'
@@ -199,6 +203,7 @@ create_tablebody(
 echo '</tbody>';
 echo '</table>';
 ?>
+</div>
 <?php include "footer.php"; ?>
 </body>
 </html>
