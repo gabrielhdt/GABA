@@ -96,8 +96,8 @@ function current_nav() {
 }
 ?>
 <div id="flags">
-    <a href="" onclick="language('fr', '<?php echo $page_name; ?>')"><img class="flag" src="image/drapeau_fr.jpg" alt=""></a>
-    <a href="" onclick="language('en', '<?php echo $page_name; ?>')"><img class="flag" src="image/drapeau_gb.jpg" alt=""></a>
+    <a href="#" onclick="language('fr', '<?php echo $page_name; ?>')"><img class="flag" src="image/drapeau_fr.jpg" alt=""></a>
+    <a href="#" onclick="language('en', '<?php echo $page_name; ?>')"><img class="flag" src="image/drapeau_gb.jpg" alt=""></a>
 </div>
 
 <nav class="navbar">
