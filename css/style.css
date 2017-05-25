@@ -802,7 +802,7 @@ un peu de css pour les pages de recherches
 }
 
 .research input,
-.research form button[type=submit] {
+.research form .row {
     margin: 20px;
 }
 
@@ -828,4 +828,8 @@ hr.rslt:before {
     border-color: #8c8b8b;
     border-width: 0 0 1px 0;
     border-radius: 20px;
+}
+
+#sel_species, #sel_facility {
+    width: 30%;
 }
