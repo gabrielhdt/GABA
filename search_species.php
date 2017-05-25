@@ -8,15 +8,12 @@ if(isset($_COOKIE['lang'])) {
     $lang = 'en';
 }
 
-// TODO: faire la traduction
-
-//script d'origine
-// if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier index_fr_FR.php
-//     include('i18n/fr_FR/index_fr_FR.php');
-// } elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier index_en_GB.php
-//     include('i18n/en_UK/index_en_UK.php');
-// }
-//fin du script d'origine
+// fichier de langue a importer
+if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier (...)_fr_FR.php
+    include('i18n/fr_FR/search_species_fr_FR.php');
+} elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier (...)_en_GB.php
+    include('i18n/en_UK/search_species_en_UK.php');
+}
 
 include "script/db.php";
 include "script/form_func.php";
@@ -75,18 +72,19 @@ $labels = array('Identifier', 'Name', 'Num. of followed individuals');
 ?>
 <body>
 <?php include "nav.php"; ?>
+<?php echo $title ?>
 <div class="research">
     <form action="search_species.php" method="post" accept-charset="utf-8"
         class="form-inline" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="low_nfoll">More followed than</label>
+            <label for="low_nfoll"><?php echo $more_than ?></label>
             <input type="number" name="low_nfoll" class="form-control"
                    id="low_nfoll" placeholder="1, 3, ...">
-            <label for="up_nfoll">but less than</label>
+            <label for="up_nfoll"><?php echo $less_than ?></label>
             <input type="number" name="up_nfoll" class="form-control"
             id="up_nfoll" placeholder="15, 54, ...">
         </div><br>
-        <button type="submit" class="btn btn-default">Rechercher animal</button>
+        <button type="submit" class="btn btn-default"><?php echo $research ?></button>
     </form>
 </div>
 <?php
