@@ -137,21 +137,23 @@ function get_values($select, $tables, $params = array())
         $qumarkcounter = 1; // ? Indexed from 1
         if ($where)
         {
-            foreach ($where['valtype'] as $whval)
+            foreach ($params['where']['valtype'] as $whval)
             {
                 $stmt->bindValue($qumarkcounter, $whval['value'], $whval['type']);
                 $qumarkcounter++;
             }
         }
-        if ($having && isset($having['valtype']))  // If having depends on var
+        if ($having && isset($params['having']['valtype']))
         {
-            foreach ($having['valtype'] as $hvval)
+            foreach ($params['having']['valtype'] as $hvval)
             {
                 $stmt->bindValue($qumarkcounter, $hvval['value'], $hvval['type']);
                 $qumarkcounter++;
             }
         }
         $stmt->execute();
+        $fetch_style = isset($params['fetch_style']) ?
+            $params['fetch_style'] : PDO::FETCH_ASSOC;
         $stmt->setFetchMode($fetch_style);
         $rslt = $stmt->fetchAll();
     } catch (PDOException $e) {
