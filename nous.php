@@ -15,7 +15,7 @@ if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le f
 
 include 'script/db.php';
 include 'head.php';
-head('Notre Labo', $lang);
+head($head_title, $lang);
 ?>
 
 <body>

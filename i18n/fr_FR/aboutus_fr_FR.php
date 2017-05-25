@@ -24,4 +24,5 @@ qu'offre notre site et profitez au maximum de votre expérience
 grâce à la section aide !
 </p>
 AUS;
+$head_title = 'À propos de nous';
 ?>

@@ -1,5 +1,5 @@
 <?php
-$about_us_title = "<h1>About Us</h1>";
+$about_us_title = "<h1>About us</h1>";
 $about_us = <<<AUS
 <p>
 &emsp;
@@ -22,4 +22,6 @@ Do not hesitate to explore all the features of the site and read the help
 section!
 </p>
 AUS;
+
+$head_title = 'About us';
 ?>
