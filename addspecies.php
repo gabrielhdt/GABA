@@ -77,37 +77,39 @@ if (isset($_POST['species']))
 }
 
 // Getting info for form
-$lines = get_values('DISTINCT kingdom', 'Species', $orderby='kingdom');
+$lines = get_values('DISTINCT kingdom', 'Species',
+    array('orderby' => 'kingdom'));
 $kingdoms = array();
 foreach ($lines as $line)
 {
     array_push($kingdoms, ucfirst($line['kingdom']));
 }
-$lines = get_values('DISTINCT phylum', 'Species', $orderby='phylum');
+$lines = get_values('DISTINCT phylum', 'Species', array('orderby' => 'phylum'));
 $phylae = array();
 foreach ($lines as $line)
 {
     array_push($phylae, ucfirst($line['phylum']));
 }
-$lines = get_values('DISTINCT class', 'Species', $orderby='class');
+$lines = get_values('DISTINCT class', 'Species', array('orderby' => 'class'));
 $classes = array();
 foreach ($lines as $line)
 {
     array_push($classes, ucfirst($line['class']));
 }
-$lines = get_values("DISTINCT order_s", 'Species', $orderby='order_s');
+$lines = get_values("DISTINCT order_s", 'Species',
+    array('$orderby' => 'order_s'));
 $orders = array();
 foreach ($lines as $line)
 {
     array_push($orders, ucfirst($line['order_s']));
 }
-$lines = get_values('DISTINCT family', 'Species', $orderby='family');
+$lines = get_values('DISTINCT family', 'Species', array('orderby' => 'family'));
 $families = array();
 foreach ($lines as $line)
 {
     array_push($families, ucfirst($line['family']));
 }
-$lines = get_values('DISTINCT genus', 'Species', $orderby='genus');
+$lines = get_values('DISTINCT genus', 'Species', array('orderby' => 'genus'));
 $genuses = array();
 foreach ($lines as $line)
 {
