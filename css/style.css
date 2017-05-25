@@ -803,6 +803,6 @@ un peu de css pour les pages de recherches
 *******************************************/
 
 .result-table {
-    width: 80%;
+    width: 80% !important;
     margin: auto;
 }
