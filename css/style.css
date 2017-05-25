@@ -426,7 +426,7 @@ login.php
     padding: 150px 0;
 }
 
-.btn {
+.mybg .btn {
     font-weight: 700;
     height: 36px;
     -moz-user-select: none;
@@ -434,10 +434,6 @@ login.php
     user-select: none;
     cursor: default;
 }
-
-/******************************************************************************
-Card component
-******************************************************************************/
 
 .card {
     background-color: #F7F7F7;
@@ -464,10 +460,6 @@ Card component
     border-radius: 0%;
 }
 
-/******************************************************************************
-Form styles
-******************************************************************************/
-
 .profile-name-card {
     font-size: 16px;
     font-weight: bold;
@@ -475,17 +467,11 @@ Form styles
     margin: 10px 0 0;
     min-height: 1em;
 }
+
 .form-signin{
     text-align: center;
 }
-.form-signin #inputEmail,
-.form-signin #inputPassword {
-    direction: ltr;
-    height: 44px;
-    font-size: 16px;
-}
 
-.form-signin input[type=email],
 .form-signin input[type=password],
 .form-signin input[type=text],
 .form-signin button {
@@ -528,13 +514,6 @@ Form styles
 .btn.btn-signin:active,
 .btn.btn-signin:focus {
     background-color: rgb(12, 97, 33);
-}
-
-
-.forgot-password:hover,
-.forgot-password:active,
-.forgot-password:focus{
-    color: rgb(12, 97, 33);
 }
 
 /******************************************************************************
@@ -727,42 +706,34 @@ admin_index.php
     color : red;
 }
 
-
-.pic {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-}
-
-#intel {
-    font-family: 'Linux Libertine';
-}
-
-#intel h2 {
-    font-style: italic;
-    font-size: 18px;
-}
-
-
-table {
-    font-family: 'Open Sans', sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-td, th {
-    border: 1px solid #dddddd;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
-
-
 /*****************************************************************************
- * FOLLOWED TABLE
+ * FOLLOWED
  ****************************************************************************/
+ #intel {
+     font-family: 'Linux Libertine';
+ }
+
+ #intel h2 {
+     font-style: italic;
+     font-size: 18px;
+ }
+
+
+ table {
+     font-family: 'Open Sans', sans-serif;
+     border-collapse: collapse;
+     width: 100%;
+ }
+
+ td, th {
+     border: 1px solid #dddddd;
+     padding: 8px;
+ }
+
+ tr:nth-child(even) {
+     background-color: #dddddd;
+ }
+
 .annotation {
     padding-left: 20px;
     border-left: 4px solid black;
@@ -778,6 +749,11 @@ tr:nth-child(even) {
     width: 100%;
 }
 
+.pic {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
 /*******************************************
 MODAL pour les cvs des webmasters
 *******************************************/
