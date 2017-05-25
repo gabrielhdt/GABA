@@ -91,7 +91,7 @@ head('Recherche bâtiment', $lang);
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id='map-container'>
             <form action="search_facility.php" method="post" accept-charset="utf-8"
                 enctype="multipart/form-data"  class="form-inline">
-                <div class="form-group">
+                <div class="form-group" style="width:100%;">
                     <div class="row">
                         <label for="sel_species"><?php echo $species ?></label>
                         <select name="idspecies[]" id="sel_species" class="form-control" multiple>
