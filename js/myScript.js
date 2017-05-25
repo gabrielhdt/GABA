@@ -177,11 +177,13 @@ gestion du choix des langues
 *******************************/
 
 function language(lg) {
-    $.post({
-        url : 'script/scriptAjax.php',
-        data : { lang: lg },
-        success: function(data){
+    $.post(
+        'script/scriptAjax.php',
+        {
+            lang: lg
+        },
+        function success(data) {
             document.location.href='' // on recherge la page actuelle
         }
-    });
+    );
 }
