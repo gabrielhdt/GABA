@@ -36,14 +36,17 @@ WH;
 $where['valtype'] = array(
     array('value' => $idspecies, 'type' => PDO::PARAM_INT)
 );
-$search_res = get_values($fields, $table, $where)[0];
+$search_res = get_values($fields, $table, array('where' => $where))[0];
 $nfoll = get_values(
     'COUNT(idFollowed) AS nfoll',
     'Followed',
     array(
-        'str' => 'idSpecies=?',
-        'valtype' => array(
-            array('value' => $idspecies, 'type' => PDO::PARAM_INT)
+        'where' =>
+        array(
+            'str' => 'idSpecies=?',
+            'valtype' => array(
+                array('value' => $idspecies, 'type' => PDO::PARAM_INT)
+            )
         )
     )
 )[0]['nfoll'];
@@ -52,7 +55,7 @@ $nfoll = get_values(
 $where['str'] = 'idSpecies=?';
 $where['valtype'] = array(array('value' => $idspecies,
     'type' => PDO::PARAM_INT));
-$pic_paths_qu = get_values('pic_path', 'Followed', $where);
+$pic_paths_qu = get_values('pic_path', 'Followed', array('where' => $where));
 function g($ppassoc) { return($ppassoc['pic_path']); }
 $pic_paths_null = array_map("g", $pic_paths_qu);
 function h($ppnull) { return($ppnull && true); } // ppnull seems false?
@@ -88,7 +91,7 @@ $where['valtype'] = array(
     array('value' => $idspecies, 'type' => PDO::PARAM_INT)
 );
 $fields = 'Followed.idFollowed';
-$folls_located = get_values($fields, $tables, $where);
+$folls_located = get_values($fields, $tables, array('where' => $where));
 function f($line) {return($line['idFollowed']);}
 $folls_located = array_map('f', $folls_located);
 $last_locs = array();
@@ -102,13 +105,15 @@ TBL;
     $where['valtype'] = array(
         array('value' => $follocated, 'type' => PDO::PARAM_INT)
     );
-    $lastm_date = get_values($fields, $tables, $where)[0]['lastm_date'];
+    $lastm_date = get_values($fields, $tables,
+        array('where' => $where))[0]['lastm_date'];
     $fields = 'Followed.idFollowed, latitude, longitude';
     $where['str'] = 'date_measure=?';
     $where['valtype'] = array(
         array('value' => $lastm_date, 'type' => PDO::PARAM_STR)
     );
-    array_push($last_locs, get_values($fields, $tables, $where)[0]);
+    array_push($last_locs, get_values($fields, $tables,
+        array('where' => $where))[0]);
 }
 
 //Statistics (mean in a first place)
@@ -116,7 +121,7 @@ $where['str'] = 'idSpecies=?';
 $where['valtype'] = array(
     array('value' => $idspecies, 'type' => PDO::PARAM_INT)
 );
-$folls = get_values('idFollowed', 'Followed', $where);
+$folls = get_values('idFollowed', 'Followed', array('where' => $where));
 $folls = array_map('f', $folls);
 $folls_mtype = array(); //array(idFollowed => array of measure types)
 function ht($line) {return($line['type']);}
