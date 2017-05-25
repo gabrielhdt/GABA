@@ -115,32 +115,35 @@ $where['valtype'] = array(
 );
 $folls = get_values('idFollowed', 'Followed', $where);
 $folls = array_map('f', $folls);
-$foll_mtype = array(); //array(idFollowed => array of measure types)
+$folls_mtype = array(); //array(idFollowed => array of measure types)
 function ht($line) {return($line['type']);}
 foreach ($folls as $foll) {
-    $foll_mtype[$foll] = array_map('ht', distinct_measure($foll));
+    $folls_mtype[$foll] = array_map('ht', distinct_measure($foll));
 }
 $mtypes = array();  //All types
-foreach ($foll_mtype as $types_for_foll) {
-    array_merge($mtypes, $types_for_foll);
+foreach ($folls_mtype as $types_for_foll) {
+    $mtypes = array_merge($mtypes, $types_for_foll);
 }
 $mtypes = array_unique($mtypes);
 $mtypes_count = array();  //array(mtype => number of followed having measure)
 $mtypes_sum = array();
-foreach ($foll_mtype as $idf => $meas_ofoll) {
+$mtypes_unit = array();  //TODO: manage units (poorly done here)
+foreach ($folls_mtype as $idf => $meas_ofoll) {
     foreach ($meas_ofoll as $fmtype) {
+        $lmt = latest_meas_type($idf, $fmtype);
         if (isset($mtypes_count[$fmtype])) {
             $mtypes_count[$fmtype]++;
-            $mtypes_sum[$fmtype] += latest_meas_type($idf, $fmtype);
+            $mtypes_sum[$fmtype] += $lmt['value'];
         } else {
             $mtypes_count[$fmtype] = 1;
-            $mtypes_sum[$fmtype] = latest_meas_type($idf, $fmtype);
+            $mtypes_sum[$fmtype] = $lmt['value'];
         }
+        $mtypes_unit[$fmtype] = $lmt['unit'];
     }
 }
 $mean_meas = array();  // array(mtype => mean)
 foreach ($mtypes as $mtype) {
-    $mean_meas['mtype'] = $mtypes_sum[$mtype]/$mtypes_count[$mtype];
+    $mean_meas[$mtype] = $mtypes_sum[$mtype]/$mtypes_count[$mtype];
 }
 
 include 'head.php';
@@ -161,7 +164,8 @@ head(ucfirst($search_res['binomial_name']), $lang);
     <table>
         <?php
         foreach ($mean_meas as $meas => $mean) {
-            echo '<tr><td>' . $meas . '</td><td>' . $mean . '</td></tr>';
+            echo '<tr><td>' . ucfirst($meas) . '</td><td>' . $mean .
+                '</td><td>' . $mtypes_unit[$meas] . '</td></tr>';
         }
         ?>
     </table>
