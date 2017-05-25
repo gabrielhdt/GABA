@@ -20,7 +20,7 @@ include "script/form_func.php";
 include "head.php";
 head('Recherche espèce', $lang);
 
-$lines = get_values('idFacility, name', 'Facility');
+$lines = get_values('idFacility, name', 'Facility', $orderby='name');
 $id_faname = array();
 foreach ($lines as $line)
 {
@@ -32,8 +32,8 @@ $species = get_values($fields, 'Species');
 $fields = 'Species.idSpecies, COUNT(idFollowed) as nfoll';
 $tables = 'Species INNER JOIN Followed ON Species.idSpecies=Followed.idSpecies';
 // FETCH_KEY_PAIR -> array(idSpecies1 => nfoll1, idSpecies2 => nfoll2, ...)
-$spfollcount = get_values($fields, $tables, array(), 'Species.idSpecies',
-    array(), '', PDO::FETCH_KEY_PAIR
+$spfollcount = get_values($select=$fields, $tables=$tables,
+    $groupby='Species.idSpecies', $fetch_style=PDO::FETCH_KEY_PAIR
 );
 foreach ($species as &$spline)
 {
