@@ -48,22 +48,22 @@ head("login", $lang);
 <body>
     <?php include 'nav.php'; ?>
     <div class="mybg">
-    <div class="card card-container">
-        <img id="profile-img" class="profile-img-card" src="image/logo_login.png" />
-        <p id="profile-name" class="profile-name-card"></p>
-        <form class="form-signin" action="login.php" method="post">
-            <?php //afficher une éventuelle erreur
-            if (isset($erreur)) {echo $erreur."<br>";}
-            ?>
-            <input type="text" class="form-control" name="login"
-                   placeholder="<?php echo $login; ?>" required autofocus>
-            <input type="password" class="form-control" name="password"
-                   placeholder="<?php echo $pwd; ?>" required>
-            <input type="submit" class="btn btn-lg btn-primary btn-block btn-signin"
-                   name="connexion" value="<?php echo $conn; ?>">
-        </form>
-    </div><!-- /card-container -->
-</div>
+        <div class="card card-container">
+            <img id="profile-img" class="profile-img-card" src="image/logo_login.png" />
+            <p id="profile-name" class="profile-name-card"></p>
+            <form class="form-signin" action="login.php" method="post">
+                <?php //afficher une éventuelle erreur
+                if (isset($erreur)) {echo $erreur."<br>";}
+                ?>
+                <input type="text" class="form-control" name="login"
+                       placeholder="<?php echo $login; ?>" required autofocus>
+                <input type="password" class="form-control" name="password"
+                       placeholder="<?php echo $pwd; ?>" required>
+                <input type="submit" class="btn btn-lg btn-primary btn-block btn-signin"
+                       name="connexion" value="<?php echo $conn; ?>">
+            </form>
+        </div><!-- /card-container -->
+    </div>
 <!-- </div> -->
     <?php include 'footer.php'; ?>
 </body>
