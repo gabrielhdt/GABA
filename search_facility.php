@@ -84,14 +84,10 @@ head('Recherche bâtiment', $lang);
 
 <body>
 <?php include "nav.php"; ?>
-<?php echo $title ?>
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id='map-container'>
-            <div id="labmap"></div>
-        </div>
-    </div>
-    <div class="row">
+
+    <div class="research row">
+        <?php echo $title ?>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id='map-container'>
             <form action="search_facility.php" method="post" accept-charset="utf-8"
                 enctype="multipart/form-data">
@@ -106,6 +102,15 @@ head('Recherche bâtiment', $lang);
                 </div>
                 <button type="submit" class="btn btn-default"><?php echo $search ?></button>
             </form>
+        </div>
+    </div>
+
+    <hr class="rslt">
+
+    <div class=".result-table row">
+        <?php echo $result ?>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id='map-container'>
+            <div id="labmap"></div>
         </div>
     </div>
 </div>
