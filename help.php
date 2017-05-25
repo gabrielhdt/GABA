@@ -77,10 +77,7 @@ head("Desoin d'aide ?", $lang);
             <div class="row row-help">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="jumbotron" style="margin-top: 100px;">
-                        <p>
-                            &emsp;Vous trouverez dans la vidéo ci-contre un aperçu des fonctionnalités citées précedemment
-                            et comment les utiliser au mieux.
-                        </p>
+                        <?php echo $com_video; ?>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -91,19 +88,8 @@ head("Desoin d'aide ?", $lang);
         <div class="jumbotron" id="webmaster">
             <div class="row row-help">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <h1>Webmaster</h1>
-                        <p id="citation">
-                            <i>"Rome ne s’est pas faite en un jour."</i>
-                        </p>
-                        <p>
-                            &emsp;Passez votre souris sur les têtes de nos Webmasters pour voir apparaître leur prénoms et cliquez
-                            dessus afin d'en apprendre plus sur les personnes ayant participer à la création de ce site !
-                        </p>
-
-                        <p>
-                            &emsp;Notre équipe vous souhaite de passer un agréable moment sur notre site et espère réveiller l'animal
-                            qui est en vous !
-                        </p>
+                        <?php echo $title_webmaster; ?>
+                        <?php echo $p_webmaster; ?>
                     </div>
             </div>
 

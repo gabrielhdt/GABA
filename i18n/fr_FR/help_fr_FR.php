@@ -54,4 +54,25 @@ faire part de vos remarques ou améliorations que l'on pourrait apporter au
 site pour toujours plus de plaisir et d'aisance lors de la manipulation des pages.
 </p>
 PP4;
+$com_video = <<< VID
+<p>
+&emsp;Vous trouverez dans la vidéo ci-contre un aperçu des fonctionnalités citées précedemment
+et comment les utiliser au mieux.
+</p>
+VID;
+$title_webmaster = "<h1>Webmaster</h1>";
+$p_webmaster = <<< PWE
+<p id="citation">
+<i>"Rome ne s’est pas faite en un jour."</i>
+</p>
+<p>
+&emsp;Passez votre souris sur les têtes de nos Webmasters pour voir apparaître leur prénoms et cliquez
+dessus afin d'en apprendre plus sur les personnes ayant participer à la création de ce site !
+</p>
+
+<p>
+&emsp;Notre équipe vous souhaite de passer un agréable moment sur notre site et espère réveiller l'animal
+qui est en vous !
+</p>
+PWE;
 ?>
