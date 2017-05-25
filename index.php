@@ -8,7 +8,7 @@ if(isset($_COOKIE['lang'])) {
     $lang = 'en';
 }
 
-//script d'origine
+// fichier de langue a importer
 if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier index_fr_FR.php
     include('i18n/fr_FR/index_fr_FR.php');
 } elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier index_en_GB.php

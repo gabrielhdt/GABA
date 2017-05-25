@@ -13,15 +13,12 @@ if(isset($_COOKIE['lang'])) {
     $lang = 'en';
 }
 
-// TODO: faire la traduction
-
-//script d'origine
-// if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier index_fr_FR.php
-//     include('i18n/fr_FR/index_fr_FR.php');
-// } elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier index_en_GB.php
-//     include('i18n/en_UK/index_en_UK.php');
-// }
-//fin du script d'origine
+// fichier de langue a importer
+if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier (...)_fr_FR.php
+    include('i18n/fr_FR/pero_fr_FR.php');
+} elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier (...)_en_GB.php
+    include('i18n/en_UK/pero_en_UK.php');
+}
 
 include 'head.php';
 include 'script/db.php';
@@ -58,22 +55,22 @@ head('Your account', $lang);
 include 'nav.php';
 echo isset($err) ? $err : null
 ?>
-<div class="container" style="background-color:rgba(170, 170, 170, 0.5);">
+<div class="container" id="change-pwd">
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
         <div class="outer description">
             <div class="middle">
                 <form action="perso.php" method="post" accept-charset="utf-8"
                     enctype="multipart/form-data" style="margin: auto; width: 400px;">
-                    <h3>Midifiez votre mot de passe:</h3>
+                    <?php echo $title ?>
                     <div class="input-group">
                         <input class="form-control" type="password" name="old_pw"
-                               id="old_pw" placeholder="Mot de passe actuel">
+                               id="old_pw" placeholder="<?php echo $old_pwd; ?>">
                         <input class="form-control" type="password" name="new_pw"
-                               id="new_pw" placeholder="Nouveau mot de passe">
+                               id="new_pw" placeholder="<?php echo $new_pwd1; ?>">
                         <input class="form-control" type="password" name="conf_pw"
-                               id="conf_pw" placeholder="Confirmation du mot de passe">
+                               id="conf_pw" placeholder="<?php echo $new_pwd2; ?>">
                     </div>
-                    <button type="submit" class="btn btn-default">Confirm</button>
+                    <button type="submit" class="btn btn-default"><?php echo $confirm; ?></button>
                 </form>
             </div>
 
