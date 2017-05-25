@@ -158,12 +158,11 @@ head(ucfirst($search_res['binomial_name']), $lang);
 
 <div class="row">
 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-    <div class="pic">
-        <?php
-        echo '<img src="'.$pic_path.
-            '" class = "img-responsive">';
-        ?>
-    </div>
+    <?php
+    echo '<img src="'.$pic_path.
+        '" class = "pic img-responsive">';
+    ?>
+    
     <table>
         <?php
         foreach ($mean_meas as $meas => $mean) {
