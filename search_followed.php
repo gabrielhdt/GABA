@@ -149,7 +149,7 @@ $search_res = get_values($fields, $tables, array('where' => $where));
 <div class="research">
 <?php echo $title ?>
 <form action="search_followed.php" method="post" accept-charset="utf-8"
-    enctype="multipart/form-data" class=".form-inline">
+    enctype="multipart/form-data" class="form-inline">
     <div class="form-group">
         <div class="row">
             <label for="sel_species"><?php echo $species ?></label>
@@ -179,7 +179,7 @@ $search_res = get_values($fields, $tables, array('where' => $where));
             <input type="date" name="updeath" class="form-control" id="updeath"
                 pattern="<?php echo $dateregex; ?>" placeholder="yyyy-mm-dd">
         </div>
-        
+
         <div class="row">
             <label class="radio-inline"><input type="radio" name="gender" value="m"><?php echo $m ?></label>
             <label class="radio-inline"><input type="radio" name="gender" value="f"><?php echo $f ?></label>
