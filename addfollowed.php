@@ -27,12 +27,13 @@ include "script/form_func.php";
 include "head.php";
 
 $id_biname = array();
-$lines = get_values('idSpecies, binomial_name', 'Species');
+$lines = get_values('idSpecies, binomial_name', 'Species',
+    array('orderby' => 'binomial_name'));
 foreach ($lines as $line)
 {
     $id_biname[$line['idSpecies']] = $line['binomial_name'];
 }
-$lines = get_values('idFacility, name', 'Facility');
+$lines = get_values('idFacility, name', 'Facility', array('orderby' => 'name'));
 $id_faname = array();
 foreach ($lines as $line)
 {
