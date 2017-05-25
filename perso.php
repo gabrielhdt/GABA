@@ -15,9 +15,9 @@ if(isset($_COOKIE['lang'])) {
 
 // fichier de langue a importer
 if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier (...)_fr_FR.php
-    include('i18n/fr_FR/pero_fr_FR.php');
+    include('i18n/fr_FR/perso_fr_FR.php');
 } elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier (...)_en_GB.php
-    include('i18n/en_UK/pero_en_UK.php');
+    include('i18n/en_UK/perso_en_UK.php');
 }
 
 include 'head.php';

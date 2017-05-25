@@ -798,15 +798,6 @@ MODAL pour les cvs des webmasters
     font-size: 1.5em;
 }
 
-
-/*******************************************
-4 photos pour nos cv
-*******************************************/
-
-
-
-
-
 /*******************************************
 mise en page des champs de recherche
 search_species.php et search_folloxed.php
@@ -815,4 +806,16 @@ search_species.php et search_folloxed.php
 .research {
     text-align: center;
     margin: 20px;
+}
+
+/*******************************************
+change pwd
+*******************************************/
+
+#change-pwd {
+    background-color:rgba(255, 255, 255, 0.63);
+}
+
+#change-pwd input {
+    margin: 15px 0;
 }
