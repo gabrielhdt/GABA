@@ -107,7 +107,7 @@ head('Recherche bâtiment', $lang);
 
     <hr class="rslt">
 
-    <div class=".result-table row">
+    <div class="result-table row">
         <?php echo $result ?>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id='map-container'>
             <div id="labmap"></div>
