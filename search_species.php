@@ -92,7 +92,7 @@ $colsp = array('idSpecies', 'binomial_name', 'nfoll');
 <?php
 echo <<<TH
 <table id='table'
-class='table'
+class='result-table table'
 data-toggle='table'
 data-search='true'
 data-pagination='true'

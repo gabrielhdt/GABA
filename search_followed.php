@@ -182,7 +182,7 @@ $search_res = get_values($fields, $tables, $where);
 </form>
 <?php
 echo "<table id='table'
-    class='table'
+    class='result-table table'
     data-toggle='table'
     data-search='true'
     data-pagination='true'

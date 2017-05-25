@@ -797,3 +797,12 @@ change pwd
 #change-pwd input {
     margin: 15px 0;
 }
+
+/*******************************************
+un peu de css pour les pages de recherches
+*******************************************/
+
+.result-table {
+    width: 80%;
+    margin: auto;
+}
