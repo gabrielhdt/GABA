@@ -160,14 +160,12 @@ $search_res = get_values($fields, $tables, $where);
         <?php create_choice_list($id_faname); ?>
         </select>
         <br>
-        <div class=".form-inline">
-            <label for="lowbirth"><?php echo $birth_a ?></label>
-            <input type="date" name="lowbirth" class="form-control" id="lowbirth"
-                pattern="<?php echo $dateregex; ?>" placeholder="yyyy-mm-dd">
-            <label for="upbirth"><?php echo $birth_b ?></label>
-            <input type="date" name="upbirth" class="form-control" id="upbirth"
-                pattern="<?php echo $dateregex; ?>" placeholder="yyyy-mm-dd">
-        </div>
+        <label for="lowbirth"><?php echo $birth_a ?></label>
+        <input type="date" name="lowbirth" class="form-control" id="lowbirth"
+            pattern="<?php echo $dateregex; ?>" placeholder="yyyy-mm-dd">
+        <label for="upbirth"><?php echo $birth_b ?></label>
+        <input type="date" name="upbirth" class="form-control" id="upbirth"
+            pattern="<?php echo $dateregex; ?>" placeholder="yyyy-mm-dd">
         <br>
         <label for="lowdeath"><?php echo $death_a ?></label>
         <input type="date" name="lowdeath" class="form-control" id="lowdeath"
