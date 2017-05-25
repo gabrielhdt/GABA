@@ -1,7 +1,9 @@
 <?php
 // TODO: penser à mettre à jour les liens des pages
-// $page_name = substr( $_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '/')+1, strrpos($_SERVER['PHP_SELF'],'.php')-1);
-$page_name = substr( $_SERVER['ORIG_PATH_INFO'], strrpos($_SERVER['ORIG_PATH_INFO'], '/')+1, strrpos($_SERVER['ORIG_PATH_INFO'],'.php')-1);
+$page_name = substr($_SERVER['ORIG_PATH_INFO'],
+                    strrpos($_SERVER['ORIG_PATH_INFO'], '/') + 1,
+                    strrpos($_SERVER['ORIG_PATH_INFO'],'.php') - 1
+                ); // on récupère l'adresse de la page avec l'eventuel requete $_GET[]
 
 if(isset($_COOKIE['lang'])) {
     $lang = $_COOKIE['lang'];
