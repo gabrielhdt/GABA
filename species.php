@@ -11,11 +11,11 @@ if(isset($_COOKIE['lang'])) {
 // TODO: faire la traduction
 
 //script d'origine
-// if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier index_fr_FR.php
-//     include('i18n/fr_FR/index_fr_FR.php');
-// } elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier index_en_GB.php
-//     include('i18n/en_UK/index_en_UK.php');
-// }
+if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier index_fr_FR.php
+    include('i18n/fr_FR/species_fr_FR.php');
+} elseif ($lang=='en') {      // si la langue est 'en' (anglais) on inclut le fichier index_en_GB.php
+    include('i18n/en_UK/species_en_UK.php');
+}
 //fin du script d'origine
 
 include 'script/db.php';
@@ -63,7 +63,12 @@ $pic_path = $pic_paths[array_rand($pic_paths)];
 
 // Getting wikipedia intro
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://en.wikipedia.org/w/api.php');
+if ($lang == 'fr') {
+    $wikiurl = 'https://fr.wikipedia.org/w/api/php';
+} else {
+    $wikiurl = 'https://en.wikipedia.org/w/api.php';
+}
+curl_setopt($ch, CURLOPT_URL, $wikiurl);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_USERAGENT, 'Owl/0.1 GABA');
 curl_setopt($ch, CURLOPT_POSTFIELDS,
@@ -187,44 +192,46 @@ head(ucfirst($search_res['binomial_name']), $lang);
             ?>
             <table>
                 <tr>
-                    <td>Kingdom</td>
+                    <td><?php echo $sp_data[0] ?></td>
                     <td><?php echo ucfirst($search_res['kingdom'])?></td>
                 </tr>
                 <tr>
-                    <td>Phylum</td>
+                    <td><?php echo $sp_data[1] ?></td>
                     <td><?php echo ucfirst($search_res['phylum'])?></td>
                 </tr>
                 <tr>
-                    <td>Class</td>
+                    <td><?php echo $sp_data[2] ?></td>
                     <td><?php echo ucfirst($search_res['class'])?></td>
                 </tr>
                 <tr>
-                    <td>Order</td>
+                    <td><?php echo $sp_data[3] ?></td>
                     <td><?php echo ucfirst($search_res['order_s'])?></td>
                 </tr>
                 <tr>
-                    <td>Family</td>
+                    <td><?php echo $sp_data[4] ?></td>
                     <td><?php echo ucfirst($search_res['family'])?></td>
                 </tr>
                 <tr>
-                    <td>Genus</td>
+                    <td><?php echo $sp_data[5] ?></td>
                     <td><?php echo ucfirst($search_res['genus'])?></td>
                 </tr>
             </table>
-            We currently have <?php echo $nfoll ?> individuals.
+            <?php echo show_individuals($nfoll) ?>
             <form action="search_followed.php" method="post">
                 <input type="hidden" name="idspecies[]" readonly
                 value="<?php echo $idspecies ?>">
-                <button type="submit" class="btn btn-default btn-xs">See them
+                <button type="submit" class="btn btn-default btn-xs">
+                    <?php echo $see_them ?>
                 </button>
             </form>
             <p id="wikintro">
-                Data from wikipedia soon
                 <?php echo $wikintro?>
             </p>
             <?php if ($edit) { ?>
             <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-                data-target="#editSpeciesModal">Edit species informations</button>
+                data-target="#editSpeciesModal">
+                <?php echo $edit_info ?>
+            </button>
             <?php } ?>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="map-container">
@@ -257,27 +264,27 @@ head(ucfirst($search_res['binomial_name']), $lang);
               <input type="text" name="binomial_name" id="iMod_biname"
                 class="form-control"
                 value="<?php echo ucfirst($search_res['binomial_name']) ?>">
-              <label for="iMod_kingdom">Kingdom</label>
+                <label for="iMod_kingdom"><?php echo $sp_data[0] ?></label>
               <input type="text" name="kingdom" id="iMod_kingdom"
                 class="form-control"
                 value="<?php echo ucfirst($search_res['kingdom']) ?>">
-              <label for="iMod_phylum">Phylum</label>
+                <label for="iMod_phylum"><?php echo $sp_data[1] ?></label>
               <input type="text" name="phylum" id="iMod_phylum"
                 class="form-control"
                 value="<?php echo ucfirst($search_res['phylum']) ?>">
-              <label for="iMod_class">Class</label>
+                <label for="iMod_class"><?php echo $sp_data[2] ?></label>
               <input type="text" name="class" id="iMod_class"
                 class="form-control"
                 value="<?php echo ucfirst($search_res['class']) ?>">
-              <label for="iMod_order">Order</label>
+                <label for="iMod_order"><?php echo $sp_data[3] ?></label>
               <input type="text" name="order_s" id="iMod_order"
                 class="form-control"
                 value="<?php echo ucfirst($search_res['order_s']) ?>">
-              <label for="iMod_family">Family</label>
+                <label for="iMod_family"><?php echo $sp_data[4] ?></label>
               <input type="text" name="family" id="iMod_family"
                 class="form-control"
                 value="<?php echo ucfirst($search_res['family']) ?>">
-              <label for="iMod_genus">Genus</label>
+                <label for="iMod_genus"><?php echo $sp_data[5] ?></label>
               <input type="text" name="genus" id="iMod_genus"
                 class="form-control"
                 value="<?php echo ucfirst($search_res['genus']) ?>">
@@ -287,7 +294,7 @@ head(ucfirst($search_res['binomial_name']), $lang);
       <div class="modal-footer">
         <button type="button" class="btn btn-default"
             onclick="editSpecies(<?php echo $idspecies ?>)"
-            data-dismiss="modal">Update</button>
+            data-dismiss="modal"><?php echo $updatei18n ?></button>
       </div>
     </div>
 
