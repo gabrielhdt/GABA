@@ -815,8 +815,8 @@ change pwd
 #change-pwd {
     background-color:rgba(175, 175, 175, 0.63);
 }
-#change-pwd description {
-    background-color:rgba(175, 175, 175, 0);
+#change-pwd .description {
+    background-color:inherit;
 }
 #change-pwd input {
     margin: 15px 0;
