@@ -302,7 +302,7 @@ Carousel Styling
 }
 
 .slide3 {
-    background-image: url('../data/pics/unordered/bobcat.jpeg.jpg');
+    background-image: url('../data/pics/unordered/bobcat.jpeg');
     height: 600px;
     background-repeat: no-repeat;
     background-position: center;
