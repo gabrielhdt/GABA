@@ -1,6 +1,6 @@
 <?php // TODO: faire la traduction ?>
 <?php
-$title_form = "<h1>Ajouter un centre</h1>";
+$title_form = "<h1>Add a new facility</h1>";
 
 $paragraph_form = <<< PAF
 <p>Fill this form to compete our database.</p>
