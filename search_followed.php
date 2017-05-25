@@ -169,9 +169,6 @@ $search_res = get_values($fields, $tables, array('where' => $where));
             <label for="upbirth"><?php echo $birth_b ?></label>
             <input type="date" name="upbirth" class="form-control" id="upbirth"
                 pattern="<?php echo $dateregex; ?>" placeholder="yyyy-mm-dd">
-        </div>
-
-        <div class="row">
             <label for="lowdeath"><?php echo $death_a ?></label>
             <input type="date" name="lowdeath" class="form-control" id="lowdeath"
                 pattern="<?php echo $dateregex; ?>" placeholder="yyyy-mm-dd">
