@@ -180,7 +180,7 @@ function language(lg) {
     $.post({
         url : 'script/scriptAjax.php',
         data : { lang: lg },
-        success: function(){
+        success: function(data){
             document.location.href='' // on recherge la page actuelle
         }
     });
