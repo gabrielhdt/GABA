@@ -42,9 +42,10 @@ head('Notre Labo', $lang);
 <?php include 'footer.php'; ?>
 <script type="text/javascript" charset="utf-8">
     var contwidth = $('#map-container').width();
-    var contheight = $('#verbotron').height();
+    var contheight = $('#verbotron').outerHeight();
     document.getElementById('labmap').style.width = contwidth;
-    document.getElementById('labmap').style.height = contheight;
+    document.getElementById('labmap').setAttribute('style',
+        'height:' + contheight + 'px');
     var labmap = L.map('labmap').setView([0, 0], 2);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
