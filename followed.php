@@ -97,12 +97,12 @@ include 'nav.php';
 <div class="row">
     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
         <!-- éventuelle photo du followed -->
-        <div class="pic">
+        <!-- <div class="pic"> -->
             <?php
-            echo '<img type="margin:auto; display:block;" src="'.$search_res['pic_path'].
-                '" class = "img-responsive">';
+            echo '<img src="'.$search_res['pic_path'].
+                '" class = "pic img-responsive">';
             ?>
-        </div>
+        <!-- </div> -->
         <?php if ($edit) { ?>
             <button type="button" class="data-modif btn btn-info btn-lg"
                 data-toggle="modal" data-target="#addpic">

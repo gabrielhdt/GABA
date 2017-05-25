@@ -728,10 +728,10 @@ admin_index.php
 }
 
 
-.pic p {
-    text-align: right;
-    font-family: 'Linux Libertine';
-    font-style: italic;
+.pic {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 #intel {
