@@ -1,19 +1,20 @@
 <?php
 $alert_succes = "You have successfully added a new individual to the database.";
 $alert_danger = "Something went wrong. Try again adding an individual.";
+$title = "<h1>Add a new species</h1>";
 
-$title_form = "<h1>Ajouter un individu</h1>";
 $paragraph_form = <<< PAF
 <p>Fill this form to compete our database.</p>
 <p>Each entry helps us to offer a higher quality service.</p>
 PAF;
 
-$sex_m = "Male";
-$sex_f = "Femele";
-$sex_h = "Hermaphrodite";
-$pos = "Use current position as animal's ";
-$birth_date = "Date of birth *";
-$health = "Health";
-$annotation = "Annotation about the followed";
-$save = "Save";
+$species = "Name of species*";
+$kingdom = "Kingdom*";
+$phylum = "Phylum*";
+$class = "Class*";
+$order = "Order*";
+$family = "Family*";
+$genus = "Genus*";
+$status = "pwet*status";
+$submit = "Submit";
 ?>
