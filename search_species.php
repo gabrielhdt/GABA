@@ -103,7 +103,7 @@ TH;
 echo '<thead>';
 create_tablehead($colsp, $labels);
 echo '</thead>';
-echo '<tbody>';
+echo "<tbody class='result-table'>";
 create_tablebody($colsp, $species, 'species.php', 'idSpecies');
 echo'</tbody>';
 echo '</table>';
