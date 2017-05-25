@@ -140,7 +140,7 @@ elseif (isset($added_id) && !$added_id) {?>
 <?php } ?>
 
 <div class="container" style="background-image: url('data/pics/unordered/herd.jpg');">
-    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1" id="addspecies">
+    <div class="add-form col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
         <div class="formulaire">
             <div class="middle">
                 <h1>Ajouter une espèce</h1>
