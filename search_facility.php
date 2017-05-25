@@ -33,9 +33,6 @@ $fields = <<<FLD
 idFacility, name AS fa_name, gnss_coord
 FLD;
 $tables = 'Facility';
-$where = array();
-$groupby = array();
-$having = array();
 
 if (isset($_POST['idspecies']))
 {
@@ -47,18 +44,18 @@ FLD;
 Facility INNER JOIN Followed ON Facility.idFacility=Followed.idFacility
 INNER JOIN Species ON Followed.idSpecies=Species.idSpecies
 TBL;
-    $where['str'] = <<<WHR
+    $params['where']['str'] = <<<WHR
 Followed.idSpecies IN
 WHR;
-    $where['str'] .= ' ('.implode(', ', array_fill(0, $len, '?')).')';
-    $where['valtype'] = array();
+    $params['where']['str'] .= ' ('.implode(', ', array_fill(0, $len, '?')).')';
+    $params['where']['valtype'] = array();
     foreach ($_POST['idspecies'] as $idsp)
     {
-        array_push($where['valtype'],
+        array_push($params['where']['valtype'],
             array('value' => $idsp, 'type' => PDO::PARAM_INT)
         );
     }
-    $groupby = 'Facility.idFacility';
+    $params['groupby'] = 'Facility.idFacility';
 }
 if (isset($_POST['low_nfoll']) && !empty($_POST['low_nfoll']))
 {
@@ -69,18 +66,17 @@ FLD;
 Facility INNER JOIN Followed ON Facility.idFacility=Followed.idFacility
 INNER JOIN Species ON Followed.idSpecies=Species.idSpecies
 TBL;
-    $groupby = 'Facility.idFacility';
-    $having = array();
-    $having['str'] = 'COUNT(Followed.idFollowed)>=?';
-    $having['valtype'] = array(
+    $params['groupby'] = 'Facility.idFacility';
+    $params['having'] = array();
+    $params['having']['str'] = 'COUNT(Followed.idFollowed)>=?';
+    $params['having']['valtype'] = array(
         array(
             'value' => $_POST['low_nfoll'], 'type' => PDO::PARAM_INT
         )
     );
 
 }
-$facspecs = get_values($fields, $tables,
-    array('where' => $where, 'groupby' => $groupby, 'having' => $having));
+$facspecs = get_values($fields, $tables, $params);
 echo !$facspecs ? "Error while querying" : null;
 
 head('Recherche bâtiment', $lang);
