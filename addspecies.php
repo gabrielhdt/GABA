@@ -125,14 +125,13 @@ if (isset($added_id) && $added_id)
 ?>
 <div class="alert alert-success" role="alert">
     <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-    You have successfully added a new species to the database.
-    Would you like to add a new <a href="addfollowed.php">individual</a>?
+    <?php echo $alert_succes ?>
 </div>
 <?php }
 elseif (isset($added_id) && !$added_id) {?>
 <div class="alert alert-danger" role="alert">
     <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-    Something went wrong. Try again adding a species.
+    <?php echo $alert_danger ?>
 </div>
 <?php } ?>
 
@@ -140,37 +139,36 @@ elseif (isset($added_id) && !$added_id) {?>
     <div class="add-form col-lg-5 col-md-5 col-sm-6 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
         <div class="formulaire">
             <div class="middle">
-                <h1>Ajouter une espèce</h1>
-                <p>Remplissez le formulaire ci-dessous pour compléter notre base de donnée.</p>
-                <p>Chaque contribution nous permet de vous offrir un service de meilleur qualité.</p>
+                <?php echo $title ?>
+                <?php echo $paragraph_form ?>
                 <form action="addspecies.php" method="post">
-                    <input class='form-control' type="text" name="species" placeholder="Nom de l'espèce*">
-                    <input class='form-control' type="text" name="kingdom" placeholder="Royaume*" list="kingdom_sugg">
+                    <input class='form-control' type="text" name="species" placeholder="<?php echo $species; ?>">
+                    <input class='form-control' type="text" name="kingdom" placeholder="<?php echo $kingdom; ?>" list="kingdom_sugg">
                         <datalist id="kingdom_sugg">
                             <?php create_autocplt_list($kingdoms); ?>
                         </datalist>
-                    <input class='form-control' type="text" name="phylum" placeholder="Phylum*" list="phylum_sugg">
+                    <input class='form-control' type="text" name="phylum" placeholder="<?php echo $phylum; ?>" list="phylum_sugg">
                         <datalist id="phylum_sugg">
                             <?php create_autocplt_list($phylae); ?>
                         </datalist>
-                    <input class='form-control' type="text" name="class" placeholder="Classe*" list="class_sugg">
+                    <input class='form-control' type="text" name="class" placeholder="<?php echo $class; ?>" list="class_sugg">
                         <datalist id="class_sugg">
                             <?php create_autocplt_list($classes); ?>
                         </datalist>
-                    <input class='form-control' type="text" name="order" placeholder="Ordre*" list="order_sugg">
+                    <input class='form-control' type="text" name="order" placeholder="<?php echo $order; ?>" list="order_sugg">
                         <datalist id="order_sugg">
                             <?php create_autocplt_list($orders); ?>
                         </datalist>
-                    <input class='form-control' type="text" name="family" placeholder="Famille*" list="family_sugg">
+                    <input class='form-control' type="text" name="family" placeholder="<?php echo $family; ?>" list="family_sugg">
                         <datalist id="family_sugg">
                             <?php create_autocplt_list($families); ?>
                         </datalist>
-                    <input class='form-control' type="text" name="genus" placeholder="Genus*" list="genus_sugg">
+                    <input class='form-control' type="text" name="genus" placeholder="<?php echo $genus; ?>" list="genus_sugg">
                         <datalist id="genus_sugg">
                             <?php create_autocplt_list($genuses); ?>
                         </datalist>
-                    <input class='form-control' type="text" name="status" placeholder="pwet*status">
-                    <button class="btn btn-success" type="submit" name="submit_contact">Enregistrer</button>
+                    <input class='form-control' type="text" name="status" placeholder="<?php echo $status; ?>">
+                    <button class="btn btn-success" type="submit" name="submit_contact"><?php echo $submit; ?></button>
                 </form>
             </div>
 
