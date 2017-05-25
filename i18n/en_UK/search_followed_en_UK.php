@@ -1,5 +1,5 @@
 <?php
-$title = "<h1>Search a followed</h1>";
+$title = "<h1>Search a followed :</h1>";
 $species = "Of species:";
 $facility = "In facilities:";
 $birth_a = "Born after:";
