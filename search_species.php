@@ -88,8 +88,8 @@ $colsp = array('idSpecies', 'binomial_name', 'nfoll');
     </form>
 </div>
 <hr class="rslt">
-<?php echo $result; ?>
 <div class="result-table">
+<?php echo $result; ?>
 <?php
 echo <<<TH
 <table id='table'

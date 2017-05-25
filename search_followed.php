@@ -183,8 +183,8 @@ $search_res = get_values($fields, $tables, $where);
 </div>
 
 <hr class="rslt">
-<?php echo $result ?>
 <div class="result-table">
+<?php echo $result ?>
 <?php
 echo "<table id='table'
     class='table'
