@@ -837,6 +837,7 @@ un peu de css pour les pages de recherches
 }
 
 .research input,
+.research select,
 .research form .row {
     margin: 20px;
 }
