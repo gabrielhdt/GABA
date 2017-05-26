@@ -170,29 +170,25 @@ nav ul ul li {
     text-transform: capitalize;
 }
 
-/******************************************************************************
-petite annimation
-******************************************************************************/
-
 .glyphicon-chevron-down {
     border: 1.5px solid black;
     padding: 5px;
     border-radius: 3px;
 }
 
+/******************************************************************************
+petite annimation
+******************************************************************************/
+
 .navbar ul li:hover > ul.dropdown-menu {
-   display: block; /* Dropdown will be visible after hover. */
-   opacity: 1; /* This keeps the opacity at 1 after the animation has run (e.g. could be considered as the final or default stage of the element) */
-   animation: opacity 700ms ease-in-out normal;
-   -moz-animation: opacity 700ms ease-in-out normal;
-   -ms-animation: opacity 700ms ease-in-out normal;
-   -o-animation: opacity 700ms ease-in-out normal;
-   -webkit-animation: opacity 700ms ease-in-out normal;
+   display: block;
+   opacity: 1;
+   -moz-animation: opacity 200ms ease-in-out normal;
+   -ms-animation: opacity 200ms ease-in-out normal;
+   -o-animation: opacity 200ms ease-in-out normal;
+   -webkit-animation: opacity 200ms ease-in-out normal;
 }
 
-/**
- * Defines how the animation will look like
- */
 @keyframes opacity {
     from { opacity:0; }
     to { opacity: 1; }
