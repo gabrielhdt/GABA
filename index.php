@@ -77,6 +77,7 @@ head("GABA", $lang);
                 <div class="slide3"></div>
                 <div class="carousel-caption">
                     <?php echo $didyouknow ?>
+                    <?php echo $carousel_3 ?>
                     <form action="followed.php?id=1" method="post">
                         <button type="submit" class="btn btn-success">
                             <?php echo $btn_crs3 ?>
