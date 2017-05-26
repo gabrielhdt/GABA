@@ -29,4 +29,31 @@ nous vous mettrons en relation rapidemment.</p>
 le but d'améliorer l'utilisation du site.</p>
 <p>(* champs obligatoires)</p>
 CCU;
+$carousel_1 = <<<CRS1
+<p>Au cours de l'année, 3 faons sont nés au sein de nos laboratoires.</p>
+<p class="legende">
+    Notre site vous permet de découvrir le nombre
+    d'individus de l'espèce de votre choix qui sont nés
+    au sein de notre laboratoire durant la période demandée.
+</p>
+CRS1;
+$btn_crs1 = 'Consulter les naissances de cette année.';
+$carousel_2 = <<<CRS2
+<p>Dans nos laboratoires, les lions pèsent en moyenne 103
+kilos.</p>
+<p class="legende">
+    Notre site vous permet de découvrir le poids moyen des
+    individus de notre laboratoire de l'espèce de votre
+    choix.
+</p>
+CRS2;
+$btn_crs2 = "Chercher des informations d'une espèce";
+$carousel_3 = <<<CRS3
+<p>Un de nos Lynx Rufus (ou bobcat) mesure 257cm</p>
+<p class="legende">
+    Notre site vous permet de découvrir autant d'informations à propos
+    d'un individu que nos chercheurs en ont renseignées.
+</p>
+CRS3;
+$btn_crs3 = 'En savoir plus sur ce bobcat.';
 ?>

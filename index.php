@@ -50,18 +50,13 @@ head("GABA", $lang);
             <div class="item active">
                 <div class="slide1"></div>
                 <div class="carousel-caption">
-                    <h1>Le saviez-vous ?</h1>
-                    <p>Au cours de l'année, 3 faons sont nés au sein de nos laboratoires.</p>
-                    <p class="legende">
-                        Notre site vous permet de découvrir le nombre
-                        d'individus de l'espèce de votre choix qui sont nés
-                        au sein de notre laboratoire durant la période demandée.
-                    </p>
+                    <?php echo $didyouknow ?>
+                    <?php echo $carousel_1 ?>
                     <form action="search_followed.php" method="post">
                         <input type="hidden" name="lowbirth"  readonly
                             value="<?php echo(date('Y') . '-00-00') ?>">
                         <button type="submit" class="btn btn-success">
-                            Research other births
+                            <?php echo $btn_crs1 ?>
                         </button>
                     </form>
                 </div>
@@ -69,17 +64,11 @@ head("GABA", $lang);
             <div class="item">
                 <div class="slide2"></div>
                 <div class="carousel-caption">
-                    <h1>Le saviez-vous ?</h1>
-                    <p>Dans nos laboratoires, les lions pèsent en moyenne 103
-                    kilos.</p>
-                    <p class="legende">
-                        Notre site vous permet de découvrir le poids moyen des
-                        individus de notre laboratoire de l'espèce de votre
-                        choix.
-                    </p>
+                    <?php echo $didyouknow ?>
+                    <?php echo $carousel_2 ?>
                     <form action="search_species.php" method="post">
                         <button type="submit" class="btn btn-success">
-                            Find information on any species
+                            <?php echo $btn_crs2 ?>
                         </button>
                     </form>
                 </div>
@@ -87,16 +76,10 @@ head("GABA", $lang);
             <div class="item">
                 <div class="slide3"></div>
                 <div class="carousel-caption">
-                    <h1>Le saviez-vous ?</h1>
-                    <p>Dans nos laboratoires, les manchots mesurent en moyenne 1,30m.</p>
-                    <p class="legende">
-                        Notre site vous permet de découvrir la
-                        taille moyenne des individus de notre laboratoire de
-                        l'espèce de votre choix.
-                    </p>
+                    <?php echo $didyouknow ?>
                     <form action="followed.php?id=1" method="post">
                         <button type="submit" class="btn btn-success">
-                            Know more about this bobcat
+                            <?php echo $btn_crs3 ?>
                         </button>
                     </form>
                 </div>
