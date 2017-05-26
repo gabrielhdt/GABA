@@ -18,7 +18,7 @@ that the mean weight of our lions is 203kg.
 </p>
 <p>
 &emsp;
-Do not hesitate to explore all the features of the site and read the help
+Do not hesitate to explore all the features of the site and read the <a href="help.php">help</a>
 section!
 </p>
 AUS;

@@ -32,8 +32,6 @@ head($head_title, $lang);
                 <?php echo $about_us_title; ?>
                 <hr>
                 <?php echo $about_us; ?>
-                <a href="help.php" type="button" class="btn btn-success"
-                style="text-align:center;">Help !</a>
             </div>
         </div>
     </div>

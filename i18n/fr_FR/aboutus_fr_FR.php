@@ -21,7 +21,7 @@ d'un lion faisant parti de nos laboratoires est de 203 kilos !
 <p>
 &emsp;N'hésitez pas à découvrir toutes les fonctionnalités
 qu'offre notre site et profitez au maximum de votre expérience
-grâce à la section aide !
+grâce à la section <a href="help.php">aide</a> !
 </p>
 AUS;
 $head_title = 'À propos de nous';
