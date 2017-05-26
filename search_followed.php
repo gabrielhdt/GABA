@@ -142,7 +142,9 @@ $labels = array('Identifier', 'Species', 'Facility', 'Gender', 'Birth',
 $fields = <<<FLD
 idFollowed, binomial_name, name, gender, birth, death, health
 FLD;
-$search_res = get_values($fields, $tables, array('where' => $where));
+$search_res = isset($where) ?
+    get_values($fields, $tables, array('where' => $where)) :
+    get_values($fields, $tables);
 ?>
 <body>
 <?php include "nav.php"; ?>
