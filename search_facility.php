@@ -84,6 +84,7 @@ head('Recherche bâtiment', $lang);
 
 <body>
 <?php include "nav.php"; ?>
+<hr class="top">
 <div class="container-fluid">
 
     <div class="research row">

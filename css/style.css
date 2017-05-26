@@ -845,7 +845,7 @@ un peu de css pour les pages de recherches
     width: 80% !important;
     margin: auto;
 }
-hr.rslt{
+hr.rslt, .top{
     width: 80%;
     margin: auto;
     height: 30px;
