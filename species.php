@@ -78,8 +78,10 @@ curl_setopt($ch, CURLOPT_POSTFIELDS,
 );
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 $wikijson = curl_exec($ch);
-$wikiarr = json_decode($wikijson, TRUE);
-$wikintro = $wikiarr['query']['pages'][0]['extract'];
+if ($wikijson) {
+    $wikiarr = json_decode($wikijson, TRUE);
+    $wikintro = $wikiarr['query']['pages'][0]['extract'];
+}
 
 //Getting last location of followed
 $tables = <<<TBL
@@ -227,7 +229,7 @@ head(ucfirst($search_res['binomial_name']), $lang);
                 </button>
             </form>
             <p id="wikintro">
-                <?php echo $wikintro?>
+                <?php echo $wikijson ? $wikintro : 'No wikipedia data found'?>
             </p>
             <?php if ($edit) { ?>
             <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
