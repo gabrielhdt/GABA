@@ -148,6 +148,7 @@ $search_res = isset($where) ?
 ?>
 <body>
 <?php include "nav.php"; ?>
+<hr class="top">
 <div class="research">
 <?php echo $title ?>
 <form action="search_followed.php" method="post" accept-charset="utf-8"

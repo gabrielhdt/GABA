@@ -26,7 +26,7 @@ if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le f
         <li><a href="help.php"><?php echo $help ?></a></li>
     </ul>
     &copy; All rights reserved GABA
-    <a id="goTop"><span class="glyphicon glyphicon-chevron-up"></span></a>
+    <a id="goTop"><b>UP</b> <span class="glyphicon glyphicon-chevron-up"></span></a>
 </footer>
 </div>
 </div>

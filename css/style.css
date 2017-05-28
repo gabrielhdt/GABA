@@ -170,14 +170,45 @@ nav ul ul li {
     text-transform: capitalize;
 }
 
-
-
 .glyphicon-chevron-down {
     border: 1.5px solid black;
     padding: 5px;
     border-radius: 3px;
 }
 
+/******************************************************************************
+petite annimation
+******************************************************************************/
+
+.navbar ul li:hover > ul.dropdown-menu {
+   display: block;
+   opacity: 1;
+   -moz-animation: opacity 200ms ease-in-out normal;
+   -ms-animation: opacity 200ms ease-in-out normal;
+   -o-animation: opacity 200ms ease-in-out normal;
+   -webkit-animation: opacity 200ms ease-in-out normal;
+}
+
+@keyframes opacity {
+    from { opacity:0; }
+    to { opacity: 1; }
+}
+@-moz-keyframes opacity {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@-ms-keyframes opacity {
+    from {opacity:0; }
+    to { opacity: 1; }
+}
+@-o-keyframes opacity {
+    from {opacity:0; }
+    to { opacity: 1; }
+}
+@-webkit-keyframes opacity {
+    from { opacity:0; }
+    to { opacity: 1; }
+}
 /******************************************************************************
 description
 ******************************************************************************/
@@ -802,6 +833,7 @@ un peu de css pour les pages de recherches
 }
 
 .research input,
+.research select,
 .research form .row {
     margin: 20px;
 }
@@ -810,7 +842,7 @@ un peu de css pour les pages de recherches
     width: 80% !important;
     margin: auto;
 }
-hr.rslt{
+hr.rslt, .top{
     width: 80%;
     margin: auto;
     height: 30px;
