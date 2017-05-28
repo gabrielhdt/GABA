@@ -46,14 +46,18 @@ if (isset($_POST['species']))
     //Check values
     $valid = TRUE;
     foreach (array('facility', 'species') as $intfld) {
-        $valid = $valid && filter_var($_POST[$intfld], FILTER_VALIDATE_INT);
+        $valid &= filter_var($_POST[$intfld], FILTER_VALIDATE_INT);
     }
-    foreach (array('gender', 'birth', 'health') as $strfld) {
-        $valid = $valid && filter_var($_POST[$strfld],
+    foreach (array('gender', 'health') as $strfld) {
+        $valid &= filter_var($_POST[$strfld],
             FILTER_VALIDATE_REGEXP,
             array('options' => array('regexp' => $filt_pattern))
         );
     }
+    $valid &= filter_var($_POST['birth'],
+        FILTER_VALIDATE_REGEXP,
+        array('options' => array('regexp' => $dateregex))
+    );
 
     if ($valid) {
         $values = array(

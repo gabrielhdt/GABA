@@ -20,8 +20,6 @@ include "script/form_func.php";
 include "head.php";
 head('Recherche individu', $lang);
 
-$dateregex = "\d{4}[-.\/][01]?\d[-.\/][0-3]?\d";
-
 $id_biname = array();
 $lines = get_values('idSpecies, binomial_name', 'Species',
     array('orderby' => 'binomial_name'));

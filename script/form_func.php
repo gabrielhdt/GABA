@@ -1,5 +1,6 @@
 <?php
 $filt_pattern = '/^[a-zA-Z]+(\s[a-zA-Z]+)?$/';
+$dateregex = "\d{4}[-.\/][01]?\d[-.\/][0-3]?\d";
 function create_choice_list($disp_fields, $defsel=null)
 {
     /* Creates a choice list
