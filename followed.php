@@ -101,7 +101,7 @@ include 'nav.php';
         echo '<img src="'.$search_res['pic_path'].
             '" class = "pic img-responsive">';
         ?>
-        
+
         <?php if ($edit) { ?>
             <button type="button" class="data-modif btn btn-info btn-lg"
                 data-toggle="modal" data-target="#addpic">
@@ -248,6 +248,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 subdomain: ['a', 'b', 'c']
 }).addTo(followed_map);
+var marker = L.marker(<?php echo $loc4js ?>).addTo(labmap);
 </script>
 </body>
 </html>
