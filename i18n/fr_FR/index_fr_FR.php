@@ -56,4 +56,8 @@ $carousel_3 = <<<CRS3
 </p>
 CRS3;
 $btn_crs3 = 'En savoir plus sur ce bobcat.';
+$ctc_name = 'Votre nom*';
+$ctc_email = 'Votre e-mail*';
+$ctc_mess = 'Votre message*';
+$ctc_send = 'Envoyer message';
 ?>
