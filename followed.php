@@ -248,7 +248,6 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 subdomain: ['a', 'b', 'c']
 }).addTo(followed_map);
-var marker = L.marker(<?php echo $loc4js ?>).addTo(labmap);
 </script>
 </body>
 </html>
