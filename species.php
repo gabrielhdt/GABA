@@ -219,7 +219,7 @@ head(ucfirst($search_res['binomial_name']), $lang);
                         </tr>
                     </table>
                     <?php echo show_individuals($nfoll) ?>
-                    <form action="search_followed.php" method="post">
+                    <form action="search_followed.php#result" method="post">
                         <input type="hidden" name="idspecies[]" readonly
                         value="<?php echo $idspecies ?>">
                         <button type="submit" class="btn btn-default btn-xs">
@@ -263,7 +263,7 @@ head(ucfirst($search_res['binomial_name']), $lang);
               <input type="text" name="common_name" id="iMod_commoname"
                 class="form-control"
                 value="<?php echo ucfirst($search_res['common_name']) ?>">
-              <label for=iMod_biname">Binomial name</label>
+              <label for="iMod_biname">Binomial name</label>
               <input type="text" name="binomial_name" id="iMod_biname"
                 class="form-control"
                 value="<?php echo ucfirst($search_res['binomial_name']) ?>">

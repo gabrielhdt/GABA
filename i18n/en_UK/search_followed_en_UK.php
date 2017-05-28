@@ -10,5 +10,5 @@ $m = "Male";
 $f = "Female";
 $h = "Hermaphrodite";
 $search = "Search animal";
-$result = "<h1>Results :</h1>";
+$result = "<h1 id='result'>Results :</h1>";
 ?>
