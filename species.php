@@ -222,7 +222,7 @@ head(ucfirst($search_res['binomial_name']), $lang);
                     <form action="search_followed.php#result" method="post">
                         <input type="hidden" name="idspecies[]" readonly
                         value="<?php echo $idspecies ?>">
-                        <button type="submit" class="btn btn-default btn-xs">
+                        <button type="submit" class="data-modif btn btn-default btn-xs">
                             <?php echo $see_them ?>
                         </button>
                     </form>
@@ -230,7 +230,7 @@ head(ucfirst($search_res['binomial_name']), $lang);
                         <?php echo $wikintro?>
                     </p>
                     <?php if ($edit) { ?>
-                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                    <button type="button" class="data-modif btn btn-info btn-lg" data-toggle="modal"
                         data-target="#editSpeciesModal">
                         <?php echo $edit_info ?>
                     </button>
