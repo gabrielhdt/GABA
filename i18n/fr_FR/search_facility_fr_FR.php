@@ -4,4 +4,5 @@ $species = "Ayant comme espèce:";
 $nb_species = "Ayant plus d'individu suivit que:";
 $search = "Rechercher centre";
 $result = "<h1>Resultats :</h1>";
+$hd_disp = 'Rechercher bâtiment';
 ?>

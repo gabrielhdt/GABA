@@ -79,7 +79,7 @@ TBL;
 $facspecs = get_values($fields, $tables, $params);
 echo !$facspecs ? "Error while querying" : null;
 
-head('Recherche bâtiment', $lang);
+head($hd_disp, $lang);
 ?>
 
 <body>
