@@ -9,6 +9,7 @@ ludique !</p>
 ABU;
 
 $know_more = "En savoir plus";
+$help = "Aide";
 
 $needhelp_title = "<h1>Besoin d'aide ?</h1>";
 $needhelp = <<<NHLP
