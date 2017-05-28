@@ -1,5 +1,5 @@
 <?php
-
+$title_head = "Need help ?";
 $feature_title = "<h1>Features</h1>";
 
 $feature_p1 = <<<PP1

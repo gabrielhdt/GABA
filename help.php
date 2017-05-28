@@ -19,7 +19,7 @@ if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le f
 //fin du script d'origine
 
 include 'head.php';
-head("Besoin d'aide ?", $lang);
+head($title_head, $lang);
 ?>
 
 <body>

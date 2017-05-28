@@ -1,4 +1,5 @@
 <?php
+$title_head = "Recherche individu";
 $title = "<h1>Rechercher une espèce :</h1>";
 $species = "D'espèce:";
 $facility = "Dans le centre:";

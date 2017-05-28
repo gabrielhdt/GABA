@@ -1,4 +1,5 @@
 <?php
+$title_head = "Search followed";
 $title = "<h1>Search a followed :</h1>";
 $species = "Of species:";
 $facility = "In facilities:";

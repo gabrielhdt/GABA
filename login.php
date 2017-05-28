@@ -40,7 +40,7 @@ if (isset($_POST['connexion']) && $_POST['connexion'] == $conn) {
 
 
 include 'head.php';
-head("login", $lang);
+head("Login", $lang);
 ?>
 
 <body>

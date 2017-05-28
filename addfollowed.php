@@ -136,7 +136,7 @@ if (isset($_POST['species']))
     }
 }
 
-head("Ajouter un individu", $lang);
+head($title_form, $lang);
 ?>
 <body>
 <?php
