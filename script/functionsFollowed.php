@@ -71,9 +71,17 @@ function relation_table($idfollowed)
     $relships_noself = array();
     foreach ($relationships as $relationship)
     {
-        $redundant_id = $relationship['idfollowed1'] == $idfollowed ?
-            'idfollowed1' : 'idfollowed2';
+        if ($relationship['idfollowed1'] == $idfollowed) {
+            $redundant_id = 'idfollowed1';
+            $valid_id = 'idfollowed2';
+        } else {
+            $redundant_id = 'idfollowed2';
+            $valid_id = 'idfollowed1';
+        }
         unset($relationship[$redundant_id]);
+        $relationship[$valid_id] = '<a href="followed.php?id=' .
+            $relationship[$valid_id] . '">' . $relationship[$valid_id] .
+            '</a>';
         array_push($relships_noself, $relationship);
     }
     $table = edi_table($relships_noself, 'edit_relship', $idfollowed);
