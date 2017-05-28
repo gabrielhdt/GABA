@@ -1,4 +1,5 @@
 <?php
+$filt_pattern = '/^[a-zA-Z]+(\s[a-zA-Z]+)?$/';
 function create_choice_list($disp_fields, $defsel=null)
 {
     /* Creates a choice list

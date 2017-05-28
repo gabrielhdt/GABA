@@ -34,11 +34,10 @@ $fields_arr = array('binomial_name', 'kingdom', 'phylum', 'class', 'order_s',
 if (isset($_POST['binomial_name']))
 {
     //Check input
-    $pattern = '/^[a-zA-Z]+(\s[a-zA-Z]+)?$/';
     $valid = TRUE;
     foreach ($fields_arr as $ch_field) {
         $valid = $valid && filter_var($_POST[$ch_field], FILTER_VALIDATE_REGEXP,
-            array('options' => array('regexp' => $pattern)));
+            array('options' => array('regexp' => $filt_pattern)));
     }
     if ($valid) {
         $add_arr = array();
