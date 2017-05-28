@@ -43,67 +43,84 @@ foreach ($lines as $line)
 // If form info, fill database
 if (isset($_POST['species']))
 {
-    $values = array(
-        'gender' => array(
-            'value' => $_POST['gender'], 'type' => PDO::PARAM_STR
-        ),
-        'birth' => array(
-            'value' => $_POST['birth'], 'type' => PDO::PARAM_STR
-        ),
-        'health' => array(
-            'value' => $_POST['health'], 'type' => PDO::PARAM_STR
-        ),
-        'annotation' => array(
-            'value' => $_POST['annotation'], 'type' => PDO::PARAM_STR
-        ),
-        'idFacility' => array(
-            'value' => $_POST['facility'], 'type' => PDO::PARAM_INT
-        ),
-        'idSpecies' => array(
-            'value' => $_POST['species'], 'type' => PDO::PARAM_INT
-        ),
-    );
-    $added_id = add_line('Followed', $values);
-    if ($added_id) {
-        add_line('FollowedEdition',
-            array(
-                'idStaff' => array(
-                    'value' => $_SESSION['idstaff'], 'type' => PDO::PARAM_INT
-                ),
-                'idFollowed' => array(
-                    'value' => $added_id, 'type' => PDO::PARAM_INT
-                ),
-                'type' => array(
-                    'value' => 'addition', 'type' => PDO::PARAM_STR
-                )
-            )
+    //Check values
+    $valid = TRUE;
+    foreach (array('facility', 'species') as $intfld) {
+        $valid = $valid && filter_var($_POST[$intfld], FILTER_VALIDATE_INT);
+    }
+    foreach (array('gender', 'birth', 'health') as $strfld) {
+        $valid = $valid && filter_var($_POST[$strfld],
+            FILTER_VALIDATE_REGEXP,
+            array('options' => array('regexp' => $filt_pattern))
         );
-        if (isset($_POST['use_geoloc']) && $_POST['use_geoloc'] == 'on')
-        {
-            $idmeasure = add_line('Measure',
+    }
+
+    if ($valid) {
+        $values = array(
+            'gender' => array(
+                'value' => $_POST['gender'], 'type' => PDO::PARAM_STR
+            ),
+            'birth' => array(
+                'value' => $_POST['birth'], 'type' => PDO::PARAM_STR
+            ),
+            'health' => array(
+                'value' => $_POST['health'], 'type' => PDO::PARAM_STR
+            ),
+            'annotation' => array(
+                'value' => $_POST['annotation'], 'type' => PDO::PARAM_STR
+            ),
+            'idFacility' => array(
+                'value' => $_POST['facility'], 'type' => PDO::PARAM_INT
+            ),
+            'idSpecies' => array(
+                'value' => $_POST['species'], 'type' => PDO::PARAM_INT
+            ),
+        );
+        $added_id = add_line('Followed', $values);
+        if ($added_id) {
+            add_line('FollowedEdition',
                 array(
+                    'idStaff' => array(
+                        'value' => $_SESSION['idstaff'], 'type' => PDO::PARAM_INT
+                    ),
                     'idFollowed' => array(
                         'value' => $added_id, 'type' => PDO::PARAM_INT
                     ),
-                    'idStaff' => array(
-                        'value' => $_SESSION['idstaff'], 'type' => PDO::PARAM_INT
+                    'type' => array(
+                        'value' => 'addition', 'type' => PDO::PARAM_STR
                     )
                 )
             );
-            $coords = explode(',', $_COOKIE['geoloc']);
-            add_line('Location',
-                array(
-                    'latitude' => array(
-                        'value' => (float) $coords[0], 'type' => PDO::PARAM_STR
-                    ),
-                    'longitude' => array(
-                        'value' => (float) $coords[1], 'type' => PDO::PARAM_STR
-                    ),
-                    'idMeasure' => array(
-                        'value' => $idmeasure, 'type' => PDO::PARAM_INT
+            if (isset($_POST['use_geoloc']) && $_POST['use_geoloc'] == 'on')
+            {
+                $idmeasure = add_line('Measure',
+                    array(
+                        'idFollowed' => array(
+                            'value' => $added_id, 'type' => PDO::PARAM_INT
+                        ),
+                        'idStaff' => array(
+                            'value' => $_SESSION['idstaff'],
+                            'type' => PDO::PARAM_INT
+                        )
                     )
-                )
-            );
+                );
+                $coords = explode(',', $_COOKIE['geoloc']);
+                add_line('Location',
+                    array(
+                        'latitude' => array(
+                            'value' => (float) $coords[0],
+                            'type' => PDO::PARAM_STR
+                        ),
+                        'longitude' => array(
+                            'value' => (float) $coords[1],
+                            'type' => PDO::PARAM_STR
+                        ),
+                        'idMeasure' => array(
+                            'value' => $idmeasure, 'type' => PDO::PARAM_INT
+                        )
+                    )
+                );
+            }
         }
     }
 }
@@ -113,14 +130,14 @@ head("Ajouter un individu", $lang);
 <body>
 <?php
 include "nav.php";
-if (isset($added_id) && $added_id) {
+if (isset($added_id, $valid) && $added_id && $valid) {
 ?>
 <div class="alert alert-success" role="alert">
     <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
     <?php echo $alert_succes ?>
 </div>
 <?php }
-elseif (isset($added_id) && !$added_id) { ?>
+elseif (isset($added_id) && !$added_id || isset($valid) && !$valid) { ?>
 <div class="alert alert-danger" role="alert">
     <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
     <?php echo $alert_danger ?>
