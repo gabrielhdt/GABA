@@ -101,8 +101,10 @@ function current_nav() {
 }
 ?>
 <div id="flags">
-    <a href="" onclick="language('fr')"><img class="flag" src="image/drapeau_fr.jpg" alt=""></a>
-    <a href="" onclick="language('en')"><img class="flag" src="image/drapeau_gb.jpg" alt=""></a>
+    <a href="" onclick="language('fr')"><img class="flag" title="Français"
+       src="image/drapeau_fr.jpg" alt="Drapeau Fr"></a>
+    <a href="" onclick="language('en')"><img class="flag" title="English"
+       src="image/drapeau_gb.jpg" alt="Drapeau Gb"></a>
 </div>
 
 <nav class="navbar">
