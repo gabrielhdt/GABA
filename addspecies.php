@@ -35,6 +35,7 @@ if (isset($_POST['species']))
 {
     //Check input
     $pattern = '/^[a-zA-Z]+(\s[a-zA-Z]+)?$/';
+    $valid = TRUE;
     foreach ($fields_arr as $ch_field) {
         $valid = $valid && filter_var($_POST[$ch_field], FILTER_VALIDATE_REGEXP,
             array('options' => array('regexp' => $pattern)));
