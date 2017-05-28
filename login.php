@@ -6,8 +6,6 @@ if(isset($_COOKIE['lang'])) {
     $lang = 'en';
 }
 
-// TODO: faire la traduction
-
 // fichier de langue a importer
 if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier index_fr_FR.php
     include('i18n/fr_FR/login_fr_FR.php');
@@ -62,9 +60,9 @@ head("login", $lang);
                 <input type="submit" class="btn btn-lg btn-primary btn-block btn-signin"
                        name="connexion" value="<?php echo $conn; ?>">
             </form>
-        </div><!-- /card-container -->
+        </div>
     </div>
-<!-- </div> -->
+
     <?php include 'footer.php'; ?>
 </body>
 </html>

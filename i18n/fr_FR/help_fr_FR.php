@@ -10,6 +10,9 @@ chercheurs de nos laboratoires sont acrédités à saisir les informations sur
 une espèce ou un individu en particulier, ou bien des informations sur les lieux
 où peuvent se rencontrer ces animaux, dans la base de données. Pour cela, ils doivent
 rentrer leur identifiant et mot de passe sur la page <a href="login.php">Login</a>.
+Si vous êtes connectés en tant que chercheur sur notre site, vous pouvez accèder à un paragraphe
+supplémentaire dans la section help pour vous guider sur la mise à jour de la base de donnés ainsi
+que la consultation des mesures. Pour en savoir plus, cliquer sur le bouton help tout en étant connecté.
 </p>
 PP1;
 
