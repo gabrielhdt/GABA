@@ -231,7 +231,7 @@ head($head_title, $lang);
                         <p>
                             <b>Nom commun :</b> Viry <br>
                             <b>Prénom :</b> Benoît <br>
-                            <b>Surnom :</b> <i>Le manager</i><br>
+                            <b>Surnom :</b> <i>Le manager</i>, <i>La joie incarnée (voir photo)</i><br>
                             <b>Date naissance :</b> 20/08/96 <br>
                             <b>Date décés :</b> 21/03/2017 (a voulu rejoindre le grand chameau plus tôt que prévu)
                         </p>
