@@ -1,6 +1,8 @@
 <?php
 session_start ();
 
+$staff = isset($_SESSION['login']) && $_SESSION['login'] != 'admin';
+
 if(isset($_COOKIE['lang'])) {
     $lang = $_COOKIE['lang'];
 } else {
@@ -68,6 +70,16 @@ head("Besoin d'aide ?", $lang);
                     <img src="data/pics/unordered/contact_us.png" class="img-responsive" alt="Nous contacter" />
                 </div>
             </div>
+            <?php if ($staff) {?>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+                        <img src="data/pics/unordered/owl3.jpg" class="img-responsive" alt="Espace login" />
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <?php echo $help_staff; ?>
+                    </div>
+                </div>
+            <?php } ?>
 
         </div>
     </div>

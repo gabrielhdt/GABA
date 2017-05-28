@@ -64,4 +64,13 @@ $com_video = <<< VID
 et comment les utiliser au mieux.
 </p>
 VID;
+
+$help_staff = <<<HSTAF
+<p>&emsp;Ce paragraphe est spécialement conçu pour vous chercheurs afin de faciliter la saisie de données.
+Pour rentrer une nouvelle espèce, un nouvel individu ou un nouveau bâtiment, dirigez vous sur la page
+<a href="membre_index.php">Espace perso</a> et cliquer sur l'image de votre choix. Pour modifier des informations sur un individus ou une espèce
+déjà existante, il suffit de selectionner cet individu ou cette espèce grâce à la page <a href="recherche.php">Recherche</a>
+puis cliquer sur les boutons appropriés à la modification voulue.
+</p>
+HSTAF;
 ?>
