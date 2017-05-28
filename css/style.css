@@ -418,6 +418,7 @@ footer li {
 }
 footer a {
     color: rgb(77, 142, 54);
+    font-size: 17px;
 }
 
 footer a:hover{
