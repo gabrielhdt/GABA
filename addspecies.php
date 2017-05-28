@@ -106,7 +106,7 @@ foreach ($lines as $line)
     array_push($genuses, ucfirst($line['genus']));
 }
 
-head($title, $lang);
+head($title_head, $lang);
 
 ?>
 <body>

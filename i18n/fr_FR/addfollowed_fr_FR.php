@@ -2,6 +2,7 @@
 $alert_succes = "Vous avez entré avec succès un nouvel individu dans la base de données.";
 $alert_danger = "Une erreure est survenue. Veillez essayer de nouveau.";
 
+$title_head = "Ajouter un individu";
 $title_form = "<h1>Ajouter un individu</h1>";
 $paragraph_form = <<< PAF
 <p>Remplissez le formulaire ci-dessous pour compléter notre

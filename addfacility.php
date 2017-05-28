@@ -21,7 +21,7 @@ if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le f
 include 'script/db.php';
 include 'script/form_func.php';
 include "head.php";
-head($title_form, $lang);
+head($title_head, $lang);
 ?>
 
 <body>
