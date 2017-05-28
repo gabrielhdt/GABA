@@ -1,9 +1,9 @@
 <?php
 $about_us_title = "<h1>A propos de nous ...</h1>";
 $about_us = <<<ABU
-<p>Le laboratoire science exchange a pour mission de regrouper les informations
+<p>Le projet Owl a pour mission de regrouper les informations
 de multiples laboratoires de recherche animale et de mettre à disposition les
-données sur nottre plateforme. <br>L'objectif est de faciliter le travail
+données sur notre plateforme. <br>L'objectif est de faciliter le travail
 des chercheurs mais le site permet aussi d'assouvir votre curiosité de manière
 ludique !</p>
 ABU;
@@ -16,8 +16,8 @@ $needhelp = <<<NHLP
 qu'offre notre site, nous avons créer un manuel d'utilisation pour vous
 permettre de découvrir et de manipuler avec plus d'aisance toutes les
 fonctionnalités mises en ligne.</p>
-<p>C'est aussi ici que vous trouverez la page Webmaster, donnant de plus
-amples informations sur les constructeurs du site.</p>
+<p>Vous trouverez la section Webmaster dans la page <a href="nous.php">Le projet</p>
+pour de plus amples informations sur les constructeurs du site.</p>
 NHLP;
 
 $contactus_tilte = "<h1>Nous contacter</h1>";
@@ -39,7 +39,7 @@ $carousel_1 = <<<CRS1
 CRS1;
 $btn_crs1 = 'Consulter les naissances de cette année.';
 $carousel_2 = <<<CRS2
-<p>Dans nos laboratoires, les lions pèsent en moyenne 103
+<p>Dans nos laboratoires, les lions pèsent en moyenne 203
 kilos.</p>
 <p class="legende">
     Notre site vous permet de découvrir le poids moyen des
