@@ -28,10 +28,10 @@ include "head.php";
 
 
 <?php
-$fields_arr = array('species', 'kingdom', 'phylum', 'class', 'order_s',
+$fields_arr = array('binomial_name', 'kingdom', 'phylum', 'class', 'order_s',
     'family', 'genus', 'conservation_status');
 // If called after search fill database
-if (isset($_POST['species']))
+if (isset($_POST['binomial_name']))
 {
     //Check input
     $pattern = '/^[a-zA-Z]+(\s[a-zA-Z]+)?$/';
@@ -135,7 +135,7 @@ elseif (isset($added_id) && !$added_id || isset($valid) && !$valid) {?>
                 <?php echo $title ?>
                 <?php echo $paragraph_form ?>
                 <form action="addspecies.php" method="post">
-                    <input class='form-control' type="text" name="species"
+                    <input class='form-control' type="text" name="binomial_name"
                         placeholder="<?php echo $species; ?>">
                     <input class='form-control' type="text" name="kingdom"
                         placeholder="<?php echo $kingdom; ?>" list="kingdom_sugg">
