@@ -46,18 +46,25 @@ if (isset($_POST['species']))
     //Check values
     $valid = TRUE;
     foreach (array('facility', 'species') as $intfld) {
-        $valid &= filter_var($_POST[$intfld], FILTER_VALIDATE_INT);
+        if (!filter_var($_POST[$intfld], FILTER_VALIDATE_INT)) {
+            $valid = FALSE;
+        }
     }
     foreach (array('gender', 'health') as $strfld) {
-        $valid &= filter_var($_POST[$strfld],
-            FILTER_VALIDATE_REGEXP,
-            array('options' => array('regexp' => $filt_pattern))
-        );
+        if(
+            !filter_var($_POST[$strfld], FILTER_VALIDATE_REGEXP,
+            array('options' => array('regexp' => $filt_pattern)))
+        ) {
+            $valid = FALSE;
+        }
     }
-    $valid &= filter_var($_POST['birth'],
-        FILTER_VALIDATE_REGEXP,
-        array('options' => array('regexp' => $dateregex))
-    );
+
+    if (
+        !filter_var($_POST['birth'], FILTER_VALIDATE_REGEXP,
+        array('options' => array('regexp' => "/$dateregex/")))
+    ) {
+        $valid = FALSE;
+    }
 
     if ($valid) {
         $values = array(
@@ -168,7 +175,9 @@ elseif (isset($added_id) && !$added_id || isset($valid) && !$valid) { ?>
                             <input type="checkbox" id="use_geoloc" name="use_geoloc" value="on"><?php echo $pos ?>
                         </label>
                         <br>
-                        <input type="date" name="birth" class="form-control" placeholder="<?php echo $birth_date ?>">
+                        <input type="date" name="birth" class="form-control"
+                            pattern="<?php echo $dateregex ?>"
+                            placeholder="<?php echo $birth_date ?>">
                         <input type="text" name="health" class="form-control" placeholder="<?php echo $health ?>">
                         <textarea class="form-control" name="annotation" rows="4" cols="80"
                                   placeholder="Commentaire sur L'individu"></textarea>
