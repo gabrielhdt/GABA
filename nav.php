@@ -12,10 +12,10 @@ $text_fr = array('Accueil', 'Le projet', 'Recherche', 'Aide', 'Espèce', 'Indivi
 $text_en = array('Home', 'The Project', 'Research', 'Help', 'Species', 'Followed', 'Facility', 'Chercheur',
                 'Contact', 'LogIn', 'Your Space', 'LogOut');
 if($lang == 'fr') {
-    $title ="Accueil";
+    $title_home ="Accueil";
 }
 elseif ($lang == 'en') {
-    $title ="Home";
+    $title_home ="Home";
 }
 
 function current_nav() {
@@ -111,7 +111,7 @@ function current_nav() {
 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 <span class="glyphicon glyphicon-chevron-down"></span>
 </button>
-<a class="navbar-brand" href="index.php" title="<?php echo $title; ?>"><img id="logo" src="image/EagleIkon.png" alt=""></a>
+<a class="navbar-brand" href="index.php" title="<?php echo $title_home; ?>"><img id="logo" src="image/EagleIkon.png" alt=""></a>
 </div>
 <div class="collapse navbar-collapse" id="myNavbar">
 <?php echo current_nav(); ?>
