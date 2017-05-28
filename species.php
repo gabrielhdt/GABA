@@ -160,87 +160,88 @@ head(ucfirst($search_res['binomial_name']), $lang);
 
 <body>
 <?php include 'nav.php'; ?>
-
-<div class="row">
-<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-    <?php
-    echo '<img src="'.$pic_path.
-        '" class = "pic img-responsive">';
-    ?>
-    
-    <table>
-        <?php
-        foreach ($mean_meas as $meas => $mean) {
-            echo '<tr><td>' . ucfirst($meas) . '</td><td>' . $mean .
-                '</td><td>' . $mtypes_unit[$meas] . '</td></tr>';
-        }
-        ?>
-    </table>
-</div>
-
-<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-    <div class="intel">
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="sp_data">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
             <?php
-            if ($search_res['common_name'])
-            {
-                echo '<h1>'.ucfirst($search_res['common_name']).'</h1>';
-                echo '<h2>'.ucfirst($search_res['binomial_name']).'</h2>';
-            }
-            else
-            {
-                echo '<h1>'.ucfirst($search_res['binomial_name']).'</h1>';
-            }
+            echo '<img src="'.$pic_path.
+                '" class = "pic img-responsive">';
             ?>
+
             <table>
-                <tr>
-                    <td><?php echo $sp_data[0] ?></td>
-                    <td><?php echo ucfirst($search_res['kingdom'])?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $sp_data[1] ?></td>
-                    <td><?php echo ucfirst($search_res['phylum'])?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $sp_data[2] ?></td>
-                    <td><?php echo ucfirst($search_res['class'])?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $sp_data[3] ?></td>
-                    <td><?php echo ucfirst($search_res['order_s'])?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $sp_data[4] ?></td>
-                    <td><?php echo ucfirst($search_res['family'])?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $sp_data[5] ?></td>
-                    <td><?php echo ucfirst($search_res['genus'])?></td>
-                </tr>
+                <?php
+                foreach ($mean_meas as $meas => $mean) {
+                    echo '<tr><td>' . ucfirst($meas) . '</td><td>' . $mean .
+                        '</td><td>' . $mtypes_unit[$meas] . '</td></tr>';
+                }
+                ?>
             </table>
-            <?php echo show_individuals($nfoll) ?>
-            <form action="search_followed.php" method="post">
-                <input type="hidden" name="idspecies[]" readonly
-                value="<?php echo $idspecies ?>">
-                <button type="submit" class="btn btn-default btn-xs">
-                    <?php echo $see_them ?>
-                </button>
-            </form>
-            <p id="wikintro">
-                <?php echo $wikintro?>
-            </p>
-            <?php if ($edit) { ?>
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-                data-target="#editSpeciesModal">
-                <?php echo $edit_info ?>
-            </button>
-            <?php } ?>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="map-container">
-            <div id="foll_of_sp_map"></div>
+
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+            <div class="intel">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="sp_data">
+                    <?php
+                    if ($search_res['common_name'])
+                    {
+                        echo '<h1>'.ucfirst($search_res['common_name']).'</h1>';
+                        echo '<h2>'.ucfirst($search_res['binomial_name']).'</h2>';
+                    }
+                    else
+                    {
+                        echo '<h1>'.ucfirst($search_res['binomial_name']).'</h1>';
+                    }
+                    ?>
+                    <table>
+                        <tr>
+                            <td><?php echo $sp_data[0] ?></td>
+                            <td><?php echo ucfirst($search_res['kingdom'])?></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $sp_data[1] ?></td>
+                            <td><?php echo ucfirst($search_res['phylum'])?></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $sp_data[2] ?></td>
+                            <td><?php echo ucfirst($search_res['class'])?></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $sp_data[3] ?></td>
+                            <td><?php echo ucfirst($search_res['order_s'])?></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $sp_data[4] ?></td>
+                            <td><?php echo ucfirst($search_res['family'])?></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $sp_data[5] ?></td>
+                            <td><?php echo ucfirst($search_res['genus'])?></td>
+                        </tr>
+                    </table>
+                    <?php echo show_individuals($nfoll) ?>
+                    <form action="search_followed.php" method="post">
+                        <input type="hidden" name="idspecies[]" readonly
+                        value="<?php echo $idspecies ?>">
+                        <button type="submit" class="btn btn-default btn-xs">
+                            <?php echo $see_them ?>
+                        </button>
+                    </form>
+                    <p id="wikintro">
+                        <?php echo $wikintro?>
+                    </p>
+                    <?php if ($edit) { ?>
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                        data-target="#editSpeciesModal">
+                        <?php echo $edit_info ?>
+                    </button>
+                    <?php } ?>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="map-container">
+                    <div id="foll_of_sp_map"></div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 </div>
 <?php if ($edit) { ?>
 <div id="editSpeciesModal" class="modal fade" role="dialog">
