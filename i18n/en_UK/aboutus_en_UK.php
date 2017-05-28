@@ -24,4 +24,18 @@ section!
 AUS;
 
 $head_title = 'About us';
+
+$title_webmaster = "<h1>Webmaster</h1>";
+$p_webmaster = <<< PWE
+<p id="citation">
+<i>"Rome wasn't built in a day."</i>
+</p>
+<p>
+&emsp;Click on our Webmasters to learn more about the people who have created this website !
+</p>
+
+<p>
+&emsp; We wish you to spend a good time on our website and we hope we have awaken the animal inside you !
+</p>
+PWE;
 ?>

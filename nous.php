@@ -338,9 +338,9 @@ head($head_title, $lang);
                 <p>
                     Durant les grandes périodes de froid (qui s'étendent selon elle de septembre à juin), son
                     chauffage d'appoint (appelé affectueusement "soufflant") est son plus grand ami. Ainsi lors
-                    de ces périodes impossible de lui faiee faire le moindre effort physique
+                    de ces périodes impossible de lui faire faire le moindre effort physique
                     elle restera emmitouflée dans ses 12 couches de vêtements sous la couette. Et en août il fait
-                    trop chaud pour faire du sport. Ainsi si vous la voyez faire une activité physique c'est surêment
+                    trop chaud pour faire du sport. Ainsi si vous la voyez faire une activité physique c'est surement
                     dû à une grave maladie, merci par
                     avance de prévenir le SAMU.
                 </p>

@@ -31,8 +31,8 @@ $p_webmaster = <<< PWE
 <i>"Rome ne s’est pas faite en un jour."</i>
 </p>
 <p>
-&emsp;Passez votre souris sur les têtes de nos Webmasters pour voir apparaître leur prénoms et cliquez
-dessus afin d'en apprendre plus sur les personnes ayant participer à la création de ce site !
+&emsp;Cliquez
+sur les têtes de nos Webmasters afin d'en apprendre plus sur les personnes ayant participer à la création de ce site !
 </p>
 
 <p>
