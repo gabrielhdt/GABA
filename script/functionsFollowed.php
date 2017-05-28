@@ -67,7 +67,7 @@ function relation_table($idfollowed)
         array('value' => $idfollowed, 'type' => PDO::PARAM_INT),
         array('value' => $idfollowed, 'type' => PDO::PARAM_INT)
     );
-    $relationships = get_values($fields, $table, $where);
+    $relationships = get_values($fields, $table, array('where' => $where));
     $relships_noself = array();
     foreach ($relationships as $relationship)
     {
