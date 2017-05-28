@@ -16,7 +16,7 @@ $needhelp = <<<NHLP
 qu'offre notre site, nous avons créer un manuel d'utilisation pour vous
 permettre de découvrir et de manipuler avec plus d'aisance toutes les
 fonctionnalités mises en ligne.</p>
-<p>Vous trouverez la section Webmaster dans la page <a href="nous.php">Le projet</p>
+<p>Vous trouverez la section Webmaster dans la page <a href="nous.php">Le projet</a>
 pour de plus amples informations sur les constructeurs du site.</p>
 NHLP;
 
