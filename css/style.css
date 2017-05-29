@@ -582,23 +582,23 @@ recherche.php
 #addspecies {
     /* TODO: mettre les liens des bonnes images */
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
-                url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
+                url('../data/pics/unordered/duo_meerkat.jpg') center/cover no-repeat;
 }
 
 #addspecies:hover {
     /* TODO: mettre les liens des bonnes images */
-    background: url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
+    background: url('../data/pics/unordered/duo_meerkat.jpg') center/cover no-repeat;
 }
 
 #addfollowed {
     /* TODO: mettre les liens des bonnes images */
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
-                url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
+                url('../data/pics/unordered/fox.jpg') center/cover no-repeat;
 }
 
 #addfollowed:hover {
     /* TODO: mettre les liens des bonnes images */
-    background: url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
+    background: url('../data/pics/unordered/fox.jpg') center/cover no-repeat;
 }
 
 #addfacility {
@@ -615,12 +615,12 @@ recherche.php
 #perso {
     /* TODO: mettre les liens des bonnes images */
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
-                url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
+                url('../data/pics/unordered/k9.jpg') center/cover no-repeat;
 }
 
 #perso:hover {
     /* TODO: mettre les liens des bonnes images */
-    background: url('../data/pics/unordered/vet_tigre.jpg') center/cover no-repeat;
+    background: url('../data/pics/unordered/k9.jpg') center/cover no-repeat;
 }
 
 .photo_menu, .photo_menu:hover {
