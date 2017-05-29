@@ -47,7 +47,7 @@ if (isset($_POST['old_pw'], $_POST['new_pw'], $_POST['conf_pw']))
     }
 }
 
-head('Your account', $lang);
+head($title_head, $lang);
 
 ?>
 <body>

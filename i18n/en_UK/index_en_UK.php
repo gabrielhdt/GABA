@@ -11,6 +11,7 @@ information.
 </p>
 ABU;
 $know_more = "Know More";
+$help = "Help";
 
 $carousel_1 = <<<CRS1
 <p>Three deers are born this year in our labs.</p>

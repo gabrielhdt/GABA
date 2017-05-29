@@ -13,8 +13,6 @@ if(isset($_COOKIE['lang'])) {
     $lang = 'en';
 }
 
-// TODO: faire la traduction
-
 // fichier de langue a importer
 if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le fichier (...)_fr_FR.php
     include('i18n/fr_FR/addfollowed_fr_FR.php');
@@ -136,7 +134,7 @@ if (isset($_POST['species']))
     }
 }
 
-head("Ajouter un individu", $lang);
+head($title_head, $lang);
 ?>
 <body>
 <?php

@@ -11,6 +11,12 @@ $text_fr = array('Accueil', 'Le projet', 'Recherche', 'Aide', 'Espèce', 'Indivi
                 'Contact', 'Connexion', 'Espace Perso', 'Déconnexion');
 $text_en = array('Home', 'The Project', 'Research', 'Help', 'Species', 'Followed', 'Facility', 'Chercheur',
                 'Contact', 'LogIn', 'Your Space', 'LogOut');
+if($lang == 'fr') {
+    $title_home ="Accueil";
+}
+elseif ($lang == 'en') {
+    $title_home ="Home";
+}
 
 function current_nav() {
     /************************
@@ -95,8 +101,10 @@ function current_nav() {
 }
 ?>
 <div id="flags">
-    <a href="" onclick="language('fr')"><img class="flag" src="image/drapeau_fr.jpg" alt=""></a>
-    <a href="" onclick="language('en')"><img class="flag" src="image/drapeau_gb.jpg" alt=""></a>
+    <a href="" onclick="language('fr')"><img class="flag" title="Français"
+       src="image/drapeau_fr.jpg" alt="Drapeau Fr"></a>
+    <a href="" onclick="language('en')"><img class="flag" title="English"
+       src="image/drapeau_gb.jpg" alt="Drapeau Gb"></a>
 </div>
 
 <nav class="navbar">
@@ -105,7 +113,7 @@ function current_nav() {
 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 <span class="glyphicon glyphicon-chevron-down"></span>
 </button>
-<a class="navbar-brand" href="index.php"><img id="logo" src="image/EagleIkon.png" alt=""></a>
+<a class="navbar-brand" href="index.php" title="<?php echo $title_home; ?>"><img id="logo" src="image/EagleIkon.png" alt=""></a>
 </div>
 <div class="collapse navbar-collapse" id="myNavbar">
 <?php echo current_nav(); ?>

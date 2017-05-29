@@ -231,7 +231,7 @@ head($head_title, $lang);
                         <p>
                             <b>Nom commun :</b> Viry <br>
                             <b>Prénom :</b> Benoît <br>
-                            <b>Surnom :</b> <i>Le manager</i><br>
+                            <b>Surnom :</b> <i>Le manager</i>, <i>La joie incarnée (voir photo)</i><br>
                             <b>Date naissance :</b> 20/08/96 <br>
                             <b>Date décés :</b> 21/03/2017 (a voulu rejoindre le grand chameau plus tôt que prévu)
                         </p>
@@ -338,9 +338,9 @@ head($head_title, $lang);
                 <p>
                     Durant les grandes périodes de froid (qui s'étendent selon elle de septembre à juin), son
                     chauffage d'appoint (appelé affectueusement "soufflant") est son plus grand ami. Ainsi lors
-                    de ces périodes impossible de lui faiee faire le moindre effort physique
+                    de ces périodes impossible de lui faire faire le moindre effort physique
                     elle restera emmitouflée dans ses 12 couches de vêtements sous la couette. Et en août il fait
-                    trop chaud pour faire du sport. Ainsi si vous la voyez faire une activité physique c'est surêment
+                    trop chaud pour faire du sport. Ainsi si vous la voyez faire une activité physique c'est surement
                     dû à une grave maladie, merci par
                     avance de prévenir le SAMU.
                 </p>

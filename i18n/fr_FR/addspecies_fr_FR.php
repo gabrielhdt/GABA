@@ -1,6 +1,7 @@
 <?php
 $alert_succes = "Vous avez entré avec succès un nouvelle espèce dans la base de données.";
 $alert_danger = "Une erreure est survenue. Veillez essayer de nouveau.";
+$title_head = "Ajouter une espèce";
 $title = "<h1>Ajouter une espèce</h1>";
 
 $paragraph_form = <<< PAF

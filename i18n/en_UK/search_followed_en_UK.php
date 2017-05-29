@@ -1,4 +1,5 @@
 <?php
+$title_head = "Search followed";
 $title = "<h1>Search a followed :</h1>";
 $species = "Of species:";
 $facility = "In facilities:";
@@ -10,5 +11,5 @@ $m = "Male";
 $f = "Female";
 $h = "Hermaphrodite";
 $search = "Search animal";
-$result = "<h1>Results :</h1>";
+$result = "<h1 id='result'>Results :</h1>";
 ?>

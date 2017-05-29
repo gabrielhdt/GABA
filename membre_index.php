@@ -24,7 +24,7 @@ if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le f
 
 <?php
 include 'head.php';
-head("Votre compte", $lang);
+head($title_head, $lang);
 ?>
 
 <body>

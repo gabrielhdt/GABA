@@ -1,4 +1,5 @@
 <?php
+$title_head = "Votre compte";
 $title = "<h3>Modifiez votre mot de passe:</h3>";
 $old_pwd = "Mot de passe actuel";
 $new_pwd1 = "Nouveau mot de passe";

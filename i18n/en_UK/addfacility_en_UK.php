@@ -1,5 +1,5 @@
-<?php // TODO: faire la traduction ?>
 <?php
+$title_head = "Add a new facility";
 $title_form = "<h1>Add a new facility</h1>";
 
 $paragraph_form = <<< PAF

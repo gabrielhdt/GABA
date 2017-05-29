@@ -1,4 +1,5 @@
 <?php
+$title_head = "Recherche individu";
 $title = "<h1>Rechercher une espèce :</h1>";
 $species = "D'espèce:";
 $facility = "Dans le centre:";
@@ -10,5 +11,5 @@ $m = "Mâle";
 $f = "Femalle";
 $h = "Hermaphrodite";
 $search = "Rechercher animal";
-$result = "<h1>Resultats :</h1>";
+$result = "<h1 id='result'>Resultats :</h1>";
 ?>

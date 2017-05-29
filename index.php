@@ -101,7 +101,7 @@ head("OWL", $lang);
                 <div class="middle">
                     <?php echo $needhelp_title; ?>
                     <?php echo $needhelp; ?>
-                    <a href="help.php" type="button" class="btn btn-success"><?php echo $know_more; ?></a>
+                    <a href="help.php" type="button" class="btn btn-success"><?php echo $help; ?></a>
                 </div>
             </div>
         </div>

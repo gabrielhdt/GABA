@@ -101,7 +101,7 @@ include 'nav.php';
         echo '<img src="'.$search_res['pic_path'].
             '" class = "pic img-responsive">';
         ?>
-        
+
         <?php if ($edit) { ?>
             <button type="button" class="data-modif btn btn-info btn-lg"
                 data-toggle="modal" data-target="#addpic">

@@ -1,4 +1,5 @@
 <?php
+$title_head = "Ajouter un centre";
 $title_form = "<h1>Ajouter un centre</h1>";
 
 $paragraph_form = <<< PAF

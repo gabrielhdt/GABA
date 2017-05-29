@@ -106,7 +106,7 @@ foreach ($lines as $line)
     array_push($genuses, ucfirst($line['genus']));
 }
 
-head("Ajouter une espèce", $lang);
+head($title_head, $lang);
 
 ?>
 <body>

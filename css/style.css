@@ -810,11 +810,9 @@ change pwd
 *******************************************/
 
 #change-pwd {
-    background-color:rgba(175, 175, 175, 0.63);
+    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
 }
-#change-pwd .description {
-    background-color:inherit;
-}
+
 #change-pwd input {
     margin: 15px 0;
 }

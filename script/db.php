@@ -372,7 +372,7 @@ function format_msg($id, $date, $name, $email, $msg){
     echo <<<FMT
 <div class='alert alert-info alert-dismissable'>
 <a href='#' onclick="myDelete('$id')" class='close' data-dismiss='alert'
-aria-label='close'>&times;</a>
+aria-label='close' title="Supprimer le message">&times;</a>
 Date : $date
 <hr>
 Nom : $name
