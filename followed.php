@@ -24,7 +24,7 @@ if(isset($_COOKIE['lang'])) {
 
 // Autoriastion de l'edition pour un membre mais pas l'admin
 $edit = isset($_SESSION['login']) && $_SESSION['login'] != 'admin';
-$idstaff = $_SESSION['idstaff'];
+$idstaff = $edit ? $_SESSION['idstaff'] : null;
 $idfollowed = $_GET['id'];
 
 // les fonctions ont été bougé dans script/fucntionsFollewed.php pour plus de place
