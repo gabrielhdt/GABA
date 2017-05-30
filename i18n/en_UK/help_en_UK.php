@@ -37,4 +37,12 @@ Eventually, do not hesitate to leave messages, comments are always welcome!
 You can also ask to contact a reseacher.
 </p>
 PP4;
+
+$com_video = <<< VID
+<p>
+&emsp;
+You will find in the video an overview of all the features offered by our website,
+and how to use them.
+</p>
+VID;
 ?>
