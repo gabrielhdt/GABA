@@ -42,7 +42,7 @@ proposez dans notre caroussel
 <a href="theCarousel">carrousel</a> en page d'acceuil ! Vous pouvez aussi en apprendre un peu
 plus sur notre objectif de base, le <i>"pourquoi du comment"</i> du site et le laboratoire à
 l'origine de tout cela sur notre page
-<a href="nous.php">Notre Labo</a>.
+<a href="nous.php">Le projet</a>.
 </p>
 PP3;
 
