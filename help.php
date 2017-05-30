@@ -93,7 +93,7 @@ head($title_head, $lang);
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <iframe height="400px" width="600px" src="https://www.youtube.com/embed/EreZNkWzBAw" frameborder="0" allowfullscreen></iframe>
+                <video height="400px" width="600px" controls src="data/videos/cut.webm">Ici la description alternative</video>
             </div>
         </div>
 
