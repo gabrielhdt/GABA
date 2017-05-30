@@ -115,14 +115,14 @@ function diff_locations($locations) {
     $mint = (int) date_format($mind, 'U'); //Min time (seconds since epoch)
     $maxt = (int) date_format($maxd, 'U'); //Max as above
 
-    function opfct($t, $mint, $maxt) {
+    function opfct($t, $mint, $maxt, $minop, $maxop) {
         return($minop + ($maxop-$minop)*($t - $mint)/($maxt - $mint));
     }
     $opacities = array();
     for ($i = 0; $i < count($locations); $i++) {
         $date = date_create($locations[$i]['date_measure']);
         $t = date_format($date, 'U');
-        $opacities[$i] = opfct($t, $mint, $maxt);
+        $opacities[$i] = opfct($t, $mint, $maxt, $minop, $maxop);
     }
     return($opacities);
 }
