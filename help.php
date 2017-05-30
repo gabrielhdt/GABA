@@ -55,7 +55,7 @@ head($title_head, $lang);
 
             <div class="row row-help">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <img src="data/pics/unordered/project_sceenshot.jpg" class="img-responsive" alt="Carousel" />
+                    <img src="data/pics/unordered/projet_screenshot.png" class="img-responsive" alt="Carousel" />
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                     <?php echo $feature_p3; ?>
@@ -73,7 +73,7 @@ head($title_head, $lang);
             <?php if ($staff) {?>
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
-                        <img src="data/pics/unordered/followed_sceenshot.jpg" class="img-responsive" alt="Espace login" />
+                        <img src="data/pics/unordered/followed_sceenshot.png" class="img-responsive" alt="Espace login" />
                     </div>
                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                         <?php echo $help_staff; ?>
