@@ -80,6 +80,7 @@ $loc4js = $search_res['fa_name'] == 'gaia' ?
 
 //Getting all locations (overkill?)
 $trace = get_all_locations($idfollowed);
+$mark_opacities = diff_locations($trace);
 
 // Getting types of measur
 $meas_gen = get_values('DISTINCT type, unit', 'MiscQuantity');
@@ -252,9 +253,11 @@ attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStre
 subdomain: ['a', 'b', 'c']
 }).addTo(followed_map);
 <?php
-foreach ($trace as $oneloc) {
-    $loc4js = implode(',', array($oneloc['latitude'], $oneloc['longitude']));
-    echo "var marker = L.marker([$loc4js]).addTo(followed_map);";
+for ($i = 0 ; $i < count($trace) ; $i++) {
+    $loc4js = implode(',',
+        array($trace[$i]['latitude'], $trace[$i]['longitude']));
+    echo "var marker = L.marker([$loc4js], {opacity:" .
+        $mark_opacities[$i] . '}).addTo(followed_map);';
 }
 ?>
 </script>

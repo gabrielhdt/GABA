@@ -97,8 +97,33 @@ TBL;
     $where['valtype'] = array(
         array('value' => $idfollowed, 'type' => PDO::PARAM_INT)
     );
-    $params = array('where' => $where);
+    $params = array('where' => $where, 'orderby' => 'date_measure');
     $locations = get_values($fields, $tables, $params);
     return($locations);
+}
+
+function diff_locations($locations) {
+    /* Differs visually locations, based on timestamp
+     * locations must be sorted
+     */
+    //Parameters
+    $minop = 0.2;  //Minimum opacity
+    $maxop = 1;  //Maximum opacity
+    $mind = date_create($locations[0]['date_measure']);
+    $maxd = date_create(end($locations)['date_measure']);
+    reset($locations);
+    $mint = (int) date_format($mind, 'U'); //Min time (seconds since epoch)
+    $maxt = (int) date_format($maxd, 'U'); //Max as above
+
+    function opfct($t, $mint, $maxt) {
+        return($minop + ($maxop-$minop)*($t - $mint)/($maxt - $mint));
+    }
+    $opacities = array();
+    for ($i = 0; $i < count($locations); $i++) {
+        $date = date_create($locations[$i]['date_measure']);
+        $t = date_format($date, 'U');
+        $opacities[$i] = opfct($t, $mint, $maxt);
+    }
+    return($opacities);
 }
 ?>
