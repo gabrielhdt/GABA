@@ -1,5 +1,5 @@
 <?php
-$title_head = "Need help ?";
+$title_head = "Need help?";
 $feature_title = "<h1>Features</h1>";
 
 $feature_p1 = <<<PP1
@@ -38,7 +38,7 @@ You can also ask to contact a reseacher.
 </p>
 PP4;
 
-$com_video = <<< VID
+$com_video = <<<VID
 <p>
 &emsp;
 You will find in the video an overview of all the features offered by our website,
