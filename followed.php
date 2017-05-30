@@ -78,6 +78,9 @@ $loc4js = $search_res['fa_name'] == 'gaia' ?
     $loc['latitude'] . ',' . $loc['longitude'] :
     $search_res['fa_gnss_coord'];
 
+//Getting all locations (overkill?)
+$trace = get_all_locations($idfollowed);
+
 // Getting types of measur
 $meas_gen = get_values('DISTINCT type, unit', 'MiscQuantity');
 function f($line) { return($line['type']); }
@@ -248,6 +251,12 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 subdomain: ['a', 'b', 'c']
 }).addTo(followed_map);
+<?php
+foreach ($trace as $oneloc) {
+    $loc4js = implode(',', array($oneloc['latitude'], $oneloc['longitude']));
+    echo "var marker = L.marker([$loc4js]).addTo(followed_map);";
+}
+?>
 </script>
 </body>
 </html>

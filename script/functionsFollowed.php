@@ -87,4 +87,18 @@ function relation_table($idfollowed)
     $table = edi_table($relships_noself, 'edit_relship', $idfollowed);
     return($table);
 }
+
+function get_all_locations($idfollowed) {
+    $fields = 'latitude, longitude, date_measure';
+    $tables = <<<TBL
+Location INNER JOIN Measure ON Location.idMeasure=Measure.idMeasure
+TBL;
+    $where['str'] = 'Measure.idFollowed=?';
+    $where['valtype'] = array(
+        array('value' => $idfollowed, 'type' => PDO::PARAM_INT)
+    );
+    $params = array('where' => $where);
+    $locations = get_values($fields, $tables, $params);
+    return($locations);
+}
 ?>
