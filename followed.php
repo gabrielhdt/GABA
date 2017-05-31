@@ -146,7 +146,9 @@ include 'nav.php';
             }
             ?>
             born on <?php echo date_format($birthdate, 'jS F, Y') ?>.<br>
-            Health status (<?php echo date_format($h_update, 'y-m-d') ?>).
+            Health status (last update on
+            <?php echo date_format($h_update, 'y-m-d') ?>):
+            <?php echo $search_res['health'] ?>.
         <p>
             <?php echo $loc_str;
             if ($edit)
