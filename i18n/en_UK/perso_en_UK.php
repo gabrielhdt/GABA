@@ -5,5 +5,5 @@ $old_pwd = "Actual password";
 $new_pwd1 = "New password";
 $new_pwd2 = "Confirm new password";
 $confirm = "Confirm";
-$change_email= 'Change your email';
+$change_email= '<p>Change your email</p>';
 ?>
