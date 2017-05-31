@@ -91,7 +91,7 @@ echo isset($err) ? $err : null
                     <div class="input-group">
                         <input class="form-control" type="email" name="email"
                             id="email" placeholder="bob.cat@domain.com"
-                            style="width:400px;>
+                            style="width:400px;">
                     </div>
                     <button type="submit" class="btn btn-default">
                         <?php echo $confirm ?>
