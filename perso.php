@@ -47,6 +47,18 @@ if (isset($_POST['old_pw'], $_POST['new_pw'], $_POST['conf_pw']))
     }
 }
 
+if (isset($_POST['email'])) {
+    $where['str'] = 'idStaff=?';
+    $where['valtype'] = array(
+        array('value' => $_SESSION['idstaff'], 'type' => PDO::PARAM_INT)
+    );
+    $update['str'] = 'email=?';
+    $update['valtype'] = array(
+        array('value' => $_POST['email'], 'type' => PDO::PARAM_STR)
+    );
+    update_line('Staff', $update, $where);
+}
+
 head($title_head, $lang);
 
 ?>
@@ -72,8 +84,20 @@ echo isset($err) ? $err : null
                     </div>
                     <button type="submit" class="btn btn-default"><?php echo $confirm; ?></button>
                 </form>
+                <form action="perso.php" method="post" accept-charset="utf-8"
+                    enctype="multipart/form-data"
+                    style="margin: auto, width:400px;">
+                    <?php echo $change_email ?>
+                    <div class="input-group">
+                        <input class="form-control" type="email" name="email"
+                            id="email" placeholder="bob.cat@domain.com"
+                            style="width:400px;>
+                    </div>
+                    <button type="submit" class="btn btn-default">
+                        <?php echo $confirm ?>
+                    </button>
+                </form>
             </div>
-
         </div>
     </div>
 </div>
