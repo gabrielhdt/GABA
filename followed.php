@@ -1,4 +1,5 @@
 <?php
+//TODO: modal to edit relationship (particularly end date)
 session_start ();
 include 'script/db.php';
 include 'script/form_func.php';

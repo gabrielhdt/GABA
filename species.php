@@ -1,4 +1,5 @@
 <?php
+//TODO: ability to build geo distribution geojson data from map
 session_start ();
 
 if(isset($_COOKIE['lang'])) {
