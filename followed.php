@@ -33,7 +33,7 @@ $idfollowed = $_GET['id'];
 $fields = <<<FLD
 binomial_name, common_name, gender, birth, health, death,
 Followed.pic_path AS pic_path, Facility.name AS fa_name,
-Followed.annotation, Facility.gnss_coord AS fa_gnss_coord
+Followed.annotation, Facility.gnss_coord AS fa_gnss_coord, health, h_update
 FLD;
 $table = <<<TAB
 Followed, Species, Facility
@@ -88,6 +88,10 @@ function f($line) { return($line['type']); }
 function g($line) { return($line['unit']); }
 $meas_types = array_map('f', $meas_gen);
 $meas_units = array_map('g', $meas_gen);
+
+//Creating dates
+$birthdate = date_create($search_res['birth']);
+$h_update = date_create($search_res['h_update']);
 ?>
 
 
@@ -132,8 +136,17 @@ include 'nav.php';
         }
         ?>
         <p>
-            <?php echo $search_res['gender'] == 'm' ? 'Male' : 'Female'; ?>
-            born on <?php echo date_format(date_create($search_res['birth']), 'jS F, Y') ?>
+            <?php
+            if ($search_res['gender'] == 'm') {
+                echo 'Male';
+            } elseif ($search_res['gender'] == 'f') {
+                echo 'Female';
+            } elseif ($search_res['gender'] == 'h') {
+                echo 'Hemaphrodite';
+            }
+            ?>
+            born on <?php echo date_format($birthdate, 'jS F, Y') ?>.<br>
+            Health status (<?php echo date_format($h_update, 'y-m-d') ?>).
         <p>
             <?php echo $loc_str;
             if ($edit)
