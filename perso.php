@@ -86,7 +86,7 @@ echo isset($err) ? $err : null
                 </form>
                 <form action="perso.php" method="post" accept-charset="utf-8"
                     enctype="multipart/form-data"
-                    style="margin: auto, width:400px;">
+                    style="margin: auto; width:400px;">
                     <?php echo $change_email ?>
                     <div class="input-group">
                         <input class="form-control" type="email" name="email"
