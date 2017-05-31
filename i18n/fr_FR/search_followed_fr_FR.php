@@ -1,6 +1,6 @@
 <?php
 $title_head = "Recherche individu";
-$title = "<h1>Rechercher une espèce :</h1>";
+$title = "<h1>Rechercher un individu :</h1>";
 $species = "D'espèce:";
 $facility = "Dans le centre:";
 $birth_a = "Né après:";
