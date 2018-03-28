@@ -1,7 +1,7 @@
 <?php
-session_start ();
+session_start();
 if (!isset($_SESSION['login']) && $_SESSION['login'] != "admin") { // test si l'utilisateur est bien passé par le formulaire
-    header ('Location: login.php'); // sinon retour page login
+    header('Location: login.php'); // sinon retour page login
     exit();
 }
 ?>

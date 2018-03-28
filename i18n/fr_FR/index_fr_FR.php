@@ -61,4 +61,3 @@ $ctc_name = 'Votre nom*';
 $ctc_email = 'Votre e-mail*';
 $ctc_mess = 'Votre message*';
 $ctc_send = 'Envoyer message';
-?>

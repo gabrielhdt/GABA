@@ -16,4 +16,3 @@ $birth_date = "Date of birth *";
 $health = "Health";
 $annotation = "Annotation about the followed";
 $save = "Save";
-?>

@@ -73,4 +73,3 @@ déjà existante, il suffit de selectionner cet individu ou cette espèce grâce
 puis cliquer sur les boutons appropriés à la modification voulue.
 </p>
 HSTAF;
-?>

@@ -1,6 +1,7 @@
 <?php
 
-function draw_graphs($idFollowed) {
+function draw_graphs($idFollowed)
+{
     /* fonction qui dessine su besoin les graphiques du followed $idFollowed,
      * suivant les différents types de mesures se trouvant dans la bd
      */
@@ -13,14 +14,19 @@ function draw_graphs($idFollowed) {
     <div class='row'>";
     $i = 0;
     foreach ($types_measures as $key) {
-        graph_type($idFollowed, $key['type'], $colors[$i % 6],
-                   $colors[($i + 1) % 6]);
+        graph_type(
+            $idFollowed,
+            $key['type'],
+            $colors[$i % 6],
+                   $colors[($i + 1) % 6]
+        );
         $i += 2;
     }
     echo "</div></div>";
 }
 
-function graph_type($idFollowed, $type, $col1, $col2) {
+function graph_type($idFollowed, $type, $col1, $col2)
+{
     // col1 : couleur du trait
     // col 2 : couleur de l'aire sous la courbe
     $where['str'] = 'Measure.idFollowed=? AND MiscQuantity.type=?';
@@ -33,7 +39,8 @@ MiscQuantity INNER JOIN Measure ON MiscQuantity.idMeasure=Measure.idMeasure
 TBL;
     $result = get_values(
         'DISTINCT MiscQuantity.value, MiscQuantity.unit,Measure.date_measure',
-        $tables, array('where' => $where)
+        $tables,
+        array('where' => $where)
     );
     $val = array();
     $unit = array();
@@ -58,7 +65,7 @@ TBL;
                  fill: true,
                  label: '$type ($unit[0])',
                  data: [";
-        for ($i = 0; $i < count($val); $i++){
+        for ($i = 0; $i < count($val); $i++) {
             $chart .= "{x: '$date_measure[$i]', y: $val[$i]}, ";
         }
         $chart = rtrim($chart, ', ');
@@ -73,4 +80,3 @@ TBL;
         echo $chart;
     }
 }
-?>

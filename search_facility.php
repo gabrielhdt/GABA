@@ -1,7 +1,7 @@
 <?php
-session_start ();
+session_start();
 
-if(isset($_COOKIE['lang'])) {
+if (isset($_COOKIE['lang'])) {
     $lang = $_COOKIE['lang'];
 } else {
     // si aucune langue n'est déclaré, la langue par default est l'anglais
@@ -20,10 +20,12 @@ include "script/db.php";
 include "script/form_func.php";
 include "head.php";
 $id_biname = array();
-$lines = get_values('idSpecies, binomial_name', 'Species',
-    array('orderby' => 'binomial_name'));
-foreach ($lines as $line)
-{
+$lines = get_values(
+    'idSpecies, binomial_name',
+    'Species',
+    array('orderby' => 'binomial_name')
+);
+foreach ($lines as $line) {
     $id_biname[$line['idSpecies']] = $line['binomial_name'];
 }
 
@@ -35,8 +37,7 @@ idFacility, name AS fa_name, gnss_coord
 FLD;
 $tables = 'Facility';
 
-if (isset($_POST['idspecies']))
-{
+if (isset($_POST['idspecies'])) {
     $len = count($_POST['idspecies']);
     $fields = <<<FLD
 Facility.idFacility, name AS fa_name, gnss_coord, Followed.idSpecies
@@ -50,16 +51,15 @@ Followed.idSpecies IN
 WHR;
     $params['where']['str'] .= ' ('.implode(', ', array_fill(0, $len, '?')).')';
     $params['where']['valtype'] = array();
-    foreach ($_POST['idspecies'] as $idsp)
-    {
-        array_push($params['where']['valtype'],
+    foreach ($_POST['idspecies'] as $idsp) {
+        array_push(
+            $params['where']['valtype'],
             array('value' => $idsp, 'type' => PDO::PARAM_INT)
         );
     }
     $params['groupby'] = 'Facility.idFacility';
 }
-if (isset($_POST['low_nfoll']) && !empty($_POST['low_nfoll']))
-{
+if (isset($_POST['low_nfoll']) && !empty($_POST['low_nfoll'])) {
     $fields = <<<FLD
 Facility.idFacility, name AS fa_name, gnss_coord, Followed.idSpecies, type
 FLD;
@@ -75,7 +75,6 @@ TBL;
             'value' => $_POST['low_nfoll'], 'type' => PDO::PARAM_INT
         )
     );
-
 }
 $facspecs = get_values($fields, $tables, $params);
 echo !$facspecs ? "Error while querying" : null;
@@ -134,8 +133,7 @@ head($hd_disp, $lang);
     }).addTo(labmap);
 <?php
 foreach ($facspecs as $facility) {
-    if ($facility['gnss_coord'] != null)
-    {
+    if ($facility['gnss_coord'] != null) {
         $latlong = explode(',', $facility['gnss_coord']);
         $type = $facility['type'];
         $name = $facility['fa_name'];

@@ -7,11 +7,9 @@ function simple_table($lines)
     /* Makes a simple table body
      */
     $table = '';
-    foreach ($lines as $line)
-    {
+    foreach ($lines as $line) {
         $table .= '<tr>';
-        foreach ($line as $value)
-        {
+        foreach ($line as $value) {
             $table .= '<td>';
             $table .= ucfirst($value);
             $table .= '</td>';
@@ -28,11 +26,9 @@ function edi_table($lines, $modal, $arg_edit)
      * the idfollowed
      */
     $table = '';
-    foreach ($lines as $line)
-    {
+    foreach ($lines as $line) {
         $table .= '<tr>';
-        foreach ($line as $value)
-        {
+        foreach ($line as $value) {
             $table .= '<td>';
             $table .= ucfirst($value);
             $table .= '</td>';
@@ -69,8 +65,7 @@ function relation_table($idfollowed)
     );
     $relationships = get_values($fields, $table, array('where' => $where));
     $relships_noself = array();
-    foreach ($relationships as $relationship)
-    {
+    foreach ($relationships as $relationship) {
         if ($relationship['idfollowed1'] == $idfollowed) {
             $redundant_id = 'idfollowed1';
             $valid_id = 'idfollowed2';
@@ -88,7 +83,8 @@ function relation_table($idfollowed)
     return($table);
 }
 
-function get_all_locations($idfollowed) {
+function get_all_locations($idfollowed)
+{
     $fields = 'latitude, longitude, date_measure';
     $tables = <<<TBL
 Location INNER JOIN Measure ON Location.idMeasure=Measure.idMeasure
@@ -102,7 +98,8 @@ TBL;
     return($locations);
 }
 
-function diff_locations($locations) {
+function diff_locations($locations)
+{
     /* Differs visually locations, based on timestamp
      * locations must be sorted
      */
@@ -115,7 +112,8 @@ function diff_locations($locations) {
     $mint = (int) date_format($mind, 'U'); //Min time (seconds since epoch)
     $maxt = (int) date_format($maxd, 'U'); //Max as above
 
-    function opfct($t, $mint, $maxt, $minop, $maxop) {
+    function opfct($t, $mint, $maxt, $minop, $maxop)
+    {
         return($minop + ($maxop-$minop)*($t - $mint)/($maxt - $mint));
     }
     $opacities = array();
@@ -126,4 +124,3 @@ function diff_locations($locations) {
     }
     return($opacities);
 }
-?>

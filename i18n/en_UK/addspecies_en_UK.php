@@ -24,4 +24,3 @@ $family = "Family*";
 $genus = "Genus*";
 $status = "pwet*status";
 $submit = "Submit";
-?>

@@ -1,6 +1,7 @@
 <?php
 $sp_data = array('Kindom', 'Phylum', 'Class', 'Order', 'Family', 'Genus');
-function show_individuals($nfoll) {
+function show_individuals($nfoll)
+{
     return("We currently have $nfoll individuals.");
 }
 $see_them = 'See them';

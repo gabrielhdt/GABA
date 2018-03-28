@@ -1,5 +1,5 @@
 <?php
-if(isset($_COOKIE['lang'])) {
+if (isset($_COOKIE['lang'])) {
     $lang = $_COOKIE['lang'];
 } else {
     // si aucune langue n'est déclaré, la langue par default est l'anglais
@@ -17,7 +17,6 @@ if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le f
 include('script/db.php');
 if (isset($_POST['connexion']) && $_POST['connexion'] == $conn) {
     if ((isset($_POST['login']) && !empty($_POST['login'])) && (isset($_POST['password']) && !empty($_POST['password']))) {
-
         $test_conn = verify_login($_POST['login'], $_POST['password']); // on verfie qui se connecte (admin/staff/invalide)
 
         if ($test_conn == 'staff') { // si ok -> next page
@@ -51,7 +50,9 @@ head("Login", $lang);
             <p id="profile-name" class="profile-name-card"></p>
             <form class="form-signin" action="login.php" method="post">
                 <?php //afficher une éventuelle erreur
-                if (isset($erreur)) {echo $erreur."<br>";}
+                if (isset($erreur)) {
+                    echo $erreur."<br>";
+                }
                 ?>
                 <input type="text" class="form-control" name="login"
                        placeholder="<?php echo $login; ?>" required autofocus>

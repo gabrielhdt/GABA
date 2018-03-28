@@ -19,4 +19,3 @@ $birth_date = "Date de naissance *";
 $health = "État de santé";
 $annotation = "Commentaire sur l'individu";
 $save = "Enregistrer";
-?>

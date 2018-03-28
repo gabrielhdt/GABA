@@ -1,6 +1,7 @@
 <?php
 $sp_data = array('Royaume', 'Phylum', 'Classe', 'Ordre', 'Famille', 'Genus');
-function show_individuals($nfoll) {
+function show_individuals($nfoll)
+{
     return("Nous avons actuellement $nfoll individus.");
 }
 $see_them = 'Les voir';

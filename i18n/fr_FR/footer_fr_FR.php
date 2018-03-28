@@ -5,4 +5,3 @@ $species = "Espèce";
 $followed = "Individu";
 $facility = "Bâtiment";
 $help = "Aide";
-?>

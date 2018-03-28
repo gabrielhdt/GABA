@@ -1,7 +1,7 @@
 <?php
-session_start ();
+session_start();
 
-if(isset($_COOKIE['lang'])) {
+if (isset($_COOKIE['lang'])) {
     $lang = $_COOKIE['lang'];
 } else {
     // si aucune langue n'est déclaré, la langue par default est l'anglais
@@ -52,18 +52,16 @@ head($title_head, $lang);
 <?php
 $table = 'Facility';
 $add = array();
-if (isset($_POST['latitude'], $_POST['longitude']))
-{
+if (isset($_POST['latitude'], $_POST['longitude'])) {
     $add['gnss_coord'] = array(
         'value' => $_POST['latitude'] . ',' . $_POST['longitude'],
         'type' => PDO::PARAM_STR
     );
 }
-if (isset($_POST['fname']))
-{
+if (isset($_POST['fname'])) {
     $add['name'] = array('value' => $_POST['fname'], 'type' => PDO::PARAM_STR);
     $add['type'] = array('value' => $_POST['type'], 'type' => PDO::PARAM_STR);
-    add_line($table, $add, TRUE);
+    add_line($table, $add, true);
 }
 ?>
 <?php include "footer.php" ?>

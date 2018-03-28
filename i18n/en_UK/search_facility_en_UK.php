@@ -5,4 +5,3 @@ $nb_species = "Having more followed individuals than:";
 $search = "Search facility";
 $result = "<h1>Results:</h1>";
 $hd_disp = 'Research facility';
-?>

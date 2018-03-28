@@ -12,4 +12,3 @@ $f = "Femalle";
 $h = "Hermaphrodite";
 $search = "Rechercher animal";
 $result = "<h1 id='result'>Resultats :</h1>";
-?>

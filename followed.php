@@ -1,12 +1,12 @@
 <?php
 //TODO: modal to edit relationship (particularly end date)
-session_start ();
+session_start();
 include 'script/db.php';
 include 'script/form_func.php';
 include 'script/graph.php';
 include 'script/functionsFollowed.php';
 
-if(isset($_COOKIE['lang'])) {
+if (isset($_COOKIE['lang'])) {
     $lang = $_COOKIE['lang'];
 } else {
     // si aucune langue n'est déclaré, la langue par default est l'anglais
@@ -60,7 +60,9 @@ $where['valtype'] = array(
     array('value' => $idfollowed, 'type' => PDO::PARAM_INT)
 );
 $last_meas_date = get_values(
-    'MAX(date_measure) AS last_meas', $tables, array('where' => $where)
+    'MAX(date_measure) AS last_meas',
+    $tables,
+    array('where' => $where)
 )[0]['last_meas'];
 
 $fields = "latitude, longitude, date_measure";
@@ -85,8 +87,14 @@ $mark_opacities = diff_locations($trace);
 
 // Getting types of measur
 $meas_gen = get_values('DISTINCT type, unit', 'MiscQuantity');
-function f($line) { return($line['type']); }
-function g($line) { return($line['unit']); }
+function f($line)
+{
+    return($line['type']);
+}
+function g($line)
+{
+    return($line['unit']);
+}
 $meas_types = array_map('f', $meas_gen);
 $meas_units = array_map('g', $meas_gen);
 
@@ -111,12 +119,14 @@ include 'nav.php';
             '" class = "pic img-responsive">';
         ?>
 
-        <?php if ($edit) { ?>
+        <?php if ($edit) {
+            ?>
             <button type="button" class="data-modif btn btn-info btn-lg"
                 data-toggle="modal" data-target="#addpic">
                 Add a picture
             </button>
-        <?php } ?>
+        <?php
+        } ?>
         <!-- insertion des graphiques pour les measures -->
         <?php draw_graphs($idfollowed); ?>
     </div>
@@ -126,13 +136,10 @@ include 'nav.php';
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="foll_data">
         <!-- informations sur le $idfollowed -->
         <?php
-        if ($search_res['common_name'])
-        {
+        if ($search_res['common_name']) {
             echo '<h1>'.ucfirst($search_res['common_name']).'</h1>';
             echo '<h2>'.ucfirst($search_res['binomial_name']).'</h2>';
-        }
-        else
-        {
+        } else {
             echo '<h1>'.ucfirst($search_res['binomial_name']).'</h1>';
         }
         ?>
@@ -152,8 +159,7 @@ include 'nav.php';
             <?php echo $search_res['health'] ?>.
         <p>
             <?php echo $loc_str;
-            if ($edit)
-            {
+            if ($edit) {
                 echo <<<BTN
 <div class="btn-group btn-group-xs" role="group"
     aria-label="Update last known location">
@@ -176,12 +182,14 @@ BTN;
             <?php echo $search_res['annotation'] ?
             $search_res['annotation'] : 'Write something about this animal!'; ?>
         </p>
-<?php if ($edit) { ?>
+<?php if ($edit) {
+                ?>
         <button type="button" class="data-modif btn btn-info btn-lg"
             data-toggle="modal" data-target="#infoModal">
             Modifier la description
         </button>
-<?php } ?>
+<?php
+            } ?>
     </div>
 
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="map-container">
@@ -204,12 +212,14 @@ BTN;
                 <?php echo meas_table($idfollowed); ?>
             </tbody>
         </table>
-<?php if ($edit) { ?>
+<?php if ($edit) {
+                ?>
         <button type="button" class="data-modif btn btn-info btn-lg"
             data-toggle="modal" data-target="#addModal">
             Ajouter une mesure
         </button>
-<?php } ?>
+<?php
+            } ?>
 
         <h1>Relationships</h1>
         <table>
@@ -225,10 +235,12 @@ BTN;
                 <?php echo relation_table($idfollowed); ?>
             </tbody>
         </table>
-<?php if ($edit) { ?>
+<?php if ($edit) {
+                ?>
         <button type="button" class="data-modif btn btn-info btn-lg" data-toggle="modal"
             data-target="#addRelationModal">Add a relationship</button>
-<?php } ?>
+<?php
+            } ?>
     </div>
 </div>
 </div>
@@ -270,11 +282,13 @@ subdomain: ['a', 'b', 'c']
 }).addTo(followed_map);
 <?php
 for ($i = 0 ; $i < count($trace) ; $i++) {
-    $loc4js = implode(',',
-        array($trace[$i]['latitude'], $trace[$i]['longitude']));
-    echo "var marker = L.marker([$loc4js], {opacity:" .
+                $loc4js = implode(
+        ',',
+        array($trace[$i]['latitude'], $trace[$i]['longitude'])
+    );
+                echo "var marker = L.marker([$loc4js], {opacity:" .
         $mark_opacities[$i] . '}).addTo(followed_map);';
-}
+            }
 ?>
 </script>
 </body>

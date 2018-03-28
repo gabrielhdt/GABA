@@ -1,5 +1,4 @@
 <?php
 $login = "Login";
 $pwd = "Password";
-$conn = "Log In"
-?>
+$conn = "Log In";

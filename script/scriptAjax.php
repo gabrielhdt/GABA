@@ -11,7 +11,6 @@ if (
         $_POST['typeStaff']
     )
 ) {
-
     if (
         !empty($_POST['nom']) &&
         !empty($_POST['prenom']) &&
@@ -21,8 +20,12 @@ if (
     )
 ) {
         if ($_POST['pwd1'] == $_POST['pwd2']) {
-            add_staff($_POST['pwd1'], $_POST['typeStaff'],
-                      $_POST['prenom'], $_POST['nom']);
+            add_staff(
+                $_POST['pwd1'],
+                $_POST['typeStaff'],
+                      $_POST['prenom'],
+                $_POST['nom']
+            );
             echo 1;
         } else {
             echo 0;
@@ -43,7 +46,8 @@ elseif (
         $_POST['msg']
     )
 ) {
-    add_line('messages',
+    add_line(
+        'messages',
         array(
             'name' => array(
                 'value' => $_POST['nom'], 'type' => PDO::PARAM_STR
@@ -120,8 +124,7 @@ elseif (
             'type' => PDO::PARAM_STR
         )
     );
-    if (isset($_POST['begin']) && !empty($_POST['begin']))
-    {
+    if (isset($_POST['begin']) && !empty($_POST['begin'])) {
         $info_relationship['begin'] = $_POST['begin'];
     }
     add_line('Relation', $info_relationship);
@@ -139,8 +142,7 @@ elseif (
         $_POST['family'],
         $_POST['genus']
     )
-)
-{
+) {
     $where['str'] = 'idSpecies=?';
     $where['valtype'] = array(
         array('value' => $_POST['idSpecies'], 'type' => PDO::PARAM_INT)
@@ -181,7 +183,7 @@ elseif (
     $where['valtype'] = array(
         array('value' => $_POST['idFollowed'], 'type' => PDO::PARAM_INT)
     );
-    update_line('Followed', $change, $where, TRUE);
+    update_line('Followed', $change, $where, true);
 }
 // script de mise a jour de la localisation
 elseif (
@@ -192,13 +194,11 @@ elseif (
     )
 ) {
     $coords = explode(',', $_POST['geoloc']);
-    if (count($coords) < 2)
-    {
+    if (count($coords) < 2) {
         return(false);
-    }
-    else
-    {
-        $idmeasure = add_line('Measure',
+    } else {
+        $idmeasure = add_line(
+            'Measure',
             array(
                 'idFollowed' => array(
                     'value' => $_POST['idfollowed'],
@@ -210,7 +210,8 @@ elseif (
                 )
             )
         );
-        add_line('Location',
+        add_line(
+            'Location',
             array(
                 'latitude' => array(
                    'value' => (float) $coords[0],
@@ -234,4 +235,3 @@ elseif (isset($_POST['lang'])) {
     $expire = 365*24*3600;
     setcookie('lang', $_POST['lang'], time() + $expire, "/");
 }
-?>

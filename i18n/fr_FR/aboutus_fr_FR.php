@@ -40,4 +40,3 @@ sur les têtes de nos Webmasters afin d'en apprendre plus sur les personnes ayan
 qui est en vous !
 </p>
 PWE;
-?>

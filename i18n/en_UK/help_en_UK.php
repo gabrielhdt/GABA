@@ -45,4 +45,3 @@ You will find in the video an overview of all the features offered by our websit
 and how to use them.
 </p>
 VID;
-?>

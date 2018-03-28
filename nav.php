@@ -1,7 +1,7 @@
 <?php
 // TODO: penser à mettre à jour les liens des pages
-$page_name = substr( $_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '/')+1, strrpos($_SERVER['PHP_SELF'],'.php')-1);
-if(isset($_COOKIE['lang'])) {
+$page_name = substr($_SERVER['PHP_SELF'], strrpos($_SERVER['PHP_SELF'], '/')+1, strrpos($_SERVER['PHP_SELF'], '.php')-1);
+if (isset($_COOKIE['lang'])) {
     $lang = $_COOKIE['lang'];
 } else {
     // si aucune langue n'est déclaré, la langue par default est l'anglais
@@ -11,14 +11,14 @@ $text_fr = array('Accueil', 'Le projet', 'Recherche', 'Aide', 'Espèce', 'Indivi
                 'Contact', 'Connexion', 'Espace Perso', 'Déconnexion');
 $text_en = array('Home', 'The Project', 'Research', 'Help', 'Species', 'Followed', 'Facility', 'Chercheur',
                 'Contact', 'LogIn', 'Your Space', 'LogOut');
-if($lang == 'fr') {
+if ($lang == 'fr') {
     $title_home ="Accueil";
-}
-elseif ($lang == 'en') {
+} elseif ($lang == 'en') {
     $title_home ="Home";
 }
 
-function current_nav() {
+function current_nav()
+{
     /************************
     fonction qui gère la les différentes navbar en fonction de la
     page consultée et de la connexion ou non de l'utilisateur
@@ -49,7 +49,8 @@ function current_nav() {
 <ul class='dropdown-menu'>\n";
 
             for ($j=4; $j < 7; $j++) {
-                $nav .= sprintf($format,
+                $nav .= sprintf(
+                    $format,
                                 "",
                                 $links[$j],
                                 "",
@@ -61,7 +62,8 @@ function current_nav() {
 <li><a href='$links[8]'>$text[8]</a></li>\n"; //cas de l'ancre 'contact'
         // autres liens
         } else {
-            $nav .= sprintf($format,
+            $nav .= sprintf(
+                $format,
                             $page_name == $links[$i] ? "class='active'" : "",
                             $links[$i],
                             "",
@@ -73,24 +75,34 @@ function current_nav() {
     $nav .= "</ul>
 <ul class='nav navbar-nav navbar-right'>\n";
     if (!isset($_SESSION['login'])) {
-        $nav .= sprintf($format, ($page_name == $links[9]) ? "class='active'" : "",
-                        $links[9], "<span class='glyphicon glyphicon-log-in'></span>", $text[9])."</ul>";
+        $nav .= sprintf(
+            $format,
+            ($page_name == $links[9]) ? "class='active'" : "",
+                        $links[9],
+            "<span class='glyphicon glyphicon-log-in'></span>",
+            $text[9]
+        )."</ul>";
     // test si l'utilisateur est connecté, onglets 'espace perso' et 'déconnexion' à droite
     } else {
-        if ($_SESSION['login'] == 'admin'){
-            $nav .= sprintf($format,
+        if ($_SESSION['login'] == 'admin') {
+            $nav .= sprintf(
+                $format,
                             $page_name == 'admin_index.php' ? "class='active'" : "",
-                            $links[12], "",
-                            $text[10]);
+                            $links[12],
+                "",
+                            $text[10]
+            );
         } else {
-            $nav .= sprintf($format,
+            $nav .= sprintf(
+                $format,
                             $page_name == 'membre_index.php' ? "class='active'" : "",
                             $links[10],
                             "",
                             $text[10]
                         );
         }
-        $nav .= sprintf($format,
+        $nav .= sprintf(
+            $format,
                         "",
                         $links[11],
                         "<span class='glyphicon glyphicon-log-out'></span>",

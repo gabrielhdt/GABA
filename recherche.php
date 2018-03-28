@@ -1,6 +1,6 @@
 <?php
-session_start ();
-if(isset($_COOKIE['lang'])) {
+session_start();
+if (isset($_COOKIE['lang'])) {
     $lang = $_COOKIE['lang'];
 } else {
     // si aucune langue n'est déclaré, la langue par default est l'anglais

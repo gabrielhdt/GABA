@@ -15,5 +15,3 @@ $placeholder_latidude = "Latitude";
 $placeholder_longitude = "Longitude";
 
 $submit = "Enregistrer";
-
-?>

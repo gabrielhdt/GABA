@@ -25,8 +25,6 @@ if (move_uploaded_file($_FILES['userpic']['tmp_name'], $uploadfile)) {
         array('value' => $uploadfile, 'type' => PDO::PARAM_STR)
     );
     update_line($_POST['table'], $update, $where);
-}
-else {
+} else {
     echo "Possible file upload attack.\n";
 }
-?>

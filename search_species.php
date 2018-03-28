@@ -1,7 +1,7 @@
 <?php
-session_start ();
+session_start();
 
-if(isset($_COOKIE['lang'])) {
+if (isset($_COOKIE['lang'])) {
     $lang = $_COOKIE['lang'];
 } else {
     // si aucune langue n'est déclaré, la langue par default est l'anglais
@@ -22,8 +22,7 @@ head($title_head, $lang);
 
 $lines = get_values('idFacility, name', 'Facility', array('orderby' => 'name'));
 $id_faname = array();
-foreach ($lines as $line)
-{
+foreach ($lines as $line) {
     $id_faname[$line['idFacility']] = $line['name'];
 }
 
@@ -32,25 +31,22 @@ $species = get_values($fields, 'Species');
 $fields = 'Species.idSpecies, COUNT(idFollowed) as nfoll';
 $tables = 'Species INNER JOIN Followed ON Species.idSpecies=Followed.idSpecies';
 // FETCH_KEY_PAIR -> array(idSpecies1 => nfoll1, idSpecies2 => nfoll2, ...)
-$spfollcount = get_values($fields, $tables,
+$spfollcount = get_values(
+    $fields,
+    $tables,
     array(
         'groupby' => 'Species.idSpecies',
         'fetch_style' => PDO::FETCH_KEY_PAIR
     )
 );
-foreach ($species as &$spline)
-{
-    if (isset($spfollcount[$spline['idSpecies']]))
-    {
+foreach ($species as &$spline) {
+    if (isset($spfollcount[$spline['idSpecies']])) {
         $spline['nfoll'] = $spfollcount[$spline['idSpecies']];
-    }
-    else
-    {
+    } else {
         $spline['nfoll'] = 0;
     }
 }
-if (isset($_POST['low_nfoll']) && !empty($_POST['low_nfoll']))
-{
+if (isset($_POST['low_nfoll']) && !empty($_POST['low_nfoll'])) {
     $len = count($species);
     for ($i = 0 ; $i < $len ; $i++) {
         if ($species[$i]['nfoll'] < $_POST['low_nfoll']) {
@@ -59,8 +55,7 @@ if (isset($_POST['low_nfoll']) && !empty($_POST['low_nfoll']))
     }
     $species = array_values($species);  //Resets indexes
 }
-if (isset($_POST['up_nfoll']) && !empty($_POST['up_nfoll']))
-{
+if (isset($_POST['up_nfoll']) && !empty($_POST['up_nfoll'])) {
     $len = count($species);
     for ($i = 0 ; $i < $len ; $i++) {
         if ($species[$i]['nfoll'] > $_POST['up_nfoll']) {

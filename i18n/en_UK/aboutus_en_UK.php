@@ -38,4 +38,3 @@ $p_webmaster = <<< PWE
 &emsp; We wish you to spend a good time on our website and we hope we have awaken the animal inside you !
 </p>
 PWE;
-?>

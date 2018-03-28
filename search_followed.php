@@ -1,7 +1,7 @@
 <?php
-session_start ();
+session_start();
 
-if(isset($_COOKIE['lang'])) {
+if (isset($_COOKIE['lang'])) {
     $lang = $_COOKIE['lang'];
 } else {
     // si aucune langue n'est déclaré, la langue par default est l'anglais
@@ -21,112 +21,106 @@ include "head.php";
 head($title_head, $lang);
 
 $id_biname = array();
-$lines = get_values('idSpecies, binomial_name', 'Species',
-    array('orderby' => 'binomial_name'));
-foreach ($lines as $line)
-{
+$lines = get_values(
+    'idSpecies, binomial_name',
+    'Species',
+    array('orderby' => 'binomial_name')
+);
+foreach ($lines as $line) {
     $id_biname[$line['idSpecies']] = $line['binomial_name'];
 }
 $lines = get_values('idFacility, name', 'Facility', array('orderby' => 'name'));
 $id_faname = array();
-foreach ($lines as $line)
-{
+foreach ($lines as $line) {
     $id_faname[$line['idFacility']] = $line['name'];
 }
 
 $where = array();
 $wherestrfrags = array();
 $where['valtype'] = array();
-if (isset($_POST['lowbirth']) & !empty($_POST['lowbirth']))
-{
-    if (preg_match("/$dateregex/", $_POST['lowbirth']))
-    {
+if (isset($_POST['lowbirth']) & !empty($_POST['lowbirth'])) {
+    if (preg_match("/$dateregex/", $_POST['lowbirth'])) {
         array_push($wherestrfrags, 'birth>=?');
-        array_push($where['valtype'], array(
+        array_push(
+            $where['valtype'],
+            array(
                 'value' => $_POST['lowbirth'], 'type' => PDO::PARAM_STR
             )
         );
     }
 }
-if (isset($_POST['upbirth']) && !empty($_POST['upbirth']))
-{
-    if (preg_match("/$dateregex/", $_POST['upbirth']))
-    {
+if (isset($_POST['upbirth']) && !empty($_POST['upbirth'])) {
+    if (preg_match("/$dateregex/", $_POST['upbirth'])) {
         array_push($wherestrfrags, 'birth<=?');
-        array_push($where['valtype'],
+        array_push(
+            $where['valtype'],
             array(
                 'value' => $_POST['upbirth'], 'type' => PDO::PARAM_STR
             )
         );
     }
 }
-if (isset($_POST['lowdeath']) & !empty($_POST['lowdeath']))
-{
-    if (preg_match("/$dateregex/", $_POST['lowdeath']))
-    {
+if (isset($_POST['lowdeath']) & !empty($_POST['lowdeath'])) {
+    if (preg_match("/$dateregex/", $_POST['lowdeath'])) {
         array_push($wherestrfrags, 'death>=?');
-        array_push($where['valtype'],
+        array_push(
+            $where['valtype'],
             array(
                 'value' => $_POST['lowdeath'], 'type' => PDO::PARAM_STR
             )
         );
     }
 }
-if (isset($_POST['updeath']) && !empty($_POST['updeath']))
-{
-    if (preg_match("/$dateregex/", $_POST['updeath']))
-    {
+if (isset($_POST['updeath']) && !empty($_POST['updeath'])) {
+    if (preg_match("/$dateregex/", $_POST['updeath'])) {
         array_push($wherestrfrags, 'updeath<=?');
-        array_push($where['valtype'],
+        array_push(
+            $where['valtype'],
             array(
                 'value' => $_POST['updeath'], 'type' => PDO::PARAM_STR
             )
         );
     }
 }
-if (isset($_POST['gender']) && !empty($_POST['gender']))
-{
+if (isset($_POST['gender']) && !empty($_POST['gender'])) {
     array_push($wherestrfrags, 'gender=?');
-    array_push($where['valtype'],
+    array_push(
+        $where['valtype'],
         array(
             'value' => $_POST['gender'], 'type' => PDO::PARAM_STR
         )
     );
 }
-if (isset($_POST['idspecies']) && !empty($_POST['idspecies']))
-{
+if (isset($_POST['idspecies']) && !empty($_POST['idspecies'])) {
     $numsp = count($_POST['idspecies']);
     $in_str = '(' . implode(', ', array_fill(0, $numsp, '?')) . ')';
     array_push($wherestrfrags, 'Followed.idSpecies IN ' . $in_str);
-    foreach ($_POST['idspecies'] as $idsp)
-    {
-        array_push($where['valtype'],
+    foreach ($_POST['idspecies'] as $idsp) {
+        array_push(
+            $where['valtype'],
             array(
                 'value' => $idsp, 'type' => PDO::PARAM_INT
             )
         );
     }
 }
-if (isset($_POST['idfacility']) && !empty($_POST['idfacility']))
-{
+if (isset($_POST['idfacility']) && !empty($_POST['idfacility'])) {
     $numfa = count($_POST['idfacility']);
     $in_str = '(' . implode(', ', array_fill(0, $numfa, '?')) . ')';
     array_push($wherestrfrags, 'Followed.idFacility IN ' . $in_str);
-    foreach ($_POST['idfacility'] as $idfa)
-    {
-        array_push($where['valtype'],
+    foreach ($_POST['idfacility'] as $idfa) {
+        array_push(
+            $where['valtype'],
             array(
                 'value' => $idfa, 'type' => PDO::PARAM_INT
             )
         );
     }
 }
-if ($wherestrfrags)
-{
+if ($wherestrfrags) {
     $where['str'] = implode(' AND ', $wherestrfrags);
 }
-if (!isset($where['str']))
-{
+if (!isset($where['str'])) {
     unset($where);
 }
 $tables = <<<TBL
@@ -207,7 +201,10 @@ create_tablehead($colfoll, $labels);
 echo '</thead>';
 echo '<tbody>';
 create_tablebody(
-    explode(', ', $fields), $search_res, 'followed.php', 'idFollowed'
+    explode(', ', $fields),
+    $search_res,
+    'followed.php',
+    'idFollowed'
 );
 echo '</tbody>';
 echo '</table>';

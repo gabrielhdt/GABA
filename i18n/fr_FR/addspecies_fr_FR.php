@@ -20,4 +20,3 @@ $family = "Famille*";
 $genus = "Genus*";
 $status = "pwet*status";
 $submit = "Enregistrer";
-?>

@@ -80,15 +80,15 @@
                 <form>
                     Date de naissance:
                     <input type="text" class="form-control" name="birth" placeholder="Date de naissance"
-                    value="<?php echo ($search_res['birth'] ? $search_res['birth'] : ""); ?>">
+                    value="<?php echo($search_res['birth'] ? $search_res['birth'] : ""); ?>">
                     Date de décès:
                     <input type="text" class="form-control" name="death" placeholder="Date de décès"
-                    value="<?php echo ($search_res['death'] ? $search_res['death'] : ""); ?>">
+                    value="<?php echo($search_res['death'] ? $search_res['death'] : ""); ?>">
                     État de santé :
                     <input type="text" class="form-control" name="health" placeholder="État de santé"
-                    value="<?php echo ($search_res['health'] ? $search_res['health'] : ""); ?>">
+                    value="<?php echo($search_res['health'] ? $search_res['health'] : ""); ?>">
                     Annotation :
-                    <textarea class="form-control" name="annotation"><?php echo ($search_res['annotation'] ? $search_res['annotation'] : ""); ?></textarea>
+                    <textarea class="form-control" name="annotation"><?php echo($search_res['annotation'] ? $search_res['annotation'] : ""); ?></textarea>
                 </form>
             </div>
             <div class="modal-footer">

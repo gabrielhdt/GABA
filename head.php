@@ -1,7 +1,8 @@
 
 <?php
 
-function head($title, $lang) {
+function head($title, $lang)
+{
     /*
     * Fonction qui adapte le titre de la page, a la page en cours
     */

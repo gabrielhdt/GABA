@@ -1,6 +1,6 @@
 <?php
-session_start ();
-if(isset($_COOKIE['lang'])) {
+session_start();
+if (isset($_COOKIE['lang'])) {
     $lang = $_COOKIE['lang'];
 } else {
     // si aucune langue n'est déclaré, la langue par default est l'anglais
@@ -378,8 +378,7 @@ head($head_title, $lang);
 <?php
 $facspecs = get_values('name, gnss_coord, type', 'Facility');
 foreach ($facspecs as $facility) {
-    if ($facility['gnss_coord'] != null)
-    {
+    if ($facility['gnss_coord'] != null) {
         $latlong = explode(',', $facility['gnss_coord']);
         $type = $facility['type'];
         $name = $facility['name'];

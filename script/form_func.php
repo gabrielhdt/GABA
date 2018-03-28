@@ -9,14 +9,10 @@ function create_choice_list($disp_fields, $defsel=null)
      * must be a key of $disp_fields
      * Doesn't include the <select name= id= class=> </select>
      */
-    foreach ($disp_fields as $col => $disp)
-    {
-        if ($col == $defsel)
-        {
+    foreach ($disp_fields as $col => $disp) {
+        if ($col == $defsel) {
             echo "<option selected value=\"$col\">".ucwords($disp).'</option>';
-        }
-        else
-        {
+        } else {
             echo "<option value=\"$col\">" . ucwords($disp) . "</option>";
         }
     }
@@ -25,8 +21,7 @@ function create_choice_list($disp_fields, $defsel=null)
 function create_autocplt_list($values)
 {
     /* values array of fields to autocomplete */
-    foreach ($values as $value)
-    {
+    foreach ($values as $value) {
         echo "<option>$value</option>";
     }
 }
@@ -37,14 +32,12 @@ function create_tablehead($colid, $labels)
      * $displayed fields array ($col_name => $displayed_value
      */
     echo '<tr>';
-    for ($i = 0 ; $i < count($colid) ; $i++)
-    {
+    for ($i = 0 ; $i < count($colid) ; $i++) {
         echo '<th data-field="'.$colid[$i].'" data-sortable="true">';
         echo $labels[$i];
         echo '</th>';
     }
     echo '</tr>';
-
 }
 
 function create_tablebody($fields, $search_res, $pagelink=null, $linkarg=null)
@@ -54,11 +47,9 @@ function create_tablebody($fields, $search_res, $pagelink=null, $linkarg=null)
      * pagelink used to make a link to another page, via get method
      * linkarg is the variable in search_res for GET
      */
-    foreach ($search_res as $line)
-    {
+    foreach ($search_res as $line) {
         echo '<tr>';
-        foreach ($fields as $field)
-        {
+        foreach ($fields as $field) {
             echo '<td>';
             echo $pagelink && $linkarg == $field ?
                 '<a href="'.$pagelink.'?id='.$line[$linkarg].'">' : '';
@@ -70,4 +61,3 @@ function create_tablebody($fields, $search_res, $pagelink=null, $linkarg=null)
         echo "</tr>\n";
     }
 }
-?>

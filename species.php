@@ -1,8 +1,8 @@
 <?php
 //TODO: ability to build geo distribution geojson data from map
-session_start ();
+session_start();
 
-if(isset($_COOKIE['lang'])) {
+if (isset($_COOKIE['lang'])) {
     $lang = $_COOKIE['lang'];
 } else {
     // si aucune langue n'est déclaré, la langue par default est l'anglais
@@ -57,9 +57,15 @@ $where['str'] = 'idSpecies=?';
 $where['valtype'] = array(array('value' => $idspecies,
     'type' => PDO::PARAM_INT));
 $pic_paths_qu = get_values('pic_path', 'Followed', array('where' => $where));
-function g($ppassoc) { return($ppassoc['pic_path']); }
+function g($ppassoc)
+{
+    return($ppassoc['pic_path']);
+}
 $pic_paths_null = array_map("g", $pic_paths_qu);
-function h($ppnull) { return($ppnull && true); } // ppnull seems false?
+function h($ppnull)
+{
+    return($ppnull && true);
+} // ppnull seems false?
 $pic_paths = array_filter($pic_paths_null, "h");
 $pic_path = $pic_paths[array_rand($pic_paths)];
 
@@ -73,14 +79,16 @@ if ($lang == 'fr') {
 curl_setopt($ch, CURLOPT_URL, $wikiurl);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_USERAGENT, 'Owl/0.1 GABA');
-curl_setopt($ch, CURLOPT_POSTFIELDS,
+curl_setopt(
+    $ch,
+    CURLOPT_POSTFIELDS,
     'action=query&prop=extracts&exintro=&format=json&formatversion=2&titles=' .
     ucwords($search_res['common_name'])
 );
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $wikijson = curl_exec($ch);
 if ($wikijson) {
-    $wikiarr = json_decode($wikijson, TRUE);
+    $wikiarr = json_decode($wikijson, true);
     $wikintro = $wikiarr['query']['pages'][0]['extract'];
 }
 
@@ -95,10 +103,13 @@ $where['valtype'] = array(
 );
 $fields = 'Followed.idFollowed';
 $folls_located = get_values($fields, $tables, array('where' => $where));
-function f($line) {return($line['idFollowed']);}
+function f($line)
+{
+    return($line['idFollowed']);
+}
 $folls_located = array_map('f', $folls_located);
 $last_locs = array();
-foreach ($folls_located as $follocated){
+foreach ($folls_located as $follocated) {
     $fields = 'MAX(date_measure) AS lastm_date';
     $tables = <<<TBL
 Location INNER JOIN Measure ON Location.idMeasure=Measure.idMeasure
@@ -108,15 +119,21 @@ TBL;
     $where['valtype'] = array(
         array('value' => $follocated, 'type' => PDO::PARAM_INT)
     );
-    $lastm_date = get_values($fields, $tables,
-        array('where' => $where))[0]['lastm_date'];
+    $lastm_date = get_values(
+        $fields,
+        $tables,
+        array('where' => $where)
+    )[0]['lastm_date'];
     $fields = 'Followed.idFollowed, latitude, longitude';
     $where['str'] = 'date_measure=?';
     $where['valtype'] = array(
         array('value' => $lastm_date, 'type' => PDO::PARAM_STR)
     );
-    array_push($last_locs, get_values($fields, $tables,
-        array('where' => $where))[0]);
+    array_push($last_locs, get_values(
+        $fields,
+        $tables,
+        array('where' => $where)
+    )[0]);
 }
 
 //Statistics (mean in a first place)
@@ -127,7 +144,10 @@ $where['valtype'] = array(
 $folls = get_values('idFollowed', 'Followed', array('where' => $where));
 $folls = array_map('f', $folls);
 $folls_mtype = array(); //array(idFollowed => array of measure types)
-function ht($line) {return($line['type']);}
+function ht($line)
+{
+    return($line['type']);
+}
 foreach ($folls as $foll) {
     $folls_mtype[$foll] = array_map('ht', distinct_measure($foll));
 }
@@ -185,13 +205,10 @@ head(ucfirst($search_res['binomial_name']), $lang);
             <div class="intel">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="sp_data">
                     <?php
-                    if ($search_res['common_name'])
-                    {
+                    if ($search_res['common_name']) {
                         echo '<h1>'.ucfirst($search_res['common_name']).'</h1>';
                         echo '<h2>'.ucfirst($search_res['binomial_name']).'</h2>';
-                    }
-                    else
-                    {
+                    } else {
                         echo '<h1>'.ucfirst($search_res['binomial_name']).'</h1>';
                     }
                     ?>
@@ -232,12 +249,14 @@ head(ucfirst($search_res['binomial_name']), $lang);
                     <p id="wikintro">
                         <?php echo $wikintro ? $wikintro : 'No wikipedia data found' ?>
                     </p>
-                    <?php if ($edit) { ?>
+                    <?php if ($edit) {
+                        ?>
                     <button type="button" class="data-modif btn btn-info btn-lg" data-toggle="modal"
                         data-target="#editSpeciesModal">
                         <?php echo $edit_info ?>
                     </button>
-                    <?php } ?>
+                    <?php
+                    } ?>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="map-container">
                     <div id="foll_of_sp_map"></div>
@@ -247,7 +266,8 @@ head(ucfirst($search_res['binomial_name']), $lang);
     </div>
 </div>
 </div>
-<?php if ($edit) { ?>
+<?php if ($edit) {
+                        ?>
 <div id="editSpeciesModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
@@ -307,7 +327,8 @@ head(ucfirst($search_res['binomial_name']), $lang);
 
   </div>
 </div>
-<?php } ?>
+<?php
+                    } ?>
 <?php
 include 'footer.php';
 ?>

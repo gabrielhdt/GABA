@@ -1,12 +1,12 @@
 <?php
-session_start ();
+session_start();
 if (!isset($_SESSION['login'], $_SESSION['idstaff']) ||
     $_SESSION['login'] == 'admin') { // utilisateur passé par le formulaire?
-    header ('Location: login.php'); // sinon retour page login
+    header('Location: login.php'); // sinon retour page login
     exit();
 }
 
-if(isset($_COOKIE['lang'])) {
+if (isset($_COOKIE['lang'])) {
     $lang = $_COOKIE['lang'];
 } else {
     // si aucune langue n'est déclaré, la langue par default est l'anglais
@@ -31,13 +31,15 @@ include "head.php";
 $fields_arr = array('binomial_name', 'kingdom', 'phylum', 'class', 'order_s',
     'family', 'genus', 'conservation_status');
 // If called after search fill database
-if (isset($_POST['binomial_name']))
-{
+if (isset($_POST['binomial_name'])) {
     //Check input
-    $valid = TRUE;
+    $valid = true;
     foreach ($fields_arr as $ch_field) {
-        $valid = $valid && filter_var($_POST[$ch_field], FILTER_VALIDATE_REGEXP,
-            array('options' => array('regexp' => $filt_pattern)));
+        $valid = $valid && filter_var(
+            $_POST[$ch_field],
+            FILTER_VALIDATE_REGEXP,
+            array('options' => array('regexp' => $filt_pattern))
+        );
     }
     if ($valid) {
         $add_arr = array();
@@ -48,7 +50,8 @@ if (isset($_POST['binomial_name']))
         }
         $added_id = add_line('Species', $add_arr);
         if ($added_id) {
-            $added_id = add_line('SpeciesEdition',
+            $added_id = add_line(
+                'SpeciesEdition',
                 array(
                     'idStaff' => array(
                         'value' => $_SESSION['idstaff'],
@@ -67,42 +70,42 @@ if (isset($_POST['binomial_name']))
 }
 
 // Getting info for form
-$lines = get_values('DISTINCT kingdom', 'Species',
-    array('orderby' => 'kingdom'));
+$lines = get_values(
+    'DISTINCT kingdom',
+    'Species',
+    array('orderby' => 'kingdom')
+);
 $kingdoms = array();
-foreach ($lines as $line)
-{
+foreach ($lines as $line) {
     array_push($kingdoms, ucfirst($line['kingdom']));
 }
 $lines = get_values('DISTINCT phylum', 'Species', array('orderby' => 'phylum'));
 $phylae = array();
-foreach ($lines as $line)
-{
+foreach ($lines as $line) {
     array_push($phylae, ucfirst($line['phylum']));
 }
 $lines = get_values('DISTINCT class', 'Species', array('orderby' => 'class'));
 $classes = array();
-foreach ($lines as $line)
-{
+foreach ($lines as $line) {
     array_push($classes, ucfirst($line['class']));
 }
-$lines = get_values("DISTINCT order_s", 'Species',
-    array('$orderby' => 'order_s'));
+$lines = get_values(
+    "DISTINCT order_s",
+    'Species',
+    array('$orderby' => 'order_s')
+);
 $orders = array();
-foreach ($lines as $line)
-{
+foreach ($lines as $line) {
     array_push($orders, ucfirst($line['order_s']));
 }
 $lines = get_values('DISTINCT family', 'Species', array('orderby' => 'family'));
 $families = array();
-foreach ($lines as $line)
-{
+foreach ($lines as $line) {
     array_push($families, ucfirst($line['family']));
 }
 $lines = get_values('DISTINCT genus', 'Species', array('orderby' => 'genus'));
 $genuses = array();
-foreach ($lines as $line)
-{
+foreach ($lines as $line) {
     array_push($genuses, ucfirst($line['genus']));
 }
 
@@ -113,19 +116,21 @@ head($title_head, $lang);
 <?php
 include "nav.php";
 if (isset($valid, $added_id) && $valid && $added_id) {
-//TODO: pre fill followed.php page
+    //TODO: pre fill followed.php page
 ?>
 <div class="alert alert-success" role="alert">
     <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
     <?php echo $alert_succes ?>
 </div>
-<?php }
-elseif (isset($added_id) && !$added_id || isset($valid) && !$valid) {?>
+<?php
+} elseif (isset($added_id) && !$added_id || isset($valid) && !$valid) {
+    ?>
 <div class="alert alert-danger" role="alert">
     <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
     <?php echo $alert_danger ?>
 </div>
-<?php } ?>
+<?php
+} ?>
 
 <div class="container" style="background-image: url('data/pics/unordered/herd.jpg');">
     <div class="add-form col-lg-5 col-md-5 col-sm-6 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">

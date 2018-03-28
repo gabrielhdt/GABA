@@ -1,12 +1,12 @@
 <?php
-session_start ();
+session_start();
 if (!isset($_SESSION['login'], $_SESSION['idstaff']) ||
     $_SESSION['login'] == 'admin') { // Get through login?
-    header ('Location: login.php'); // sinon retour page login
+    header('Location: login.php'); // sinon retour page login
     exit();
 }
 
-if(isset($_COOKIE['lang'])) {
+if (isset($_COOKIE['lang'])) {
     $lang = $_COOKIE['lang'];
 } else {
     // si aucune langue n'est déclaré, la langue par default est l'anglais
@@ -25,43 +25,49 @@ include "script/form_func.php";
 include "head.php";
 
 $id_biname = array();
-$lines = get_values('idSpecies, binomial_name', 'Species',
-    array('orderby' => 'binomial_name'));
-foreach ($lines as $line)
-{
+$lines = get_values(
+    'idSpecies, binomial_name',
+    'Species',
+    array('orderby' => 'binomial_name')
+);
+foreach ($lines as $line) {
     $id_biname[$line['idSpecies']] = $line['binomial_name'];
 }
 $lines = get_values('idFacility, name', 'Facility', array('orderby' => 'name'));
 $id_faname = array();
-foreach ($lines as $line)
-{
+foreach ($lines as $line) {
     $id_faname[$line['idFacility']] = $line['name'];
 }
 
 // If form info, fill database
-if (isset($_POST['species']))
-{
+if (isset($_POST['species'])) {
     //Check values
-    $valid = TRUE;
+    $valid = true;
     foreach (array('facility', 'species') as $intfld) {
         if (!filter_var($_POST[$intfld], FILTER_VALIDATE_INT)) {
-            $valid = FALSE;
+            $valid = false;
         }
     }
     foreach (array('gender', 'health') as $strfld) {
-        if(
-            !filter_var($_POST[$strfld], FILTER_VALIDATE_REGEXP,
-            array('options' => array('regexp' => $filt_pattern)))
+        if (
+            !filter_var(
+                $_POST[$strfld],
+                FILTER_VALIDATE_REGEXP,
+            array('options' => array('regexp' => $filt_pattern))
+            )
         ) {
-            $valid = FALSE;
+            $valid = false;
         }
     }
 
     if (
-        !filter_var($_POST['birth'], FILTER_VALIDATE_REGEXP,
-        array('options' => array('regexp' => "/$dateregex/")))
+        !filter_var(
+            $_POST['birth'],
+            FILTER_VALIDATE_REGEXP,
+        array('options' => array('regexp' => "/$dateregex/"))
+        )
     ) {
-        $valid = FALSE;
+        $valid = false;
     }
 
     if ($valid) {
@@ -87,7 +93,8 @@ if (isset($_POST['species']))
         );
         $added_id = add_line('Followed', $values);
         if ($added_id) {
-            add_line('FollowedEdition',
+            add_line(
+                'FollowedEdition',
                 array(
                     'idStaff' => array(
                         'value' => $_SESSION['idstaff'], 'type' => PDO::PARAM_INT
@@ -100,9 +107,9 @@ if (isset($_POST['species']))
                     )
                 )
             );
-            if (isset($_POST['use_geoloc']) && $_POST['use_geoloc'] == 'on')
-            {
-                $idmeasure = add_line('Measure',
+            if (isset($_POST['use_geoloc']) && $_POST['use_geoloc'] == 'on') {
+                $idmeasure = add_line(
+                    'Measure',
                     array(
                         'idFollowed' => array(
                             'value' => $added_id, 'type' => PDO::PARAM_INT
@@ -114,7 +121,8 @@ if (isset($_POST['species']))
                     )
                 );
                 $coords = explode(',', $_COOKIE['geoloc']);
-                add_line('Location',
+                add_line(
+                    'Location',
                     array(
                         'latitude' => array(
                             'value' => (float) $coords[0],
@@ -140,18 +148,20 @@ head($title_head, $lang);
 <?php
 include "nav.php";
 if (isset($added_id, $valid) && $added_id && $valid) {
-?>
+    ?>
 <div class="alert alert-success" role="alert">
     <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
     <?php echo $alert_succes ?>
 </div>
-<?php }
-elseif (isset($added_id) && !$added_id || isset($valid) && !$valid) { ?>
+<?php
+} elseif (isset($added_id) && !$added_id || isset($valid) && !$valid) {
+    ?>
 <div class="alert alert-danger" role="alert">
     <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
     <?php echo $alert_danger ?>
 </div>
-<?php } ?>
+<?php
+} ?>
 <div class="container" style="background-image: url('data/pics/unordered/mada.jpg');">
     <div class="add-form col-lg-5 col-md-5 col-sm-6 col-xs-12 col-lg-offset-6 col-md-offset-6 col-sm-offset-5">
         <div class="formulaire">

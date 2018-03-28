@@ -6,11 +6,12 @@ $dbname = 'IENAC_GABA';
 $password = 'abag';
 $charset = 'utf8mb4';
 
-function arithmetic_mean($real_arr) {
+function arithmetic_mean($real_arr)
+{
     return array_sum($real_arr)/count($real_arr);
 }
 
-function add_line($table, $values, $keepcase=FALSE)
+function add_line($table, $values, $keepcase=false)
 {
     /* table a string, values an associtive array:
      * 'column name' => array('value' => mixed, 'type' => PDO type)
@@ -28,12 +29,14 @@ function add_line($table, $values, $keepcase=FALSE)
     $query .= ';';
     global $servername, $username, $dbname, $password, $charset;
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
-            $username, $password);
+        $conn = new PDO(
+            "mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username,
+            $password
+        );
         $stmt = $conn->prepare($query);
         $qumarkcounter = 1;
-        foreach ($columns as $col)
-        {
+        foreach ($columns as $col) {
             $to_bind = $keepcase ? $values[$col]['value'] :
                 mb_strtolower($values[$col]['value']);
             $stmt->bindValue($qumarkcounter, $to_bind, $values[$col]['type']);
@@ -60,12 +63,9 @@ function add_staff($password, $type, $first_name, $last_name)
     $last_name = mb_strtolower($last_name);
     $last_name_patt = '/(\s)*(\w{2,3}\b(\s)+){0,2}(\w*\b)/';
     $lname_filtered = preg_replace($last_name_patt, "$4", $last_name);
-    if (strlen($lname_filtered) < 6)
-    {
+    if (strlen($lname_filtered) < 6) {
         $login = $lname_filtered;
-    }
-    else
-    {
+    } else {
         $login = mb_substr($lname_filtered, 0, 6);
     }
     $login .= mb_substr($first_name, 0, 2);
@@ -76,8 +76,11 @@ function add_staff($password, $type, $first_name, $last_name)
     // Database input
     global $servername, $username, $dbname, $password, $charset;
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
-            $username, $password);
+        $conn = new PDO(
+            "mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username,
+            $password
+        );
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         // Is login existing?
         $query = <<<QRY
@@ -86,8 +89,7 @@ QRY;
         $stmt = $conn->query($query);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $rslt = $stmt->fetchAll();
-        if (count($rslt) > 0)
-        {
+        if (count($rslt) > 0) {
             $login .= (count($rslt) + 1);
         }
         // Login set: input data
@@ -130,23 +132,22 @@ function get_values($select, $tables, $params = array())
         $query .= isset($params['orderby']) ?
             ' ORDER BY ' . $params['orderby'] : null;
         $query .= ';';
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
-            $username, $password);
+        $conn = new PDO(
+            "mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username,
+            $password
+        );
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $stmt = $conn->prepare($query);
         $qumarkcounter = 1; // ? Indexed from 1
-        if (isset($params['where']))
-        {
-            foreach ($params['where']['valtype'] as $whval)
-            {
+        if (isset($params['where'])) {
+            foreach ($params['where']['valtype'] as $whval) {
                 $stmt->bindValue($qumarkcounter, $whval['value'], $whval['type']);
                 $qumarkcounter++;
             }
         }
-        if (isset($params['having'], $params['having']['valtype']))
-        {
-            foreach ($params['having']['valtype'] as $hvval)
-            {
+        if (isset($params['having'], $params['having']['valtype'])) {
+            foreach ($params['having']['valtype'] as $hvval) {
                 $stmt->bindValue($qumarkcounter, $hvval['value'], $hvval['type']);
                 $qumarkcounter++;
             }
@@ -171,8 +172,11 @@ function get_columns($table)
     // outputs array of colummns of $table
     global $servername, $username, $dbname, $password, $charset;
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
-            $username, $password);
+        $conn = new PDO(
+            "mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username,
+            $password
+        );
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $query = "SHOW columns FROM $table;";
         $stmt = $conn->query($query);
@@ -194,8 +198,11 @@ function main_tables_from_keys()
      */
     global $servername, $username, $dbname, $password, $charset;
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
-            $username, $password);
+        $conn = new PDO(
+            "mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username,
+            $password
+        );
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $query = "SHOW tables;";
         $stmt = $conn->query($query);
@@ -203,14 +210,12 @@ function main_tables_from_keys()
         $tables_zipped = $stmt->fetchAll();
         $tables = array();
         // unzipping
-        foreach ($tables_zipped as $tab)
-        {
+        foreach ($tables_zipped as $tab) {
             array_push($tables, $tab['Tables_in_IENAC_GABA']);
         }
 
         $key_table = array();
-        foreach ($tables as $table)
-        {
+        foreach ($tables as $table) {
             $query = "SHOW INDEX FROM $table;";
             $stmt = $conn -> query($query);
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -227,7 +232,7 @@ function main_tables_from_keys()
     return $key_table;
 }
 
-function update_line($table, $updates, $where, $keepcase=FALSE)
+function update_line($table, $updates, $where, $keepcase=false)
 {
     /* table a string,
      * updates and where are the same type of array, i.e.
@@ -244,19 +249,20 @@ function update_line($table, $updates, $where, $keepcase=FALSE)
     $query .= ';';
     global $servername, $username, $dbname, $password, $charset;
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
-            $username, $password);
+        $conn = new PDO(
+            "mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username,
+            $password
+        );
         $stmt = $conn->prepare($query);
         $qumarkcounter = 1;
-        foreach ($updates['valtype'] as $upvt)
-        {
+        foreach ($updates['valtype'] as $upvt) {
             $to_bind = $keepcase ? $upvt['value'] :
                 mb_strtolower($upvt['value']);
             $stmt->bindValue($qumarkcounter, $to_bind, $upvt['type']);
             $qumarkcounter++;
         }
-        foreach ($where['valtype'] as $wh)
-        {
+        foreach ($where['valtype'] as $wh) {
             $stmt->bindValue($qumarkcounter, $wh['value'], $wh['type']);
             $qumarkcounter++;
         }
@@ -284,18 +290,19 @@ function classify_process($table, $valc, $critc, $mod, $fct = arithmetic_mean)
     $rslt = array();
     global $servername, $username, $dbname, $password, $charset;
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
-            $username, $password);
+        $conn = new PDO(
+            "mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username,
+            $password
+        );
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $query_comm = "SELECT $valc FROM $table WHERE $critc BETWEEN ";
-        for ($i = 0 ; $i < count($mod) - 1 ; $i++)
-        {
+        for ($i = 0 ; $i < count($mod) - 1 ; $i++) {
             $query_end = $mod[$i] . ' AND ' . $mod[$i + 1] .';';
             $stmt = $conn->query($query_comm . $query_end);
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $rslt[$mod[$i]] = $fct($stmt->fetchAll());
         }
-
     } catch (PDOException $e) {
         echo 'Something went wrong (classify_process): ' . $e->getMessage();
     }
@@ -303,12 +310,16 @@ function classify_process($table, $valc, $critc, $mod, $fct = arithmetic_mean)
     return $rslt;
 }
 
-function verify_login($login, $pwd){
+function verify_login($login, $pwd)
+{
     // fonction de test login/pwd pour la connexion
     global $servername, $username, $dbname, $password, $charset;
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
-            $username, $password);
+        $conn = new PDO(
+            "mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username,
+            $password
+        );
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $query = "SELECT login FROM Staff WHERE login=?";
@@ -325,14 +336,13 @@ function verify_login($login, $pwd){
 
         $authok = $log && password_verify($pwd, $hpwd['pwhash']); // bon password ?
 
-        if ($authok && $login == "admin"){
+        if ($authok && $login == "admin") {
             $id = 'admin';
         } elseif ($authok) {
             $id = 'staff';
         } else {
-            $id = FALSE;
+            $id = false;
         }
-
     } catch (PDOException $e) {
         echo 'Something went wrong (verify_login): ' . $e->getMessage();
     }
@@ -348,13 +358,20 @@ function id_from_login($login)
      */
     global $servername, $username, $dbname, $password, $charset;
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
-            $username, $password);
+        $conn = new PDO(
+            "mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username,
+            $password
+        );
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $query = "SELECT (idStaff) FROM Staff WHERE login=?";
         $stmt = $conn->prepare($query);
-        $stmt -> bindParam(1, $login, $data_type=PDO::PARAM_STR,
-            $length=12);
+        $stmt -> bindParam(
+            1,
+            $login,
+            $data_type=PDO::PARAM_STR,
+            $length=12
+        );
         $stmt -> execute();
         $rslt = $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
@@ -365,7 +382,8 @@ function id_from_login($login)
     return $rslt['idStaff'];
 }
 
-function format_msg($id, $date, $name, $email, $msg){
+function format_msg($id, $date, $name, $email, $msg)
+{
     /* fonction qui formate l'affichge d'un message pour l'affichge sur la page
      * de l'admin
      */
@@ -384,19 +402,28 @@ Message : $msg
 FMT;
 }
 
-function list_msg(){
+function list_msg()
+{
     // recuperation et affichages des messages pour l'administrateur
     global $servername, $username, $dbname, $password, $charset;
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname",
-                        $username, $password);
+        $conn = new PDO(
+            "mysql:host=$servername;dbname=$dbname",
+                        $username,
+            $password
+        );
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $reponse = $conn->query('SELECT * FROM messages ORDER BY date desc');
-        while ($donnees = $reponse->fetch())  {
-            format_msg($donnees['id'], $donnees['date'], $donnees['name'],
-                $donnees['email'], $donnees['message'])."\n";
+        while ($donnees = $reponse->fetch()) {
+            format_msg(
+                $donnees['id'],
+                $donnees['date'],
+                $donnees['name'],
+                $donnees['email'],
+                $donnees['message']
+            )."\n";
         }
-    } catch(PDOException $e) {
+    } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
     $conn = null;
@@ -407,8 +434,11 @@ function delete_msg($id)
     // fonction qui sumprime le message $id de la base de données par l'admin
     global $servername, $username, $dbname, $password, $charset;
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=$charset",
-            $username, $password);
+        $conn = new PDO(
+            "mysql:host=$servername;dbname=$dbname;charset=$charset",
+            $username,
+            $password
+        );
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $query = "DELETE FROM messages WHERE id=$id";
         $conn->exec($query);
@@ -418,7 +448,8 @@ function delete_msg($id)
     $conn = null;
 }
 
-function distinct_measure($idFollowed) {
+function distinct_measure($idFollowed)
+{
     /* fonction qui renvoie un tableau de tout les types de mesures connues pour
      * pour le followed $idFollowed
      */
@@ -429,13 +460,16 @@ function distinct_measure($idFollowed) {
     $tables = <<<TBL
 MiscQuantity INNER JOIN Measure ON MiscQuantity.idMeasure=Measure.idMeasure
 TBL;
-    $distinct_type = get_values('DISTINCT MiscQuantity.type',
-        $tables, array('where' => $where)
+    $distinct_type = get_values(
+        'DISTINCT MiscQuantity.type',
+        $tables,
+        array('where' => $where)
     );
     return $distinct_type;
-    }
+}
 
-function latest_meas_of($idFollowed) {
+function latest_meas_of($idFollowed)
+{
     /* Returns all latest measures (of each type) of followed idfollowed
      * each line contains: type of measure, unit, value and date
      * it should return the last value
@@ -448,7 +482,8 @@ function latest_meas_of($idFollowed) {
     return $rslt;
 }
 
-function latest_meas_type($idfollowed, $type) {
+function latest_meas_type($idfollowed, $type)
+{
     // Donne la dernière mesure de type $type pour un followed donné
     $select = "MAX(date_measure) AS last_date";
     $tables = "MiscQuantity INNER JOIN Measure ON MiscQuantity.idMeasure=Measure.idMeasure
@@ -464,8 +499,10 @@ function latest_meas_type($idfollowed, $type) {
                 array('value' => $type, 'type' => PDO::PARAM_STR),
                 array('value' => $date_last_measure[0]["last_date"],
                 'type' => PDO::PARAM_INT)));
-    $rslt = $date_last_measure = get_values($select, $tables,
-        array('where' => $where));
+    $rslt = $date_last_measure = get_values(
+        $select,
+        $tables,
+        array('where' => $where)
+    );
     return $rslt[0];
 }
-?>

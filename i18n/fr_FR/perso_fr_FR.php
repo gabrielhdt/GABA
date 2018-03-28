@@ -6,4 +6,3 @@ $new_pwd1 = "Nouveau mot de passe";
 $new_pwd2 = "Confirmation du mot de passe";
 $confirm = "Valider";
 $change_email = '<p>Changer votre adresse courriel</p>';
-?>

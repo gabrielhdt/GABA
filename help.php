@@ -1,9 +1,9 @@
 <?php
-session_start ();
+session_start();
 
 $staff = isset($_SESSION['login']) && $_SESSION['login'] != 'admin';
 
-if(isset($_COOKIE['lang'])) {
+if (isset($_COOKIE['lang'])) {
     $lang = $_COOKIE['lang'];
 } else {
     // si aucune langue n'est déclaré, la langue par default est l'anglais
@@ -70,7 +70,8 @@ head($title_head, $lang);
                     <img src="data/pics/unordered/contact_us.png" class="img-responsive" alt="Nous contacter" />
                 </div>
             </div>
-            <?php if ($staff) {?>
+            <?php if ($staff) {
+    ?>
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
                         <img src="data/pics/unordered/followed_sceenshot.png" class="img-responsive" alt="Espace login" />
@@ -79,7 +80,8 @@ head($title_head, $lang);
                         <?php echo $help_staff; ?>
                     </div>
                 </div>
-            <?php } ?>
+            <?php
+} ?>
 
         </div>
     </div>

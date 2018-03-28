@@ -1,13 +1,13 @@
-<?php // TODO: ajouter des photos pour le menu ?>
+<?php // TODO: ajouter des photos pour le menu?>
 
 <?php
-session_start ();
+session_start();
 if (!isset($_SESSION['login'])) { // test si l'utilisateur est bien passé par le formulaire
-    header ('Location: login.php'); // sinon retour page login
+    header('Location: login.php'); // sinon retour page login
     exit();
 }
 
-if(isset($_COOKIE['lang'])) {
+if (isset($_COOKIE['lang'])) {
     $lang = $_COOKIE['lang'];
 } else {
     // si aucune langue n'est déclaré, la langue par default est l'anglais

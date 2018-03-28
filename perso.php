@@ -1,12 +1,12 @@
 <?php // TODO javascript to check identicity if pw client side (disable button)
 
-session_start ();
+session_start();
 if (!isset($_SESSION['login'])) { // test si l'utilisateur est bien passé par le formulaire
-    header ('Location: login.php'); // sinon retour page login
+    header('Location: login.php'); // sinon retour page login
     exit();
 }
 
-if(isset($_COOKIE['lang'])) {
+if (isset($_COOKIE['lang'])) {
     $lang = $_COOKIE['lang'];
 } else {
     // si aucune langue n'est déclaré, la langue par default est l'anglais
@@ -22,18 +22,12 @@ if ($lang=='fr') {           // si la langue est 'fr' (français) on inclut le f
 
 include 'head.php';
 include 'script/db.php';
-if (isset($_POST['old_pw'], $_POST['new_pw'], $_POST['conf_pw']))
-{
-    if ($_POST['new_pw'] != $_POST['conf_pw'])
-    {
+if (isset($_POST['old_pw'], $_POST['new_pw'], $_POST['conf_pw'])) {
+    if ($_POST['new_pw'] != $_POST['conf_pw']) {
         $err = 'Confirmation failed, data might has been manipulated.';
-    }
-    elseif (!verify_login($_SESSION['login'], $_POST['old_pw']))
-    {
+    } elseif (!verify_login($_SESSION['login'], $_POST['old_pw'])) {
         $err = 'Old password wrong or data manipulated.';
-    }
-    else
-    {
+    } else {
         $pwhash = password_hash($_POST['new_pw'], PASSWORD_DEFAULT);
         $where['str'] = 'idStaff=?';
         $where['valtype'] = array(
